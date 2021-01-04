@@ -1,4 +1,4 @@
-> A Melodic Trainer featuring multiple instrumet sounds.
+> A Melodic Trainer featuring multiple instrument sounds.
 
 # Project Name
 "Melodic Trainer"
@@ -30,7 +30,7 @@ This is the beginning of a music ear-training application. Requires audio enable
 * Investigate proper tech stack.
 
 ## Known Issues
-* 
+* Uncomplete. 
 
 ## Status
 Project is: _in development_. This is a long-term project. Check back later!
