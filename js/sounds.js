@@ -3,7 +3,7 @@
 /* SOUNDS ARRAYS AND PICKER */
 
 function soundBankPicker() {
-    player1Sounds = soundBank[Math.floor(Math.random() * 2)];
+    player1Sounds = soundBank[Math.floor(Math.random() * 3)];
 }
 
 function forceArnold() { 
@@ -27,7 +27,7 @@ $("#forceArnold").on("dblclick", function () {
 });
 
 $("#forceArnold").on("click", function () {
-    if (player1Sounds == pianoAnhemMajorC ) {
+    if ( player1Sounds == pianoAnhemMajorC ) {
         arnoldCounter++;
     }
 
@@ -60,8 +60,17 @@ var frenchHornAnhemMajorC = [
     "sounds/french-horn/french-horn-A4.mp3",
     // "sounds/french-horn/french-horn-C5.mp3"
 ] 
+
+var violinAnhemMajorC = [
+    "sounds/violin/violin-C4.mp3",
+    "sounds/violin/violin-D4.mp3",
+    "sounds/violin/violin-E4.mp3",
+    "sounds/violin/violin-G4.mp3",
+    "sounds/violin/violin-A4.mp3",
+    // "sounds/violin/violin-C5.mp3"
+] 
  
 
-soundBank = [pianoAnhemMajorC, frenchHornAnhemMajorC ];
+soundBank = [pianoAnhemMajorC, frenchHornAnhemMajorC, violinAnhemMajorC ];
 
 /* END of document */
