@@ -77,8 +77,6 @@ var frenchHornChromaticC = [
     "sounds/french-horn/french-horn-C5.mp3"
 ] 
 
-
-
 var violinChromaticC = [
     "sounds/violin/violin-C4.mp3",
     "sounds/violin/violin-Db4.mp3",
@@ -96,7 +94,6 @@ var violinChromaticC = [
     "sounds/violin/violin-C5.mp3"
 ] 
 
- 
 
 soundBank = [pianoChromaticC, frenchHornChromaticC, violinChromaticC ];
 
