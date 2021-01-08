@@ -11,6 +11,12 @@
   --grey: #525252;
   --lightgrey: #e0c2c2;
   --white: #ededed;
+
+  /* --header-font: blenny, sans-serif;
+  --copy-font: dosis, sans-serif; */
+
+  --header-font: alegreya, serif;
+  --copy-font: alegreya-sans, sans-serif;
 }
 
 * {
@@ -30,12 +36,12 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  font-family: blenny, sans-serif;
+  font-family: var(--header-font);
 }
 
 p {
   margin: 0;
-  font-family: dosis, sans-serif;
+  font-family: var(--copy-font);
   font-size: 19px;
   font-weight: bold;
   letter-spacing: 1px;
@@ -46,27 +52,65 @@ p {
 .grid-container {
   grid-template-areas:
   "header header header header header header"
-  "...... message message message message ....."
-  "score ....... square1 square2 ........ meter"
-  "score ....... square3 square4 ........ meter"
+  "...... message message message message ......"
+  "...... ....... notes notes ....... ....."
+  "score ....... notes notes ........ meter"
+  "score ....... notes notes ........ meter"
   "level instruct instruct instruct instruct options";
   position: relative;
   top: 50vh;
   transform: translateY(-50%);
   display: grid;
   grid-template-columns: 150px auto 200px 200px auto 150px;
-  grid-template-rows: 140px 50px 150px 150px 150px;
+  grid-template-rows: 140px 50px 150px 150px 150px 150px;
   grid-gap: 15px;
   max-width: 1200px;
   padding: 30px;
   border-radius: 10px;
   margin: 0 auto;
-  background-color: #181818;
+  background-color: #4b4b4b;
 }
 
 .grid-container > div {
   border-radius: 10px;
 }
+
+/* NOTE GRID */
+
+.note-container {
+  grid-area: notes;
+  grid-template-areas:
+  "...... note13 ......."
+  "...... note12 ......."
+  "...... note11 ......."
+  "...... note10 ......."
+  "...... note9 ......."
+  "...... note8 ......."
+  "...... note7 ......."
+  "...... note6 ......."
+  "...... note5 ......."
+  "...... note4 ......."
+  "...... note3 ......."
+  "...... note2 ......."
+  "...... note1 .......";
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr, 1fr, 1fr ;
+  grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr ;
+  grid-gap: 5px;
+  width: 100%;
+  border-radius: 10px;
+  margin: 0 auto;
+  background-color: #181818;
+}
+
+.note-container > div {
+  border-radius: 10px;
+  background-color: red;
+}
+
+
+
 
 /* PLAY-STATE */
 
@@ -301,11 +345,13 @@ p {
 }
 
 .arnold-header {
-  margin-top: -3px;
-  font-size: 100px;
+  margin-top: 10px;
+  font-size: 110px;
   color: var(--darkblue);
   line-height: 120px;
-  letter-spacing: 1px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 5px;
   background-color: rgba(0, 0, 0, 0);
   -webkit-text-stroke: 1px black;
   text-shadow:
@@ -423,10 +469,10 @@ p {
 
 /* COLOR SQUARES */
 
-.item4 {
-  grid-area: square1;
+.note1 {
+  grid-area: note1;
   position: relative;
-  top: 25px;
+  
   cursor: pointer;
 }
 
@@ -442,10 +488,9 @@ p {
   box-shadow: -8px 5px 15px var(--black), -8px 5px 6px 3px var(--black);
 }
 
-.item5 {
-  grid-area: square2;
+.note2 {
+  grid-area: note2;
   position: relative;
-  top: 25px;
   cursor: pointer;
 }
 
@@ -461,10 +506,9 @@ p {
   box-shadow: -8px 5px 15px var(--black), -8px 5px 6px 3px var(--black);
 }
 
-.item6 {
-  grid-area: square3;
+.note3 {
+  grid-area: note3;
   position: relative;
-  top: 25px;
   cursor: pointer;
 }
 
@@ -480,10 +524,9 @@ p {
   box-shadow: -8px 5px 15px var(--black), -8px 5px 6px 3px var(--black);
 }
 
-.item7 {
-  grid-area: square4;
+.note4 {
+  grid-area: note4;
   position: relative;
-  top: 25px;
   cursor: pointer;
 }
 
