@@ -13,7 +13,17 @@ function squareActive() {
   var sq2Sound = new Audio(player1Sounds[1]);
   var sq3Sound = new Audio(player1Sounds[2]);
   var sq4Sound = new Audio(player1Sounds[3]);
-  
+  var sq5Sound = new Audio(player1Sounds[4]);
+  var sq6Sound = new Audio(player1Sounds[5]);
+  var sq7Sound = new Audio(player1Sounds[6]);
+  var sq8Sound = new Audio(player1Sounds[7]);
+  var sq9Sound = new Audio(player1Sounds[8]);
+  var sq10Sound = new Audio(player1Sounds[9]);
+  var sq11Sound = new Audio(player1Sounds[10]);
+  var sq12Sound = new Audio(player1Sounds[11]);
+  var sq13Sound = new Audio(player1Sounds[12]);
+
+
   switch (sqId) {
     case "sq1":
       sq1Sound.load();
@@ -37,6 +47,60 @@ function squareActive() {
       sq4Sound.load();
       sq4Sound.play();
       currentAudio = sq4Sound;
+      break;
+
+    case "sq5":
+      sq5Sound.load();
+      sq5Sound.play();
+      currentAudio = sq5Sound;
+      break;
+
+    case "sq6":
+      sq6Sound.load();
+      sq6Sound.play();
+      currentAudio = sq6Sound;
+      break;
+
+    case "sq7":
+      sq7Sound.load();
+      sq7Sound.play();
+      currentAudio = sq7Sound;
+      break;
+
+    case "sq8":
+      sq8Sound.load();
+      sq8Sound.play();
+      currentAudio = sq8Sound;
+      break;
+
+    case "sq9":
+      sq9Sound.load();
+      sq9Sound.play();
+      currentAudio = sq9Sound;
+      break;
+
+    case "sq10":
+      sq10Sound.load();
+      sq10Sound.play();
+      currentAudio = sq10Sound;
+      break;
+
+    case "sq11":
+      sq11Sound.load();
+      sq11Sound.play();
+      currentAudio = sq11Sound;
+      break;
+
+    case "sq12":
+      sq12Sound.load();
+      sq12Sound.play();
+      currentAudio = sq12Sound;
+      break;
+
+    case "sq13":
+      sq13Sound.load();
+      sq13Sound.play();
+      currentAudio = sq13Sound;
       break;
 
     default:
@@ -124,7 +188,7 @@ function beginGame() {
 /* ARNOLD'S TURN */
 
 function arnoldsTurn() {
-  let newNumber = Math.ceil(Math.random() * 4);
+  let newNumber = Math.ceil(Math.random() * 13);
 
   // // force Arnold to greet you politely
   // if (player1Sounds == arnoldSounds && currentLevel == 1 ) {
@@ -137,17 +201,17 @@ function arnoldsTurn() {
   // }
 
   // prevent 4 consecutive squares from occuring in the pattern
-  if ( newNumber == sPat[sPat.length-1] && newNumber == sPat[sPat.length-2] && newNumber == sPat[sPat.length-3] ) {
+  if (newNumber == sPat[sPat.length - 1] && newNumber == sPat[sPat.length - 2] && newNumber == sPat[sPat.length - 3]) {
     arnoldsTurn();
   } else {
     sPat.push(newNumber);
     sqId = "sq" + newNumber;
     squareActive();
-    
+
     setTimeout(function () {
       playerTurn();
     }, 200);
-    
+
   }
 }
 
@@ -178,6 +242,51 @@ function playerTurn() {
     squareClicked(id);
   });
 
+  $(".color-square5").on("click", function () {
+    id = 5;
+    squareClicked(id);
+  });
+
+  $(".color-square6").on("click", function () {
+    id = 6;
+    squareClicked(id);
+  });
+
+  $(".color-square7").on("click", function () {
+    id = 7;
+    squareClicked(id);
+  });
+
+  $(".color-square8").on("click", function () {
+    id = 8;
+    squareClicked(id);
+  });
+
+  $(".color-square9").on("click", function () {
+    id = 9;
+    squareClicked(id);
+  });
+
+  $(".color-square10").on("click", function () {
+    id = 10;
+    squareClicked(id);
+  });
+
+  $(".color-square11").on("click", function () {
+    id = 11;
+    squareClicked(id);
+  });
+
+  $(".color-square12").on("click", function () {
+    id = 12;
+    squareClicked(id);
+  });
+
+  $(".color-square13").on("click", function () {
+    id = 13;
+    squareClicked(id);
+  });
+
   function squareClicked(id) {
     sqId = ("sq" + id);
     p1Pat.push(id);
@@ -197,7 +306,7 @@ function patCheck() {
     timerStop();
     if (arnoldBool == true) {
       arnoldModeSwitch();
-    }    
+    }
     nextTurn();
     meterFill();
   } else if (sPat[sPat.length - (sPat.length - p1Pat.length) - 1] === p1Pat[p1Pat.length - 1]) {
@@ -245,6 +354,15 @@ function playerTurnEnd() {
   $(".color-square2").off("click");
   $(".color-square3").off("click");
   $(".color-square4").off("click");
+  $(".color-square5").off("click");
+  $(".color-square6").off("click");
+  $(".color-square7").off("click");
+  $(".color-square8").off("click");
+  $(".color-square9").off("click");
+  $(".color-square10").off("click");
+  $(".color-square11").off("click");
+  $(".color-square12").off("click");
+  $(".color-square13").off("click");
   $(".meter-btn").off("click");
 }
 

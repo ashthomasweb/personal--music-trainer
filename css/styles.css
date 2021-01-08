@@ -542,6 +542,169 @@ p {
   box-shadow: -8px 5px 15px var(--black), -8px 5px 6px 3px var(--black);
 }
 
+.note5 {
+  grid-area: note5;
+  position: relative;
+  cursor: pointer;
+}
+
+.color-square5 {
+  place-self: center;
+  width: 90%;
+  height: 90%;
+  border: solid 2px var(--black);
+  border-radius: 45px !important;
+  opacity: 0.6;
+  background-color: blue;
+  background-image: radial-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, .1));
+  box-shadow: -8px 5px 15px var(--black), -8px 5px 6px 3px var(--black);
+}
+
+.note6 {
+  grid-area: note6;
+  position: relative;
+  cursor: pointer;
+}
+
+.color-square6 {
+  place-self: center;
+  width: 90%;
+  height: 90%;
+  border: solid 2px var(--black);
+  border-radius: 45px !important;
+  opacity: 0.6;
+  background-color: blue;
+  background-image: radial-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, .1));
+  box-shadow: -8px 5px 15px var(--black), -8px 5px 6px 3px var(--black);
+}
+
+.note7 {
+  grid-area: note7;
+  position: relative;
+  cursor: pointer;
+}
+
+.color-square7 {
+  place-self: center;
+  width: 90%;
+  height: 90%;
+  border: solid 2px var(--black);
+  border-radius: 45px !important;
+  opacity: 0.6;
+  background-color: blue;
+  background-image: radial-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, .1));
+  box-shadow: -8px 5px 15px var(--black), -8px 5px 6px 3px var(--black);
+}
+
+.note8 {
+  grid-area: note8;
+  position: relative;
+  cursor: pointer;
+}
+
+.color-square8 {
+  place-self: center;
+  width: 90%;
+  height: 90%;
+  border: solid 2px var(--black);
+  border-radius: 45px !important;
+  opacity: 0.6;
+  background-color: blue;
+  background-image: radial-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, .1));
+  box-shadow: -8px 5px 15px var(--black), -8px 5px 6px 3px var(--black);
+}
+
+.note9 {
+  grid-area: note9;
+  position: relative;
+  cursor: pointer;
+}
+
+.color-square9 {
+  place-self: center;
+  width: 90%;
+  height: 90%;
+  border: solid 2px var(--black);
+  border-radius: 45px !important;
+  opacity: 0.6;
+  background-color: blue;
+  background-image: radial-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, .1));
+  box-shadow: -8px 5px 15px var(--black), -8px 5px 6px 3px var(--black);
+}
+
+.note10 {
+  grid-area: note10;
+  position: relative;
+  cursor: pointer;
+}
+
+.color-square10 {
+  place-self: center;
+  width: 90%;
+  height: 90%;
+  border: solid 2px var(--black);
+  border-radius: 45px !important;
+  opacity: 0.6;
+  background-color: blue;
+  background-image: radial-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, .1));
+  box-shadow: -8px 5px 15px var(--black), -8px 5px 6px 3px var(--black);
+}
+
+.note11 {
+  grid-area: note11;
+  position: relative;
+  cursor: pointer;
+}
+
+.color-square11 {
+  place-self: center;
+  width: 90%;
+  height: 90%;
+  border: solid 2px var(--black);
+  border-radius: 45px !important;
+  opacity: 0.6;
+  background-color: blue;
+  background-image: radial-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, .1));
+  box-shadow: -8px 5px 15px var(--black), -8px 5px 6px 3px var(--black);
+}
+
+.note12 {
+  grid-area: note12;
+  position: relative;
+  cursor: pointer;
+}
+
+.color-square12 {
+  place-self: center;
+  width: 90%;
+  height: 90%;
+  border: solid 2px var(--black);
+  border-radius: 45px !important;
+  opacity: 0.6;
+  background-color: blue;
+  background-image: radial-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, .1));
+  box-shadow: -8px 5px 15px var(--black), -8px 5px 6px 3px var(--black);
+}
+
+.note13 {
+  grid-area: note13;
+  position: relative;
+  cursor: pointer;
+}
+
+.color-square13 {
+  place-self: center;
+  width: 90%;
+  height: 90%;
+  border: solid 2px var(--black);
+  border-radius: 45px !important;
+  opacity: 0.6;
+  background-color: blue;
+  background-image: radial-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, .1));
+  box-shadow: -8px 5px 15px var(--black), -8px 5px 6px 3px var(--black);
+}
+
+
 .anim_sq-glow:hover {
   opacity: 0.8;
   transition: opacity .3s ease-in;
