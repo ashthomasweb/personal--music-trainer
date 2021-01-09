@@ -187,32 +187,42 @@ function beginGame() {
 
 /* ARNOLD'S TURN */
 
+
+
 function arnoldsTurn() {
-  let newNumber = Math.ceil(Math.random() * 13);
+  let chromaticScale = Math.ceil(Math.random() * 13);
+  majorFinder();
 
-  // // force Arnold to greet you politely
-  // if (player1Sounds == arnoldSounds && currentLevel == 1 ) {
-  //   newNumber = 1;
-  // }
 
-  // // prevent Arnold from being mean too early in the game
-  // if (player1Sounds == arnoldSounds && currentLevel < 6 && newNumber === 3) {
-  //   newNumber = 1;
-  // }
+  function majorFinder() {
 
-  // prevent 4 consecutive squares from occuring in the pattern
-  if (newNumber == sPat[sPat.length - 1] && newNumber == sPat[sPat.length - 2] && newNumber == sPat[sPat.length - 3]) {
-    arnoldsTurn();
-  } else {
-    sPat.push(newNumber);
-    sqId = "sq" + newNumber;
-    squareActive();
-
-    setTimeout(function () {
-      playerTurn();
-    }, 200);
+    let x = Math.ceil(Math.random() * 12);
+    if (x === 2 || x === 4 || x === 7 || x === 9 || x === 11) {
+      majorFinder();
+    } else {
+      newPush(x);
+      console.log(x);
+      return x;
+    }
 
   }
+
+  function newPush(x) {
+    if ( x == sPat[sPat.length - 1] && x == sPat[sPat.length - 2] ) {
+      arnoldsTurn();
+    } else {
+
+      sPat.push(x);
+      sqId = "sq" + x;
+      squareActive();
+    }
+  }
+
+  setTimeout(function () {
+    playerTurn();
+  }, 200);
+
+
 }
 
 
@@ -395,7 +405,7 @@ $(".btn-death").click(function () {
 });
 
 function deathScreen() {
-  let gameOver = new Audio(player1Sounds[4]);
+  let gameOver = new Audio(player1Sounds[6]);
   setTimeout(function () {
     gameOver.play();
   }, 250);
