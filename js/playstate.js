@@ -196,7 +196,7 @@ function arnoldsTurn() {
 
   function majorFinder() {
 
-    let x = Math.ceil(Math.random() * 12);
+    let x = Math.ceil(Math.random() * 13);
     if (x === 2 || x === 4 || x === 7 || x === 9 || x === 11) {
       majorFinder();
     } else {
@@ -207,24 +207,54 @@ function arnoldsTurn() {
 
   }
 
+  function minorFinder() {
+
+    let x = Math.ceil(Math.random() * 13);
+    if (x === 2 || x === 5 || x === 7 || x === 10 || x === 12) {
+      majorFinder();
+    } else {
+      newPush(x);
+      console.log(x);
+      return x;
+    }
+
+  }
+
+
   function newPush(x) {
     if ( x == sPat[sPat.length - 1] && x == sPat[sPat.length - 2] ) {
       arnoldsTurn();
     } else {
-
       sPat.push(x);
       sqId = "sq" + x;
       squareActive();
     }
   }
 
+
+  
   setTimeout(function () {
     playerTurn();
   }, 200);
-
-
+  
+  
 }
 
+function majorHide() {
+  $(".note2").css("opacity", "0");
+  $(".note4").css("opacity", "0");
+  $(".note7").css("opacity", "0");
+  $(".note9").css("opacity", "0");
+  $(".note11").css("opacity", "0");
+}
+
+function minorHide() {
+  $(".note2").css("opacity", "0");
+  $(".note5").css("opacity", "0");
+  $(".note7").css("opacity", "0");
+  $(".note10").css("opacity", "0");
+  $(".note12").css("opacity", "0");
+}
 
 /* PLAYER'S TURN */
 

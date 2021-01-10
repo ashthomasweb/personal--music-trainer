@@ -43,6 +43,10 @@ $("#forceArnold").on("click", function () {
     $("#forceArnold").css("color", colorGen);
 });
 
+
+
+
+
 var pianoChromaticC = [
     "sounds/piano/piano-C4.mp3",
     "sounds/piano/piano-Db4.mp3",
