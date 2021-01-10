@@ -2,12 +2,14 @@
 
 /* SQUARE ANIMATION AND SOUND */
 
-function squareActive() {
-  $("#" + sqId + "-box").addClass("anim_sq-pulse");
+function squareActive(sqId) {
+  // $("#" + sqId + "-box").addClass("anim_sq-pulse");
 
-  setTimeout(function () {
-    $("#" + sqId + "-box").removeClass("anim_sq-pulse");
-  }, 200);
+  // setTimeout(function () {
+  //   $("#" + sqId + "-box").removeClass("anim_sq-pulse");
+  // }, 200);
+
+
 
   var sq1Sound = new Audio(player1Sounds[0]);
   var sq2Sound = new Audio(player1Sounds[1]);
@@ -107,6 +109,48 @@ function squareActive() {
   }
 }
 
+function playScale() {
+  squareActive("sq1");
+
+  setTimeout(function() {
+    squareActive("sq13");
+  }, 800);
+  setTimeout(function() {
+    squareActive("sq12");
+  }, 1500);
+  setTimeout(function() {
+    squareActive("sq10");
+  }, 2000);
+  setTimeout(function() {
+    squareActive("sq8");
+  }, 2500);
+  setTimeout(function() {
+    squareActive("sq6");
+  }, 3000);
+  setTimeout(function() {
+    squareActive("sq5");
+  }, 3500);
+  setTimeout(function() {
+    squareActive("sq3");
+  }, 4000);
+  setTimeout(function() {
+    squareActive("sq1");
+  }, 4500);
+  setTimeout(function() {
+    squareActive("sq5");
+  }, 5050);
+  setTimeout(function() {
+    squareActive("sq8");
+  }, 5625);
+  setTimeout(function() {
+    squareActive("sq5");
+  }, 6200);
+  setTimeout(function() {
+    squareActive("sq1");
+  }, 7000);
+
+}
+
 
 /* PLAYSTATE - INVITE SCREEN */
 
@@ -188,11 +232,27 @@ function beginGame() {
 /* ARNOLD'S TURN */
 
 
+let scaleChoice;
 
 function arnoldsTurn() {
-  let chromaticScale = Math.ceil(Math.random() * 13);
-  majorFinder();
 
+  if (scaleChoice === "major") {
+    majorFinder();
+  }
+
+  if (scaleChoice === "minor") {
+    minorFinder();
+  }
+
+  if (scaleChoice === "chromatic") {
+    chromaticFinder();
+  }
+
+
+  function chromaticFinder() {
+    let x = Math.ceil(Math.random() * 13);
+    newPush(x);
+  }
 
   function majorFinder() {
 
@@ -201,8 +261,6 @@ function arnoldsTurn() {
       majorFinder();
     } else {
       newPush(x);
-      console.log(x);
-      return x;
     }
 
   }
@@ -211,36 +269,49 @@ function arnoldsTurn() {
 
     let x = Math.ceil(Math.random() * 13);
     if (x === 2 || x === 5 || x === 7 || x === 10 || x === 12) {
-      majorFinder();
+      minorFinder();
     } else {
       newPush(x);
-      console.log(x);
-      return x;
     }
 
   }
 
 
   function newPush(x) {
-    if ( x == sPat[sPat.length - 1] && x == sPat[sPat.length - 2] ) {
+    if (x == sPat[sPat.length - 1] && x == sPat[sPat.length - 2]) {
       arnoldsTurn();
     } else {
       sPat.push(x);
       sqId = "sq" + x;
-      squareActive();
+      squareActive(sqId);
     }
   }
 
 
-  
+
   setTimeout(function () {
     playerTurn();
   }, 200);
-  
-  
+
+
+}
+
+function showAll() {
+  $(".note2").css("opacity", "1");
+  $(".note3").css("opacity", "1");
+  $(".note4").css("opacity", "1");
+  $(".note5").css("opacity", "1");
+  $(".note6").css("opacity", "1");
+  $(".note7").css("opacity", "1");
+  $(".note8").css("opacity", "1");
+  $(".note9").css("opacity", "1");
+  $(".note10").css("opacity", "1");
+  $(".note11").css("opacity", "1");
+  $(".note12").css("opacity", "1");
 }
 
 function majorHide() {
+  showAll();
   $(".note2").css("opacity", "0");
   $(".note4").css("opacity", "0");
   $(".note7").css("opacity", "0");
@@ -249,12 +320,36 @@ function majorHide() {
 }
 
 function minorHide() {
+  showAll();
   $(".note2").css("opacity", "0");
   $(".note5").css("opacity", "0");
   $(".note7").css("opacity", "0");
   $(".note10").css("opacity", "0");
   $(".note12").css("opacity", "0");
 }
+
+$("#invite-major").on("click", function () {
+  majorHide();
+  scaleChoice = "major";
+});
+
+$("#invite-minor").on("click", function () {
+  minorHide();
+  scaleChoice = "major";
+});
+
+$("#invite-chromatic").on("click", function () {
+  showAll();
+  scaleChoice = "chromatic";
+});
+
+
+
+
+
+
+
+
 
 /* PLAYER'S TURN */
 
@@ -330,7 +425,7 @@ function playerTurn() {
   function squareClicked(id) {
     sqId = ("sq" + id);
     p1Pat.push(id);
-    squareActive();
+    squareActive(sqId);
     patCheck();
   }
 
@@ -410,6 +505,7 @@ function playerTurnEnd() {
 /* GAME OVER */
 
 function gameOver() {
+  console.log(sPat, p1Pat);
   timerStop();
   playerTurnEnd();
   partyGameover();
