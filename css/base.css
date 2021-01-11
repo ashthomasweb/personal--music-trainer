@@ -1,0 +1,31 @@
+/* || Base CSS file for "melody trainer" */
+
+
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+body {
+    background-image: url(../images/solid.png);
+    background-attachment: fixed;
+    /* background-color: #b39c9450; */
+
+    font-family: alegreya-sans, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: alegreya, serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+
+

@@ -1,4 +1,4 @@
-<!-- HTML file for "the-arnold-game" -->
+<!-- HTML file for "melody-trainer" -->
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -6,198 +6,57 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="A musical ear-training application. In development">
-  <meta name="keywords"
-    content="ear-training, classcial music practice, melody trainer" />
+  <meta name="description" content="A musical ear-training application. In development">
+  <meta name="keywords" content="ear-training, classical music practice, melody trainer" />
   <meta name="author" content="William Rideout" />
   <meta name="copyright" content="2020" />
-
-  <!-- fonts from arnold game  -->
-  <link rel="stylesheet" href="https://use.typekit.net/lae5rnl.css">
-  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap" rel="stylesheet">
-
-
   <link rel="stylesheet" href="https://use.typekit.net/qmi1qmi.css">
 
-
-
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/mqueries.css">
+  
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/module.css">
+  <link rel="stylesheet" href="css/post.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/mquery.css">
+  
+  
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
   <title>Scale Trainer</title>
 </head>
 
-<body onload="forceArnold()">
+<body>
 
-  <!-- PLAY STATE PANES -->
-
-  <!-- INVITE -->
-  <div class="ps-backdrop"></div>
-  <div class="ps ps-invite-pane">
-
-    <div class="ps-box-border">
-
-      <div class="ps-text-frame">
-        <div id="invite-major" class="ps-btn btn-invite wide">
-          <h2 class="invite-header">Major Trainer</h2>
-        </div>
-        <div id="invite-minor" class="ps-btn btn-invite wide">
-          <h2 class="invite-header">Minor Trainer</h2>
-        </div>
-        <div id="invite-chromatic" class="ps-btn btn-invite wide">
-          <h2 class="invite-header">Chromatic Trainer</h2>
-        </div>
-        <div class="invite-inner-wrap">
-          <p class="invite-para welcome">Welcome! This is a simple ear-training application.</p>
-          <div class="instruction-pane">
-            <h3 class="invite-subhead">Instructions:</h3>
-            <p class="invite-para">At the beginning of each turn a sound will play. It is your job to repeat the
-              pattern back.<br><br>On each new turn you will <i>only see and hear one new note</i>, while you still
-              have to input the entire melody from the beginning.</p>
-          </div>
-
-          <div class="instruction-pane">
-            <h3 class="invite-subhead">Change Sounds:</h3>
-            <p class="invite-para">Each time you start a new game the sounds will change to keep it fun and also
-              challenging.<br><br>If you want to change the sounds yourself, <i>simply click on the game title.</i></p>
-          </div>
-          <!-- <div class="instruction-pane">
-            <h3 class="invite-subhead">Options:</h3>
-            <p class="invite-para">If you want an extra challenge, "Party Mode" will continually change the colors of
-              the squares, and get faster with every turn.<br><br>Some items on the screen can be double-clicked to make
-              their color begin to slowly change. Single-click the item to stop the color where it's at.</p>
-          </div> -->
-          <div class="instruction-pane">
-            <h3 class="invite-subhead">Tips:</h3>
-            <p class="invite-para">Practice! Ears in the air!
-            </p>
-          </div>
-          <div class="instruction-pane">
-            <h3 class="invite-subhead">View The Code:</h3>
-            <p class="invite-para">This is a long-term programming project. I want to combine my skills and expertise in
-              classical music education with my new carreer. This is a perfect opportunity and a way for me to deliver
-              an educational tool to the public without my continual personal engagement. If you want to check out how
-              it works you can
-              <a href="https://github.com/rideoutweb/personal--music-trainer">see it here on
-                my&nbsp;Github&nbsp;profile.</a>
-              <div class="firefox-text-pad"></div>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
+<div class="grid-container">
+  <div class="header"><h1>Melodic Trainer</h1></div>
+  <div class="scores"><h1>Past Scores</h1></div>
+  <div class="instrument"><h1>Instrument</h1></div>
+  <div class="messages"><h1>Messages</h1></div>
+  <div class="key"><h1>Key</h1></div>
+  <div class="mode"><h1>Mode</h1>
+    <button type="button" onclick="modeCycle()">Change Scale</button>
   </div>
+  <div class="options"><h1>Options</h1></div>
 
-  <!-- GAME OVER -->
-  <div class="ps ps-death-pane">
-    <div class="death-wrap">
-      <h2 class="death-header">Ears Up!</h2>
-      <div class="ps-btn btn-death">
-        <h3 class="btn-death-text">Play Again?</h3>
-      </div>
-    </div>
+  <div class="note-container">
+    <button type="button" onclick="playNote13()" class="note13"></button>
+    <button type="button" onclick="playNote12()" class="note12"></button>
+    <button type="button" onclick="playNote11()" class="note11"></button>
+    <button type="button" onclick="playNote10()" class="note10"></button>
+    <button type="button" onclick="playNote9()" class="note9"></button>
+    <button type="button" onclick="playNote8()" class="note8"></button>
+    <button type="button" onclick="playNote7()" class="note7"></button>
+    <button type="button" onclick="playNote6()" class="note6"></button>
+    <button type="button" onclick="playNote5()" class="note5"></button>
+    <button type="button" onclick="playNote4()" class="note4"></button>
+    <button type="button" onclick="playNote3()" class="note3"></button>
+    <button type="button" onclick="playNote2()" class="note2"></button>
+    <button type="button" onclick="playNote1()" class="note1"></button>
   </div>
+</div>
 
-  <!-- END PLAY STATE -->
-
-  <!-- MAIN GRID CONTAINER -->
-  <div class="grid-container ">
-
-    <!-- HEADER -->
-    <div id="header" class="item1 is_color-pick">
-      <h1 class="arnold-header"><span id="forceArnold">Melodic Trainer</span></h1>
-    </div>
-
-    <!-- MESSAGES -->
-    <div class="item2">
-      <p id="messages-pop"></p>
-    </div>
-
-    <!-- SCORE BOX -->
-    <div id="scores" class="item3 is_color-pick">
-      <div class="score-box-border"></div>
-      <h3 class="score-header">High Score</h3>
-      <p id="player1HighScore">...</p>
-      <h3 class="score-header">Past Games</h3>
-      <p id="player1ScoreBox1">...</p>
-      <p id="player1ScoreBox2">...</p>
-      <p id="player1ScoreBox3">...</p>
-      <p id="player1ScoreBox4">...</p>
-      <p id="player1ScoreBox5">...</p>
-    </div>
-
-    <!-- COLOR SQUARES -->
-    <div class="note-container ">
-
-    <div id="sq1-box" class="note1 color-square1 anim_sq-glow"></div>
-    <div id="sq2-box" class="note2 color-square2 anim_sq-glow"></div>
-    <div id="sq3-box" class="note3 color-square3 anim_sq-glow"></div>
-    <div id="sq4-box" class="note4 color-square4 anim_sq-glow"></div>
-    <div id="sq5-box" class="note5 color-square5 anim_sq-glow"></div>
-    <div id="sq6-box" class="note6 color-square6 anim_sq-glow"></div>
-    <div id="sq7-box" class="note7 color-square7 anim_sq-glow"></div>
-    <div id="sq8-box" class="note8 color-square8 anim_sq-glow"></div>
-    <div id="sq9-box" class="note9 color-square9 anim_sq-glow"></div>
-    <div id="sq10-box" class="note10 color-square10 anim_sq-glow"></div>
-    <div id="sq11-box" class="note11 color-square11 anim_sq-glow"></div>
-    <div id="sq12-box" class="note12 color-square12 anim_sq-glow"></div>
-    <div id="sq13-box" class="note13 color-square13 anim_sq-glow"></div>
-    
-    </div>
-
-    <!-- END -->
-
-    <!-- METER -->
-    <div id="meter" class="item8 meter-box is_color-pick">
-      <div id="fill-bar" class="meter-fill-bar is_color-pick"></div>
-      <h3 class="meter-header">Meter</h3>
-      <div class="meter-fill-bar-border"></div>
-      <div class="meter-timer">0</div>
-      <div class="meter-btn meter-btn-clear is_active">Clear</div>
-      <div class="meter-btn meter-btn-clear-co is_double">Clear</div>
-      <div class="meter-btn meter-btn-replay is_active">Replay</div>
-      <div class="meter-btn meter-btn-replay-co is_double">Replay</div>
-      <div class="meter-btn-ghosted ghosted-clear">Clear</div>
-      <div class="meter-btn-ghosted ghosted-replay">Replay</div>
-    </div>
-
-    <!-- LEVEL BOX -->
-    <div id="level" class="item9 is_color-pick">
-      <div class="level-wrap">
-        <div>Your</div>
-        <div class="level-num">0</div>
-        <div>Level</div>
-      </div>
-    </div>
-
-    <!-- INSTRUCTIONS -->
-    <div class="item10 instruct-pane">
-      <p id="instructions-pop"></p>
-    </div>
-
-    <!-- OPTIONS -->
-    <div id="options" class="item11 is_color-pick">
-      <button id="partyBtn" type="button" onclick="partyToggle()">Party Mode</button>
-      <button class="color-reset-btn">Color Reset</button>
-    </div>
-
-  </div>
-
-  <!-- END MAIN GRID -->
-
-  <!-- SCRIPTS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="js/index.js" charset="utf-8"></script>
-  <script src="js/sounds.js" charset="utf-8"></script>
-  <script src="js/modules.js" charset="utf-8"></script>
-  <script src="js/playstate.js" charset="utf-8"></script>
-  <script src="js/textpop.js" charset="utf-8"></script>
-  <script src="js/color.js" charset="utf-8"></script>
+  <script src="sounds.js" charset="utf-8"></script>
 </body>
 
 </html>
-
-
-<!-- END of document -->

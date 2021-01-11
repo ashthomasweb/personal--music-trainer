@@ -1,0 +1,155 @@
+.l-paper-bg {
+    background-image: url(../images/solid.png);
+    background-attachment: fixed;
+
+}
+
+
+.grid-container {
+    grid-template-areas:
+        "header ....... notes notes ....... scores"
+        "messages ....... notes notes ....... scores"
+        "messages ....... notes notes ....... ......."
+        "messages ....... notes notes ........ key"
+        "instrument ....... notes notes ........ mode"
+        "instrument ....... notes notes ....... options";
+    position: relative;
+    top: 50vh;
+    transform: translateY(-50%);
+    display: grid;
+    grid-template-columns: 150px auto 200px 200px auto 150px;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 15px;
+    max-width: 1200px;
+    height: 100vh;
+    padding: 30px;
+    margin: 0 auto;
+}
+
+.grid-container > div {
+    border-radius: 10px;
+}
+
+/* NOTE GRID */
+
+.note-container {
+    grid-area: notes;
+    grid-template-areas:
+        "...... note13 ......."
+        "...... note12 ......."
+        "...... note11 ......."
+        "...... note10 ......."
+        "...... note9 ......."
+        "...... note8 ......."
+        "...... note7 ......."
+        "...... note6 ......."
+        "...... note5 ......."
+        "...... note4 ......."
+        "...... note3 ......."
+        "...... note2 ......."
+        "...... note1 .......";
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+    width: 100%;
+    border-radius: 10px;
+    margin: 0 auto;
+    background-color: #181818;
+}
+
+.note-container > div {
+    border-radius: 10px;
+    background-color: red;
+}
+
+.note1 {
+    grid-area: note1;
+}
+
+.note2 {
+    grid-area: note2;
+}
+
+.note3 {
+    grid-area: note3;
+}
+
+.note4 {
+    grid-area: note4;
+}
+
+.note5 {
+    grid-area: note5;
+}
+
+.note6 {
+    grid-area: note6;
+}
+
+.note7 {
+    grid-area: note7;
+}
+
+.note8 {
+    grid-area: note8;
+}
+
+.note9 {
+    grid-area: note9;
+}
+
+.note10 {
+    grid-area: note10;
+}
+
+.note11 {
+    grid-area: note11;
+}
+
+.note12 {
+    grid-area: note12;
+}
+
+.note13 {
+    grid-area: note13;
+}
+
+
+
+.header {
+    grid-area: header;
+    background-color: grey;
+}
+
+.scores {
+    grid-area: scores;
+    background-color: grey;
+}
+
+.instrument {
+    grid-area: instrument;
+    background-color: grey;
+}
+
+.messages {
+    grid-area: messages;
+    background-color: grey;
+}
+
+.key {
+    grid-area: key;
+    background-color: grey;
+}
+
+.mode {
+    grid-area: mode;
+    background-color: grey;
+}
+
+.options {
+    grid-area: options;
+    background-color: grey;
+}
+

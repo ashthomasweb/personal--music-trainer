@@ -109,50 +109,39 @@ function squareActive(sqId) {
   }
 }
 
-function playScale() {
-  squareActive("sq1");
-
-  setTimeout(function() {
-    squareActive("sq13");
-  }, 800);
-  setTimeout(function() {
-    squareActive("sq12");
-  }, 1500);
-  setTimeout(function() {
-    squareActive("sq10");
-  }, 2000);
-  setTimeout(function() {
-    squareActive("sq8");
-  }, 2500);
-  setTimeout(function() {
-    squareActive("sq6");
-  }, 3000);
-  setTimeout(function() {
-    squareActive("sq5");
-  }, 3500);
-  setTimeout(function() {
-    squareActive("sq3");
-  }, 4000);
-  setTimeout(function() {
-    squareActive("sq1");
-  }, 4500);
-  setTimeout(function() {
-    squareActive("sq5");
-  }, 5050);
-  setTimeout(function() {
-    squareActive("sq8");
-  }, 5625);
-  setTimeout(function() {
-    squareActive("sq5");
-  }, 6200);
-  setTimeout(function() {
-    squareActive("sq1");
-  }, 7000);
-
-}
-
 
 /* PLAYSTATE - INVITE SCREEN */
+
+function initializeMajor() {
+  majorHide();
+  scaleChoice = "major";
+  initializeGame();
+}
+
+function initializeMinor() {
+  minorHide();
+  scaleChoice = "minor";
+  initializeGame();
+}
+
+function initializeChrom() {
+  showAll();
+  scaleChoice = "chromatic";
+  initializeGame();
+}
+
+$("#invite-major").on("click", function () {
+});
+
+$("#invite-minor").on("click", function () {
+  minorHide();
+  scaleChoice = "minor";
+});
+
+$("#invite-chromatic").on("click", function () {
+  showAll();
+  scaleChoice = "chromatic";
+});
 
 $(".btn-invite").on("click", function () {
   var playBtn = $(this);
@@ -224,15 +213,16 @@ function initializeGame() {
 function beginGame() {
   p1Pat = [];
   sPat = [];
-  colorGrad($(".meter-fill-bar"));
-  arnoldsTurn();
+  playScale();
+  setTimeout(function() {
+    arnoldsTurn();
+  }, 8000);
 }
 
 
 /* ARNOLD'S TURN */
 
 
-let scaleChoice;
 
 function arnoldsTurn() {
 
@@ -328,20 +318,7 @@ function minorHide() {
   $(".note12").css("opacity", "0");
 }
 
-$("#invite-major").on("click", function () {
-  majorHide();
-  scaleChoice = "major";
-});
 
-$("#invite-minor").on("click", function () {
-  minorHide();
-  scaleChoice = "major";
-});
-
-$("#invite-chromatic").on("click", function () {
-  showAll();
-  scaleChoice = "chromatic";
-});
 
 
 
@@ -354,7 +331,6 @@ $("#invite-chromatic").on("click", function () {
 /* PLAYER'S TURN */
 
 function playerTurn() {
-  limitListenersOn();
   timerStart();
 
   $(".color-square1").on("click", function () {
@@ -451,7 +427,7 @@ function patCheck() {
     }
 
     currentRound++;
-    hardMode1();
+   
   } else {
     currentAudio.pause(); // currently not working
     gameOver();
@@ -466,7 +442,6 @@ function nextTurn() {
   $("#instructions-pop").removeClass("anim_instruct-pop");
   playerTurnEnd();
   currentLevel++;
-  partyTempoUp();
   levelBox();
   currentRound = 1;
   instructions(1);
@@ -508,14 +483,14 @@ function gameOver() {
   console.log(sPat, p1Pat);
   timerStop();
   playerTurnEnd();
-  partyGameover();
-  carryOverState();
   deathScreen();
   highScore();
   scorePush();
   currentRound = 1;
   p1Pat = [];
   sPat = [];
+  scaleChoice = "";
+  sqId = "";
   levelBox();
 }
 

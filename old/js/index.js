@@ -21,6 +21,6 @@ let counter = "";
 let soundBank = [];
 let arnoldCounter = 0;
 let arnoldBool = false;
-
+let scaleChoice;
 
 /* END of document */

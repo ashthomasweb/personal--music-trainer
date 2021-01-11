@@ -19,18 +19,6 @@ function message(number) {
         default:
     }
 
-    // During Party Mode color shift is disabled 
-    if (partyState == false) {
-        // do nothing 
-    } else if (currentRound > 5) {
-
-        if (Math.ceil(Math.random() * 8) === 1) {
-            $("#messages-pop").text("So sorry bout this...");
-            msgAnimate();
-            colorChgRound();
-        }
-
-    }
 
     if (currentLevel === 10) {
         $("#messages-pop").text("Level 10!");
@@ -70,25 +58,13 @@ function instructions(number) {
             instructFade();
             break;
 
-        case 3:
-            $("#instructions-pop").text("Choose carefully!");
-            instructFade();
-            break;
+       
 
-        case 4:
-            $("#instructions-pop").text("Clear your pattern");
-            instructFade();
-            break;
+        
 
-        case 5:
-            $("#instructions-pop").text("Follow closely ...");
-            instructFade();
-            break;
+        
 
-        case 6:
-            $("#instructions-pop").text("Solid colors only!");
-            instructFade();
-            break;
+        
 
         default:
     }
@@ -98,21 +74,6 @@ function instructions(number) {
 
 /* MESSAGE/INSTRUCTION ANIMATIONS */
 
-clearBtn.mouseover(function () {
-    instructions(4);
-});
-
-replayBtn.mouseover(function () {
-    instructions(5);
-});
-
-clearCO.mouseover(function () {
-    instructions(4);
-});
-
-replayCO.mouseover(function () {
-    instructions(5);
-});
 
 function waitAnimate() {
     $("#messages-pop").addClass("anim_wait-pop");

@@ -1,0 +1,409 @@
+/* Media Queries for "The Arnold Game"  */
+
+@media screen and (max-width: 1063px), screen and (max-height: 767px) {
+
+    .grid-container {
+        grid-template-rows: 100px auto 150px 150px 120px;
+        width: 805px;
+        height: 600px;
+        padding: 15px;
+    }
+
+    .arnold-header {
+        margin-top: -10px;
+        font-size: 70px;
+        line-height: 95px;
+    }
+
+    .item3 {
+        top: -8px;
+    }
+
+    #messages-pop {
+        font-size: 35px;
+        line-height: 0;
+    }
+
+    .item8 {
+        top: -8px;
+    }
+
+    .item9 {
+        margin-bottom: 10px;
+    }
+
+    .level-num {
+        font-size: 35px !important;
+    }
+
+    .level-wrap div {
+        margin-top: -7px;
+        font-size: 22px;
+    }
+
+    #instructions-pop {
+        font-size: 45px;
+    }
+
+    .item11 {
+        margin-bottom: 10px;
+    }
+
+    #partyBtn {
+        position: relative;
+        top: -3px;
+        height: 42px;
+        font-size: 17px;
+    }
+
+    .color-reset-btn {
+        position: relative;
+        top: -4px;
+        height: 42px;
+        font-size: 17px;
+    }
+    
+}
+
+@media screen and (max-width: 799px), screen and (max-height: 599px) {
+
+    #sq1-box {
+        top: -5px;
+        left: 5px;
+    }
+
+    #sq2-box {
+        top: -5px;
+        right: 5px;
+    }
+
+    #sq3-box {
+        left: 5px;
+    }
+
+    #sq4-box {
+        right: 5px;
+    }
+
+    body {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .grid-container {
+        grid-template-areas:
+        "header  header header  header"
+        "message  message message  message"
+        "score  square1 square2  meter"
+        "score  square3 square4  meter"
+        "level  instruct instruct  options";
+        top: 0;
+        grid-template-columns: 25% auto auto 25%;
+        grid-template-rows: 22% auto 22% 22% 22%;
+        grid-gap: 5px;
+        width: 100vw;
+        height: 100vh;
+        padding: 5px;
+        border-radius: 0;
+        transform: none;
+    }
+
+    .ps-invite-pane {
+        width: 90%;
+        height: 90%;
+    }
+
+    .wide {
+        width: 65%;
+        height: 100px;
+    }
+
+    .invite-header {
+        font-size: 23px;
+        line-height: 1;
+    }
+
+    .arnold-header {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        font-size: 10vw;
+        line-height: 45px;
+    }
+
+    .item3 {
+        top: -8px;
+        padding: 13px;
+    }
+
+    #messages-pop {
+        margin-top: 5px;
+        font-size: 30px;
+        line-height: 0;
+    }
+
+    .score-header {
+        font-size: 3.6vw !important;
+        line-height: 18px;
+    }
+
+    #scores > p {
+        margin-top: 7px;
+    }
+
+    .anim_sq-glow {
+        top: -10px;
+        box-shadow: none;
+    }
+
+    .item8 {
+        top: -8px;
+    }
+
+    .meter-header {
+        margin: 10px 0 0;
+        font-size: 3.6vw!important;
+        line-height: 1;
+    }
+
+    .meter-timer {
+        margin: 10px auto 0px;
+        font-size: 8vw;
+        line-height: 1;
+    }
+
+    .meter-fill-bar-border {
+        opacity: 1;
+    }
+
+    .meter-btn { /* Meter buttons use "display: hidden;". As such full class definitions are necessary in mquery.css file  */
+        z-index: 0;
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: calc(100% - 30px);
+        height: 20%;
+        padding: 10px 0;
+        margin: 0 auto;
+        font-size: 3.6vw;
+        line-height: 1;
+        box-shadow: none;
+    }
+
+    .meter-btn-clear {
+        bottom: 31%;
+    }
+
+    .meter-btn-replay {
+        bottom: 9%;
+    }
+
+    .meter-btn-clear-co {
+        bottom: 29%;
+        width: calc(100% - 35px);
+    }
+
+    .meter-btn-replay-co {
+        bottom: 7%;
+        width: calc(100% - 35px);
+    }
+
+    .meter-btn-ghosted {
+        width: calc(100% - 30px);
+        height: 20%;
+        padding: 10px 0;
+        margin: 0 auto;
+        font-size: 3.6vw;
+        line-height: 1;
+    }
+
+    .ghosted-clear {
+        bottom: 31%;
+    }
+
+    .ghosted-replay {
+        bottom: 9%;
+    }
+
+    .meter-header {
+        font-size: 17px;
+    }
+
+    .item9 {
+        margin-bottom: 10px;
+    }
+
+    .level-num {
+        font-size: 35px !important;
+    }
+
+    .level-wrap div {
+        margin-top: -7px;
+        font-size: 22px;
+    }
+
+    #instructions-pop {
+        margin-top: -40px;
+        font-size: 30px;
+        line-height: 30px;
+    }
+
+    .item11 {
+        margin-bottom: 10px;
+    }
+
+    #partyBtn {
+        position: relative;
+        top: -3px;
+        width: 100%;
+        height: 43%;
+        font-size: 3vw;
+    }
+
+    .color-reset-btn {
+        position: relative;
+        top: -4px;
+        width: 100%;
+        height: 43%;
+        font-size: 3vw;
+    }
+
+    @media screen and (min-width: 830px) {
+
+        .arnold-header {
+            font-size: 80px;
+            line-height: 80px;
+        }
+
+        .score-header {
+            font-size: 30px !important;
+            line-height: 30px !important;
+        }
+
+        .meter-header {
+            font-size: 35px !important;
+            line-height: 35px !important;
+
+        }
+
+        .meter-timer {
+            margin-top: 0 !important;
+            font-size: 66px !important;
+            line-height: 66px !important;
+        }
+
+        .meter-btn {
+            font-size: 30px !important;
+            line-height: 15px !important;
+        }
+
+        .meter-btn-ghosted {
+            font-size: 30px !important;
+            line-height: 15px !important;
+        }
+
+        #partyBtn {
+            font-size: 26px !important;
+            line-height: 26px !important;
+        }
+
+        .color-reset-btn {
+            font-size: 26px !important;
+            line-height: 26px !important;
+        }
+
+        @media screen and (max-height: 575px) {
+            #player1ScoreBox3 {
+                display: none;
+            }
+        }
+
+    }
+
+    @media screen and (max-width: 405px) {
+
+        #player1HighScore {
+            font-size: 20px;
+        }
+
+    }
+
+    @media screen and (max-height: 745px) {
+
+        #player1ScoreBox5 {
+            display: none;
+        }
+
+    }
+
+    @media screen and (max-height: 665px) {
+
+        #player1ScoreBox4 {
+            display: none;
+        }
+
+    }
+
+}
+
+@media screen and (max-height: 520px) {
+
+    .meter-timer {
+        margin-top: 0 !important;
+        font-size: 40px !important;
+        line-height: 40px !important;
+    }
+
+}
+
+@media screen and (max-width: 430px) {
+
+    .arnold-header {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        font-size: 44px;
+        line-height: 44px;
+    }
+
+}
+
+@media screen and (max-width: 450px) {
+
+    .death-header {
+        font-size: 16vw;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+
+    .invite-inner-wrap {
+        padding-left: 0px;
+        padding-right: 32px;
+    }
+
+    .instruction-pane {
+        padding: 0 10px 20px;
+    }
+
+}
+
+@media screen and (max-width: 306px) {
+
+    .invite-subhead {
+        font-size: 21px;
+    }
+
+    
+}
+
+
+
+/* End of document */

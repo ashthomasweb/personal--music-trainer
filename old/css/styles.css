@@ -95,8 +95,8 @@ p {
   "...... note1 .......";
   position: relative;
   display: grid;
-  grid-template-columns: 1fr, 1fr, 1fr ;
-  grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr ;
+  grid-template-columns: 1fr 1fr 1fr ;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
   grid-gap: 5px;
   width: 100%;
   border-radius: 10px;
@@ -782,100 +782,6 @@ p {
     1px 1px 0 black;
 }
 
-.meter-btn {
-  z-index: -11;
-  padding: 10px 9px 9px;
-  border: solid 2px var(--darkgrey);
-  border-radius: 12px;
-  margin: 0px auto 15px;
-  display: none;
-  width: 100px;
-  height: 66px;
-  text-align: center;
-  font-size: 22px;
-  color: var(--black);
-  box-shadow: 4px 3px 4px #333;
-  transition: 1s opacity;
-  cursor: pointer;
-}
-
-.meter-btn-ghosted {
-  z-index: -12;
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: 100px;
-  height: 65px;
-  padding: 12px 11px 11px;
-  border-radius: 12px;
-  display: block;
-  margin: 0px auto 15px;
-  text-align: center;
-  font-size: 22px;
-  color: var(--black);
-  opacity: .5;
-  background-color: var(--lightgrey);
-}
-
-.ghosted-clear {
-  bottom: 94px;
-}
-
-.ghosted-replay {
-  bottom: 13px;
-}
-
-.meter-btn-clear {
-  background-color: var(--blue);
-}
-
-.meter-btn-replay {
-  background-color: var(--blue);
-}
-
-.meter-btn-clear-co {
-  z-index: 0;
-  position: absolute;
-  left: 0;
-  right: -8px;
-  bottom: 90px;
-  background-color: var(--blue);
-  transition: 2s background-color;
-}
-
-.meter-btn-replay-co {
-  z-index: 0;
-  position: absolute;
-  left: 0;
-  right: -8px;
-  bottom: 9px;
-  background-color: var(--blue);
-  transition: 2s background-color;
-}
-
-.is_active {
-  animation: 4s ease-in-out slowPulse infinite;
-}
-
-.is_double {
-  animation: 2s ease-in-out fastPulse infinite;
-}
-
-@keyframes slowPulse {
-  0% { background-color: var(--blue) }
-  35% { background-color: var(--blue) }
-  50% { background-color: var(--yellow) }
-  65% { background-color: var(--blue) }
-  100% { background-color: var(--blue) }
-}
-
-@keyframes fastPulse {
-  0% { background-color: var(--blue) }
-  35% { background-color: var(--blue) }
-  50% { background-color: var(--yellow) }
-  65% { background-color: var(--blue) }
-  100% { background-color: var(--blue) }
-}
 
 /* LEVEL COUNTER */
 
@@ -960,40 +866,12 @@ p {
   background-color: var(--lightgrey);
 }
 
-#partyBtn {
-  width: 124px;
-  height: 58px;
-  border-radius: 12px;
-  border: solid 2px var(--darkgrey);
-  outline: none;
-  font-family: blenny, sans-serif;
-  font-size: 20px;
-  line-height: 1;
-  box-shadow: 0px 0px 4px var(--darkgrey), inset 0px 0px 2px var(--darkgrey);
-  background-color: lightblue;
-  cursor: pointer;
-}
 
-.color-reset-btn {
-  width: 124px;
-  height: 58px;
-  border: solid 2px var(--darkgrey);
-  border-radius: 12px;
-  margin: 8px auto 0;
-  font-family: blenny, sans-serif;
-  font-size: 20px;
-  outline: none;
-  line-height: 1;
-  box-shadow: 0px 0px 8px var(--black), inset 0px 0px 4px var(--darkgrey);
-  background-color: var(--pink);
-  cursor: pointer;
-}
+
+
 
 /* DBLCLICK COLOR CHANGE */
 
-.is_color-pick {
-  transition: background-color 7s, height 2s;
-}
 
 
 /* End of document */
