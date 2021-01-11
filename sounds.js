@@ -15,25 +15,70 @@ var pianoChromaticC = [
     "sounds/piano/piano-C5.mp3"
 ]
 
-let player1Sounds = pianoChromaticC;
+var frenchHornChromaticC = [
+    "sounds/french-horn/french-horn-C4.mp3",
+    "sounds/french-horn/french-horn-Db4.mp3",
+    "sounds/french-horn/french-horn-D4.mp3",
+    "sounds/french-horn/french-horn-Eb4.mp3",
+    "sounds/french-horn/french-horn-E4.mp3",
+    "sounds/french-horn/french-horn-F4.mp3",
+    "sounds/french-horn/french-horn-Gb4.mp3",
+    "sounds/french-horn/french-horn-G4.mp3",
+    "sounds/french-horn/french-horn-Ab4.mp3",
+    "sounds/french-horn/french-horn-A4.mp3",
+    "sounds/french-horn/french-horn-Bb4.mp3",
+    "sounds/french-horn/french-horn-B4.mp3",
+    "sounds/french-horn/french-horn-C5.mp3",
+    "sounds/french-horn/french-horn-C5.mp3"
+] 
+
+var violinChromaticC = [
+    "sounds/violin/violin-C4.mp3",
+    "sounds/violin/violin-Db4.mp3",
+    "sounds/violin/violin-D4.mp3",
+    "sounds/violin/violin-Eb4.mp3",
+    "sounds/violin/violin-E4.mp3",
+    "sounds/violin/violin-F4.mp3",
+    "sounds/violin/violin-Gb4.mp3",
+    "sounds/violin/violin-G4.mp3",
+    "sounds/violin/violin-Ab4.mp3",
+    "sounds/violin/violin-A4.mp3",
+    "sounds/violin/violin-Bb4.mp3",
+    "sounds/violin/violin-B4.mp3",
+    "sounds/violin/violin-C5.mp3",
+    "sounds/violin/violin-C5.mp3"
+] 
+
+let instrumentBank = [pianoChromaticC, frenchHornChromaticC, violinChromaticC ];
+let instrumentChoice = instrumentBank[0];
+let instrumentPos = 0;
+
+function instrumentCycle() {
+    if (instrumentPos == instrumentBank.length - 1) {
+        instrumentPos = 0;
+    } else {
+        instrumentPos++;
+    }
+    instrumentChoice = instrumentBank[instrumentPos]
+}
 
 let currentAudio;
 
 function noteSwitch(sqId) {
 
-    var sq1Sound = new Audio(player1Sounds[0]);
-    var sq2Sound = new Audio(player1Sounds[1]);
-    var sq3Sound = new Audio(player1Sounds[2]);
-    var sq4Sound = new Audio(player1Sounds[3]);
-    var sq5Sound = new Audio(player1Sounds[4]);
-    var sq6Sound = new Audio(player1Sounds[5]);
-    var sq7Sound = new Audio(player1Sounds[6]);
-    var sq8Sound = new Audio(player1Sounds[7]);
-    var sq9Sound = new Audio(player1Sounds[8]);
-    var sq10Sound = new Audio(player1Sounds[9]);
-    var sq11Sound = new Audio(player1Sounds[10]);
-    var sq12Sound = new Audio(player1Sounds[11]);
-    var sq13Sound = new Audio(player1Sounds[12]);
+    var sq1Sound = new Audio(instrumentChoice[0]);
+    var sq2Sound = new Audio(instrumentChoice[1]);
+    var sq3Sound = new Audio(instrumentChoice[2]);
+    var sq4Sound = new Audio(instrumentChoice[3]);
+    var sq5Sound = new Audio(instrumentChoice[4]);
+    var sq6Sound = new Audio(instrumentChoice[5]);
+    var sq7Sound = new Audio(instrumentChoice[6]);
+    var sq8Sound = new Audio(instrumentChoice[7]);
+    var sq9Sound = new Audio(instrumentChoice[8]);
+    var sq10Sound = new Audio(instrumentChoice[9]);
+    var sq11Sound = new Audio(instrumentChoice[10]);
+    var sq12Sound = new Audio(instrumentChoice[11]);
+    var sq13Sound = new Audio(instrumentChoice[12]);
 
     switch (sqId) {
         case "sq1":
@@ -126,7 +171,6 @@ function playNote1() {
 
 function playNote2() {
     noteSwitch("sq2");
-    // currentAudio.pause();
 }
 
 function playNote3() {
@@ -185,7 +229,7 @@ function playScale() {
         noteSwitch("sq13");
     }, 800);
 
-    if (scaleChoice === "minor") {
+    if (modeChoice === "minor") {
         setTimeout(function () {
             noteSwitch("sq11");
         }, 1500);
@@ -195,7 +239,7 @@ function playScale() {
         }, 1500);
     }
 
-    if (scaleChoice === "minor") {
+    if (modeChoice === "minor") {
         setTimeout(function () {
             noteSwitch("sq9");
         }, 2000);
@@ -213,7 +257,7 @@ function playScale() {
         noteSwitch("sq6");
     }, 3000);
 
-    if (scaleChoice === "minor") {
+    if (modeChoice === "minor") {
         setTimeout(function () {
             noteSwitch("sq4");
         }, 3500);
@@ -231,7 +275,7 @@ function playScale() {
         noteSwitch("sq1");
     }, 4500);
 
-    if (scaleChoice === "minor") {
+    if (modeChoice === "minor") {
         setTimeout(function () {
             noteSwitch("sq4");
         }, 5050);
@@ -245,7 +289,7 @@ function playScale() {
         noteSwitch("sq8");
     }, 5625);
 
-    if (scaleChoice === "minor") {
+    if (modeChoice === "minor") {
         setTimeout(function () {
             noteSwitch("sq4");
         }, 6200);
@@ -261,15 +305,44 @@ function playScale() {
 
 }
 
+function playOpen() {
+    noteSwitch("sq1");
+
+    setTimeout(function () {
+        noteSwitch("sq13");
+    }, 800);
+
+    setTimeout(function () {
+        noteSwitch("sq8");
+    }, 1500);
+
+    setTimeout(function () {
+        noteSwitch("sq6");
+    }, 2200);
+
+    setTimeout(function () {
+        noteSwitch("sq1");
+    }, 2900);
+
+    setTimeout(function () {
+        noteSwitch("sq8");
+    }, 3650);
+
+    setTimeout(function () {
+        noteSwitch("sq1");
+    }, 4450);
+}
+
+
 let modeArray = ["major", "minor", "chromatic"];
-let scaleChoice = modeArray[0]
-let n = 0;
+let modeChoice = modeArray[0]
+let modePos = 0;
 
 function modeCycle() {
-    if (n == modeArray.length - 1) {
-        n = 0;
+    if (modePos == modeArray.length - 1) {
+        modePos = 0;
     } else {
-        n++;
+        modePos++;
     }
-    scaleChoice = modeArray[n++]
+    modeChoice = modeArray[modePos++]
 }

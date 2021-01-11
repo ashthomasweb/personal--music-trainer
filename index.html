@@ -12,7 +12,7 @@
   <meta name="copyright" content="2020" />
   <link rel="stylesheet" href="https://use.typekit.net/qmi1qmi.css">
 
-  
+
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -20,41 +20,55 @@
   <link rel="stylesheet" href="css/post.css">
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/mquery.css">
-  
-  
+
+
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
   <title>Scale Trainer</title>
 </head>
 
 <body>
 
-<div class="grid-container">
-  <div class="header"><h1>Melodic Trainer</h1></div>
-  <div class="scores"><h1>Past Scores</h1></div>
-  <div class="instrument"><h1>Instrument</h1></div>
-  <div class="messages"><h1>Messages</h1></div>
-  <div class="key"><h1>Key</h1></div>
-  <div class="mode"><h1>Mode</h1>
-    <button type="button" onclick="modeCycle()">Change Scale</button>
-  </div>
-  <div class="options"><h1>Options</h1></div>
+  <div class="grid-container">
+    <div class="header">
+      <h1>Melodic Trainer</h1>
+    </div>
+    <div class="scores">
+      <h1>Past Scores</h1>
+    </div>
+    <div class="instrument">
+      <h1>Instrument</h1>
+      <button type="button" onclick="instrumentCycle()">Change Instrument</button>
+    </div>
+    <div class="messages">
+      <h1>Messages</h1>
+    </div>
+    <div class="key">
+      <h1>Key</h1>
+    </div>
+    <div class="mode">
+      <h1>Mode</h1>
+      <button type="button" onclick="modeCycle()">Change Scale</button>
+    </div>
+    <div class="options">
+      <h1>Options</h1>
+    </div>
 
-  <div class="note-container">
-    <button type="button" onclick="playNote13()" class="note13"></button>
-    <button type="button" onclick="playNote12()" class="note12"></button>
-    <button type="button" onclick="playNote11()" class="note11"></button>
-    <button type="button" onclick="playNote10()" class="note10"></button>
-    <button type="button" onclick="playNote9()" class="note9"></button>
-    <button type="button" onclick="playNote8()" class="note8"></button>
-    <button type="button" onclick="playNote7()" class="note7"></button>
-    <button type="button" onclick="playNote6()" class="note6"></button>
-    <button type="button" onclick="playNote5()" class="note5"></button>
-    <button type="button" onclick="playNote4()" class="note4"></button>
-    <button type="button" onclick="playNote3()" class="note3"></button>
-    <button type="button" onclick="playNote2()" class="note2"></button>
-    <button type="button" onclick="playNote1()" class="note1"></button>
+    <div class="note-container">
+      <button type="button" onclick="playNote13()" class="note13"></button>
+      <button type="button" onclick="playNote12()" class="note12"></button>
+      <button type="button" onclick="playNote11()" class="note11"></button>
+      <button type="button" onclick="playNote10()" class="note10"></button>
+      <button type="button" onclick="playNote9()" class="note9"></button>
+      <button type="button" onclick="playNote8()" class="note8"></button>
+      <button type="button" onclick="playNote7()" class="note7"></button>
+      <button type="button" onclick="playNote6()" class="note6"></button>
+      <button type="button" onclick="playNote5()" class="note5"></button>
+      <button type="button" onclick="playNote4()" class="note4"></button>
+      <button type="button" onclick="playNote3()" class="note3"></button>
+      <button type="button" onclick="playNote2()" class="note2"></button>
+      <button type="button" onclick="playNote1()" class="note1"></button>
+    </div>
   </div>
-</div>
 
   <script src="sounds.js" charset="utf-8"></script>
 </body>
