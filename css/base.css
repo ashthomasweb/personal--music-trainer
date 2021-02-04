@@ -11,9 +11,9 @@
 }
 
 body {
-    background-image: url(../images/solid.png);
-    background-attachment: fixed;
-    /* background-color: #b39c9450; */
+    background-image: url(../images/greenboard.jpg);
+    background-attachment: contain;
+    /* background-color: #080002; */
 
     font-family: alegreya-sans, sans-serif;
     font-weight: 300;

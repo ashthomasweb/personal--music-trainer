@@ -1,9 +1,8 @@
 .l-paper-bg {
     background-image: url(../images/solid.png);
     background-attachment: fixed;
-
+    
 }
-
 
 .grid-container {
     grid-template-areas:
@@ -26,8 +25,9 @@
     margin: 0 auto;
 }
 
-.grid-container > div {
+.grid-container>div {
     border-radius: 10px;
+    padding: 8px;
 }
 
 /* NOTE GRID */
@@ -35,33 +35,39 @@
 .note-container {
     grid-area: notes;
     grid-template-areas:
-        "...... note13 ......."
-        "...... note12 ......."
-        "...... note11 ......."
-        "...... note10 ......."
-        "...... note9 ......."
-        "...... note8 ......."
-        "...... note7 ......."
-        "...... note6 ......."
-        "...... note5 ......."
-        "...... note4 ......."
-        "...... note3 ......."
-        "...... note2 ......."
-        "...... note1 .......";
+        "solf13 note13 pitch13"
+        "solf12 note12 pitch12"
+        "solf11 note11 pitch11"
+        "solf10 note10 pitch10"
+        "solf9 note9 pitch9"
+        "solf8 note8 pitch8"
+        "solf7 note7 pitch7"
+        "solf6 note6 pitch6"
+        "solf5 note5 pitch5"
+        "solf4 note4 pitch4"
+        "solf3 note3 pitch3"
+        "solf2 note2 pitch2"
+        "solf1 note1 pitch1";
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
     width: 100%;
+    padding: 15px 0;
     border-radius: 10px;
     margin: 0 auto;
     background-color: #181818;
 }
 
-.note-container > div {
+.note-container>button {
+    z-index: 20;
     border-radius: 10px;
-    background-color: red;
+    background-color: ivory;
+}
+
+button:focus {
+    outline: none;
 }
 
 .note1 {
@@ -117,39 +123,170 @@
 }
 
 
+.solf1 {
+    grid-area: solf1;
+}
+
+.solf2 {
+    grid-area: solf2;
+}
+
+.solf3 {
+    grid-area: solf3;
+}
+
+.solf4 {
+    grid-area: solf4;
+}
+
+.solf5 {
+    grid-area: solf5;
+}
+
+.solf6 {
+    grid-area: solf6;
+}
+
+.solf7 {
+    grid-area: solf7;
+}
+
+.solf8 {
+    grid-area: solf8;
+}
+
+.solf9 {
+    grid-area: solf9;
+}
+
+.solf10 {
+    grid-area: solf10;
+}
+
+.solf11 {
+    grid-area: solf11;
+}
+
+.solf12 {
+    grid-area: solf12;
+}
+
+.solf13 {
+    grid-area: solf13;
+}
+
+
+.pitch1 {
+    grid-area: pitch1;
+}
+
+.pitch2 {
+    grid-area: pitch2;
+}
+
+.pitch3 {
+    grid-area: pitch3;
+}
+
+.pitch4 {
+    grid-area: pitch4;
+}
+
+.pitch5 {
+    grid-area: pitch5;
+}
+
+.pitch6 {
+    grid-area: pitch6;
+}
+
+.pitch7 {
+    grid-area: pitch7;
+}
+
+.pitch8 {
+    grid-area: pitch8;
+}
+
+.pitch9 {
+    grid-area: pitch9;
+}
+
+.pitch10 {
+    grid-area: pitch10;
+}
+
+.pitch11 {
+    grid-area: pitch11;
+}
+
+.pitch12 {
+    grid-area: pitch12;
+}
+
+.pitch13 {
+    grid-area: pitch13;
+}
 
 .header {
     grid-area: header;
-    background-color: grey;
+    background-color: rgba(128, 125, 125, .3);
 }
 
 .scores {
     grid-area: scores;
-    background-color: grey;
+    background-color: rgba(128, 125, 125, .3);
 }
 
 .instrument {
     grid-area: instrument;
-    background-color: grey;
+    background-color: rgba(128, 125, 125, .3);
 }
 
 .messages {
     grid-area: messages;
-    background-color: grey;
+    background-color: rgba(128, 125, 125, .3);
 }
 
 .key {
     grid-area: key;
-    background-color: grey;
+    background-color: rgba(128, 125, 125, .3);
 }
 
 .mode {
     grid-area: mode;
-    background-color: grey;
+    background-color: rgba(128, 125, 125, .3);
 }
 
 .options {
     grid-area: options;
-    background-color: grey;
+    background-color: rgba(128, 125, 125, .3);
+
 }
 
+.pitch {
+    z-index: 15;
+    position: relative;
+    right: 30px;
+    height: 38px;
+    padding: 11px;
+    border-radius: 14px;
+    align-self: center;
+    background-color: #222224;
+    text-align: right;
+    font-size: 18px;
+    color: #bbb;
+}
+
+.syllable {
+    z-index: 10;
+    background-color: #222224;
+    height: 38px;
+    align-self: center;
+    padding: 11px;
+    font-size: 18px;
+    border-radius: 14px;
+    position: relative;
+    left: 30px;
+    color: #bbb;
+}
