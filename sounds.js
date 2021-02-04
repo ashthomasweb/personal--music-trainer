@@ -52,21 +52,7 @@ var violinChromaticC = [
     "Violin"
 ]
 
-let instrumentBank = [pianoChromaticC, frenchHornChromaticC, violinChromaticC];
-let instrumentChoice = instrumentBank[0];
-let instrumentPos = 0;
 
-function instrumentCycle() {
-    if (instrumentPos == instrumentBank.length - 1) {
-        instrumentPos = 0;
-    } else {
-        instrumentPos++;
-    }
-    instrumentChoice = instrumentBank[instrumentPos];
-
-    document.getElementById("instr-type").innerText = instrumentChoice[14];
-
-}
 
 function noteSwitch(sqId) {
 
@@ -86,80 +72,54 @@ function noteSwitch(sqId) {
 
     switch (sqId) {
         case "sq1":
-
-
             sq1Sound.play();
             break;
 
         case "sq2":
-
-
             sq2Sound.play();
             break;
 
         case "sq3":
-
-
             sq3Sound.play();
             break;
 
         case "sq4":
-
-
             sq4Sound.play();
             break;
 
         case "sq5":
-
-
             sq5Sound.play();
             break;
 
         case "sq6":
-
-
             sq6Sound.play();
             break;
 
         case "sq7":
-
-
             sq7Sound.play();
             break;
 
         case "sq8":
-
-
             sq8Sound.play();
             break;
 
         case "sq9":
-
-
             sq9Sound.play();
             break;
 
         case "sq10":
-
-
             sq10Sound.play();
             break;
 
         case "sq11":
-
-
             sq11Sound.play();
             break;
 
         case "sq12":
-
-
             sq12Sound.play();
             break;
 
         case "sq13":
-
-
             sq13Sound.play();
             break;
 
@@ -293,19 +253,4 @@ function playScale() {
 }
 
 
-let modeArray = ["Major", "Minor", "Chromatic"];
-let modeChoice = modeArray[0]
-let modePos = 0;
-
-function modeCycle() {
-    if (modePos == modeArray.length - 1) {
-        modePos = 0;
-    } else {
-        modePos++;
-    }
-    modeChoice = modeArray[modePos];
-
-    // console.log(modeChoice);
-    // console.log(document.getElementById("mode-type").innerText);
-    document.getElementById("mode-type").innerText = modeChoice;
-}
+// END of document
