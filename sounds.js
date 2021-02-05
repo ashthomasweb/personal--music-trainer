@@ -55,6 +55,7 @@ var violinChromaticC = [
 
 
 
+
 function noteSwitch(sqId) {
         var sq1Sound = new Audio(instrumentChoice[0]);
         var sq2Sound = new Audio(instrumentChoice[1]);
