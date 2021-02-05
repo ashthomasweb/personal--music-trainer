@@ -73,9 +73,7 @@ function noteSwitch(sqId) {
     
         sq1Sound.preload = "auto";
         sq2Sound.preload = "auto";
-    
         sq3Sound.preload = "auto";
-    
         sq4Sound.preload = "auto";
         sq5Sound.preload = "auto";
         sq6Sound.preload = "auto";
