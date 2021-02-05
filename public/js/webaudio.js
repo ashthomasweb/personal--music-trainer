@@ -7,9 +7,9 @@ const AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioCtx = new AudioContext();
 
 // load some sound
-// var testAudio = new Audio("sounds/violin/violin-C4.mp3");
+var testAudio = new Audio("sounds/violin/violin-C4.mp3");
 
-const audioElement = document.querySelector('audio');
+const audioElement = testAudio;
 const track = audioCtx.createMediaElementSource(audioElement);
 
 const playButton = document.querySelector('.test-audio');
@@ -36,10 +36,21 @@ playButton.addEventListener('click', function() {
 	
 }, false);
 
+function simplePlay() {
+	if (audioCtx.state === 'suspended') {
+		audioCtx.resume();
+	}
+	console.log('hi');
+	audioElement.play();
+
+
+}
+
 // if track ends
 audioElement.addEventListener('ended', () => {
     playButton.dataset.playing = 'false';
 }, false);
+
 
 
 
