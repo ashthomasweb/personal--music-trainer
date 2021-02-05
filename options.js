@@ -3,6 +3,9 @@ let instrumentChoice = instrumentBank[0];
 let instrumentPos = 0;
 
 function instrumentCycle() {
+
+
+
     if (instrumentPos == instrumentBank.length - 1) {
         instrumentPos = 0;
     } else {
@@ -11,7 +14,6 @@ function instrumentCycle() {
     instrumentChoice = instrumentBank[instrumentPos];
 
     document.getElementById("instr-type").innerText = instrumentChoice[14];
-
 }
 
 let modeArray = ["Major", "Minor", "Chromatic", "Anhematonic Major", "Anhematonic Minor"];
@@ -43,7 +45,7 @@ function modeSelect() {
     let chromIndex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     let majorIndex = [0, 2, 4, 5, 7, 9, 11, 12];
     let AnhemMajIndex = [0, 2, 4, 7, 9, 12];
-    
+
     let minorIndex = [0, 2, 3, 5, 7, 8, 10, 12];
     let AnhemMinIndex = [0, 3, 5, 7, 10, 12];
 
@@ -68,6 +70,7 @@ function modeSelect() {
     if (modeChoice == "Minor") {
         allOff();
         minorIndex.forEach(displayBox);
+
         function displayBox(item) {
             document.getElementsByClassName(allNotes[item])[0].style.display = "block";
 
@@ -76,6 +79,7 @@ function modeSelect() {
     if (modeChoice == "Anhematonic Major") {
         allOff();
         AnhemMajIndex.forEach(displayBox);
+
         function displayBox(item) {
             document.getElementsByClassName(allNotes[item])[0].style.display = "block";
 
@@ -84,6 +88,7 @@ function modeSelect() {
     if (modeChoice == "Anhematonic Minor") {
         allOff();
         AnhemMinIndex.forEach(displayBox);
+
         function displayBox(item) {
             document.getElementsByClassName(allNotes[item])[0].style.display = "block";
 
@@ -92,6 +97,7 @@ function modeSelect() {
     if (modeChoice == "Chromatic") {
         allOff();
         chromIndex.forEach(displayBox);
+
         function displayBox(item) {
             document.getElementsByClassName(allNotes[item])[0].style.display = "block";
 
