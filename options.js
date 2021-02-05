@@ -1,4 +1,3 @@
-
 let instrumentBank = [pianoChromaticC, frenchHornChromaticC, violinChromaticC];
 let instrumentChoice = instrumentBank[0];
 let instrumentPos = 0;
@@ -15,7 +14,7 @@ function instrumentCycle() {
 
 }
 
-let modeArray = ["Major", "Minor", "Chromatic"];
+let modeArray = ["Major", "Minor", "Chromatic", "Anhematonic Major", "Anhematonic Minor"];
 let modeChoice = modeArray[0]
 let modePos = 0;
 
@@ -39,16 +38,63 @@ function modeCycle() {
 function modeSelect() {
 
     // array of all notes
-    let allNotes = ["C4", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C5",]
+    let allNotes = ["C4", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C5", ]
     // mode-specific index key
-    let majorIndex = [0, 3, 5, 6, 8, 10, 12, 13]
-
-    if ( modeChoice == "Major" ) {
-
-            majorIndex.forEach(displayBox);
-
-            function displayBox(item) {
-                console.log(allNotes[item]);
-            }
+    let chromIndex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    let majorIndex = [0, 2, 4, 5, 7, 9, 11, 12];
+    let AnhemMajIndex = [0, 2, 4, 7, 9, 12];
     
+    let minorIndex = [0, 2, 3, 5, 7, 8, 10, 12];
+    let AnhemMinIndex = [0, 3, 5, 7, 10, 12];
+
+    function allOff() {
+        chromIndex.forEach(displayBox);
+
+        function displayBox(item) {
+            document.getElementsByClassName(allNotes[item])[0].style.display = "none";
+
+        }
+    }
+
+    if (modeChoice == "Major") {
+        allOff();
+        majorIndex.forEach(displayBox);
+
+        function displayBox(item) {
+            document.getElementsByClassName(allNotes[item])[0].style.display = "block";
+
+        }
+    }
+    if (modeChoice == "Minor") {
+        allOff();
+        minorIndex.forEach(displayBox);
+        function displayBox(item) {
+            document.getElementsByClassName(allNotes[item])[0].style.display = "block";
+
+        }
+    }
+    if (modeChoice == "Anhematonic Major") {
+        allOff();
+        AnhemMajIndex.forEach(displayBox);
+        function displayBox(item) {
+            document.getElementsByClassName(allNotes[item])[0].style.display = "block";
+
+        }
+    }
+    if (modeChoice == "Anhematonic Minor") {
+        allOff();
+        AnhemMinIndex.forEach(displayBox);
+        function displayBox(item) {
+            document.getElementsByClassName(allNotes[item])[0].style.display = "block";
+
+        }
+    }
+    if (modeChoice == "Chromatic") {
+        allOff();
+        chromIndex.forEach(displayBox);
+        function displayBox(item) {
+            document.getElementsByClassName(allNotes[item])[0].style.display = "block";
+
+        }
+    }
 }

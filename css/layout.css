@@ -1,7 +1,7 @@
 .l-paper-bg {
     background-image: url(../images/solid.png);
     background-attachment: fixed;
-    
+
 }
 
 .grid-container {
@@ -35,19 +35,19 @@
 .note-container {
     grid-area: notes;
     grid-template-areas:
-        "solf13 note13 pitch13"
-        "solf12 note12 pitch12"
-        "solf11 note11 pitch11"
-        "solf10 note10 pitch10"
-        "solf9 note9 pitch9"
-        "solf8 note8 pitch8"
-        "solf7 note7 pitch7"
-        "solf6 note6 pitch6"
-        "solf5 note5 pitch5"
-        "solf4 note4 pitch4"
-        "solf3 note3 pitch3"
-        "solf2 note2 pitch2"
-        "solf1 note1 pitch1";
+        "C5 C5 C5"
+        "B B B"
+        "Bb Bb Bb"
+        "A A A"
+        "Ab Ab Ab"
+        "G G G"
+        "Gb Gb Gb"
+        "F F F"
+        "E E E"
+        "Eb Eb Eb"
+        "D D D"
+        "Db Db Db"
+        "C4 C4 C4";
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -64,6 +64,97 @@
     z-index: 20;
     border-radius: 10px;
     background-color: ivory;
+}
+
+.wrap {
+    position: relative;
+    
+    width: 100%;
+}
+
+.wrap div {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+}
+
+.wrap button {
+    z-index: 20;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: inline-block;
+    width: 130px;
+    height: 100%;
+    background-color: ivory;
+    border-radius: 10px;
+}
+
+.C5 {
+    grid-area: C5;
+    display: none;
+}
+
+.B {
+    grid-area: B;
+    display: none;
+}
+
+.Bb {
+    grid-area: Bb;
+    display: none;
+}
+
+.A {
+    grid-area: A;
+    display: none;
+}
+
+.Ab {
+    grid-area: Ab;
+    display: none;
+}
+
+.G {
+    grid-area: G;
+    display: none;
+}
+
+.Gb {
+    grid-area: Gb;
+    display: none;
+}
+
+.F {
+    grid-area: F;
+    display: none;
+}
+
+.E {
+    grid-area: E;
+    display: none;
+}
+
+.Eb {
+    grid-area: Eb;
+    display: none;
+}
+
+.D {
+    grid-area: D;
+    display: none;
+}
+
+.Db {
+    grid-area: Db;
+    display: none;
+}
+
+.C4 {
+    grid-area: C4;
+    display: none;
 }
 
 button:focus {
@@ -266,8 +357,8 @@ button:focus {
 
 .pitch {
     z-index: 15;
-    position: relative;
-    right: 30px;
+    position: absolute;
+    right: 50px;
     height: 38px;
     padding: 11px;
     border-radius: 14px;
@@ -276,17 +367,21 @@ button:focus {
     text-align: right;
     font-size: 18px;
     color: #bbb;
+    width: 100px;
+    display: inline-block;
+
 }
 
 .syllable {
     z-index: 10;
     background-color: #222224;
     height: 38px;
-    align-self: center;
     padding: 11px;
     font-size: 18px;
     border-radius: 14px;
-    position: relative;
-    left: 30px;
+    position: absolute;
+    left: 50px;
     color: #bbb;
+    width: 100px;
+    display: inline-block;
 }
