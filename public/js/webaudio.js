@@ -8,9 +8,14 @@ const audioCtx = new AudioContext();
 
 // load some sound
 var testAudio = new Audio("sounds/violin/violin-C4.mp3");
+var testAudio2 = new Audio("sounds/violin/violin-C5.mp3");
+
 
 const audioElement = testAudio;
 const track = audioCtx.createMediaElementSource(audioElement);
+
+const audioElement2 = testAudio2;
+const track2 = audioCtx.createMediaElementSource(audioElement2);
 
 const playButton = document.querySelector('.test-audio');
 
@@ -46,6 +51,17 @@ function simplePlay() {
 
 }
 
+function simplePlay2() {
+	if (audioCtx.state === 'suspended') {
+		audioCtx.resume();
+	}
+	console.log('hi');
+	audioElement2.play();
+
+
+}
+
+
 // if track ends
 audioElement.addEventListener('ended', () => {
     playButton.dataset.playing = 'false';
@@ -56,6 +72,8 @@ audioElement.addEventListener('ended', () => {
 
 // connect our graph
 track.connect(audioCtx.destination);
+track2.connect(audioCtx.destination);
+
 
 
 
