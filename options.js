@@ -4,8 +4,6 @@ let instrumentPos = 0;
 
 function instrumentCycle() {
 
-
-
     if (instrumentPos == instrumentBank.length - 1) {
         instrumentPos = 0;
     } else {

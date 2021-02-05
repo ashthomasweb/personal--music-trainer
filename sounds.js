@@ -57,35 +57,35 @@ var violinChromaticC = [
 
 function noteSwitch(sqId) {
         var sq1Sound = new Audio(instrumentChoice[0]);
-        var sq2Sound = new Audio(instrumentChoice[1]);
-        var sq3Sound = new Audio(instrumentChoice[2]);
-        var sq4Sound = new Audio(instrumentChoice[3]);
-        var sq5Sound = new Audio(instrumentChoice[4]);
-        var sq6Sound = new Audio(instrumentChoice[5]);
-        var sq7Sound = new Audio(instrumentChoice[6]);
-        var sq8Sound = new Audio(instrumentChoice[7]);
-        var sq9Sound = new Audio(instrumentChoice[8]);
-        var sq10Sound = new Audio(instrumentChoice[9]);
-        var sq11Sound = new Audio(instrumentChoice[10]);
-        var sq12Sound = new Audio(instrumentChoice[11]);
-        var sq13Sound = new Audio(instrumentChoice[12]);
+        // var sq2Sound = new Audio(instrumentChoice[1]);
+        // var sq3Sound = new Audio(instrumentChoice[2]);
+        // var sq4Sound = new Audio(instrumentChoice[3]);
+        // var sq5Sound = new Audio(instrumentChoice[4]);
+        // var sq6Sound = new Audio(instrumentChoice[5]);
+        // var sq7Sound = new Audio(instrumentChoice[6]);
+        // var sq8Sound = new Audio(instrumentChoice[7]);
+        // var sq9Sound = new Audio(instrumentChoice[8]);
+        // var sq10Sound = new Audio(instrumentChoice[9]);
+        // var sq11Sound = new Audio(instrumentChoice[10]);
+        // var sq12Sound = new Audio(instrumentChoice[11]);
+        // var sq13Sound = new Audio(instrumentChoice[12]);
         
     
         sq1Sound.preload = "auto";
-        sq2Sound.preload = "auto";
+        // sq2Sound.preload = "auto";
     
-        sq3Sound.preload = "auto";
+        // sq3Sound.preload = "auto";
     
-        sq4Sound.preload = "auto";
-        sq5Sound.preload = "auto";
-        sq6Sound.preload = "auto";
-        sq7Sound.preload = "auto";
-        sq8Sound.preload = "auto";
-        sq9Sound.preload = "auto";
-        sq10Sound.preload = "auto";
-        sq11Sound.preload = "auto";
-        sq12Sound.preload = "auto";
-        sq13Sound.preload = "auto";
+        // sq4Sound.preload = "auto";
+        // sq5Sound.preload = "auto";
+        // sq6Sound.preload = "auto";
+        // sq7Sound.preload = "auto";
+        // sq8Sound.preload = "auto";
+        // sq9Sound.preload = "auto";
+        // sq10Sound.preload = "auto";
+        // sq11Sound.preload = "auto";
+        // sq12Sound.preload = "auto";
+        // sq13Sound.preload = "auto";
     
 
 
