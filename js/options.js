@@ -14,7 +14,7 @@ function instrumentCycle() {
     document.getElementById("instr-type").innerText = instrumentChoice[14];
 }
 
-let modeArray = ["Major", "Minor", "Chromatic", "Anhematonic Major", "Anhematonic Minor"];
+let modeArray = ["Chromatic", "Major", "Minor", "Anhematonic Major", "Anhematonic Minor"];
 let modeChoice = modeArray[0];
 let modePos = 0;
 

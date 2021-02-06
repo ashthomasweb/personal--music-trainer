@@ -100,67 +100,67 @@ html {
 
 .C5 {
     grid-area: C5;
-    display: none;
+    display: inline-block;
 }
 
 .B {
     grid-area: B;
-    display: none;
+    display: inline-block;
 }
 
 .Bb {
     grid-area: Bb;
-    display: none;
+    display: inline-block;
 }
 
 .A {
     grid-area: A;
-    display: none;
+    display: inline-block;
 }
 
 .Ab {
     grid-area: Ab;
-    display: none;
+    display: inline-block;
 }
 
 .G {
     grid-area: G;
-    display: none;
+    display: inline-block;
 }
 
 .Gb {
     grid-area: Gb;
-    display: none;
+    display: inline-block;
 }
 
 .F {
     grid-area: F;
-    display: none;
+    display: inline-block;
 }
 
 .E {
     grid-area: E;
-    display: none;
+    display: inline-block;
 }
 
 .Eb {
     grid-area: Eb;
-    display: none;
+    display: inline-block;
 }
 
 .D {
     grid-area: D;
-    display: none;
+    display: inline-block;
 }
 
 .Db {
     grid-area: Db;
-    display: none;
+    display: inline-block;
 }
 
 .C4 {
     grid-area: C4;
-    display: none;
+    display: inline-block;
 }
 
 button:focus {

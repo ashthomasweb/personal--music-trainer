@@ -1,5 +1,3 @@
-
-
 // instigate our audio context
 
 // for cross browser
@@ -20,8 +18,9 @@ const track2 = audioCtx.createMediaElementSource(audioElement2);
 const playButton = document.querySelector('.test-audio');
 
 // play pause audio
-playButton.addEventListener('click', function() {
-	
+playButton.addEventListener('click', function () {
+// function simplePlay3(){
+
 	// check if context is in suspended state (autoplay policy)
 	if (audioCtx.state === 'suspended') {
 		audioCtx.resume();
@@ -30,15 +29,19 @@ playButton.addEventListener('click', function() {
 	if (this.dataset.playing === 'false') {
 		audioElement.play();
 		this.dataset.playing = 'true';
-	// if track is playing pause it
+		// if track is playing stop and play again
 	} else if (this.dataset.playing === 'true') {
 		audioElement.pause();
-		this.dataset.playing = 'false';
+		audioElement.currentTime = 0;
+		
+		audioElement.play();
+		this.dataset.playing = 'true';
 	}
+
 	
-	let state = this.getAttribute('aria-checked') === "true" ? true : false;
-	this.setAttribute( 'aria-checked', state ? "false" : "true" );
-	
+	// let state = this.getAttribute('aria-checked') === "true" ? true : false;
+	// this.setAttribute( 'aria-checked', state ? "false" : "true" );
+
 }, false);
 
 function simplePlay() {
@@ -56,7 +59,10 @@ function simplePlay2() {
 		audioCtx.resume();
 	}
 	console.log('hi');
+	console.log(audioCtx.state);
+
 	audioElement2.play();
+	console.log(audioCtx.state);
 
 
 }
@@ -64,7 +70,7 @@ function simplePlay2() {
 
 // if track ends
 audioElement.addEventListener('ended', () => {
-    playButton.dataset.playing = 'false';
+	playButton.dataset.playing = 'false';
 }, false);
 
 
@@ -73,10 +79,3 @@ audioElement.addEventListener('ended', () => {
 // connect our graph
 track.connect(audioCtx.destination);
 track2.connect(audioCtx.destination);
-
-
-
-
-
-
-
