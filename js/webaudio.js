@@ -1,4 +1,4 @@
-console.clear();
+
 
 // instigate our audio context
 
