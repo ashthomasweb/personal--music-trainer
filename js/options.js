@@ -1,18 +1,4 @@
-let instrumentBank = [pianoChromaticC, frenchHornChromaticC, violinChromaticC];
-let instrumentChoice = instrumentBank[0];
-let instrumentPos = 0;
 
-function instrumentCycle() {
-
-    if (instrumentPos == instrumentBank.length - 1) {
-        instrumentPos = 0;
-    } else {
-        instrumentPos++;
-    }
-    instrumentChoice = instrumentBank[instrumentPos];
-
-    document.getElementById("instr-type").innerText = instrumentChoice[14];
-}
 
 let modeArray = ["Chromatic", "Major", "Minor", "Anhematonic Major", "Anhematonic Minor"];
 let modeChoice = modeArray[0];
