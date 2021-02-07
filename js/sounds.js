@@ -2,9 +2,6 @@
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioCtx = new AudioContext();
 
-
-
-
 var pianoChromaticC = [
     new Audio("sounds/piano/piano-C5.mp3"),
     new Audio("sounds/piano/piano-B4.mp3"),
@@ -21,14 +18,12 @@ var pianoChromaticC = [
     new Audio("sounds/piano/piano-C4.mp3"),
     new Audio("sounds/piano/piano-C5.mp3")
 ];
-
 const pianoTrackArray = []
-
 for (let i = 0; i < pianoChromaticC.length - 1; i++) {
     pianoTrackArray.push(audioCtx.createMediaElementSource(pianoChromaticC[i]));
 }
-
 const pianoSource = [pianoChromaticC, pianoTrackArray, "Piano"];
+
 
 var frenchHornChromaticC = [
     new Audio("sounds/french-horn/french-horn-C5.mp3"),
@@ -47,13 +42,10 @@ var frenchHornChromaticC = [
     new Audio("sounds/french-horn/french-horn-C5.mp3"),
     "French Horn"
 ]
-
 const frenchHornTrackArray = []
-
 for (let i = 0; i < frenchHornChromaticC.length - 2; i++) {
     frenchHornTrackArray.push(audioCtx.createMediaElementSource(frenchHornChromaticC[i]));
 }
-
 const frenchHornSource = [frenchHornChromaticC, frenchHornTrackArray, "French Horn"];
 
 
@@ -86,9 +78,6 @@ const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
 
 
 
-
-
-
 { // || WebAudio API scope
 
 
@@ -101,14 +90,7 @@ const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
     
 
     function instrumentCycle() {
-        // if (typeof trackArray === 'object') {
-        // 	for (let i = 0; i < trackArray.length - 1; i++) {
-        // 		trackArray[i].disconnect();
-        // 	}
-        // 	audioCtx.close();
-
-        // }
-        // console.log(instrumentPos);
+        
         if (instrumentPos == instrumentBank.length - 1 || instrumentPos === undefined ) {
             instrumentPos = 0;
         } else {
@@ -117,62 +99,54 @@ const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
 
         instrumentChoice = instrumentBank[instrumentPos];
 
-        
+       
 
         document.getElementById("instr-type").innerText = instrumentChoice[2];
 
-
-
-        // console.log(Array.isArray(instrumentChoice));
-        // console.log(pianoChromaticC);
         soundLoader();
 
 
 
         // load some sound
         function soundLoader() {
-
-            // for (let i = 0; i <= noteButtonArray.length - 1; i++) {
-            //     noteButtonArray[i].removeEventListener('click', function () {
-
-
-
-
-            // instrument variables need to be contained in a helper function. sounds need to be 
-            // prepped like the first array here, and seperate tracks need to be created.
             
-
-
-            // console.log(trackArray);
-            // console.log(audioElementArray);
-
+         
+            
             console.log(instrumentChoice);
             for (let i = 0; i <= noteButtonArray.length - 1; i++) {
 
-                noteButtonArray[i].addEventListener('click', function () {
+                if ( noteButtonArray[i].dataset.listener ===  'false' ) {
+                    // do nothing
+                } else if ( noteButtonArray[i].dataset.listener ===  'true' ) {
+                    console.log("hi");
+                    noteButtonArray[i].removeEventListener('click', playSound);
+                    // Known Issue. remove event not working. not throwing error either
+                        
+                }
 
+                function playSound() {
                     // check if context is in suspended state (autoplay policy)
                     if (audioCtx.state === 'suspended') {
                         audioCtx.resume();
                     }
-
-                    if (this.dataset.playing === 'false') {
+    
+                    if (noteButtonArray[i].dataset.playing === 'false') {
                         instrumentChoice[0][i].play();
-                        this.dataset.playing = 'true';
+                        noteButtonArray[i].dataset.playing = 'true';
                         // if track is playing stop and play again
-                    } else if (this.dataset.playing === 'true') {
+                    } else if (noteButtonArray[i].dataset.playing === 'true') {
                         instrumentChoice[0][i].pause();
                         instrumentChoice[0][i].currentTime = 0;
                         instrumentChoice[0][i].play();
-                        this.dataset.playing = 'true';
+                        noteButtonArray[i].dataset.playing = 'true';
                     }
 
-                    // let state = this.getAttribute('aria-checked') === "true" ? true : false;
-                    // this.setAttribute( 'aria-checked', state ? "false" : "true" );
-
-                }, false);
-
-
+                    
+                }
+                
+                
+                noteButtonArray[i].addEventListener('click', playSound);
+                noteButtonArray[i].dataset.listener = 'true';
 
                 instrumentChoice[1][i].connect(audioCtx.destination);
 
