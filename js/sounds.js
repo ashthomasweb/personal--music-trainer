@@ -1,3 +1,10 @@
+// || WebAudio initialization
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const audioCtx = new AudioContext();
+
+
+
+
 var pianoChromaticC = [
     new Audio("sounds/piano/piano-C5.mp3"),
     new Audio("sounds/piano/piano-B4.mp3"),
@@ -12,9 +19,16 @@ var pianoChromaticC = [
     new Audio("sounds/piano/piano-D4.mp3"),
     new Audio("sounds/piano/piano-Db4.mp3"),
     new Audio("sounds/piano/piano-C4.mp3"),
-    new Audio("sounds/piano/piano-C5.mp3"),
-    "Piano"
-]
+    new Audio("sounds/piano/piano-C5.mp3")
+];
+
+const pianoTrackArray = []
+
+for (let i = 0; i < pianoChromaticC.length - 1; i++) {
+    pianoTrackArray.push(audioCtx.createMediaElementSource(pianoChromaticC[i]));
+}
+
+const pianoSource = [pianoChromaticC, pianoTrackArray, "Piano"];
 
 var frenchHornChromaticC = [
     new Audio("sounds/french-horn/french-horn-C5.mp3"),
@@ -34,6 +48,15 @@ var frenchHornChromaticC = [
     "French Horn"
 ]
 
+const frenchHornTrackArray = []
+
+for (let i = 0; i < frenchHornChromaticC.length - 2; i++) {
+    frenchHornTrackArray.push(audioCtx.createMediaElementSource(frenchHornChromaticC[i]));
+}
+
+const frenchHornSource = [frenchHornChromaticC, frenchHornTrackArray, "French Horn"];
+
+
 var violinChromaticC = [
     new Audio("sounds/violin/violin-C5.mp3"),
     new Audio("sounds/violin/violin-B4.mp3"),
@@ -52,25 +75,29 @@ var violinChromaticC = [
     "Violin"
 ]
 
+const violinTrackArray = []
 
-// || WebAudio initialization
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-const audioCtx = new AudioContext();
-
-function audioResume() {
-    audioCtx.resume();
+for (let i = 0; i < violinChromaticC.length - 2; i++) {
+    violinTrackArray.push(audioCtx.createMediaElementSource(violinChromaticC[i]));
 }
+
+const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
+
+
+
+
+
+
 
 { // || WebAudio API scope
 
 
-    let instrumentBank = [pianoChromaticC, frenchHornChromaticC, violinChromaticC];
+    let instrumentBank = [pianoSource, frenchHornSource, violinSource];
     let instrumentChoice;
     let instrumentPos;
 
     let noteButtonArray = document.getElementsByClassName("note-btn");
-    let audioElementArray = [];
-    let trackArray = [];
+    
     
 
     function instrumentCycle() {
@@ -81,7 +108,7 @@ function audioResume() {
         // 	audioCtx.close();
 
         // }
-        console.log(instrumentPos);
+        // console.log(instrumentPos);
         if (instrumentPos == instrumentBank.length - 1 || instrumentPos === undefined ) {
             instrumentPos = 0;
         } else {
@@ -92,12 +119,12 @@ function audioResume() {
 
         
 
-        document.getElementById("instr-type").innerText = instrumentChoice[14];
+        document.getElementById("instr-type").innerText = instrumentChoice[2];
 
 
 
-        console.log(Array.isArray(instrumentChoice));
-        console.log(pianoChromaticC);
+        // console.log(Array.isArray(instrumentChoice));
+        // console.log(pianoChromaticC);
         soundLoader();
 
 
@@ -113,10 +140,11 @@ function audioResume() {
 
             // instrument variables need to be contained in a helper function. sounds need to be 
             // prepped like the first array here, and seperate tracks need to be created.
-            for (let i = 0; i < instrumentChoice.length - 2; i++) {
-                audioElementArray.push(instrumentChoice[i]);
-                trackArray.push(audioCtx.createMediaElementSource(instrumentChoice[i]));
-            }
+            
+
+
+            // console.log(trackArray);
+            // console.log(audioElementArray);
 
             console.log(instrumentChoice);
             for (let i = 0; i <= noteButtonArray.length - 1; i++) {
@@ -129,13 +157,13 @@ function audioResume() {
                     }
 
                     if (this.dataset.playing === 'false') {
-                        audioElementArray[i].play();
+                        instrumentChoice[0][i].play();
                         this.dataset.playing = 'true';
                         // if track is playing stop and play again
                     } else if (this.dataset.playing === 'true') {
-                        audioElementArray[i].pause();
-                        audioElementArray[i].currentTime = 0;
-                        audioElementArray[i].play();
+                        instrumentChoice[0][i].pause();
+                        instrumentChoice[0][i].currentTime = 0;
+                        instrumentChoice[0][i].play();
                         this.dataset.playing = 'true';
                     }
 
@@ -144,9 +172,11 @@ function audioResume() {
 
                 }, false);
 
-                trackArray[i].connect(audioCtx.destination);
 
-                audioElementArray[i].addEventListener('ended', () => {
+
+                instrumentChoice[1][i].connect(audioCtx.destination);
+
+                instrumentChoice[0][i].addEventListener('ended', () => {
                     noteButtonArray[i].dataset.playing = 'false';
                 }, false);
 
