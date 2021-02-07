@@ -25,19 +25,21 @@
   <title>Scale Trainer</title>
 </head>
 
-<body>
+<body">
   <audio src="sounds/violin/violin-C4.mp3"></audio>
 
   <div class="grid-container">
     <div class="header">
       <h1>Melodic Trainer</h1>
+      <button type="button" onclick="audioResume()">Change Scale</button>
+
     </div>
     <div class="scores">
       <h1>Past Scores</h1>
     </div>
     <div class="instrument">
       <h1>Instrument</h1>
-      <p id="instr-type">Piano</p>
+      <p id="instr-type">Choose your instrument!</p>
       <button type="button" onclick="instrumentCycle()">Change Instrument</button>
       <button data-playing="false" class="test-audio" >
 				<span>Play/Pause</span>
