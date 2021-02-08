@@ -159,16 +159,77 @@ const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
 
     // working sound played from webAudio, beginning of switch.
 
-    function testPlay() {
+    function testPlay(noteId) {
         // check if context is in suspended state (autoplay policy)
         if (audioCx.state === 'suspended') {
             audioCx.resume();
         }
-        instrumentChoice[0][4].pause();
-        instrumentChoice[0][4].currentTime = 0;
-        instrumentChoice[0][4].play();
+        instrumentChoice[0][Number(noteId)-1].pause();
+        instrumentChoice[0][Number(noteId)-1].currentTime = 0;
+        instrumentChoice[0][Number(noteId)-1].play();
 
 
+    }
+    
+    function noteSwitch(noteId) {
+    
+    
+        switch (noteId) {
+
+            case "1":
+                testPlay(noteId);
+                break;
+    
+            case "2":
+                testPlay(noteId);
+                break;
+    
+            case "3":
+                testPlay(noteId);
+                break;
+    
+            case "4":
+                testPlay(noteId);
+                break;
+    
+            case "5":
+                testPlay(noteId);
+                break;
+    
+            case "6":
+                testPlay(noteId);
+                break;
+    
+            case "7":
+                testPlay(noteId);
+                break;
+    
+            case "8":
+                testPlay(noteId);
+                break;
+    
+            case "9":
+                testPlay(noteId);
+                break;
+    
+            case "10":
+                testPlay(noteId);
+                break;
+    
+            case "11":
+                testPlay(noteId);
+                break;
+    
+            case "12":
+                testPlay(noteId);
+                break;
+    
+            case "13":
+                testPlay(noteId);
+                break;
+    
+            default:
+        }
     }
 
 }
@@ -176,190 +237,130 @@ const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
 
 
 
-// function noteSwitch(sqId) {
 
+function playScale() {
 
-//     switch (sqId) {
-//         case "sq1":
-//             sq1Sound.play();
-//             break;
+    if (modeChoice === "Major" || modeChoice === "Minor") {
 
-//         case "sq2":
-//             sq2Sound.play();
-//             break;
+        noteSwitch("13");
 
-//         case "sq3":
-//             sq3Sound.play();
-//             break;
+        setTimeout(function () {
+            noteSwitch("1");
+        }, 800);
 
-//         case "sq4":
-//             sq4Sound.play();
-//             break;
+        if (modeChoice === "Minor") {
+            setTimeout(function () {
+                noteSwitch("3");
+            }, 1500);
+        } else {
+            setTimeout(function () {
+                noteSwitch("2");
+            }, 1500);
+        }
 
-//         case "sq5":
-//             sq5Sound.play();
-//             break;
+        if (modeChoice === "Minor") {
+            setTimeout(function () {
+                noteSwitch("5");
+            }, 2000);
+        } else {
+            setTimeout(function () {
+                noteSwitch("4");
+            }, 2000);
+        }
 
-//         case "sq6":
-//             sq6Sound.play();
-//             break;
+        setTimeout(function () {
+            noteSwitch("6");
+        }, 2500);
 
-//         case "sq7":
-//             sq7Sound.play();
-//             break;
+        setTimeout(function () {
+            noteSwitch("8");
+        }, 3000);
 
-//         case "sq8":
-//             sq8Sound.play();
-//             break;
+        if (modeChoice === "Minor") {
+            setTimeout(function () {
+                noteSwitch("10");
+            }, 3500);
+        } else {
+            setTimeout(function () {
+                noteSwitch("9");
+            }, 3500);
+        }
 
-//         case "sq9":
-//             sq9Sound.play();
-//             break;
+        setTimeout(function () {
+            noteSwitch("11");
+        }, 4000);
 
-//         case "sq10":
-//             sq10Sound.play();
-//             break;
+        setTimeout(function () {
+            noteSwitch("13");
+        }, 4500);
 
-//         case "sq11":
-//             sq11Sound.play();
-//             break;
+        if (modeChoice === "Minor") {
+            setTimeout(function () {
+                noteSwitch("10");
+            }, 5050);
+        } else {
+            setTimeout(function () {
+                noteSwitch("9");
+            }, 5050);
+        }
 
-//         case "sq12":
-//             sq12Sound.play();
-//             break;
+        setTimeout(function () {
+            noteSwitch("6");
+        }, 5625);
 
-//         case "sq13":
-//             sq13Sound.play();
-//             break;
+        if (modeChoice === "Minor") {
+            setTimeout(function () {
+                noteSwitch("10");
+            }, 6200);
+        } else {
+            setTimeout(function () {
+                noteSwitch("9");
+            }, 6200);
+        }
 
-//         default:
-//     }
-// }
+        setTimeout(function () {
+            noteSwitch("13");
+        }, 7000);
 
+    } else if (modeChoice === "Chromatic") {
 
-// function playScale() {
+        noteSwitch("13");
 
-//     if (modeChoice === "Major" || modeChoice === "Minor") {
+        setTimeout(function () {
+            noteSwitch("1");
+        }, 700);
 
-//         noteSwitch("sq1");
+        setTimeout(function () {
+            noteSwitch("6");
+        }, 1400);
 
-//         setTimeout(function () {
-//             noteSwitch("sq13");
-//         }, 800);
+        setTimeout(function () {
+            noteSwitch("8");
+        }, 2000);
 
-//         if (modeChoice === "Minor") {
-//             setTimeout(function () {
-//                 noteSwitch("sq11");
-//             }, 1500);
-//         } else {
-//             setTimeout(function () {
-//                 noteSwitch("sq12");
-//             }, 1500);
-//         }
+        setTimeout(function () {
+            noteSwitch("13");
+        }, 2600);
 
-//         if (modeChoice === "Minor") {
-//             setTimeout(function () {
-//                 noteSwitch("sq9");
-//             }, 2000);
-//         } else {
-//             setTimeout(function () {
-//                 noteSwitch("sq10");
-//             }, 2000);
-//         }
+        setTimeout(function () {
+            noteSwitch("8");
+        }, 3200);
 
-//         setTimeout(function () {
-//             noteSwitch("sq8");
-//         }, 2500);
+        setTimeout(function () {
+            noteSwitch("6");
+        }, 3800);
 
-//         setTimeout(function () {
-//             noteSwitch("sq6");
-//         }, 3000);
+        setTimeout(function () {
+            noteSwitch("8");
+        }, 4450);
 
-//         if (modeChoice === "Minor") {
-//             setTimeout(function () {
-//                 noteSwitch("sq4");
-//             }, 3500);
-//         } else {
-//             setTimeout(function () {
-//                 noteSwitch("sq5");
-//             }, 3500);
-//         }
+        setTimeout(function () {
+            noteSwitch("13");
+        }, 5100);
 
-//         setTimeout(function () {
-//             noteSwitch("sq3");
-//         }, 4000);
+    }
 
-//         setTimeout(function () {
-//             noteSwitch("sq1");
-//         }, 4500);
-
-//         if (modeChoice === "Minor") {
-//             setTimeout(function () {
-//                 noteSwitch("sq4");
-//             }, 5050);
-//         } else {
-//             setTimeout(function () {
-//                 noteSwitch("sq5");
-//             }, 5050);
-//         }
-
-//         setTimeout(function () {
-//             noteSwitch("sq8");
-//         }, 5625);
-
-//         if (modeChoice === "Minor") {
-//             setTimeout(function () {
-//                 noteSwitch("sq4");
-//             }, 6200);
-//         } else {
-//             setTimeout(function () {
-//                 noteSwitch("sq5");
-//             }, 6200);
-//         }
-
-//         setTimeout(function () {
-//             noteSwitch("sq1");
-//         }, 7000);
-
-//     } else if (modeChoice === "Chromatic") {
-
-//         noteSwitch("sq1");
-
-//         setTimeout(function () {
-//             noteSwitch("sq13");
-//         }, 700);
-
-//         setTimeout(function () {
-//             noteSwitch("sq8");
-//         }, 1400);
-
-//         setTimeout(function () {
-//             noteSwitch("sq6");
-//         }, 2000);
-
-//         setTimeout(function () {
-//             noteSwitch("sq1");
-//         }, 2600);
-
-//         setTimeout(function () {
-//             noteSwitch("sq6");
-//         }, 3200);
-
-//         setTimeout(function () {
-//             noteSwitch("sq8");
-//         }, 3800);
-
-//         setTimeout(function () {
-//             noteSwitch("sq6");
-//         }, 4450);
-
-//         setTimeout(function () {
-//             noteSwitch("sq1");
-//         }, 5100);
-
-//     }
-
-// }
+}
 
 
 // END of document
