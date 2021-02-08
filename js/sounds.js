@@ -162,74 +162,94 @@ const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
     }
 
     // webAudio declared function for noteSwitch
-    function testPlay(noteId) {
-        
+    function testPlay(index) {
+
         // check if context is in suspended state (autoplay policy)
         if (audioCx.state === 'suspended') {
             audioCx.resume();
         }
 
-        instrumentChoice[0][Number(noteId)-1].pause();
-        instrumentChoice[0][Number(noteId)-1].currentTime = 0;
-        instrumentChoice[0][Number(noteId)-1].play();
+        instrumentChoice[0][index].pause();
+        instrumentChoice[0][index].currentTime = 0;
+        instrumentChoice[0][index].play();
     }
-    
+
     function noteSwitch(noteId) {
-    
+
         switch (noteId) {
 
-            case "1":
-                testPlay(noteId);
+            case "C5":
+                testPlay(0);
                 break;
-    
-            case "2":
-                testPlay(noteId);
+
+            case "B4":
+                testPlay(1);
                 break;
-    
-            case "3":
-                testPlay(noteId);
+
+            case "Bb4":
+                testPlay(2);
                 break;
-    
-            case "4":
-                testPlay(noteId);
+
+            case "A4":
+                testPlay(3);
                 break;
-    
-            case "5":
-                testPlay(noteId);
+
+            case "Ab4":
+                testPlay(4);
                 break;
-    
-            case "6":
-                testPlay(noteId);
+
+            case "G4":
+                testPlay(5);
                 break;
-    
-            case "7":
-                testPlay(noteId);
+
+            case "Gb4":
+                testPlay(6);
                 break;
-    
-            case "8":
-                testPlay(noteId);
+
+            case "F4":
+                testPlay(7);
                 break;
-    
-            case "9":
-                testPlay(noteId);
+
+            case "E4":
+                testPlay(8);
                 break;
-    
-            case "10":
-                testPlay(noteId);
+
+            case "Eb4":
+                testPlay(9);
                 break;
-    
-            case "11":
-                testPlay(noteId);
+
+            case "D4":
+                testPlay(10);
                 break;
-    
-            case "12":
-                testPlay(noteId);
+
+            case "Db4":
+                testPlay(11);
                 break;
-    
-            case "13":
-                testPlay(noteId);
+
+            case "C4":
+                testPlay(12);
                 break;
-    
+
+            case "B3":
+                testPlay(13);
+                break;
+
+            case "Bb3":
+                testPlay(14);
+                break;
+
+            case "A3":
+                testPlay(15);
+                break;
+
+            case "Ab3":
+                testPlay(16);
+                break;
+
+            case "G3":
+                testPlay(17);
+                break;
+
             default:
         }
     }
