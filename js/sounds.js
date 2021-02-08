@@ -1,8 +1,12 @@
 // || WebAudio initialization
 const AudioContext = window.AudioContext || window.webkitAudioContext;
-const audioCtx = new AudioContext();
+const audioCx = new AudioContext();
 
-var pianoChromaticC = [
+// || Instrument Sources 
+
+// piano
+const pianoTrackArray = []
+const pianoChromaticC = [
     new Audio("sounds/piano/piano-C5.mp3"),
     new Audio("sounds/piano/piano-B4.mp3"),
     new Audio("sounds/piano/piano-Bb4.mp3"),
@@ -18,14 +22,14 @@ var pianoChromaticC = [
     new Audio("sounds/piano/piano-C4.mp3"),
     new Audio("sounds/piano/piano-C5.mp3")
 ];
-const pianoTrackArray = []
 for (let i = 0; i < pianoChromaticC.length - 1; i++) {
-    pianoTrackArray.push(audioCtx.createMediaElementSource(pianoChromaticC[i]));
+    pianoTrackArray.push(audioCx.createMediaElementSource(pianoChromaticC[i]));
 }
 const pianoSource = [pianoChromaticC, pianoTrackArray, "Piano"];
 
-
-var frenchHornChromaticC = [
+// french horn
+const frenchHornTrackArray = []
+const frenchHornChromaticC = [
     new Audio("sounds/french-horn/french-horn-C5.mp3"),
     new Audio("sounds/french-horn/french-horn-B4.mp3"),
     new Audio("sounds/french-horn/french-horn-Bb4.mp3"),
@@ -39,17 +43,16 @@ var frenchHornChromaticC = [
     new Audio("sounds/french-horn/french-horn-D4.mp3"),
     new Audio("sounds/french-horn/french-horn-Db4.mp3"),
     new Audio("sounds/french-horn/french-horn-C4.mp3"),
-    new Audio("sounds/french-horn/french-horn-C5.mp3"),
-    "French Horn"
+    new Audio("sounds/french-horn/french-horn-C5.mp3")
 ]
-const frenchHornTrackArray = []
-for (let i = 0; i < frenchHornChromaticC.length - 2; i++) {
-    frenchHornTrackArray.push(audioCtx.createMediaElementSource(frenchHornChromaticC[i]));
+for (let i = 0; i < frenchHornChromaticC.length - 1; i++) {
+    frenchHornTrackArray.push(audioCx.createMediaElementSource(frenchHornChromaticC[i]));
 }
 const frenchHornSource = [frenchHornChromaticC, frenchHornTrackArray, "French Horn"];
 
-
-var violinChromaticC = [
+// violin
+const violinTrackArray = []
+const violinChromaticC = [
     new Audio("sounds/violin/violin-C5.mp3"),
     new Audio("sounds/violin/violin-B4.mp3"),
     new Audio("sounds/violin/violin-Bb4.mp3"),
@@ -63,77 +66,69 @@ var violinChromaticC = [
     new Audio("sounds/violin/violin-D4.mp3"),
     new Audio("sounds/violin/violin-Db4.mp3"),
     new Audio("sounds/violin/violin-C4.mp3"),
-    new Audio("sounds/violin/violin-C5.mp3"),
-    "Violin"
+    new Audio("sounds/violin/violin-C5.mp3")
 ]
-
-const violinTrackArray = []
-
-for (let i = 0; i < violinChromaticC.length - 2; i++) {
-    violinTrackArray.push(audioCtx.createMediaElementSource(violinChromaticC[i]));
+for (let i = 0; i < violinChromaticC.length - 1; i++) {
+    violinTrackArray.push(audioCx.createMediaElementSource(violinChromaticC[i]));
 }
-
 const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
-
-
 
 
 { // || WebAudio API scope
 
-
+    // array of instrument sources
     let instrumentBank = [pianoSource, frenchHornSource, violinSource];
+
+    // helper function variables
     let instrumentChoice;
     let instrumentPos;
 
+    // array of page note-buttons
     let noteButtonArray = document.getElementsByClassName("note-btn");
-    
-    
 
+    // changes instrument source
     function instrumentCycle() {
-        
-        if (instrumentPos == instrumentBank.length - 1 || instrumentPos === undefined ) {
+
+        // selects first instrument from array, then loops through array
+        if (instrumentPos == instrumentBank.length - 1 || instrumentPos === undefined) {
             instrumentPos = 0;
         } else {
             instrumentPos++;
         }
-
+        // current instrument source
         instrumentChoice = instrumentBank[instrumentPos];
 
-       
-
+        // changes on-screen instrument selection
         document.getElementById("instr-type").innerText = instrumentChoice[2];
 
+        // initializes sounds to note-buttons
         soundLoader();
 
-
-
-        // load some sound
+        // applies instrument source via listeners
         function soundLoader() {
-            
-         
-            
-            console.log(instrumentChoice);
+
             for (let i = 0; i <= noteButtonArray.length - 1; i++) {
 
-                if ( noteButtonArray[i].dataset.listener ===  'false' ) {
+                // clears previous instrument listener via element cloning
+                if (noteButtonArray[i].dataset.listener === 'false') {
                     // do nothing
-                } else if ( noteButtonArray[i].dataset.listener ===  'true' ) {
-                    console.log("hi");
-                    noteButtonArray[i].removeEventListener('click', playSound);
-                    // Known Issue. remove event not working. not throwing error either
-                        
+                } else if (noteButtonArray[i].dataset.listener === 'true') {
+                    let prevNode = noteButtonArray[i];
+                    prevNode.parentNode.replaceChild(prevNode.cloneNode(false), prevNode);
                 }
 
+                // named event listener
                 function playSound() {
-                    // check if context is in suspended state (autoplay policy)
-                    if (audioCtx.state === 'suspended') {
-                        audioCtx.resume();
+
+                    // resume audioCx
+                    if (audioCx.state === 'suspended') {
+                        audioCx.resume();
                     }
-    
+
+                    // play note and repeat note condition
                     if (noteButtonArray[i].dataset.playing === 'false') {
                         instrumentChoice[0][i].play();
                         noteButtonArray[i].dataset.playing = 'true';
-                        // if track is playing stop and play again
                     } else if (noteButtonArray[i].dataset.playing === 'true') {
                         instrumentChoice[0][i].pause();
                         instrumentChoice[0][i].currentTime = 0;
@@ -141,15 +136,18 @@ const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
                         noteButtonArray[i].dataset.playing = 'true';
                     }
 
-                    
                 }
-                
-                
+
+                // assign event listener
                 noteButtonArray[i].addEventListener('click', playSound);
+
+                // assign 'has listener' value
                 noteButtonArray[i].dataset.listener = 'true';
 
-                instrumentChoice[1][i].connect(audioCtx.destination);
+                // webAudio track connection
+                instrumentChoice[1][i].connect(audioCx.destination);
 
+                // 'on-end' conditional
                 instrumentChoice[0][i].addEventListener('ended', () => {
                     noteButtonArray[i].dataset.playing = 'false';
                 }, false);
@@ -163,12 +161,12 @@ const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
 
     function testPlay() {
         // check if context is in suspended state (autoplay policy)
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
+        if (audioCx.state === 'suspended') {
+            audioCx.resume();
         }
-        audioElementArray[4].pause();
-        audioElementArray[4].currentTime = 0;
-        audioElementArray[4].play();
+        instrumentChoice[0][4].pause();
+        instrumentChoice[0][4].currentTime = 0;
+        instrumentChoice[0][4].play();
 
 
     }
@@ -179,36 +177,6 @@ const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
 
 
 // function noteSwitch(sqId) {
-//         var sq1Sound = new Audio(instrumentChoice[0]);
-//         var sq2Sound = new Audio(instrumentChoice[1]);
-//         var sq3Sound = new Audio(instrumentChoice[2]);
-//         var sq4Sound = new Audio(instrumentChoice[3]);
-//         var sq5Sound = new Audio(instrumentChoice[4]);
-//         var sq6Sound = new Audio(instrumentChoice[5]);
-//         var sq7Sound = new Audio(instrumentChoice[6]);
-//         var sq8Sound = new Audio(instrumentChoice[7]);
-//         var sq9Sound = new Audio(instrumentChoice[8]);
-//         var sq10Sound = new Audio(instrumentChoice[9]);
-//         var sq11Sound = new Audio(instrumentChoice[10]);
-//         var sq12Sound = new Audio(instrumentChoice[11]);
-//         var sq13Sound = new Audio(instrumentChoice[12]);
-
-
-//         sq1Sound.preload = "auto";
-//         sq2Sound.preload = "auto";
-//         sq3Sound.preload = "auto";
-//         sq4Sound.preload = "auto";
-//         sq5Sound.preload = "auto";
-//         sq6Sound.preload = "auto";
-//         sq7Sound.preload = "auto";
-//         sq8Sound.preload = "auto";
-//         sq9Sound.preload = "auto";
-//         sq10Sound.preload = "auto";
-//         sq11Sound.preload = "auto";
-//         sq12Sound.preload = "auto";
-//         sq13Sound.preload = "auto";
-
-
 
 
 //     switch (sqId) {
