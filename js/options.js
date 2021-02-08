@@ -29,62 +29,56 @@ function modeSelect() {
     let chromIndex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     let majorIndex = [0, 2, 4, 5, 7, 9, 11, 12];
     let AnhemMajIndex = [0, 2, 4, 7, 9, 12];
-
     let minorIndex = [0, 2, 3, 5, 7, 8, 10, 12];
     let AnhemMinIndex = [0, 3, 5, 7, 10, 12];
 
     function allOff() {
-        chromIndex.forEach(displayBox);
+        chromIndex.forEach(displayNone);
 
-        function displayBox(item) {
+        function displayNone(item) {
             document.getElementsByClassName(allNotes[item])[0].style.display = "none";
-
         }
     }
-
+    
+    function displayBox(item) {
+        document.getElementsByClassName(allNotes[item])[0].style.display = "block";
+    }
+    
     if (modeChoice == "Major") {
         allOff();
         majorIndex.forEach(displayBox);
-
-        function displayBox(item) {
-            document.getElementsByClassName(allNotes[item])[0].style.display = "block";
-
-        }
     }
+
     if (modeChoice == "Minor") {
         allOff();
         minorIndex.forEach(displayBox);
-
-        function displayBox(item) {
-            document.getElementsByClassName(allNotes[item])[0].style.display = "block";
-
-        }
     }
+
     if (modeChoice == "Anhematonic Major") {
         allOff();
         AnhemMajIndex.forEach(displayBox);
-
-        function displayBox(item) {
-            document.getElementsByClassName(allNotes[item])[0].style.display = "block";
-
-        }
     }
+
     if (modeChoice == "Anhematonic Minor") {
         allOff();
         AnhemMinIndex.forEach(displayBox);
-
-        function displayBox(item) {
-            document.getElementsByClassName(allNotes[item])[0].style.display = "block";
-
-        }
     }
+
     if (modeChoice == "Chromatic") {
         allOff();
         chromIndex.forEach(displayBox);
-
-        function displayBox(item) {
-            document.getElementsByClassName(allNotes[item])[0].style.display = "block";
-
-        }
     }
+}
+
+// || Solfege Toggle 
+
+function solfegeSwitch() {
+    let solfDisplay = document.getElementById("solf-switch").dataset.display;
+    let syllables = document.getElementsByClassName("syllable");
+    if ( solfDisplay === "true" ) {
+        for ( let i = 0; i < syllables.length; i++ ) {
+            syllables[i].style.display = "none";
+        }
+
+    } 
 }

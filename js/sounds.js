@@ -157,22 +157,20 @@ const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
         }
     }
 
-    // working sound played from webAudio, beginning of switch.
-
+    // webAudio declared function for noteSwitch
     function testPlay(noteId) {
+        
         // check if context is in suspended state (autoplay policy)
         if (audioCx.state === 'suspended') {
             audioCx.resume();
         }
+
         instrumentChoice[0][Number(noteId)-1].pause();
         instrumentChoice[0][Number(noteId)-1].currentTime = 0;
         instrumentChoice[0][Number(noteId)-1].play();
-
-
     }
     
     function noteSwitch(noteId) {
-    
     
         switch (noteId) {
 
@@ -233,9 +231,6 @@ const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
     }
 
 }
-
-
-
 
 
 function playScale() {
