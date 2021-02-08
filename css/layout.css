@@ -6,7 +6,6 @@ html {
 .l-paper-bg {
     background-image: url(../images/solid.png);
     background-attachment: fixed;
-
 }
 
 .grid-container {
@@ -41,23 +40,28 @@ html {
     grid-area: notes;
     grid-template-areas:
         "C5 C5 C5"
-        "B B B"
-        "Bb Bb Bb"
-        "A A A"
-        "Ab Ab Ab"
-        "G G G"
-        "Gb Gb Gb"
-        "F F F"
-        "E E E"
-        "Eb Eb Eb"
-        "D D D"
-        "Db Db Db"
-        "C4 C4 C4";
+        "B4 B4 B4"
+        "Bb4 Bb4 Bb4"
+        "A4 A4 A4"
+        "Ab4 Ab4 Ab4"
+        "G4 G4 G4"
+        "Gb4 Gb4 Gb4"
+        "F4 F4 F4"
+        "E4 E4 E4"
+        "Eb4 Eb4 Eb4"
+        "D4 D4 D4"
+        "Db4 Db4 Db4"
+        "C4 C4 C4"
+        "B3 B3 B3"
+        "Bb3 Bb3 Bb3"
+        "A3 A3 A3"
+        "Ab3 Ab3 Ab3"
+        "G3 G3 G3";
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 10px;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 4px;
     width: 100%;
     padding: 15px 0;
     border-radius: 10px;
@@ -93,7 +97,6 @@ html {
     display: inline-block;
     width: 130px;
     height: 100%;
-    min-height: 40px;
     border-radius: 10px;
     background-color: ivory;
 }
@@ -103,58 +106,58 @@ html {
     display: inline-block;
 }
 
-.B {
-    grid-area: B;
+.B4 {
+    grid-area: B4;
     display: inline-block;
 }
 
-.Bb {
-    grid-area: Bb;
+.Bb4 {
+    grid-area: Bb4;
     display: inline-block;
 }
 
-.A {
-    grid-area: A;
+.A4 {
+    grid-area: A4;
     display: inline-block;
 }
 
-.Ab {
-    grid-area: Ab;
+.Ab4 {
+    grid-area: Ab4;
     display: inline-block;
 }
 
-.G {
-    grid-area: G;
+.G4 {
+    grid-area: G4;
     display: inline-block;
 }
 
-.Gb {
-    grid-area: Gb;
+.Gb4 {
+    grid-area: Gb4;
     display: inline-block;
 }
 
-.F {
-    grid-area: F;
+.F4 {
+    grid-area: F4;
     display: inline-block;
 }
 
-.E {
-    grid-area: E;
+.E4 {
+    grid-area: E4;
     display: inline-block;
 }
 
-.Eb {
-    grid-area: Eb;
+.Eb4 {
+    grid-area: Eb4;
     display: inline-block;
 }
 
-.D {
-    grid-area: D;
+.D4 {
+    grid-area: D4;
     display: inline-block;
 }
 
-.Db {
-    grid-area: Db;
+.Db4 {
+    grid-area: Db4;
     display: inline-block;
 }
 
@@ -163,167 +166,35 @@ html {
     display: inline-block;
 }
 
+.B3 {
+    grid-area: B3;
+    display: inline-block;
+}
+
+.Bb3 {
+    grid-area: Bb3;
+    display: inline-block;
+}
+
+.A3 {
+    grid-area: A3;
+    display: inline-block;
+}
+
+.Ab3 {
+    grid-area: Ab3;
+    display: inline-block;
+}
+
+.G3 {
+    grid-area: G3;
+    display: inline-block;
+}
+
 button:focus {
     outline: none;
 }
 
-.note1 {
-    grid-area: note1;
-}
-
-.note2 {
-    grid-area: note2;
-}
-
-.note3 {
-    grid-area: note3;
-}
-
-.note4 {
-    grid-area: note4;
-}
-
-.note5 {
-    grid-area: note5;
-}
-
-.note6 {
-    grid-area: note6;
-}
-
-.note7 {
-    grid-area: note7;
-}
-
-.note8 {
-    grid-area: note8;
-}
-
-.note9 {
-    grid-area: note9;
-}
-
-.note10 {
-    grid-area: note10;
-}
-
-.note11 {
-    grid-area: note11;
-}
-
-.note12 {
-    grid-area: note12;
-}
-
-.note13 {
-    grid-area: note13;
-}
-
-
-.solf1 {
-    grid-area: solf1;
-}
-
-.solf2 {
-    grid-area: solf2;
-}
-
-.solf3 {
-    grid-area: solf3;
-}
-
-.solf4 {
-    grid-area: solf4;
-}
-
-.solf5 {
-    grid-area: solf5;
-}
-
-.solf6 {
-    grid-area: solf6;
-}
-
-.solf7 {
-    grid-area: solf7;
-}
-
-.solf8 {
-    grid-area: solf8;
-}
-
-.solf9 {
-    grid-area: solf9;
-}
-
-.solf10 {
-    grid-area: solf10;
-}
-
-.solf11 {
-    grid-area: solf11;
-}
-
-.solf12 {
-    grid-area: solf12;
-}
-
-.solf13 {
-    grid-area: solf13;
-}
-
-
-.pitch1 {
-    grid-area: pitch1;
-}
-
-.pitch2 {
-    grid-area: pitch2;
-}
-
-.pitch3 {
-    grid-area: pitch3;
-}
-
-.pitch4 {
-    grid-area: pitch4;
-}
-
-.pitch5 {
-    grid-area: pitch5;
-}
-
-.pitch6 {
-    grid-area: pitch6;
-}
-
-.pitch7 {
-    grid-area: pitch7;
-}
-
-.pitch8 {
-    grid-area: pitch8;
-}
-
-.pitch9 {
-    grid-area: pitch9;
-}
-
-.pitch10 {
-    grid-area: pitch10;
-}
-
-.pitch11 {
-    grid-area: pitch11;
-}
-
-.pitch12 {
-    grid-area: pitch12;
-}
-
-.pitch13 {
-    grid-area: pitch13;
-}
 
 .header {
     grid-area: header;
@@ -367,7 +238,6 @@ button:focus {
     right: 50px;
     height: 38px;
     min-height: 35px;
-
     padding: 11px;
     border-radius: 14px;
     align-self: center;

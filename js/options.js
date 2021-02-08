@@ -24,7 +24,7 @@ function modeCycle() {
 function modeSelect() {
 
     // array of all notes
-    let allNotes = ["C4", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B", "C5", ];
+    let allNotes = ["C4", "Db4", "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4", "C5" ];
     // mode-specific index key
     let chromIndex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     let majorIndex = [0, 2, 4, 5, 7, 9, 11, 12];

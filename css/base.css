@@ -1,6 +1,4 @@
-/* || Base CSS file for "melody trainer" */
-
-
+/* || Base CSS file for "Music Trainer" */
 
 * {
     box-sizing: border-box;
@@ -13,8 +11,6 @@
 body {
     background-image: url(../images/greenboard.jpg);
     background-attachment: contain;
-    /* background-color: #080002; */
-
     font-family: alegreya-sans, sans-serif;
     font-weight: 300;
     font-style: normal;
