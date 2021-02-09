@@ -75,26 +75,41 @@ function modeSelect() {
 
 }
 
-// || Solfege Toggle 
+// || Accidentals Toggle 
 
-function solfegeSwitch() {
-    let solfDisplay = document.getElementById("solf-switch").dataset;
-    let syllables = document.getElementsByClassName("syllable");
-    if (solfDisplay.display === "true") {
-        for (let i = 0; i < syllables.length; i++) {
-            syllables[i].style.display = "none";
+function accidentalToggles(btnId) {
+    let sharpDisplay;
+    let sharps;
+    let flatDisplay;
+    let flats;
+    let degDisplay;
+    let degrees;
+    let solfDisplay;
+    let syllables;
+    
+    let btnInfo = [
+        ["solf-switch", "syllable", solfDisplay, syllables],
+        ["deg-switch", "degree", degDisplay, degrees],
+        ["flat-switch", "acc-flat", flatDisplay, flats],
+        ["sharp-switch", "acc-sharp", sharpDisplay, sharps]
+    ];
+
+    console.log(btnInfo[btnId][3]);
+    btnInfo[btnId][2] = document.getElementById(btnInfo[btnId][0]).dataset;
+    btnInfo[btnId][3] = document.getElementsByClassName(btnInfo[btnId][1]);
+    if (btnInfo[btnId][2].display === "true") {
+        for (let i = 0; i < btnInfo[btnId][3].length; i++) {
+            btnInfo[btnId][3][i].style.display = "none";
         }
-        solfDisplay.display = "false";
-    } else if ( solfDisplay.display === "false" ) {
-        for (let i = 0; i < syllables.length; i++) {
-            syllables[i].style.display = "block";
+        btnInfo[btnId][2].display = "false";
+    } else if ( btnInfo[btnId][2].display === "false" ) {
+        for (let i = 0; i < btnInfo[btnId][3].length; i++) {
+            btnInfo[btnId][3][i].style.display = "block";
         }
-        solfDisplay.display = "true";
+        btnInfo[btnId][2].display = "true";
 
     }
-    
 }
-
 
 // || Scale Degree Set 
 let melodyPat = [];

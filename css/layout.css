@@ -14,8 +14,8 @@ html {
         "messages ....... notes notes ....... scores"
         "messages ....... notes notes ....... cadences"
         "messages ....... notes notes ........ cadences"
-        "instrument ....... notes notes ........ mode"
-        "instrument ....... notes notes ....... options";
+        "instrument ....... notes notes ........ options"
+        "mode ....... notes notes ....... options";
     position: relative;
     top: 50vh;
     transform: translateY(-50%);
@@ -234,7 +234,7 @@ button:focus {
 
 }
 
-.pitch {
+.degree {
     z-index: 15;
     position: absolute;
     right: 50px;
@@ -245,11 +245,16 @@ button:focus {
     align-self: center;
     background-color: #222224;
     text-align: right;
-    font-size: 18px;
+    font-size: 20px;
     color: #bbb;
     width: 100px;
     display: inline-block;
 
+}
+
+.degree span {
+    float: right;
+    margin-left: 5px;
 }
 
 .syllable {
@@ -265,4 +270,30 @@ button:focus {
     color: #bbb;
     width: 100px;
     display: inline-block;
+}
+
+.syllable span {
+    float: left;
+    margin-right: 5px;
+}
+
+.degree-hat {
+    position: relative;
+    top: -8px;
+    left: -11.5px;
+    font-size: 1px;
+}
+
+.degree-hat-accidental {
+    position: relative;
+    top: -9px;
+    left: -16px;
+    font-size: 1px;
+}
+
+.acc-flat {
+}
+
+.acc-sharp {
+
 }

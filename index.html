@@ -73,7 +73,10 @@
     </div>
     <div class="options">
       <h1>Options</h1>
-      <button id="solf-switch" type="button" data-display="true" onclick="solfegeSwitch()">Solfege On/Off</button>
+      <button id="solf-switch" type="button" data-display="true" onclick="accidentalToggles(0)">Solfege On/Off</button>
+      <button id="deg-switch" type="button" data-display="true" onclick="accidentalToggles(1)">Degree On/Off</button>
+      <button id="flat-switch" type="button" data-display="true" onclick="accidentalToggles(2)">Flats On/Off</button>
+      <button id="sharp-switch" type="button" data-display="true" onclick="accidentalToggles(3)">Sharps On/Off</button>
 
     </div>
 
@@ -82,109 +85,109 @@
       <div class="wrap C5">
         <div class="syllable">Do</div>
         <button type="button" data-listener="false" data-playing="false" class="note-btn"></button>
-        <div class=" pitch">C</div>
+        <div class=" degree">1<span class="degree-hat">^</span></div>
       </div>
 
       <div class="wrap B4">
         <div class="syllable">Ti</div>
         <button type="button" data-listener="false" data-playing="false"  class="note-btn"></button>
-        <div class="pitch">B</div>
+        <div class="degree">7<span class="degree-hat">^</span></div>
       </div>
 
       <div class="wrap Bb4">
-        <div class="syllable">Te / Li</div>
+        <div class="syllable"><span class="acc-flat">Te</span><span class="acc-sharp">Li</span></div>
         <button type="button" data-listener="false" data-playing="false"  class="note-btn"></button>
-        <div class="pitch">A# / Bb</div>
+        <div class="degree"><span class="acc-sharp">#6<span class="degree-hat-accidental">^</span></span><span class="acc-flat">b7<span class="degree-hat-accidental">^</span></span></div>
       </div>
 
       <div class="wrap A4">
         <div class="syllable">La</div>
         <button type="button" data-listener="false" data-playing="false" class="note-btn"></button>
-        <div class="pitch">A</div>
+        <div class="degree">6<span class="degree-hat">^</span></div>
       </div>
 
       <div class="wrap Ab4">
-        <div class="syllable">Le / Si</div>
+        <div class="syllable"><span class="acc-flat">Le</span><span class="acc-sharp">Si</span></div>
         <button type="button" data-listener="false" data-playing="false" class="note-btn"></button>
-        <div class="pitch">G# / Ab</div>
+        <div class="degree"><span class="acc-sharp">#5<span class="degree-hat-accidental">^</span></span><span class="acc-flat">b6<span class="degree-hat-accidental">^</span></span></div>
       </div>
 
       <div class="wrap G4">
         <div class="syllable">So</div>
         <button type="button" data-listener="false" data-playing="false" class="note-btn"></button>
-        <div class="pitch">G</div>
+        <div class="degree">5<span class="degree-hat">^</span></div>
       </div>
 
       <div class="wrap Gb4">
-        <div class="syllable">Fi / Se</div>
+        <div class="syllable"><span class="acc-sharp">Fi</span><span class="acc-flat">Se</span></div>
         <button type="button" data-listener="false" data-playing="false" class="note-btn"></button>
-        <div class="pitch">F# / Gb</div>
+        <div class="degree"><span class="acc-sharp">#4<span class="degree-hat-accidental">^</span></span><span class="acc-flat">b5<span class="degree-hat-accidental">^</span></span></div>
       </div>
 
       <div class="wrap F4">
         <div class="syllable">Fa</div>
         <button type="button" data-listener="false" data-playing="false"  class="note-btn"></button>
-        <div class="pitch">F</div>
+        <div class="degree">4<span class="degree-hat">^</span></div>
       </div>
 
       <div class="wrap E4">
         <div class="syllable">Mi</div>
         <button type="button" data-listener="false" data-playing="false"  class="note-btn"></button>
-        <div class="pitch">E</div>
+        <div class="degree">3<span class="degree-hat">^</span></div>
       </div>
 
       <div class="wrap Eb4">
-        <div class="syllable">Me / Ri</div>
+        <div class="syllable"><span class="acc-flat">Me</span><span class="acc-sharp">Ri</span></div>
         <button type="button" data-listener="false" data-playing="false"  class="note-btn"></button>
-        <div class="pitch">D# / Eb</div>
+        <div class="degree"><span class="acc-sharp">#2<span class="degree-hat-accidental">^</span></span><span class="acc-flat">b3<span class="degree-hat-accidental">^</span></span></div>
       </div>
 
       <div class="wrap D4">
         <div class="syllable">Re</div>
         <button type="button" data-listener="false" data-playing="false"  class="note-btn"></button>
-        <div class="pitch">D</div>
+        <div class="degree">2<span class="degree-hat">^</span></div>
       </div>
 
       <div class="wrap Db4">
-        <div class="solf2 syllable">Di / Ra</div>
+        <div class="solf2 syllable"><span class="acc-flat">Ra</span><span class="acc-sharp">Di</span></div>
         <button type="button" data-listener="false" data-playing="false" class="note-btn"></button>
-        <div class="pitch">C# / Db</div>
+        <div class="degree"><span class="acc-sharp">#1<span class="degree-hat-accidental">^</span></span><span class="acc-flat">b2<span class="degree-hat-accidental">^</span></span></div>
       </div>
 
       <div class="wrap C4">
         <div class="solf1 syllable">Do</div>
         <button type="button" data-listener="false" data-playing="false" class="note-btn"></button>
-        <div class="pitch">C</div>
+        <div class="degree">1<span class="degree-hat">^</span></div>
       </div>
 
       <div class="wrap B3">
         <div class="syllable">Ti</div>
         <button type="button" data-listener="false" data-playing="false" class="note-btn"></button>
-        <div class="pitch">B</div>
+        <div class="degree">7<span class="degree-hat">^</span></div>
       </div>
 
       <div class="wrap Bb3">
-        <div class="syllable">Li / Te</div>
+        <div class="syllable"><span class="acc-flat">Te</span><span class="acc-sharp">Li</span></div>
         <button type="button" data-listener="false" data-playing="false" class="note-btn"></button>
-        <div class="pitch">A# / Bb</div>
+        <div class="degree"><span class="acc-sharp">#6<span class="degree-hat-accidental">^</span></span><span class="acc-flat">b7<span class="degree-hat-accidental">^</span></span></div>
       </div>
 
       <div class="wrap A3">
         <div class="syllable">La</div>
         <button type="button" data-listener="false" data-playing="false" class="note-btn"></button>
-        <div class="pitch">A</div>
+        <div class="degree">6<span class="degree-hat">^</span></div>
       </div>
 
       <div class="wrap Ab3">
-        <div class="syllable">Si / Le</div>
+        <div class="syllable"><span class="acc-flat">Le</span><span class="acc-sharp">Si</span></div>
         <button type="button" data-listener="false" data-playing="false" class="note-btn"></button>
-        <div class="pitch">G# / Ab</div>
+        <div class="degree"><span class="acc-sharp">#5<span class="degree-hat-accidental">^</span></span><span class="acc-flat">b6<span class="degree-hat-accidental">^</span></span></div>
       </div>
 
       <div class="wrap G3">
         <div class="syllable">So</div>
         <button type="button" data-listener="false" data-playing="false" class="note-btn"></button>
-        <div class="pitch">G</div>
+        <div class="degree">5<span class="degree-hat">^</span></div>
       </div>
 
     </div>
