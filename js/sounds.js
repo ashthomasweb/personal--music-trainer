@@ -170,6 +170,7 @@ const tenorSaxSource = [tenorSaxChromaticC, tenorSaxTrackArray, "Tenor Sax"];
                     } else {
                         currentAudio.pause();
                         currentAudio.currentTime = 0;
+                       
                     }
 
                     // play note and repeat note condition
@@ -181,6 +182,7 @@ const tenorSaxSource = [tenorSaxChromaticC, tenorSaxTrackArray, "Tenor Sax"];
                         instrumentChoice[0][i].pause();
                         instrumentChoice[0][i].currentTime = 0;
                         instrumentChoice[0][i].play();
+                        currentAudio = instrumentChoice[0][i],
                         noteButtonArray[i].dataset.playing = 'true';
                     }
 

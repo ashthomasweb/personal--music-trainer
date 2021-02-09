@@ -1,7 +1,35 @@
 
+ // array of all notes
+ let chromIndex = ["G3", "Ab3", "A3", "Bb3", "B3", "C4", "Db4", "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4", "C5" ];
+ let majorIndex = ["G3", "A3", "B3", "C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
+ let anhemMajIndex = ["G3", "A3", "C4", "D4", "E4", "G4", "A4", "C5"];
+ let minorIndex = ["G3", "Ab3", "Bb3", "C4", "D4", "Eb4", "F4", "G4", "Ab4", "Bb4", "C5"];
+ let anhemMinIndex = ["G3", "Bb3", "C4", "Eb4", "G4", "Bb4", "C5"];
+ let minorBluesIndex = ["G3", "Bb3", "C4", "Eb4", "F4", "Gb4", "G4", "Bb4", "C5"]
+ let majorBluesIndex = ["G3", "A3", "C4", "D4", "Eb4", "E4", "G4", "A4", "C5"];
+ let harmMinorIndex = ["G3", "Ab3", "B3", "C4", "D4", "Eb4", "F4", "G4", "Ab4", "B4", "C5"];
+ let jazzMinorIndex = ["G3", "A3", "B3", "C4", "D4", "Eb4", "F4", "G4", "A4", "B4", "C5"];
+ let bebopTonicIndex = ["G3", "Ab3", "A3", "B3", "C4", "D4", "E4", "F4", "G4", "Ab4", "A4", "B4", "C5"];
+ let bebopPreIndex = ["G3", "A3", "Bb3", "C4", "D4", "Eb4", "E4", "F4", "G4", "A4", "Bb4", "C5"];
+ let bebopDomIndex = ["G3", "A3", "Bb3", "B3", "C4", "D4", "E4", "F4", "G4", "A4", "Bb4", "B4", "C5"];
 
-let modeArray = ["Chromatic", "Major", "Minor", "Anhematonic Major", "Anhematonic Minor"];
-let modeChoice = modeArray[0];
+let modeArray = [
+    ["Chromatic", chromIndex],
+    ["Major", majorIndex],
+    ["Minor", minorIndex],
+    ["Anhematonic Major", anhemMajIndex],
+    ["Anhematonic Minor", anhemMinIndex],
+    ["Major Blues", majorBluesIndex],
+    ["Minor Blues", minorBluesIndex],
+    ["Harmonic Minor", harmMinorIndex],
+    ["Jazz Minor", jazzMinorIndex],
+    ["Bebop Tonic (I)", bebopTonicIndex],
+    ["Bebop Predominant (ii)", bebopPreIndex],
+    ["Bebop Dominant (V)", bebopDomIndex]
+];
+
+
+let modeChoice = modeArray[0][0];
 let modePos = 0;
 
 function modeCycle() {
@@ -10,7 +38,7 @@ function modeCycle() {
     } else {
         modePos++;
     }
-    modeChoice = modeArray[modePos];
+    modeChoice = modeArray[modePos][0];
 
     // console.log(modeChoice);
     // console.log(document.getElementById("mode-type").innerText);
@@ -23,51 +51,26 @@ function modeCycle() {
 
 function modeSelect() {
 
-    // array of all notes
-    let allNotes = ["G3", "Ab3", "A3", "Bb3", "B3", "C4", "Db4", "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4", "C5" ];
-    // mode-specific index key
-    let chromIndex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
-    let majorIndex = [0, 2, 4, 5, 7, 9, 10, 12, 14, 16, 17];
-    let AnhemMajIndex = [0, 2, 5, 7, 9, 12, 14, 17];
-    let minorIndex = [0, 1, 3, 5, 7, 8, 10, 12, 13, 15, 17];
-    let AnhemMinIndex = [0, 3, 5, 8, 10, 12, 15, 17];
-
     function allOff() {
         chromIndex.forEach(displayNone);
 
         function displayNone(item) {
-            document.getElementsByClassName(allNotes[item])[0].style.display = "none";
+            document.getElementsByClassName(item)[0].style.display = "none";
         }
     }
+
+    function displayNoteClass(item) {
+        document.getElementsByClassName(item)[0].style.display = "block";
+    }
+
+    for ( let i = 0; i < modeArray.length - 1; i++ ) {
+        if (modeChoice == modeArray[i][0]) {
+            allOff();
+            modeArray[i][1].forEach(displayNoteClass);
+        }
+
+    }
     
-    function displayBox(item) {
-        document.getElementsByClassName(allNotes[item])[0].style.display = "block";
-    }
-    
-    if (modeChoice == "Major") {
-        allOff();
-        majorIndex.forEach(displayBox);
-    }
-
-    if (modeChoice == "Minor") {
-        allOff();
-        minorIndex.forEach(displayBox);
-    }
-
-    if (modeChoice == "Anhematonic Major") {
-        allOff();
-        AnhemMajIndex.forEach(displayBox);
-    }
-
-    if (modeChoice == "Anhematonic Minor") {
-        allOff();
-        AnhemMinIndex.forEach(displayBox);
-    }
-
-    if (modeChoice == "Chromatic") {
-        allOff();
-        chromIndex.forEach(displayBox);
-    }
 }
 
 // || Solfege Toggle 
