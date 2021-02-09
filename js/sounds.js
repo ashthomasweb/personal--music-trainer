@@ -189,7 +189,7 @@ const tenorSaxSource = [tenorSaxChromaticC, tenorSaxTrackArray, "Tenor Sax"];
 
                     let userPick = noteButtonArray[i].parentElement.className.replace("wrap ", "");
                     userPat.push(userPick);
-                    console.log(userPat);
+                
 
                     patCheck();
                 }
@@ -304,131 +304,6 @@ const tenorSaxSource = [tenorSaxChromaticC, tenorSaxTrackArray, "Tenor Sax"];
 
             default:
         }
-    }
-
-}
-
-
-function playScale() {
-
-    if (modeChoice === "Major" || modeChoice === "Minor") {
-
-        noteSwitch("13");
-
-        setTimeout(function () {
-            noteSwitch("1");
-        }, 800);
-
-        if (modeChoice === "Minor") {
-            setTimeout(function () {
-                noteSwitch("3");
-            }, 1500);
-        } else {
-            setTimeout(function () {
-                noteSwitch("2");
-            }, 1500);
-        }
-
-        if (modeChoice === "Minor") {
-            setTimeout(function () {
-                noteSwitch("5");
-            }, 2000);
-        } else {
-            setTimeout(function () {
-                noteSwitch("4");
-            }, 2000);
-        }
-
-        setTimeout(function () {
-            noteSwitch("6");
-        }, 2500);
-
-        setTimeout(function () {
-            noteSwitch("8");
-        }, 3000);
-
-        if (modeChoice === "Minor") {
-            setTimeout(function () {
-                noteSwitch("10");
-            }, 3500);
-        } else {
-            setTimeout(function () {
-                noteSwitch("9");
-            }, 3500);
-        }
-
-        setTimeout(function () {
-            noteSwitch("11");
-        }, 4000);
-
-        setTimeout(function () {
-            noteSwitch("13");
-        }, 4500);
-
-        if (modeChoice === "Minor") {
-            setTimeout(function () {
-                noteSwitch("10");
-            }, 5050);
-        } else {
-            setTimeout(function () {
-                noteSwitch("9");
-            }, 5050);
-        }
-
-        setTimeout(function () {
-            noteSwitch("6");
-        }, 5625);
-
-        if (modeChoice === "Minor") {
-            setTimeout(function () {
-                noteSwitch("10");
-            }, 6200);
-        } else {
-            setTimeout(function () {
-                noteSwitch("9");
-            }, 6200);
-        }
-
-        setTimeout(function () {
-            noteSwitch("13");
-        }, 7000);
-
-    } else if (modeChoice === "Chromatic") {
-
-        noteSwitch("13");
-
-        setTimeout(function () {
-            noteSwitch("1");
-        }, 700);
-
-        setTimeout(function () {
-            noteSwitch("6");
-        }, 1400);
-
-        setTimeout(function () {
-            noteSwitch("8");
-        }, 2000);
-
-        setTimeout(function () {
-            noteSwitch("13");
-        }, 2600);
-
-        setTimeout(function () {
-            noteSwitch("8");
-        }, 3200);
-
-        setTimeout(function () {
-            noteSwitch("6");
-        }, 3800);
-
-        setTimeout(function () {
-            noteSwitch("8");
-        }, 4450);
-
-        setTimeout(function () {
-            noteSwitch("13");
-        }, 5100);
-
     }
 
 }

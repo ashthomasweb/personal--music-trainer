@@ -12,8 +12,8 @@ html {
     grid-template-areas:
         "header ....... notes notes ....... scores"
         "messages ....... notes notes ....... scores"
-        "messages ....... notes notes ....... ......."
-        "messages ....... notes notes ........ key"
+        "messages ....... notes notes ....... cadences"
+        "messages ....... notes notes ........ cadences"
         "instrument ....... notes notes ........ mode"
         "instrument ....... notes notes ....... options";
     position: relative;
@@ -78,6 +78,7 @@ html {
 .wrap {
     position: relative;
     width: 100%;
+    cursor: pointer;
 }
 
 .wrap div {
@@ -98,6 +99,8 @@ html {
     height: 100%;
     border-radius: 10px;
     background-color: ivory;
+    cursor: pointer;
+
 }
 
 .C5 {
@@ -215,8 +218,8 @@ button:focus {
     background-color: rgba(128, 125, 125, .3);
 }
 
-.key {
-    grid-area: key;
+.cadences {
+    grid-area: cadences;
     background-color: rgba(128, 125, 125, .3);
 }
 

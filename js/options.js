@@ -102,7 +102,7 @@ let userPat = [];
 
 
 function buildMelody() {
-    console.log(availNotes);
+    
 
     let newNote = availNotes[Math.floor(Math.random() * availNotes.length)];
     // force tonic more often
@@ -110,12 +110,11 @@ function buildMelody() {
         if (Math.floor(Math.random() * 13) === 0) {
             newNote = "C4";
         }
-        console.log(newNote);
     }
 
     noteSwitch(newNote);
     melodyPat.push(newNote);
-    console.log(melodyPat);
+    console.log('Pattern is: ' + melodyPat);
 }
 
 
@@ -127,16 +126,25 @@ function buildMelody() {
 function patCheck() {
 
     if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1] && userPat.length === melodyPat.length) {
-
-        alert("Success!");
-        userPat = [];
-        buildMelody();
+        console.log('Next round');
+        userPointerOff();
+        setTimeout(function() {
+            userPat = [];
+            buildMelody();
+        }, 1500);
+        setTimeout(function() {
+            userPointerOn();
+        }, 3500);
 
     } else if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1]) {
-
+        
 
     } else {
+        console.log("Oops, it's: " + userPat);
+
         alert("Game Over");
+        melodyPat = [];
+        userPat = [];
     }
 }
 
@@ -147,3 +155,25 @@ function chord(x, y, z) {
     noteSwitch(y);
     noteSwitch(z);
 }
+
+// || Pointer Events toggle 
+
+function userPointerOff() {
+    let wrapArray = document.getElementsByClassName("wrap");
+
+    for ( let i = 0; i < wrapArray.length - 1; i++ ) {
+        wrapArray[i].style.pointerEvents = "none";
+    }
+}
+
+function userPointerOn() {
+    let wrapArray = document.getElementsByClassName("wrap");
+
+    for ( let i = 0; i < wrapArray.length - 1; i++ ) {
+        wrapArray[i].style.pointerEvents = "auto";
+    }
+}
+ 
+
+
+// END of document 

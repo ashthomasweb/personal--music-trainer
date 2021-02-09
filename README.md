@@ -14,7 +14,7 @@
 * [Contact](#contact)
 
 ## General Info
-This is the beginning of a music ear-training application. Requires audio enabled.
+This is a music ear-training application. Requires audio enabled. Relative Pitch memory trainer.
 
 ## Technologies
 * HTML5
@@ -28,9 +28,12 @@ This is the beginning of a music ear-training application. Requires audio enable
 ## To-do List:
 * Create Tempo Trainer.
 * Create Melodic Dictation Trainer.
+* Sample extended range for piano.
+* Create Key Center option with piano extended range.
+* Klangfarbenmelodie mode.
 
 ## Known Issues
-* Uncomplete. 
+* Incomplete. 
 
 ## Status
 Project is: _in development_. This is a long-term project. Check back later!
