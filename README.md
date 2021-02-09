@@ -28,6 +28,8 @@ This is the beginning of a music ear-training application. Requires audio enable
 
 ## To-do List:
 * Investigate proper tech stack.
+* Create Tempo Trainer
+* Create Melodic Dictation Trainer
 
 ## Known Issues
 * Uncomplete. 
