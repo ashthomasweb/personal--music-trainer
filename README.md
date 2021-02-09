@@ -1,7 +1,7 @@
 > A Melodic Trainer featuring multiple instrument sounds.
 
 # Project Name
-"Melodic Trainer"
+"Musician's Ear Trainer"
 
 ## Table of Contents
 * [General Info](#general-info)
@@ -20,16 +20,14 @@ This is the beginning of a music ear-training application. Requires audio enable
 * HTML5
 * CSS3
 * ES6
-* jQuery - 3.5.1
 
 ## Features
 * In progress
 * Playable on any device.
 
 ## To-do List:
-* Investigate proper tech stack.
-* Create Tempo Trainer
-* Create Melodic Dictation Trainer
+* Create Tempo Trainer.
+* Create Melodic Dictation Trainer.
 
 ## Known Issues
 * Uncomplete. 
@@ -41,4 +39,4 @@ Project is: _in development_. This is a long-term project. Check back later!
 I built a memory game during my career transition that inspired me to connect the old and the new.
 
 ## Contact
-Created by William Rideout (https://www.dev.rideoutweb.com/) - feel free to contact me!
+Created by Ashley Thomas (https://www.ashthomasweb.com/) - feel free to contact me!
