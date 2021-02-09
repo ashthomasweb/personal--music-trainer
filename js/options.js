@@ -78,14 +78,21 @@ function modeSelect() {
 // || Solfege Toggle 
 
 function solfegeSwitch() {
-    let solfDisplay = document.getElementById("solf-switch").dataset.display;
+    let solfDisplay = document.getElementById("solf-switch").dataset;
     let syllables = document.getElementsByClassName("syllable");
-    if (solfDisplay === "true") {
+    if (solfDisplay.display === "true") {
         for (let i = 0; i < syllables.length; i++) {
             syllables[i].style.display = "none";
         }
+        solfDisplay.display = "false";
+    } else if ( solfDisplay.display === "false" ) {
+        for (let i = 0; i < syllables.length; i++) {
+            syllables[i].style.display = "block";
+        }
+        solfDisplay.display = "true";
 
     }
+    
 }
 
 
@@ -98,12 +105,14 @@ function buildMelody() {
     console.log(availNotes);
 
     let newNote = availNotes[Math.floor(Math.random() * availNotes.length)];
+    // force tonic more often
     if (newNote !== "C4") {
         if (Math.floor(Math.random() * 13) === 0) {
             newNote = "C4";
         }
         console.log(newNote);
     }
+
     noteSwitch(newNote);
     melodyPat.push(newNote);
     console.log(melodyPat);
@@ -113,7 +122,7 @@ function buildMelody() {
 
 
 
-/* PLAYER PATTERN VERIFICATION */
+// || Pattern Verification 
 
 function patCheck() {
 
@@ -129,16 +138,11 @@ function patCheck() {
     } else {
         alert("Game Over");
     }
-
 }
-
-
-
-
 
 // || Cadence 
 
-function cadence(x, y, z) {
+function chord(x, y, z) {
     noteSwitch(x);
     noteSwitch(y);
     noteSwitch(z);
