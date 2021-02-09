@@ -165,12 +165,13 @@ const tenorSaxSource = [tenorSaxChromaticC, tenorSaxTrackArray, "Tenor Sax"];
                     if (audioCx.state === 'suspended') {
                         audioCx.resume();
                     }
+
+                    // stop currently playing audio. needs refactor as gain decrease for legato feel
                     if (currentAudio === undefined) {
                         // do nothing 
                     } else {
                         currentAudio.pause();
                         currentAudio.currentTime = 0;
-                       
                     }
 
                     // play note and repeat note condition
@@ -186,6 +187,11 @@ const tenorSaxSource = [tenorSaxChromaticC, tenorSaxTrackArray, "Tenor Sax"];
                         noteButtonArray[i].dataset.playing = 'true';
                     }
 
+                    let userPick = noteButtonArray[i].parentElement.className.replace("wrap ", "");
+                    userPat.push(userPick);
+                    console.log(userPat);
+
+                    patCheck();
                 }
 
                 // assign event listener
