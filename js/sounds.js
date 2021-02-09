@@ -47,9 +47,13 @@ const frenchHornChromaticC = [
     new Audio("sounds/french-horn/french-horn-D4.mp3"),
     new Audio("sounds/french-horn/french-horn-Db4.mp3"),
     new Audio("sounds/french-horn/french-horn-C4.mp3"),
-    new Audio("sounds/french-horn/french-horn-C5.mp3")
+    new Audio("sounds/french-horn/french-horn-B3.mp3"),
+    new Audio("sounds/french-horn/french-horn-Bb3.mp3"),
+    new Audio("sounds/french-horn/french-horn-A3.mp3"),
+    new Audio("sounds/french-horn/french-horn-Ab3.mp3"),
+    new Audio("sounds/french-horn/french-horn-G3.mp3")
 ]
-for (let i = 0; i < frenchHornChromaticC.length - 1; i++) {
+for (let i = 0; i < frenchHornChromaticC.length; i++) {
     frenchHornTrackArray.push(audioCx.createMediaElementSource(frenchHornChromaticC[i]));
 }
 const frenchHornSource = [frenchHornChromaticC, frenchHornTrackArray, "French Horn"];
@@ -70,18 +74,51 @@ const violinChromaticC = [
     new Audio("sounds/violin/violin-D4.mp3"),
     new Audio("sounds/violin/violin-Db4.mp3"),
     new Audio("sounds/violin/violin-C4.mp3"),
-    new Audio("sounds/violin/violin-C5.mp3")
+    new Audio("sounds/violin/violin-B3.mp3"),
+    new Audio("sounds/violin/violin-Bb3.mp3"),
+    new Audio("sounds/violin/violin-A3.mp3"),
+    new Audio("sounds/violin/violin-Ab3.mp3"),
+    new Audio("sounds/violin/violin-G3.mp3")
 ]
-for (let i = 0; i < violinChromaticC.length - 1; i++) {
+for (let i = 0; i < violinChromaticC.length; i++) {
     violinTrackArray.push(audioCx.createMediaElementSource(violinChromaticC[i]));
 }
 const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
 
+// tenor-sax
+const tenorSaxTrackArray = []
+const tenorSaxChromaticC = [
+    new Audio("sounds/tenor-sax/tenor-sax-C5.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-B4.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-Bb4.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-A4.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-Ab4.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-G4.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-Gb4.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-F4.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-E4.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-Eb4.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-D4.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-Db4.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-C4.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-B3.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-Bb3.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-A3.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-Ab3.mp3"),
+    new Audio("sounds/tenor-sax/tenor-sax-G3.mp3")
+]
+for (let i = 0; i < tenorSaxChromaticC.length; i++) {
+    tenorSaxTrackArray.push(audioCx.createMediaElementSource(tenorSaxChromaticC[i]));
+}
+const tenorSaxSource = [tenorSaxChromaticC, tenorSaxTrackArray, "Tenor Sax"];
+
 
 { // || WebAudio API scope
 
+    let currentAudio;
+
     // array of instrument sources
-    let instrumentBank = [pianoSource, frenchHornSource, violinSource];
+    let instrumentBank = [pianoSource, frenchHornSource, violinSource, tenorSaxSource];
 
     // helper function variables
     let instrumentChoice;
@@ -128,10 +165,17 @@ const violinSource = [violinChromaticC, violinTrackArray, "Violin"];
                     if (audioCx.state === 'suspended') {
                         audioCx.resume();
                     }
+                    if (currentAudio === undefined) {
+                        // do nothing 
+                    } else {
+                        currentAudio.pause();
+                        currentAudio.currentTime = 0;
+                    }
 
                     // play note and repeat note condition
                     if (noteButtonArray[i].dataset.playing === 'false') {
                         instrumentChoice[0][i].play();
+                        currentAudio = instrumentChoice[0][i],
                         noteButtonArray[i].dataset.playing = 'true';
                     } else if (noteButtonArray[i].dataset.playing === 'true') {
                         instrumentChoice[0][i].pause();

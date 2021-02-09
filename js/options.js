@@ -24,13 +24,13 @@ function modeCycle() {
 function modeSelect() {
 
     // array of all notes
-    let allNotes = ["C4", "Db4", "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4", "C5" ];
+    let allNotes = ["G3", "Ab3", "A3", "Bb3", "B3", "C4", "Db4", "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4", "C5" ];
     // mode-specific index key
-    let chromIndex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    let majorIndex = [0, 2, 4, 5, 7, 9, 11, 12];
-    let AnhemMajIndex = [0, 2, 4, 7, 9, 12];
-    let minorIndex = [0, 2, 3, 5, 7, 8, 10, 12];
-    let AnhemMinIndex = [0, 3, 5, 7, 10, 12];
+    let chromIndex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+    let majorIndex = [0, 2, 4, 5, 7, 9, 10, 12, 14, 16, 17];
+    let AnhemMajIndex = [0, 2, 5, 7, 9, 12, 14, 17];
+    let minorIndex = [0, 1, 3, 5, 7, 8, 10, 12, 13, 15, 17];
+    let AnhemMinIndex = [0, 3, 5, 8, 10, 12, 15, 17];
 
     function allOff() {
         chromIndex.forEach(displayNone);
