@@ -1,5 +1,5 @@
 // array of all notes
-let chromIndex = ["G3", "Ab3", "A3", "Bb3", "B3", "C4", "Db4", "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4", "C5"];
+let chromIndex = ["Gb3", "G3", "Ab3", "A3", "Bb3", "B3", "C4", "Db4", "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4", "C5"];
 let majorIndex = ["G3", "A3", "B3", "C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
 let anhemMajIndex = ["G3", "A3", "C4", "D4", "E4", "G4", "A4", "C5"];
 let minorIndex = ["G3", "Ab3", "Bb3", "C4", "D4", "Eb4", "F4", "G4", "Ab4", "Bb4", "C5"];
@@ -11,6 +11,15 @@ let jazzMinorIndex = ["G3", "A3", "B3", "C4", "D4", "Eb4", "F4", "G4", "A4", "B4
 let bebopTonicIndex = ["G3", "Ab3", "A3", "B3", "C4", "D4", "E4", "F4", "G4", "Ab4", "A4", "B4", "C5"];
 let bebopPreIndex = ["G3", "A3", "Bb3", "C4", "D4", "Eb4", "E4", "F4", "G4", "A4", "Bb4", "C5"];
 let bebopDomIndex = ["G3", "A3", "Bb3", "B3", "C4", "D4", "E4", "F4", "G4", "A4", "Bb4", "B4", "C5"];
+let lydianIndex = ["G3", "A3", "B3", "C4", "D4", "E4", "Gb4", "G4", "A4", "B4", "C5"];
+let ionianIndex = ["G3", "A3", "B3", "C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
+let mixolydianIndex = ["G3", "A3", "Bb3", "C4", "D4", "E4", "F4", "G4", "A4", "Bb4", "C5"];
+let dorianIndex = ["G3", "A3", "Bb3", "C4", "D4", "Eb4", "F4", "G4", "A4", "Bb4", "C5"];
+let aolianIndex = ["G3", "Ab3", "Bb3", "C4", "D4", "Eb4", "F4", "G4", "Ab4", "Bb4", "C5"];
+let phrygianIndex = ["G3", "Ab3", "Bb3", "C4", "Db4", "Eb4", "F4", "G4", "Ab4", "Bb4", "C5"];
+let locrianIndex = ["Gb3", "Ab3", "Bb3", "C4", "Db4", "Eb4", "F4", "Gb4", "Ab4", "Bb4", "C5"];
+let octHWIndex = ["Gb3", "G3", "A3", "Bb3","C4", "Db4", "Eb4", "E4","Gb4", "G4", "A4", "Bb4", "C5"];
+let octWHIndex = ["Gb3", "Ab3", "A3", "B3", "C4", "D4", "Eb4","F4", "Gb4","Ab4", "A4", "B4", "C5"];
 
 let modeArray = [
     ["Chromatic", chromIndex],
@@ -24,7 +33,16 @@ let modeArray = [
     ["Jazz Minor", jazzMinorIndex],
     ["Bebop Tonic (I)", bebopTonicIndex],
     ["Bebop Predominant (ii)", bebopPreIndex],
-    ["Bebop Dominant (V)", bebopDomIndex]
+    ["Bebop Dominant (V)", bebopDomIndex],
+    ["Lydian", lydianIndex],
+    ["Ionian", ionianIndex],
+    ["Mixolydian", mixolydianIndex],
+    ["Dorian", dorianIndex],
+    ["Aeolian", aolianIndex],
+    ["Phrygian", phrygianIndex],
+    ["Locrian", locrianIndex],
+    ["Octatonic Half/Whole", octHWIndex],
+    ["Octatonic Whole/Half", octWHIndex]
 ];
 
 
@@ -94,7 +112,6 @@ function accidentalToggles(btnId) {
         ["sharp-switch", "acc-sharp", sharpDisplay, sharps]
     ];
 
-    console.log(btnInfo[btnId][3]);
     btnInfo[btnId][2] = document.getElementById(btnInfo[btnId][0]).dataset;
     btnInfo[btnId][3] = document.getElementsByClassName(btnInfo[btnId][1]);
     if (btnInfo[btnId][2].display === "true") {
@@ -138,37 +155,36 @@ function buildMelody() {
 
 // || Pattern Verification 
 
-function patCheck() {
+// function patCheck() {
 
-    if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1] && userPat.length === melodyPat.length) {
-        console.log('Next round');
-        userPointerOff();
-        setTimeout(function() {
-            userPat = [];
-            buildMelody();
-        }, 1500);
-        setTimeout(function() {
-            userPointerOn();
-        }, 3500);
+//     if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1] && userPat.length === melodyPat.length) {
+//         console.log('Next round');
+//         userPointerOff();
+//         setTimeout(function() {
+//             userPat = [];
+//             buildMelody();
+//         }, 1500);
+//         setTimeout(function() {
+//             userPointerOn();
+//         }, 3500);
 
-    } else if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1]) {
+//     } else if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1]) {
         
 
-    } else {
-        console.log("Oops, it's: " + userPat);
+//     } else {
+//         console.log("Oops, it's: " + userPat);
 
-        alert("Game Over");
-        melodyPat = [];
-        userPat = [];
-    }
-}
+//         alert("Game Over");
+//         melodyPat = [];
+//         userPat = [];
+//     }
+// }
 
 // || Cadence 
 
-function chord(x, y, z) {
-    noteSwitch(x);
-    noteSwitch(y);
-    noteSwitch(z);
+function chord(a, b, c, d, e, f, g) {
+    let args = Array.from(arguments);
+    args.forEach( (item) => noteSwitch(item) );
 }
 
 // || Pointer Events toggle 

@@ -56,11 +56,13 @@ html {
         "Bb3 Bb3 Bb3"
         "A3 A3 A3"
         "Ab3 Ab3 Ab3"
-        "G3 G3 G3";
+        "G3 G3 G3"
+        "Gb3 Gb3 Gb3";
+
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 4px;
     width: 100%;
     padding: 15px 0;
@@ -193,6 +195,11 @@ html {
     display: inline-block;
 }
 
+.Gb3 {
+    grid-area: Gb3;
+    display: inline-block;
+}
+
 button:focus {
     outline: none;
 }
@@ -287,13 +294,7 @@ button:focus {
 .degree-hat-accidental {
     position: relative;
     top: -9px;
-    left: -16px;
+    left: -15px;
     font-size: 1px;
 }
 
-.acc-flat {
-}
-
-.acc-sharp {
-
-}
