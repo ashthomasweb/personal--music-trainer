@@ -118,11 +118,13 @@ function accidentalToggles(btnId) {
         for (let i = 0; i < btnInfo[btnId][3].length; i++) {
             btnInfo[btnId][3][i].style.display = "none";
         }
+        document.getElementById(btnInfo[btnId][0]).style.backgroundColor = "pink";
         btnInfo[btnId][2].display = "false";
     } else if ( btnInfo[btnId][2].display === "false" ) {
         for (let i = 0; i < btnInfo[btnId][3].length; i++) {
             btnInfo[btnId][3][i].style.display = "block";
         }
+        document.getElementById(btnInfo[btnId][0]).style.backgroundColor = "rgb(239, 239, 239)";
         btnInfo[btnId][2].display = "true";
 
     }
@@ -135,6 +137,7 @@ let userPat = [];
 
 function buildMelody() {
     
+    
 
     let newNote = availNotes[Math.floor(Math.random() * availNotes.length)];
     // force tonic more often
@@ -144,41 +147,64 @@ function buildMelody() {
         }
     }
 
+    if ( klangBool == true ) {
+        instrumentCycle();
+    } else {
+        // do nothing
+    }
     noteSwitch(newNote);
     melodyPat.push(newNote);
     console.log('Pattern is: ' + melodyPat);
 }
 
 
+function powerToggle() {
+
+    if ( instPower == true ) {
+        audioCx.suspend;
+        document.getElementById("power-switch").style.backgroundColor = "rgb(239, 239, 239)";
+    } else {
+        audioCx.resume;
+        document.getElementById("power-switch").style.backgroundColor = "pink";
+    }
+
+    if ( initialLoad == true ) {
+        document.getElementById("power-switch").style.backgroundColor = "pink";
+        instrumentCycle();
+        initialLoad = !initialLoad;
+        instPower = true;
+    } 
+
+}
 
 
 
 // || Pattern Verification 
 
-// function patCheck() {
+function patCheck() {
 
-//     if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1] && userPat.length === melodyPat.length) {
-//         console.log('Next round');
-//         userPointerOff();
-//         setTimeout(function() {
-//             userPat = [];
-//             buildMelody();
-//         }, 1500);
-//         setTimeout(function() {
-//             userPointerOn();
-//         }, 3500);
+    if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1] && userPat.length === melodyPat.length) {
+        console.log('Next round');
+        userPointerOff();
+        setTimeout(function() {
+            userPat = [];
+            buildMelody();
+        }, 1500);
+        setTimeout(function() {
+            userPointerOn();
+        }, 3500);
 
-//     } else if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1]) {
+    } else if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1]) {
         
 
-//     } else {
-//         console.log("Oops, it's: " + userPat);
+    } else {
+        console.log("Oops, not: " + userPat);
 
-//         alert("Game Over");
-//         melodyPat = [];
-//         userPat = [];
-//     }
-// }
+        alert("Game Over");
+        melodyPat = [];
+        userPat = [];
+    }
+}
 
 // || Cadence 
 
@@ -206,5 +232,26 @@ function userPointerOn() {
 }
  
 
+// || Free Mode 
+
+function freeModeToggle() {
+    freeModeBool = !freeModeBool;
+    if ( freeModeBool == true ) {
+        document.getElementById("free-mode-switch").style.backgroundColor = "pink";
+    } else {
+        document.getElementById("free-mode-switch").style.backgroundColor = "rgb(239, 239, 239)";
+    }
+}
+
+// || Klangfarbenmelodie 
+
+function klangToggle() {
+    klangBool = !klangBool;
+    if ( klangBool == true ) {
+        document.getElementById("klang-switch").style.backgroundColor = "pink";
+    } else {
+        document.getElementById("klang-switch").style.backgroundColor = "rgb(239, 239, 239)";
+    }
+}
 
 // END of document 

@@ -31,10 +31,11 @@
   <div class="grid-container">
     <div class="header">
       <h1>Melodic Trainer</h1>
-      <button type="button" onclick="buildMelody()">Start!</button>
-      <br>
-     
+      <button id="power-switch" type="button" onclick="powerToggle()">Power</button>
 
+      <button type="button" onclick="buildMelody()">Start Practice!</button>
+      <br>
+      <button id="free-mode-switch" type="button" onclick="freeModeToggle()">Free Mode</button>
     </div>
     <div class="scores">
       <h1>Past Scores</h1>
@@ -43,6 +44,8 @@
       <h1>Instrument</h1>
       <p id="instr-type">Outer Space Sound</p>
       <button type="button" onclick="instrumentCycle()">Select Instrument</button>
+
+      <!-- <button type="button" onclick="tester()">Console</button> -->
 
     </div>
     <div class="messages">
@@ -77,6 +80,7 @@
       <button id="deg-switch" type="button" data-display="true" onclick="accidentalToggles(1)">Degree On/Off</button>
       <button id="flat-switch" type="button" data-display="true" onclick="accidentalToggles(2)">Flats On/Off</button>
       <button id="sharp-switch" type="button" data-display="true" onclick="accidentalToggles(3)">Sharps On/Off</button>
+      <button id="klang-switch" type="button" data-display="true" onclick="klangToggle()">Klangfarbenmelodie!</button>
 
     </div>
 
@@ -201,10 +205,10 @@
 
   </div>
 
-
-  <script src="js/sounds.js" charset="utf-8"></script>
+  <script src="js/global.js" charset="utf-8"></script>
+  <script src="js/sources.js" charset="utf-8"></script>
+  <script src="js/webaudio.js"  charset="utf-8"></script>
   <script src="js/options.js" charset="utf-8"></script>
-  <script src="js/webaudio.js" charset="utf-8"></script>
   <script src="js/cadences.js" charset="utf-8"></script>
 
 
