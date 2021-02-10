@@ -179,7 +179,7 @@ function powerToggle() {
 
 
 
-// || Pattern Verification 
+// || Pattern Verification from The Arnold Game
 
 function patCheck() {
 
@@ -189,18 +189,19 @@ function patCheck() {
         setTimeout(function() {
             userPat = [];
             buildMelody();
-        }, 1500);
+        }, 2000);
         setTimeout(function() {
             userPointerOn();
         }, 3500);
-
+        
     } else if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1]) {
         
-
+        
     } else {
+        scorePush();
         console.log("Oops, not: " + userPat);
 
-        alert("Game Over");
+        setTimeout(() => alert("Game Over"),10);
         melodyPat = [];
         userPat = [];
     }
@@ -252,6 +253,32 @@ function klangToggle() {
     } else {
         document.getElementById("klang-switch").style.backgroundColor = "rgb(239, 239, 239)";
     }
+}
+
+// || Past Scores 
+
+function scorePush() {
+    console.log(instrumentChoice[2]);
+    console.log(klangBool);
+    console.log(userPat.length);
+
+    let scoreInst;
+    let scoreValue;
+
+    if ( klangBool == true ) {
+        scoreInst = "Klangfarbenmelodie!";
+    } else {
+        scoreInst = instrumentChoice[2];
+    }
+
+    scoreValue = userPat.length - 1;
+
+    let lastScore = [ scoreInst, scoreValue ]
+    pastScores.push(lastScore);
+    let item = document.getElementsByClassName('scores')[0].children[3];
+    let clone = item.cloneNode(true);
+    document.getElementsByClassName('scores')[0].children[3].innerText = pastScores[pastScores.length - 1][1] + " - " + pastScores[pastScores.length - 1][0];
+    document.getElementsByClassName('scores')[0].appendChild(clone);
 }
 
 // END of document 

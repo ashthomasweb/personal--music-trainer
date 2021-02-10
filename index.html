@@ -34,14 +34,18 @@
       <button id="power-switch" type="button" onclick="powerToggle()">Power</button>
 
       <button type="button" onclick="buildMelody()">Start Practice!</button>
-      <br>
+
       <button id="free-mode-switch" type="button" onclick="freeModeToggle()">Free Mode</button>
     </div>
     <div class="scores">
-      <h1>Past Scores</h1>
+      <h2>High Score</h2>
+      <p id="high-score">...</p>
+      <h2>Past Scores</h2>
+      <p>...</p>
+
     </div>
     <div class="instrument">
-      <h1>Instrument</h1>
+      <h2>Instrument</h2>
       <p id="instr-type">Outer Space Sound</p>
       <button type="button" onclick="instrumentCycle()">Select Instrument</button>
 
@@ -49,13 +53,13 @@
 
     </div>
     <div class="messages">
-      <h1>Messages</h1>
+      <h2>Messages</h2>
       <p>Initialize the digital instrument by choosing an instrument sample below.</p>
       <br>
       <p>Repeat the entire melody back from the beginning each time. You can use the chords to find key-center at any time.</p>
     </div>
     <div class="cadences">
-      <h1>Cadences</h1>
+      <h2>Cadences</h2>
       <h2>Major Cadence</h2>
       <button type="button" onclick="chord('C4', 'E4', 'G4')">I</button>
       <button type="button" onclick="chord('C4', 'F4', 'A4')">IV</button>
@@ -69,13 +73,13 @@
 
     </div>
     <div class="mode">
-      <h1>Mode</h1>
+      <h2>Mode</h2>
       <p id="mode-type">Chromatic</p>
       <button type="button" onclick="modeCycle()">Change Scale</button>
 
     </div>
     <div class="options">
-      <h1>Options</h1>
+      <h2>Options</h2>
       <button id="solf-switch" type="button" data-display="true" onclick="accidentalToggles(0)">Solfege On/Off</button>
       <button id="deg-switch" type="button" data-display="true" onclick="accidentalToggles(1)">Degree On/Off</button>
       <button id="flat-switch" type="button" data-display="true" onclick="accidentalToggles(2)">Flats On/Off</button>
@@ -194,7 +198,7 @@
         <div class="degree">5<span class="degree-hat">^</span></div>
       </div>
 
-      <div class="wrap Gb3 b5">
+      <div class="wrap Gb3">
         <div class="syllable"><span class="acc-flat">Se</span><span class="acc-sharp">Fi</span></div>
         <button type="button" data-listener="false" data-playing="false" class="note-btn"></button>
         <div class="degree"><span class="acc-sharp">#4<span class="degree-hat-accidental">^</span></span><span class="acc-flat">b5<span class="degree-hat-accidental">^</span></span></div>

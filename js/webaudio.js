@@ -1,19 +1,15 @@
-
-
 function tester() {
     console.log(freeModeBool);
 }
 // || WebAudio API scope
-{ 
+{
 
     let currentAudio;
 
     // array of instrument sources
-    let instrumentBank = [pianoSource, tenorSaxSource, pipeOrganSource, frenchHornSource, violinSource, marimbaSource ];
+    let instrumentBank = [pianoSource, tenorSaxSource, pipeOrganSource, frenchHornSource, violinSource, marimbaSource];
 
-    // helper function variables
-    let instrumentChoice;
-    let instrumentPos;
+
 
     // array of page note-buttons
     let noteButtonArray = document.getElementsByClassName("note-btn");
@@ -31,8 +27,8 @@ function tester() {
         instrumentChoice = instrumentBank[instrumentPos];
 
         // changes on-screen instrument selection
-        if ( klangBool == true ) {
-            setTimeout(function() {
+        if (klangBool == true) {
+            setTimeout(function () {
                 document.getElementById("instr-type").innerText = instrumentChoice[2];
             }, 1000);
         } else {
@@ -74,25 +70,25 @@ function tester() {
                     if (noteButtonArray[i].dataset.playing === 'false') {
                         instrumentChoice[0][i].play();
                         currentAudio = instrumentChoice[0][i],
-                        noteButtonArray[i].dataset.playing = 'true';
+                            noteButtonArray[i].dataset.playing = 'true';
                     } else if (noteButtonArray[i].dataset.playing === 'true') {
                         instrumentChoice[0][i].pause();
                         instrumentChoice[0][i].currentTime = 0;
                         instrumentChoice[0][i].play();
                         currentAudio = instrumentChoice[0][i],
-                        noteButtonArray[i].dataset.playing = 'true';
+                            noteButtonArray[i].dataset.playing = 'true';
                     }
 
                     let userPick = noteButtonArray[i].parentElement.className.replace("wrap ", "");
                     userPat.push(userPick);
-                    
-                    if ( freeModeBool == true ) {
+
+                    if (freeModeBool == true) {
                         // do nothing
                     } else {
                         patCheck();
                     }
 
-                    if ( klangBool == true ) {
+                    if (klangBool == true) {
                         instrumentCycle();
                     } else {
                         // do nothing
@@ -208,6 +204,10 @@ function tester() {
                 testPlay(17);
                 break;
 
+            case "Gb3":
+                testPlay(18);
+                break;
+
             default:
         }
     }
@@ -216,4 +216,3 @@ function tester() {
 
 
 // END of document
-

@@ -10,6 +10,10 @@ let klangBool = false;
 let initialLoad = true;
 let instPower = false;
 
+let pastScores = [];
 
+// helper function variables
+let instrumentChoice;
+let instrumentPos;
 
 // END of document 
