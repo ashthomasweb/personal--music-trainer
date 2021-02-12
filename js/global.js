@@ -16,4 +16,7 @@ let pastScores = [];
 let instrumentChoice;
 let instrumentPos;
 
+let lastRoundScore = 0;
+let allScores = [];
+let modeScore;
 // END of document 

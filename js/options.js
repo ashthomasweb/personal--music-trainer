@@ -61,6 +61,7 @@ function modeCycle() {
 
     // console.log(document.getElementById("mode-type").innerText);
     document.getElementById("mode-type").innerText = modeChoice;
+    modeScore = modeChoice;
     modeSelect();
 
 }
@@ -189,13 +190,14 @@ function patCheck() {
         setTimeout(function() {
             userPat = [];
             buildMelody();
-        }, 2000);
+        }, 1500);
         setTimeout(function() {
             userPointerOn();
-        }, 3500);
-        
+        }, 1700);
+
+        lastRoundScore = userPat.length;
     } else if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1]) {
-        
+        // step for successful turn, but incomplete pattern.
         
     } else {
         scorePush();
@@ -204,6 +206,7 @@ function patCheck() {
         setTimeout(() => alert("Game Over"),10);
         melodyPat = [];
         userPat = [];
+        lastRoundScore = 0;
     }
 }
 
@@ -260,10 +263,12 @@ function klangToggle() {
 function scorePush() {
     console.log(instrumentChoice[2]);
     console.log(klangBool);
-    console.log(userPat.length);
+    console.log(lastRoundScore);
 
     let scoreInst;
-    let scoreValue;
+    let scoreValue = 0;
+    let scoreMode = modeScore;
+
 
     if ( klangBool == true ) {
         scoreInst = "Klangfarbenmelodie!";
@@ -271,14 +276,32 @@ function scorePush() {
         scoreInst = instrumentChoice[2];
     }
 
-    scoreValue = userPat.length - 1;
+    scoreValue = lastRoundScore;
 
-    let lastScore = [ scoreInst, scoreValue ]
+    let lastScore = [ scoreInst, scoreValue, scoreMode ];
+    
+
     pastScores.push(lastScore);
-    let item = document.getElementsByClassName('scores')[0].children[3];
-    let clone = item.cloneNode(true);
-    document.getElementsByClassName('scores')[0].children[3].innerText = pastScores[pastScores.length - 1][1] + " - " + pastScores[pastScores.length - 1][0];
-    document.getElementsByClassName('scores')[0].appendChild(clone);
+
+    pastScores.forEach( (item) => {
+        allScores.push(item[1]);
+    });
+    
+    pastScores.forEach( (item) => {
+        if ( item[1] === Math.max.apply(null, allScores) ){
+            document.getElementById("high-score").innerText = item[1] + " - " + item[0] + " - " + item[2];
+        }
+    });
+    let lastPastScore = pastScores[pastScores.length - 1];
+    let parent = document.getElementsByClassName('scores')[0];
+
+    let emptyScore = document.getElementsByClassName('scores')[0].children[3];
+    let clone = emptyScore.cloneNode(true);
+
+    parent.insertBefore(clone, emptyScore);
+    emptyScore.innerText = lastPastScore[1] + " - " + lastPastScore[0] + " - " + lastPastScore[2];
+
+
 }
 
 // END of document 

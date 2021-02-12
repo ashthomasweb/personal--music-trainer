@@ -69,14 +69,14 @@ function tester() {
                     // play note and repeat note condition
                     if (noteButtonArray[i].dataset.playing === 'false') {
                         instrumentChoice[0][i].play();
-                        currentAudio = instrumentChoice[0][i],
-                            noteButtonArray[i].dataset.playing = 'true';
+                        currentAudio = instrumentChoice[0][i];
+                        noteButtonArray[i].dataset.playing = 'true';
                     } else if (noteButtonArray[i].dataset.playing === 'true') {
                         instrumentChoice[0][i].pause();
                         instrumentChoice[0][i].currentTime = 0;
                         instrumentChoice[0][i].play();
-                        currentAudio = instrumentChoice[0][i],
-                            noteButtonArray[i].dataset.playing = 'true';
+                        currentAudio = instrumentChoice[0][i];
+                        noteButtonArray[i].dataset.playing = 'true';
                     }
 
                     let userPick = noteButtonArray[i].parentElement.className.replace("wrap ", "");
@@ -122,10 +122,15 @@ function tester() {
         if (audioCx.state === 'suspended') {
             audioCx.resume();
         }
-
-        instrumentChoice[0][index].pause();
-        instrumentChoice[0][index].currentTime = 0;
+        // stop currently playing audio. needs refactor to gain decrease for legato feel
+        if (currentAudio === undefined) {
+            // do nothing 
+        } else {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+        }
         instrumentChoice[0][index].play();
+        currentAudio = instrumentChoice[0][index];
     }
 
     function noteSwitch(noteId) {
