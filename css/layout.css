@@ -213,6 +213,8 @@ button:focus {
 .scores {
     grid-area: scores;
     background-color: rgba(128, 125, 125, .3);
+    overflow-y: scroll; 
+    overflow-x: hidden;
 }
 
 .instrument {

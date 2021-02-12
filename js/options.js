@@ -59,7 +59,6 @@ function modeCycle() {
     modeChoice = modeArray[modePos][0];
     availNotes = modeArray[modePos][1];
 
-    // console.log(document.getElementById("mode-type").innerText);
     document.getElementById("mode-type").innerText = modeChoice;
     modeScore = modeChoice;
     modeSelect();
@@ -90,7 +89,6 @@ function modeSelect() {
         }
 
     }
-
 
 }
 
@@ -132,15 +130,18 @@ function accidentalToggles(btnId) {
 }
 
 // || Scale Degree Set 
-let melodyPat = [];
-let userPat = [];
-
 
 function buildMelody() {
+    userPat = [];
     
+    if ( freeModeBool == true ) {
+        freeModeToggle();
+    } else {
+        // do nothing
+    }
     
-
     let newNote = availNotes[Math.floor(Math.random() * availNotes.length)];
+
     // force tonic more often
     if (newNote !== "C4") {
         if (Math.floor(Math.random() * 13) === 0) {
@@ -148,14 +149,14 @@ function buildMelody() {
         }
     }
 
+    noteSwitch(newNote);
+    melodyPat.push(newNote);
+
     if ( klangBool == true ) {
         instrumentCycle();
     } else {
         // do nothing
     }
-    noteSwitch(newNote);
-    melodyPat.push(newNote);
-    console.log('Pattern is: ' + melodyPat);
 }
 
 
@@ -187,6 +188,7 @@ function patCheck() {
     if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1] && userPat.length === melodyPat.length) {
         console.log('Next round');
         userPointerOff();
+
         setTimeout(function() {
             userPat = [];
             buildMelody();
@@ -201,9 +203,9 @@ function patCheck() {
         
     } else {
         scorePush();
-        console.log("Oops, not: " + userPat);
 
         setTimeout(() => alert("Game Over"),10);
+
         melodyPat = [];
         userPat = [];
         lastRoundScore = 0;
@@ -213,8 +215,10 @@ function patCheck() {
 // || Cadence 
 
 function chord(a, b, c, d, e, f, g) {
+    cadenceBool = true;
     let args = Array.from(arguments);
     args.forEach( (item) => noteSwitch(item) );
+    cadenceBool = false;
 }
 
 // || Pointer Events toggle 
@@ -258,13 +262,11 @@ function klangToggle() {
     }
 }
 
+
 // || Past Scores 
 
 function scorePush() {
-    console.log(instrumentChoice[2]);
-    console.log(klangBool);
-    console.log(lastRoundScore);
-
+    
     let scoreInst;
     let scoreValue = 0;
     let scoreMode = modeScore;
@@ -280,7 +282,6 @@ function scorePush() {
 
     let lastScore = [ scoreInst, scoreValue, scoreMode ];
     
-
     pastScores.push(lastScore);
 
     pastScores.forEach( (item) => {
@@ -292,6 +293,7 @@ function scorePush() {
             document.getElementById("high-score").innerText = item[1] + " - " + item[0] + " - " + item[2];
         }
     });
+
     let lastPastScore = pastScores[pastScores.length - 1];
     let parent = document.getElementsByClassName('scores')[0];
 
@@ -300,7 +302,6 @@ function scorePush() {
 
     parent.insertBefore(clone, emptyScore);
     emptyScore.innerText = lastPastScore[1] + " - " + lastPastScore[0] + " - " + lastPastScore[2];
-
 
 }
 

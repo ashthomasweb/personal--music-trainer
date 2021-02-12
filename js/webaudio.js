@@ -1,6 +1,4 @@
-function tester() {
-    console.log(freeModeBool);
-}
+
 // || WebAudio API scope
 {
 
@@ -8,8 +6,6 @@ function tester() {
 
     // array of instrument sources
     let instrumentBank = [pianoSource, tenorSaxSource, pipeOrganSource, frenchHornSource, violinSource, marimbaSource];
-
-
 
     // array of page note-buttons
     let noteButtonArray = document.getElementsByClassName("note-btn");
@@ -21,19 +17,21 @@ function tester() {
         if (instrumentPos == instrumentBank.length - 1 || instrumentPos === undefined) {
             instrumentPos = 0;
         } else {
-            instrumentPos++;
+            instrumentPos++;  
         }
+
+        if ( klangBool == true ) {
+            instrumentChoice = instrumentBank[Math.random() * instrumentBank.length - 1];
+        } else {
+            // do nothing
+        }
+
         // current instrument source
         instrumentChoice = instrumentBank[instrumentPos];
 
         // changes on-screen instrument selection
-        if (klangBool == true) {
-            setTimeout(function () {
-                document.getElementById("instr-type").innerText = instrumentChoice[2];
-            }, 1000);
-        } else {
-            document.getElementById("instr-type").innerText = instrumentChoice[2];
-        }
+        document.getElementById("instr-type").innerText = instrumentChoice[2];
+
         // initializes sounds to note-buttons
         soundLoader();
 
@@ -89,7 +87,7 @@ function tester() {
                     }
 
                     if (klangBool == true) {
-                        instrumentCycle();
+                       instrumentCycle();
                     } else {
                         // do nothing
                     }
@@ -122,13 +120,15 @@ function tester() {
         if (audioCx.state === 'suspended') {
             audioCx.resume();
         }
+
         // stop currently playing audio. needs refactor to gain decrease for legato feel
-        if (currentAudio === undefined) {
+        if (currentAudio === undefined || cadenceBool == true ) {
             // do nothing 
         } else {
             currentAudio.pause();
             currentAudio.currentTime = 0;
         }
+
         instrumentChoice[0][index].play();
         currentAudio = instrumentChoice[0][index];
     }
