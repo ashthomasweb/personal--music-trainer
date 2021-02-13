@@ -305,4 +305,16 @@ function scorePush() {
 
 }
 
+
+    // || Play Animations 
+    function lightUp(noteId) {
+        console.log('hi');
+        document.getElementsByClassName(noteId)[0].style.backgroundColor = "red";
+        setTimeout(function () {
+                document.getElementsByClassName(noteId)[0].style.backgroundColor = "#181818";
+            }, 1000 )
+    }
+
+
+
 // END of document 

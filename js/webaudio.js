@@ -63,6 +63,8 @@
                         currentAudio.pause();
                         currentAudio.currentTime = 0;
                     }
+                    console.log(this.parentElement.className.replace('wrap ', ''));
+                    lightUp(this.parentElement.className.replace('wrap ', ''));
 
                     // play note and repeat note condition
                     if (noteButtonArray[i].dataset.playing === 'false') {
@@ -114,8 +116,8 @@
     }
 
     // webAudio declared function for noteSwitch
-    function testPlay(index) {
-
+    function testPlay(index, noteId) {
+        lightUp(noteId);
         // check if context is in suspended state (autoplay policy)
         if (audioCx.state === 'suspended') {
             audioCx.resume();
@@ -135,82 +137,87 @@
 
     function noteSwitch(noteId) {
 
+        //not working 
+    
+        //end new
+
         switch (noteId) {
 
             case "C5":
-                testPlay(0);
+                testPlay(0, noteId);
                 break;
 
             case "B4":
-                testPlay(1);
+                testPlay(1, noteId);
                 break;
 
             case "Bb4":
-                testPlay(2);
+                testPlay(2, noteId);
                 break;
 
             case "A4":
-                testPlay(3);
+                testPlay(3, noteId);
                 break;
 
             case "Ab4":
-                testPlay(4);
+                testPlay(4, noteId);
                 break;
 
             case "G4":
-                testPlay(5);
+                testPlay(5, noteId);
                 break;
 
             case "Gb4":
-                testPlay(6);
+                testPlay(6, noteId);
                 break;
 
             case "F4":
-                testPlay(7);
+                testPlay(7, noteId);
                 break;
 
             case "E4":
-                testPlay(8);
+                testPlay(8, noteId);
                 break;
 
             case "Eb4":
-                testPlay(9);
+                testPlay(9, noteId);
                 break;
 
             case "D4":
-                testPlay(10);
+                testPlay(10, noteId);
                 break;
 
             case "Db4":
-                testPlay(11);
+                testPlay(11, noteId);
                 break;
 
             case "C4":
-                testPlay(12);
+                testPlay(12, noteId);
                 break;
 
             case "B3":
-                testPlay(13);
+                
+                testPlay(13, noteId);
                 break;
 
             case "Bb3":
-                testPlay(14);
+                testPlay(14, noteId);
                 break;
 
             case "A3":
-                testPlay(15);
+                testPlay(15, noteId);
                 break;
 
             case "Ab3":
-                testPlay(16);
+                testPlay(16, noteId);
                 break;
 
             case "G3":
-                testPlay(17);
+                testPlay(17, noteId);
                 break;
 
             case "Gb3":
-                testPlay(18);
+                testPlay(18, noteId);
                 break;
 
             default:
