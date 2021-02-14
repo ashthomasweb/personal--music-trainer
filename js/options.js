@@ -353,11 +353,7 @@ function playSound() {
     } else {
         // do nothing
     }
-
     
-    
-    
-
 }
 
 
@@ -370,11 +366,6 @@ function lightUp(input) {
 
     function startAnim() {
         input.classList.add('anim-light-up');
-
-        // myTO = setTimeout(function () {
-        //     input.style.backgroundColor = "#181818";
-
-        // }, 1500);
 
     }
 

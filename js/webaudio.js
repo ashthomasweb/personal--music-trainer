@@ -58,7 +58,8 @@ let currentAudio; {
                 // NOT WORKING
                 // 'on-end' conditional
                 instrumentChoice[0][i].addEventListener('ended', () => {
-                    let parent = noteButtonArray[i];
+                    const pos = i;
+                    let parent = noteButtonArray[pos];
                     parent.dataset.playing = 'false';
                     console.log('note ended');
                     // console.log(noteButtonArray[i]);
