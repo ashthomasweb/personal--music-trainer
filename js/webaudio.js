@@ -53,9 +53,21 @@ let currentAudio; {
 
                 // webAudio track connection
                 instrumentChoice[1][i].connect(audioCx.destination);
+                
 
-               
-
+                // NOT WORKING
+                // 'on-end' conditional
+                instrumentChoice[0][i].addEventListener('ended', () => {
+                    let parent = noteButtonArray[i];
+                    parent.dataset.playing = 'false';
+                    console.log('note ended');
+                    // console.log(noteButtonArray[i]);
+                    console.log(parent);
+            
+                    parent.parentElement.classList.remove('anim-light-up');
+            
+                }, true);
+                // NOT WORKING END
             }
 
         }

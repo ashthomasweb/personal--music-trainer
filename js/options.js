@@ -354,15 +354,9 @@ function playSound() {
         // do nothing
     }
 
-    // 'on-end' conditional
-    instrumentChoice[0][i].addEventListener('ended', () => {
-        noteButtonArray[i].dataset.playing = 'false';
-        console.log('note ended');
-        console.log(noteButtonArray[i]);
-
-        // noteButtonArray[i].parentElement.classList.remove('anim-light-up');
-
-    }, false);
+    
+    
+    
 
 }
 
