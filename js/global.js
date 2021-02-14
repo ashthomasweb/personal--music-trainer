@@ -23,4 +23,7 @@ let modeScore = "Chromatic";
 
 let melodyPat = [];
 let userPat = [];
+
+let noteButtonArray = document.getElementsByClassName("note-btn");
+
 // END of document 

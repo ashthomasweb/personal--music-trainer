@@ -1,14 +1,11 @@
-
 // || WebAudio API scope
-{
+let currentAudio; {
 
-    let currentAudio;
 
     // array of instrument sources
     let instrumentBank = [pianoSource, tenorSaxSource, pipeOrganSource, frenchHornSource, violinSource, marimbaSource];
 
     // array of page note-buttons
-    let noteButtonArray = document.getElementsByClassName("note-btn");
 
     // changes instrument source
     function instrumentCycle() {
@@ -17,10 +14,10 @@
         if (instrumentPos == instrumentBank.length - 1 || instrumentPos === undefined) {
             instrumentPos = 0;
         } else {
-            instrumentPos++;  
+            instrumentPos++;
         }
 
-        if ( klangBool == true ) {
+        if (klangBool == true) {
             instrumentChoice = instrumentBank[Math.random() * instrumentBank.length - 1];
         } else {
             // do nothing
@@ -48,56 +45,8 @@
                     prevNode.parentNode.replaceChild(prevNode.cloneNode(false), prevNode);
                 }
 
-                // named event listener
-                function playSound() {
-
-                    // resume audioCx
-                    if (audioCx.state === 'suspended') {
-                        audioCx.resume();
-                    }
-
-                    // stop currently playing audio. needs refactor as gain decrease for legato feel
-                    if (currentAudio === undefined) {
-                        // do nothing 
-                    } else {
-                        currentAudio.pause();
-                        currentAudio.currentTime = 0;
-                    }
-                    console.log(this.parentElement.className.replace('wrap ', ''));
-                    lightUp(this.parentElement.className.replace('wrap ', ''));
-
-                    // play note and repeat note condition
-                    if (noteButtonArray[i].dataset.playing === 'false') {
-                        instrumentChoice[0][i].play();
-                        currentAudio = instrumentChoice[0][i];
-                        noteButtonArray[i].dataset.playing = 'true';
-                    } else if (noteButtonArray[i].dataset.playing === 'true') {
-                        instrumentChoice[0][i].pause();
-                        instrumentChoice[0][i].currentTime = 0;
-                        instrumentChoice[0][i].play();
-                        currentAudio = instrumentChoice[0][i];
-                        noteButtonArray[i].dataset.playing = 'true';
-                    }
-
-                    let userPick = noteButtonArray[i].parentElement.className.replace("wrap ", "");
-                    userPat.push(userPick);
-
-                    if (freeModeBool == true) {
-                        // do nothing
-                    } else {
-                        patCheck();
-                    }
-
-                    if (klangBool == true) {
-                       instrumentCycle();
-                    } else {
-                        // do nothing
-                    }
-
-                }
-
                 // assign event listener
-                noteButtonArray[i].addEventListener('click', playSound);
+                noteButtonArray[i].addEventListener('mousedown', playSound);
 
                 // assign 'has listener' value
                 noteButtonArray[i].dataset.listener = 'true';
@@ -105,10 +54,7 @@
                 // webAudio track connection
                 instrumentChoice[1][i].connect(audioCx.destination);
 
-                // 'on-end' conditional
-                instrumentChoice[0][i].addEventListener('ended', () => {
-                    noteButtonArray[i].dataset.playing = 'false';
-                }, false);
+               
 
             }
 
@@ -117,14 +63,16 @@
 
     // webAudio declared function for noteSwitch
     function testPlay(index, noteId) {
-        lightUp(noteId);
+        let item = document.getElementById(`${noteId}-wrap`);
+        // console.log(item);
+        lightUp(item);
         // check if context is in suspended state (autoplay policy)
         if (audioCx.state === 'suspended') {
             audioCx.resume();
         }
 
         // stop currently playing audio. needs refactor to gain decrease for legato feel
-        if (currentAudio === undefined || cadenceBool == true ) {
+        if (currentAudio === undefined || cadenceBool == true) {
             // do nothing 
         } else {
             currentAudio.pause();
@@ -136,10 +84,6 @@
     }
 
     function noteSwitch(noteId) {
-
-        //not working 
-    
-        //end new
 
         switch (noteId) {
 
@@ -196,7 +140,7 @@
                 break;
 
             case "B3":
-                
+
                 testPlay(13, noteId);
                 break;
 

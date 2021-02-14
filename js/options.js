@@ -18,8 +18,8 @@ let dorianIndex = ["G3", "A3", "Bb3", "C4", "D4", "Eb4", "F4", "G4", "A4", "Bb4"
 let aolianIndex = ["G3", "Ab3", "Bb3", "C4", "D4", "Eb4", "F4", "G4", "Ab4", "Bb4", "C5"];
 let phrygianIndex = ["G3", "Ab3", "Bb3", "C4", "Db4", "Eb4", "F4", "G4", "Ab4", "Bb4", "C5"];
 let locrianIndex = ["Gb3", "Ab3", "Bb3", "C4", "Db4", "Eb4", "F4", "Gb4", "Ab4", "Bb4", "C5"];
-let octHWIndex = ["Gb3", "G3", "A3", "Bb3","C4", "Db4", "Eb4", "E4","Gb4", "G4", "A4", "Bb4", "C5"];
-let octWHIndex = ["Gb3", "Ab3", "A3", "B3", "C4", "D4", "Eb4","F4", "Gb4","Ab4", "A4", "B4", "C5"];
+let octHWIndex = ["Gb3", "G3", "A3", "Bb3", "C4", "Db4", "Eb4", "E4", "Gb4", "G4", "A4", "Bb4", "C5"];
+let octWHIndex = ["Gb3", "Ab3", "A3", "B3", "C4", "D4", "Eb4", "F4", "Gb4", "Ab4", "A4", "B4", "C5"];
 
 let modeArray = [
     ["Chromatic", chromIndex],
@@ -103,7 +103,7 @@ function accidentalToggles(btnId) {
     let degrees;
     let solfDisplay;
     let syllables;
-    
+
     let btnInfo = [
         ["solf-switch", "syllable", solfDisplay, syllables],
         ["deg-switch", "degree", degDisplay, degrees],
@@ -119,7 +119,7 @@ function accidentalToggles(btnId) {
         }
         document.getElementById(btnInfo[btnId][0]).style.backgroundColor = "pink";
         btnInfo[btnId][2].display = "false";
-    } else if ( btnInfo[btnId][2].display === "false" ) {
+    } else if (btnInfo[btnId][2].display === "false") {
         for (let i = 0; i < btnInfo[btnId][3].length; i++) {
             btnInfo[btnId][3][i].style.display = "block";
         }
@@ -133,13 +133,13 @@ function accidentalToggles(btnId) {
 
 function buildMelody() {
     userPat = [];
-    
-    if ( freeModeBool == true ) {
+
+    if (freeModeBool == true) {
         freeModeToggle();
     } else {
         // do nothing
     }
-    
+
     let newNote = availNotes[Math.floor(Math.random() * availNotes.length)];
 
     // force tonic more often
@@ -152,7 +152,7 @@ function buildMelody() {
     noteSwitch(newNote);
     melodyPat.push(newNote);
 
-    if ( klangBool == true ) {
+    if (klangBool == true) {
         instrumentCycle();
     } else {
         // do nothing
@@ -162,7 +162,7 @@ function buildMelody() {
 
 function powerToggle() {
 
-    if ( instPower == true ) {
+    if (instPower == true) {
         audioCx.suspend;
         document.getElementById("power-switch").style.backgroundColor = "rgb(239, 239, 239)";
     } else {
@@ -170,12 +170,12 @@ function powerToggle() {
         document.getElementById("power-switch").style.backgroundColor = "pink";
     }
 
-    if ( initialLoad == true ) {
+    if (initialLoad == true) {
         document.getElementById("power-switch").style.backgroundColor = "pink";
         instrumentCycle();
         initialLoad = !initialLoad;
         instPower = true;
-    } 
+    }
 
 }
 
@@ -189,22 +189,22 @@ function patCheck() {
         console.log('Next round');
         userPointerOff();
 
-        setTimeout(function() {
+        setTimeout(function () {
             userPat = [];
             buildMelody();
         }, 1500);
-        setTimeout(function() {
+        setTimeout(function () {
             userPointerOn();
         }, 1700);
 
         lastRoundScore = userPat.length;
     } else if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1]) {
         // step for successful turn, but incomplete pattern.
-        
+
     } else {
         scorePush();
 
-        setTimeout(() => alert("Game Over"),10);
+        setTimeout(() => alert("Game Over"), 10);
 
         melodyPat = [];
         userPat = [];
@@ -217,7 +217,7 @@ function patCheck() {
 function chord(a, b, c, d, e, f, g) {
     cadenceBool = true;
     let args = Array.from(arguments);
-    args.forEach( (item) => noteSwitch(item) );
+    args.forEach((item) => noteSwitch(item));
     cadenceBool = false;
 }
 
@@ -226,7 +226,7 @@ function chord(a, b, c, d, e, f, g) {
 function userPointerOff() {
     let wrapArray = document.getElementsByClassName("wrap");
 
-    for ( let i = 0; i < wrapArray.length - 1; i++ ) {
+    for (let i = 0; i < wrapArray.length - 1; i++) {
         wrapArray[i].style.pointerEvents = "none";
     }
 }
@@ -234,17 +234,17 @@ function userPointerOff() {
 function userPointerOn() {
     let wrapArray = document.getElementsByClassName("wrap");
 
-    for ( let i = 0; i < wrapArray.length - 1; i++ ) {
+    for (let i = 0; i < wrapArray.length - 1; i++) {
         wrapArray[i].style.pointerEvents = "auto";
     }
 }
- 
+
 
 // || Free Mode 
 
 function freeModeToggle() {
     freeModeBool = !freeModeBool;
-    if ( freeModeBool == true ) {
+    if (freeModeBool == true) {
         document.getElementById("free-mode-switch").style.backgroundColor = "pink";
     } else {
         document.getElementById("free-mode-switch").style.backgroundColor = "rgb(239, 239, 239)";
@@ -255,7 +255,7 @@ function freeModeToggle() {
 
 function klangToggle() {
     klangBool = !klangBool;
-    if ( klangBool == true ) {
+    if (klangBool == true) {
         document.getElementById("klang-switch").style.backgroundColor = "pink";
     } else {
         document.getElementById("klang-switch").style.backgroundColor = "rgb(239, 239, 239)";
@@ -266,13 +266,13 @@ function klangToggle() {
 // || Past Scores 
 
 function scorePush() {
-    
+
     let scoreInst;
     let scoreValue = 0;
     let scoreMode = modeScore;
 
 
-    if ( klangBool == true ) {
+    if (klangBool == true) {
         scoreInst = "Klangfarbenmelodie!";
     } else {
         scoreInst = instrumentChoice[2];
@@ -280,16 +280,16 @@ function scorePush() {
 
     scoreValue = lastRoundScore;
 
-    let lastScore = [ scoreInst, scoreValue, scoreMode ];
-    
+    let lastScore = [scoreInst, scoreValue, scoreMode];
+
     pastScores.push(lastScore);
 
-    pastScores.forEach( (item) => {
+    pastScores.forEach((item) => {
         allScores.push(item[1]);
     });
-    
-    pastScores.forEach( (item) => {
-        if ( item[1] === Math.max.apply(null, allScores) ){
+
+    pastScores.forEach((item) => {
+        if (item[1] === Math.max.apply(null, allScores)) {
             document.getElementById("high-score").innerText = item[1] + " - " + item[0] + " - " + item[2];
         }
     });
@@ -305,15 +305,101 @@ function scorePush() {
 
 }
 
+// named event listener
+function playSound() {
 
-    // || Play Animations 
-    function lightUp(noteId) {
-        console.log('hi');
-        document.getElementsByClassName(noteId)[0].style.backgroundColor = "red";
-        setTimeout(function () {
-                document.getElementsByClassName(noteId)[0].style.backgroundColor = "#181818";
-            }, 1000 )
+    // console.log(this.parentElement.className.replace('wrap ', ''));
+    let i = Array.from(this.parentElement.parentElement.children).indexOf(this.parentElement);
+    // console.log(i);
+
+    // resume audioCx
+    if (audioCx.state === 'suspended') {
+        audioCx.resume();
     }
+
+    // stop currently playing audio. needs refactor as gain decrease for legato feel
+    if (currentAudio === undefined || cadenceBool == true) {
+        // do nothing 
+    } else {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+
+    lightUp(this.parentElement);
+    // play note and repeat note condition
+    if (noteButtonArray[i].dataset.playing === 'false') {
+        instrumentChoice[0][i].play();
+        currentAudio = instrumentChoice[0][i];
+        noteButtonArray[i].dataset.playing = 'true';
+    } else if (noteButtonArray[i].dataset.playing === 'true') {
+        instrumentChoice[0][i].pause();
+        instrumentChoice[0][i].currentTime = 0;
+        instrumentChoice[0][i].play();
+        currentAudio = instrumentChoice[0][i];
+        noteButtonArray[i].dataset.playing = 'true';
+    }
+
+    let userPick = noteButtonArray[i].parentElement.className.replace("wrap ", "");
+    userPat.push(userPick);
+
+    if (freeModeBool == true) {
+        // do nothing
+    } else {
+        patCheck();
+    }
+
+    if (klangBool == true) {
+        instrumentCycle();
+    } else {
+        // do nothing
+    }
+
+    // 'on-end' conditional
+    instrumentChoice[0][i].addEventListener('ended', () => {
+        noteButtonArray[i].dataset.playing = 'false';
+        console.log('note ended');
+        console.log(noteButtonArray[i]);
+
+        // noteButtonArray[i].parentElement.classList.remove('anim-light-up');
+
+    }, false);
+
+}
+
+
+// || Play Animations 
+
+// let myTO;
+function lightUp(input) {
+
+    console.log(input.children[1].dataset.playing);
+
+    function startAnim() {
+        input.classList.add('anim-light-up');
+
+        // myTO = setTimeout(function () {
+        //     input.style.backgroundColor = "#181818";
+
+        // }, 1500);
+
+    }
+
+    function stopAnim() {
+        console.log('clear');
+        // clearTimeout(myTO);
+        input.classList.remove('anim-light-up');
+
+    }
+
+    if (input.children[1].dataset.playing === 'true') {
+        console.log('hi');
+        stopAnim();
+        startAnim();
+    } else {
+        startAnim();
+    }
+
+}
 
 
 

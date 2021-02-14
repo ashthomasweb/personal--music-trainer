@@ -81,6 +81,7 @@ html {
     position: relative;
     width: 100%;
     cursor: pointer;
+    transition: background-color 2s;
 }
 
 .wrap div {
@@ -300,3 +301,7 @@ button:focus {
     font-size: 1px;
 }
 
+.anim-light-up {
+    background-color: darkred;
+    
+}
