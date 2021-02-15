@@ -1,3 +1,6 @@
+// WebAudio Digital Instrument for "Music Trainer"
+
+
 // || WebAudio API scope
 let currentAudio; {
 

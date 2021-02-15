@@ -1,3 +1,5 @@
+//  Cadences and scale playback JS file for "Music Trainer"
+
 
 function playScale() {
 
@@ -131,3 +133,5 @@ function playScale() {
 
 }
 
+
+// END of document

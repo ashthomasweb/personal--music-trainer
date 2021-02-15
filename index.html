@@ -1,4 +1,4 @@
-<!-- HTML file for "melody-trainer" -->
+<!-- HTML file for "Music Trainer" -->
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -9,7 +9,6 @@
 
   <meta name="description" content="A musical ear-training application. In development">
   <meta name="keywords" content="ear-training, classical music practice, melody trainer" />
-
   <meta name="author" content="Ashley Thomas" />
   <meta name="copyright" content="2020" />
 
@@ -26,15 +25,11 @@
 </head>
 
 <body">
-  <audio src="sounds/violin/violin-C4.mp3"></audio>
-
   <div class="grid-container">
     <div class="header">
       <h1>Melodic Trainer</h1>
       <button id="power-switch" type="button" onclick="powerToggle()">Power</button>
-
       <button type="button" onclick="buildMelody()">Start Practice!</button>
-
       <button id="free-mode-switch" type="button" onclick="freeModeToggle()">Free Mode</button>
     </div>
     <div class="scores">
@@ -42,15 +37,11 @@
       <p id="high-score">...</p>
       <h2>Past Scores</h2>
       <p>...</p>
-
     </div>
     <div class="instrument">
       <h2>Instrument</h2>
       <p id="instr-type">Outer Space Sound</p>
       <button type="button" onclick="instrumentCycle()">Select Instrument</button>
-
-      <!-- <button type="button" onclick="tester()">Console</button> -->
-
     </div>
     <div class="messages">
       <h2>Messages</h2>
@@ -70,13 +61,11 @@
       <button type="button" onclick="chord('G3', 'B3', 'F4')">V7</button>
       <h2>Scale</h2>
       <button type="button" onclick="playScale()">Play</button>
-
     </div>
     <div class="mode">
       <h2>Mode</h2>
       <p id="mode-type">Chromatic</p>
       <button type="button" onclick="modeCycle()">Change Scale</button>
-
     </div>
     <div class="options">
       <h2>Options</h2>
@@ -85,9 +74,7 @@
       <button id="flat-switch" type="button" data-display="true" onclick="accidentalToggles(2)">Flats On/Off</button>
       <button id="sharp-switch" type="button" data-display="true" onclick="accidentalToggles(3)">Sharps On/Off</button>
       <button id="klang-switch" type="button" data-display="true" onclick="klangToggle()">Klangfarbenmelodie!</button>
-
     </div>
-
     <div class="note-container">
 
       <div id="C5-wrap" class="wrap C5">
@@ -205,18 +192,16 @@
       </div>
 
     </div>
-
-
   </div>
 
   <script src="js/global.js" charset="utf-8"></script>
   <script src="js/sources.js" charset="utf-8"></script>
   <script src="js/webaudio.js"  charset="utf-8"></script>
-  <script src="js/options.js" charset="utf-8"></script>
+  <script src="js/components.js" charset="utf-8"></script>
   <script src="js/cadences.js" charset="utf-8"></script>
-
-
-
 </body>
 
 </html>
+
+
+<!-- END of document -->

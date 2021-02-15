@@ -1,3 +1,6 @@
+//  Instrument Sources for "Music Trainer"
+
+
 
 // || Instrument Sources 
 
@@ -169,3 +172,6 @@ for (let i = 0; i < marimbaChromaticC.length; i++) {
     marimbaTrackArray.push(audioCx.createMediaElementSource(marimbaChromaticC[i]));
 }
 const marimbaSource = [marimbaChromaticC, marimbaTrackArray, "Marimba"];
+
+
+// END of document
