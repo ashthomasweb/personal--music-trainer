@@ -76,7 +76,6 @@ function buildMelody() {
     }
 }
 
-
 function powerToggle() {
 
     if (instPower == true) {
@@ -95,8 +94,6 @@ function powerToggle() {
     }
 
 }
-
-
 
 // || Pattern Verification
 
@@ -128,8 +125,6 @@ function patCheck() {
         lastRoundScore = 0;
     }
 }
-
-
 
 // || Pointer Events toggle 
 
@@ -273,6 +268,7 @@ function playSound() {
     } else {
         // do nothing
     }
+    console.log(instrumentChoice[0][0])
     
 }
 

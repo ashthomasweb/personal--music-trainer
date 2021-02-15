@@ -54,24 +54,39 @@ function instrumentCycle() {
             // NOT WORKING - needs closures. 'i' is being called by last button pressed?
             // 'on-end' conditional
 
-            (function () {
+            
 
-                instrumentChoice[0][i].addEventListener('ended', () => {
-                    let pos = i;
-                    let parent = noteButtonArray[pos];
-                    parent.dataset.playing = 'false';
-                    console.log('note ended');
-                    console.log(parent);
-                    console.log();
-                    parent.parentElement.classList.remove('anim-light-up');
-                    console.log(i);
-                }, true);
-                
-            })();
-
-            // NOT WORKING END
         }
-
+        
+        instrumentChoice[0][0].addEventListener('ended', () => {
+            noteButtonArray[0].dataset.playing = 'false';
+            console.log('note ended');
+            console.log(parent);
+            noteButtonArray[0].parentElement.classList.remove('anim-light-up');
+        });
+        
+        instrumentChoice[0][1].addEventListener('ended', () => {
+            noteButtonArray[1].dataset.playing = 'false';
+            console.log('note ended');
+            console.log(parent);
+            noteButtonArray[1].parentElement.classList.remove('anim-light-up');
+        });
+        
+        instrumentChoice[0][2].addEventListener('ended', () => {
+            noteButtonArray[2].dataset.playing = 'false';
+            console.log('note ended');
+            console.log(parent);
+            noteButtonArray[2].parentElement.classList.remove('anim-light-up');
+        });
+        
+        instrumentChoice[0][3].addEventListener('ended', () => {
+            noteButtonArray[3].dataset.playing = 'false';
+            console.log('note ended');
+            console.log(parent);
+            noteButtonArray[3].parentElement.classList.remove('anim-light-up');
+        });
+        // NOT WORKING END
+        
     }
 }
 
