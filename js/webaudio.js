@@ -1,190 +1,183 @@
 // WebAudio Digital Instrument for "Music Trainer"
 
+// array of instrument sources
+let instrumentBank = [pianoSource, tenorSaxSource, pipeOrganSource, frenchHornSource, violinSource, marimbaSource];
 
-// || WebAudio API scope
-let currentAudio; {
+// changes instrument source
+function instrumentCycle() {
 
+    // selects first instrument from array, then loops through array
+    if (instrumentPos == instrumentBank.length - 1 || instrumentPos === undefined) {
+        instrumentPos = 0;
+    } else {
+        instrumentPos++;
+    }
 
-    // array of instrument sources
-    let instrumentBank = [pianoSource, tenorSaxSource, pipeOrganSource, frenchHornSource, violinSource, marimbaSource];
+    if (klangBool == true) {
+        instrumentChoice = instrumentBank[Math.random() * instrumentBank.length - 1];
+    } else {
+        // do nothing
+    }
 
-    // array of page note-buttons
+    // current instrument source
+    instrumentChoice = instrumentBank[instrumentPos];
 
-    // changes instrument source
-    function instrumentCycle() {
+    // changes on-screen instrument selection
+    document.getElementById("instr-type").innerText = instrumentChoice[2];
 
-        // selects first instrument from array, then loops through array
-        if (instrumentPos == instrumentBank.length - 1 || instrumentPos === undefined) {
-            instrumentPos = 0;
-        } else {
-            instrumentPos++;
-        }
+    // initializes sounds to note-buttons
+    soundLoader();
 
-        if (klangBool == true) {
-            instrumentChoice = instrumentBank[Math.random() * instrumentBank.length - 1];
-        } else {
-            // do nothing
-        }
+    // applies instrument source via listeners
+    function soundLoader() {
 
-        // current instrument source
-        instrumentChoice = instrumentBank[instrumentPos];
+        for (let i = 0; i <= noteButtonArray.length - 1; i++) {
 
-        // changes on-screen instrument selection
-        document.getElementById("instr-type").innerText = instrumentChoice[2];
-
-        // initializes sounds to note-buttons
-        soundLoader();
-
-        // applies instrument source via listeners
-        function soundLoader() {
-
-            for (let i = 0; i <= noteButtonArray.length - 1; i++) {
-
-                // clears previous instrument listener via element cloning
-                if (noteButtonArray[i].dataset.listener === 'false') {
-                    // do nothing
-                } else if (noteButtonArray[i].dataset.listener === 'true') {
-                    let prevNode = noteButtonArray[i];
-                    prevNode.parentNode.replaceChild(prevNode.cloneNode(false), prevNode);
-                }
-
-                // assign event listener
-                noteButtonArray[i].addEventListener('mousedown', playSound);
-
-                // assign 'has listener' value
-                noteButtonArray[i].dataset.listener = 'true';
-
-                // webAudio track connection
-                instrumentChoice[1][i].connect(audioCx.destination);
-                
-
-                // NOT WORKING
-                // 'on-end' conditional
-                instrumentChoice[0][i].addEventListener('ended', () => {
-                    const pos = i;
-                    let parent = noteButtonArray[pos];
-                    parent.dataset.playing = 'false';
-                    console.log('note ended');
-                    // console.log(noteButtonArray[i]);
-                    console.log(parent);
-            
-                    parent.parentElement.classList.remove('anim-light-up');
-            
-                }, true);
-                // NOT WORKING END
+            // clears previous instrument listener via element cloning
+            if (noteButtonArray[i].dataset.listener === 'false') {
+                // do nothing
+            } else if (noteButtonArray[i].dataset.listener === 'true') {
+                let prevNode = noteButtonArray[i];
+                prevNode.parentNode.replaceChild(prevNode.cloneNode(false), prevNode);
             }
 
+            // assign event listener
+            noteButtonArray[i].addEventListener('mousedown', playSound);
+
+            // assign 'has listener' value
+            noteButtonArray[i].dataset.listener = 'true';
+
+            // webAudio track connection
+            instrumentChoice[1][i].connect(audioCx.destination);
+
+
+            // NOT WORKING
+            // 'on-end' conditional
+            instrumentChoice[0][i].addEventListener('ended', () => {
+                const pos = i;
+                let parent = noteButtonArray[pos];
+                parent.dataset.playing = 'false';
+                console.log('note ended');
+                // console.log(noteButtonArray[i]);
+                console.log(parent);
+
+                parent.parentElement.classList.remove('anim-light-up');
+
+            }, true);
+            // NOT WORKING END
         }
+
     }
-
-    // webAudio declared function for noteSwitch
-    function testPlay(index, noteId) {
-        let item = document.getElementById(`${noteId}-wrap`);
-        // console.log(item);
-        lightUp(item);
-        // check if context is in suspended state (autoplay policy)
-        if (audioCx.state === 'suspended') {
-            audioCx.resume();
-        }
-
-        // stop currently playing audio. needs refactor to gain decrease for legato feel
-        if (currentAudio === undefined || cadenceBool == true) {
-            // do nothing 
-        } else {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-        }
-
-        instrumentChoice[0][index].play();
-        currentAudio = instrumentChoice[0][index];
-    }
-
-    function noteSwitch(noteId) {
-
-        switch (noteId) {
-
-            case "C5":
-                testPlay(0, noteId);
-                break;
-
-            case "B4":
-                testPlay(1, noteId);
-                break;
-
-            case "Bb4":
-                testPlay(2, noteId);
-                break;
-
-            case "A4":
-                testPlay(3, noteId);
-                break;
-
-            case "Ab4":
-                testPlay(4, noteId);
-                break;
-
-            case "G4":
-                testPlay(5, noteId);
-                break;
-
-            case "Gb4":
-                testPlay(6, noteId);
-                break;
-
-            case "F4":
-                testPlay(7, noteId);
-                break;
-
-            case "E4":
-                testPlay(8, noteId);
-                break;
-
-            case "Eb4":
-                testPlay(9, noteId);
-                break;
-
-            case "D4":
-                testPlay(10, noteId);
-                break;
-
-            case "Db4":
-                testPlay(11, noteId);
-                break;
-
-            case "C4":
-                testPlay(12, noteId);
-                break;
-
-            case "B3":
-
-                testPlay(13, noteId);
-                break;
-
-            case "Bb3":
-                testPlay(14, noteId);
-                break;
-
-            case "A3":
-                testPlay(15, noteId);
-                break;
-
-            case "Ab3":
-                testPlay(16, noteId);
-                break;
-
-            case "G3":
-                testPlay(17, noteId);
-                break;
-
-            case "Gb3":
-                testPlay(18, noteId);
-                break;
-
-            default:
-        }
-    }
-
 }
+
+// webAudio declared function for noteSwitch
+function testPlay(index, noteId) {
+    let item = document.getElementById(`${noteId}-wrap`);
+    // console.log(item);
+    lightUp(item);
+    // check if context is in suspended state (autoplay policy)
+    if (audioCx.state === 'suspended') {
+        audioCx.resume();
+    }
+
+    // stop currently playing audio. needs refactor to gain decrease for legato feel
+    if (currentAudio === undefined || cadenceBool == true) {
+        // do nothing 
+    } else {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+
+    instrumentChoice[0][index].play();
+    currentAudio = instrumentChoice[0][index];
+}
+
+function noteSwitch(noteId) {
+
+    switch (noteId) {
+
+        case "C5":
+            testPlay(0, noteId);
+            break;
+
+        case "B4":
+            testPlay(1, noteId);
+            break;
+
+        case "Bb4":
+            testPlay(2, noteId);
+            break;
+
+        case "A4":
+            testPlay(3, noteId);
+            break;
+
+        case "Ab4":
+            testPlay(4, noteId);
+            break;
+
+        case "G4":
+            testPlay(5, noteId);
+            break;
+
+        case "Gb4":
+            testPlay(6, noteId);
+            break;
+
+        case "F4":
+            testPlay(7, noteId);
+            break;
+
+        case "E4":
+            testPlay(8, noteId);
+            break;
+
+        case "Eb4":
+            testPlay(9, noteId);
+            break;
+
+        case "D4":
+            testPlay(10, noteId);
+            break;
+
+        case "Db4":
+            testPlay(11, noteId);
+            break;
+
+        case "C4":
+            testPlay(12, noteId);
+            break;
+
+        case "B3":
+
+            testPlay(13, noteId);
+            break;
+
+        case "Bb3":
+            testPlay(14, noteId);
+            break;
+
+        case "A3":
+            testPlay(15, noteId);
+            break;
+
+        case "Ab3":
+            testPlay(16, noteId);
+            break;
+
+        case "G3":
+            testPlay(17, noteId);
+            break;
+
+        case "Gb3":
+            testPlay(18, noteId);
+            break;
+
+        default:
+    }
+}
+
+
 
 
 // END of document

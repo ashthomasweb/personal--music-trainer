@@ -18,12 +18,13 @@ let instrumentChoice;
 let instrumentPos;
 
 let lastRoundScore = 0;
-let allScores = [];
+
 let modeScore = "Chromatic";
 
 let melodyPat = [];
 let userPat = [];
 
 let noteButtonArray = document.getElementsByClassName("note-btn");
+let currentAudio; 
 
 // END of document 

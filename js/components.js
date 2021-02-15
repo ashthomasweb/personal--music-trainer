@@ -1,112 +1,22 @@
 //  Component JS file for "Music Trainer"
 
-
-// array of all notes
-let chromIndex = ["Gb3", "G3", "Ab3", "A3", "Bb3", "B3", "C4", "Db4", "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4", "C5"];
-let majorIndex = ["G3", "A3", "B3", "C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
-let anhemMajIndex = ["G3", "A3", "C4", "D4", "E4", "G4", "A4", "C5"];
-let minorIndex = ["G3", "Ab3", "Bb3", "C4", "D4", "Eb4", "F4", "G4", "Ab4", "Bb4", "C5"];
-let anhemMinIndex = ["G3", "Bb3", "C4", "Eb4", "G4", "Bb4", "C5"];
-let minorBluesIndex = ["G3", "Bb3", "C4", "Eb4", "F4", "Gb4", "G4", "Bb4", "C5"]
-let majorBluesIndex = ["G3", "A3", "C4", "D4", "Eb4", "E4", "G4", "A4", "C5"];
-let harmMinorIndex = ["G3", "Ab3", "B3", "C4", "D4", "Eb4", "F4", "G4", "Ab4", "B4", "C5"];
-let jazzMinorIndex = ["G3", "A3", "B3", "C4", "D4", "Eb4", "F4", "G4", "A4", "B4", "C5"];
-let bebopTonicIndex = ["G3", "Ab3", "A3", "B3", "C4", "D4", "E4", "F4", "G4", "Ab4", "A4", "B4", "C5"];
-let bebopPreIndex = ["G3", "A3", "Bb3", "C4", "D4", "Eb4", "E4", "F4", "G4", "A4", "Bb4", "C5"];
-let bebopDomIndex = ["G3", "A3", "Bb3", "B3", "C4", "D4", "E4", "F4", "G4", "A4", "Bb4", "B4", "C5"];
-let lydianIndex = ["G3", "A3", "B3", "C4", "D4", "E4", "Gb4", "G4", "A4", "B4", "C5"];
-let ionianIndex = ["G3", "A3", "B3", "C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"];
-let mixolydianIndex = ["G3", "A3", "Bb3", "C4", "D4", "E4", "F4", "G4", "A4", "Bb4", "C5"];
-let dorianIndex = ["G3", "A3", "Bb3", "C4", "D4", "Eb4", "F4", "G4", "A4", "Bb4", "C5"];
-let aolianIndex = ["G3", "Ab3", "Bb3", "C4", "D4", "Eb4", "F4", "G4", "Ab4", "Bb4", "C5"];
-let phrygianIndex = ["G3", "Ab3", "Bb3", "C4", "Db4", "Eb4", "F4", "G4", "Ab4", "Bb4", "C5"];
-let locrianIndex = ["Gb3", "Ab3", "Bb3", "C4", "Db4", "Eb4", "F4", "Gb4", "Ab4", "Bb4", "C5"];
-let octHWIndex = ["Gb3", "G3", "A3", "Bb3", "C4", "Db4", "Eb4", "E4", "Gb4", "G4", "A4", "Bb4", "C5"];
-let octWHIndex = ["Gb3", "Ab3", "A3", "B3", "C4", "D4", "Eb4", "F4", "Gb4", "Ab4", "A4", "B4", "C5"];
-
-let modeArray = [
-    ["Chromatic", chromIndex],
-    ["Major", majorIndex],
-    ["Minor", minorIndex],
-    ["Anhematonic Major", anhemMajIndex],
-    ["Anhematonic Minor", anhemMinIndex],
-    ["Major Blues", majorBluesIndex],
-    ["Minor Blues", minorBluesIndex],
-    ["Harmonic Minor", harmMinorIndex],
-    ["Jazz Minor", jazzMinorIndex],
-    ["Bebop Tonic (I)", bebopTonicIndex],
-    ["Bebop Predominant (ii)", bebopPreIndex],
-    ["Bebop Dominant (V)", bebopDomIndex],
-    ["Lydian", lydianIndex],
-    ["Ionian", ionianIndex],
-    ["Mixolydian", mixolydianIndex],
-    ["Dorian", dorianIndex],
-    ["Aeolian", aolianIndex],
-    ["Phrygian", phrygianIndex],
-    ["Locrian", locrianIndex],
-    ["Octatonic Half/Whole", octHWIndex],
-    ["Octatonic Whole/Half", octWHIndex]
-];
-
-
-let modeChoice = modeArray[0][0];
-let modePos = 0;
-let availNotes = modeArray[0][1];
-
-function modeCycle() {
-    if (modePos == modeArray.length - 1) {
-        modePos = 0;
-    } else {
-        modePos++;
-    }
-    modeChoice = modeArray[modePos][0];
-    availNotes = modeArray[modePos][1];
-
-    document.getElementById("mode-type").innerText = modeChoice;
-    modeScore = modeChoice;
-    modeSelect();
-
-}
-
-
-// helper function to select tones for modes
-
-function modeSelect() {
-
-    function allOff() {
-        chromIndex.forEach(displayNone);
-
-        function displayNone(item) {
-            document.getElementsByClassName(item)[0].style.display = "none";
-        }
-    }
-
-    function displayNoteClass(item) {
-        document.getElementsByClassName(item)[0].style.display = "block";
-    }
-
-    for (let i = 0; i < modeArray.length - 1; i++) {
-        if (modeChoice == modeArray[i][0]) {
-            allOff();
-            modeArray[i][1].forEach(displayNoteClass);
-        }
-
-    }
-
-}
-
-// || Accidentals Toggle 
+// || Toggle switches 
 
 function accidentalToggles(btnId) {
+    // button specific variables
     let sharpDisplay;
     let sharps;
+
     let flatDisplay;
     let flats;
+
     let degDisplay;
     let degrees;
+
     let solfDisplay;
     let syllables;
 
+    // array of switch id, class, variables
     let btnInfo = [
         ["solf-switch", "syllable", solfDisplay, syllables],
         ["deg-switch", "degree", degDisplay, degrees],
@@ -114,14 +24,17 @@ function accidentalToggles(btnId) {
         ["sharp-switch", "acc-sharp", sharpDisplay, sharps]
     ];
 
+    // variable assignments
     btnInfo[btnId][2] = document.getElementById(btnInfo[btnId][0]).dataset;
     btnInfo[btnId][3] = document.getElementsByClassName(btnInfo[btnId][1]);
+    
     if (btnInfo[btnId][2].display === "true") {
         for (let i = 0; i < btnInfo[btnId][3].length; i++) {
             btnInfo[btnId][3][i].style.display = "none";
         }
         document.getElementById(btnInfo[btnId][0]).style.backgroundColor = "pink";
         btnInfo[btnId][2].display = "false";
+
     } else if (btnInfo[btnId][2].display === "false") {
         for (let i = 0; i < btnInfo[btnId][3].length; i++) {
             btnInfo[btnId][3][i].style.display = "block";
@@ -154,6 +67,7 @@ function buildMelody() {
 
     noteSwitch(newNote);
     melodyPat.push(newNote);
+    console.log(`Melody pattern is: ${melodyPat}`);
 
     if (klangBool == true) {
         instrumentCycle();
@@ -184,7 +98,7 @@ function powerToggle() {
 
 
 
-// || Pattern Verification from The Arnold Game
+// || Pattern Verification
 
 function patCheck() {
 
@@ -215,14 +129,7 @@ function patCheck() {
     }
 }
 
-// || Cadence 
 
-function chord(a, b, c, d, e, f, g) {
-    cadenceBool = true;
-    let args = Array.from(arguments);
-    args.forEach((item) => noteSwitch(item));
-    cadenceBool = false;
-}
 
 // || Pointer Events toggle 
 
@@ -269,40 +176,44 @@ function klangToggle() {
 // || Past Scores 
 
 function scorePush() {
-
+    // type, score, mode variables
     let scoreInst;
     let scoreValue = 0;
     let scoreMode = modeScore;
+    let allScores = [];
+    let lastScore = [];
+    let lastPastScore;
+    let parent = document.getElementsByClassName('scores')[0];
+    let emptyScore = document.getElementsByClassName('scores')[0].children[3];
+    let clone = emptyScore.cloneNode(true);
 
-
+    // if klang is true, display as instrument type
     if (klangBool == true) {
         scoreInst = "Klangfarbenmelodie!";
     } else {
         scoreInst = instrumentChoice[2];
     }
 
+    // get most recent completed pattern length
     scoreValue = lastRoundScore;
 
-    let lastScore = [scoreInst, scoreValue, scoreMode];
-
+    // set of last score info
+    lastScore = [scoreInst, scoreValue, scoreMode];
+    // push last score info to array
     pastScores.push(lastScore);
-
+    lastPastScore = pastScores[pastScores.length - 1];
     pastScores.forEach((item) => {
         allScores.push(item[1]);
     });
 
+    // finds most recent highest past score and populates scorebox
     pastScores.forEach((item) => {
         if (item[1] === Math.max.apply(null, allScores)) {
             document.getElementById("high-score").innerText = item[1] + " - " + item[0] + " - " + item[2];
         }
     });
 
-    let lastPastScore = pastScores[pastScores.length - 1];
-    let parent = document.getElementsByClassName('scores')[0];
-
-    let emptyScore = document.getElementsByClassName('scores')[0].children[3];
-    let clone = emptyScore.cloneNode(true);
-
+    // inserts cloned element at top of list and updates last score info
     parent.insertBefore(clone, emptyScore);
     emptyScore.innerText = lastPastScore[1] + " - " + lastPastScore[0] + " - " + lastPastScore[2];
 
@@ -328,7 +239,9 @@ function playSound() {
         currentAudio.currentTime = 0;
     }
 
+    // animate sounding note
     lightUp(this.parentElement);
+
     // play note and repeat note condition
     if (noteButtonArray[i].dataset.playing === 'false') {
         instrumentChoice[0][i].play();
@@ -342,15 +255,19 @@ function playSound() {
         noteButtonArray[i].dataset.playing = 'true';
     }
 
-    let userPick = noteButtonArray[i].parentElement.className.replace("wrap ", "");
+    // grab played noted name and push to userPat array for checking
+    let userPick = noteButtonArray[i].parentElement.className.replace('wrap ', '').replace(' anim-light-up', '');
     userPat.push(userPick);
+    console.log(userPat);
 
-    if (freeModeBool == true) {
+    // prevent pattern check during 'free mode'
+    if (freeModeBool === true) {
         // do nothing
     } else {
         patCheck();
     }
 
+    // cycle instrument if klang is 'on'
     if (klangBool == true) {
         instrumentCycle();
     } else {
@@ -359,26 +276,23 @@ function playSound() {
     
 }
 
-
 // || Play Animations 
 
-// let myTO;
 function lightUp(input) {
-
+    // 'input' is the 'wrap' element containing the note elements
+    //  as defined in the webAudio switch and listeners
     console.log(input.children[1].dataset.playing);
 
     function startAnim() {
         input.classList.add('anim-light-up');
-
     }
 
     function stopAnim() {
         console.log('clear');
-        // clearTimeout(myTO);
         input.classList.remove('anim-light-up');
-
     }
 
+    // check if audio is still playing
     if (input.children[1].dataset.playing === 'true') {
         console.log('hi');
         stopAnim();
@@ -388,7 +302,5 @@ function lightUp(input) {
     }
 
 }
-
-
 
 // END of document 

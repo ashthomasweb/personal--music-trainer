@@ -1,5 +1,11 @@
 //  Cadences and scale playback JS file for "Music Trainer"
 
+function chord(a, b, c, d, e, f, g) {
+    let args = Array.from(arguments);
+    cadenceBool = true;
+    args.forEach((item) => noteSwitch(item));
+    cadenceBool = false;
+}
 
 function playScale() {
 
