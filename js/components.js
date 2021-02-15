@@ -67,7 +67,7 @@ function buildMelody() {
 
     noteSwitch(newNote);
     melodyPat.push(newNote);
-    console.log(`Melody pattern is: ${melodyPat}`);
+    // console.log(`Melody pattern is: ${melodyPat}`);
 
     if (klangBool == true) {
         instrumentCycle();
@@ -103,7 +103,7 @@ function powerToggle() {
 function patCheck() {
 
     if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1] && userPat.length === melodyPat.length) {
-        console.log('Next round');
+        // console.log('Next round');
         userPointerOff();
 
         setTimeout(function () {
@@ -258,7 +258,7 @@ function playSound() {
     // grab played noted name and push to userPat array for checking
     let userPick = noteButtonArray[i].parentElement.className.replace('wrap ', '').replace(' anim-light-up', '');
     userPat.push(userPick);
-    console.log(userPat);
+    // console.log(userPat);
 
     // prevent pattern check during 'free mode'
     if (freeModeBool === true) {
@@ -281,20 +281,20 @@ function playSound() {
 function lightUp(input) {
     // 'input' is the 'wrap' element containing the note elements
     //  as defined in the webAudio switch and listeners
-    console.log(input.children[1].dataset.playing);
+    // console.log(input.children[1].dataset.playing);
 
     function startAnim() {
         input.classList.add('anim-light-up');
     }
 
     function stopAnim() {
-        console.log('clear');
+        // console.log('clear');
         input.classList.remove('anim-light-up');
     }
 
     // check if audio is still playing
     if (input.children[1].dataset.playing === 'true') {
-        console.log('hi');
+        // console.log('hi');
         stopAnim();
         startAnim();
     } else {

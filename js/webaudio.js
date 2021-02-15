@@ -51,19 +51,24 @@ function instrumentCycle() {
             instrumentChoice[1][i].connect(audioCx.destination);
 
 
-            // NOT WORKING
+            // NOT WORKING - needs closures. 'i' is being called by last button pressed?
             // 'on-end' conditional
-            instrumentChoice[0][i].addEventListener('ended', () => {
-                const pos = i;
-                let parent = noteButtonArray[pos];
-                parent.dataset.playing = 'false';
-                console.log('note ended');
-                // console.log(noteButtonArray[i]);
-                console.log(parent);
 
-                parent.parentElement.classList.remove('anim-light-up');
+            (function () {
 
-            }, true);
+                instrumentChoice[0][i].addEventListener('ended', () => {
+                    let pos = i;
+                    let parent = noteButtonArray[pos];
+                    parent.dataset.playing = 'false';
+                    console.log('note ended');
+                    console.log(parent);
+                    console.log();
+                    parent.parentElement.classList.remove('anim-light-up');
+                    console.log(i);
+                }, true);
+                
+            })();
+
             // NOT WORKING END
         }
 
