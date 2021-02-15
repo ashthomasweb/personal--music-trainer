@@ -218,6 +218,8 @@ function scorePush() {
 function playNote(url) {
     return new Promise(function (resolve, reject) { // return a promise
         var audio = new Audio(url); // create audio wo/ src
+        currentAudio = audio;
+
         audio.play() // autoplay when loaded
         audio.onerror = reject; // on error, reject
         audio.onended = resolve; // when done, resolve
@@ -252,16 +254,15 @@ function playSound() {
         playNote(instrumentChoice[0][i].src).then(function () {
             noteButtonArray[i].dataset.playing = 'false'
         });
-        currentAudio = instrumentChoice[0][i];
         noteButtonArray[i].dataset.playing = 'true';
     } else if (noteButtonArray[i].dataset.playing === 'true') {
-        instrumentChoice[0][i].pause();
-        instrumentChoice[0][i].currentTime = 0;
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
 
         playNote(instrumentChoice[0][i].src).then(function () {
             noteButtonArray[i].dataset.playing = 'false'
         });
-        currentAudio = instrumentChoice[0][i];
+        // currentAudio = instrumentChoice[0][i];
         noteButtonArray[i].dataset.playing = 'true';
     }
 

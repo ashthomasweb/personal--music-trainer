@@ -35,6 +35,8 @@ function instrumentCycle() {
 
             // assign event listener
             noteButtonArray[i].addEventListener('mousedown', playSound);
+            noteButtonArray[i].addEventListener('mousehold', playSound);
+
 
             // webAudio track connection
             instrumentChoice[1][i].connect(audioCx.destination);
