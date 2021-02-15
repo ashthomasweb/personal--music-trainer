@@ -1,9 +1,5 @@
 //  Instrument Sources for "Music Trainer"
 
-
-
-// || Instrument Sources 
-
 // piano
 const pianoTrackArray = []
 const pianoChromaticC = [
@@ -27,7 +23,6 @@ const pianoChromaticC = [
     new Audio("sounds/piano/piano-G3.mp3"),
     new Audio("sounds/piano/piano-Gb3.mp3")
 ];
-
 for (let i = 0; i < pianoChromaticC.length; i++) {
     pianoTrackArray.push(audioCx.createMediaElementSource(pianoChromaticC[i]));
 }

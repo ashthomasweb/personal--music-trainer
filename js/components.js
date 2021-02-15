@@ -214,26 +214,22 @@ function scorePush() {
 
 }
 
-function play(url) {
+// Promise object returning on audio end
+function playNote(url) {
     return new Promise(function (resolve, reject) { // return a promise
-        var audio = new Audio(); // create audio wo/ src
-        audio.autoplay = true; // autoplay when loaded
+        var audio = new Audio(url); // create audio wo/ src
+        audio.play() // autoplay when loaded
         audio.onerror = reject; // on error, reject
         audio.onended = resolve; // when done, resolve
-        audio.src = url
+        
     });
 }
-
-
-
 
 // named event listener
 function playSound() {
 
-    // console.log(this.parentElement.className.replace('wrap ', ''));
     let i = Array.from(this.parentElement.parentElement.children).indexOf(this.parentElement);
-    // console.log(i);
-
+   
     // resume audioCx
     if (audioCx.state === 'suspended') {
         audioCx.resume();
@@ -250,28 +246,20 @@ function playSound() {
     // animate sounding note
     lightUp(this.parentElement);
 
-
-
-    
-
-
     // play note and repeat note condition
     if (noteButtonArray[i].dataset.playing === 'false') {
-        // instrumentChoice[0][i].play();
-        console.log(instrumentChoice[0][i].src);
-        play(instrumentChoice[0][i].src).then(function () {
+      
+        playNote(instrumentChoice[0][i].src).then(function () {
             noteButtonArray[i].dataset.playing = 'false'
-            console.log("Done!");
         });
         currentAudio = instrumentChoice[0][i];
         noteButtonArray[i].dataset.playing = 'true';
     } else if (noteButtonArray[i].dataset.playing === 'true') {
         instrumentChoice[0][i].pause();
         instrumentChoice[0][i].currentTime = 0;
-        // instrumentChoice[0][i].play();
-        play(instrumentChoice[0][i].src).then(function () {
+       
+        playNote(instrumentChoice[0][i].src).then(function () {
             noteButtonArray[i].dataset.playing = 'false'
-            console.log("Done!");
         });
         currentAudio = instrumentChoice[0][i];
         noteButtonArray[i].dataset.playing = 'true';
@@ -295,7 +283,6 @@ function playSound() {
     } else {
         // do nothing
     }
-    console.log(instrumentChoice[0][0])
 
 }
 
@@ -326,18 +313,5 @@ function lightUp(input) {
 
 }
 
-// Event delegation
-
-// document.addEventListener('click', function (event) {
-//     console.log(event.target);
-//     if (event.target.closest('.C5-wrap')) {
-//         console.log('hi');
-//     }
-
-//     // if (event.target.matches('.wrap B4')) {
-//     // 	// Run your code to close a modal
-//     // }
-
-// }, false);
 
 // END of document 
