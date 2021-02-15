@@ -9,6 +9,7 @@ function chord(a, b, c, d, e, f, g) {
 
 function playScale() {
 
+
     if (modeChoice === "Major" || modeChoice === "Minor") {
 
         noteSwitch("C4");
@@ -98,6 +99,7 @@ function playScale() {
         setTimeout(function () {
             noteSwitch("C4");
         }, 8000);
+
 
     } else if (modeChoice === "Chromatic") {
 

@@ -221,7 +221,7 @@ function playNote(url) {
         audio.play() // autoplay when loaded
         audio.onerror = reject; // on error, reject
         audio.onended = resolve; // when done, resolve
-        
+
     });
 }
 
@@ -229,7 +229,7 @@ function playNote(url) {
 function playSound() {
 
     let i = Array.from(this.parentElement.parentElement.children).indexOf(this.parentElement);
-   
+
     // resume audioCx
     if (audioCx.state === 'suspended') {
         audioCx.resume();
@@ -248,7 +248,7 @@ function playSound() {
 
     // play note and repeat note condition
     if (noteButtonArray[i].dataset.playing === 'false') {
-      
+
         playNote(instrumentChoice[0][i].src).then(function () {
             noteButtonArray[i].dataset.playing = 'false'
         });
@@ -257,7 +257,7 @@ function playSound() {
     } else if (noteButtonArray[i].dataset.playing === 'true') {
         instrumentChoice[0][i].pause();
         instrumentChoice[0][i].currentTime = 0;
-       
+
         playNote(instrumentChoice[0][i].src).then(function () {
             noteButtonArray[i].dataset.playing = 'false'
         });
@@ -291,27 +291,33 @@ function playSound() {
 function lightUp(input) {
     // 'input' is the 'wrap' element containing the note elements
     //  as defined in the webAudio switch and listeners
-    // console.log(input.children[1].dataset.playing);
 
     function startAnim() {
         input.classList.add('anim-light-up');
+        input.children[1].dataset.anim = 'true';
+
+        input.addEventListener('animationend', () => {
+            input.classList.remove('anim-light-up');
+            input.children[1].dataset.anim = 'false'
+            input.style.backgroundColor = '#181818';
+        });
     }
 
     function stopAnim() {
-        // console.log('clear');
         input.classList.remove('anim-light-up');
     }
 
-    // check if audio is still playing
-    if (input.children[1].dataset.playing === 'true') {
-        // console.log('hi');
+    // check if animation is still running
+    if (input.children[1].dataset.anim === 'true') {
+        input.style.backgroundColor = 'darkred';
         stopAnim();
-        startAnim();
+        setTimeout(function () {
+            startAnim();
+        }, 0);
     } else {
         startAnim();
     }
 
 }
-
 
 // END of document 

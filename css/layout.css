@@ -83,7 +83,7 @@ html {
     position: relative;
     width: 100%;
     cursor: pointer;
-    transition: background-color 2s;
+    
 }
 
 .wrap div {
@@ -305,8 +305,17 @@ button:focus {
 
 .anim-light-up {
     background-color: darkred;
-    
+    animation: note-light 1.5s;
 }
 
+.anim-light-up-short {
+    background-color: darkred;
+    animation: note-light 1s;
+}
 
+@keyframes note-light {
+    0%     {background-color: darkred;}
+    50%     {background-color: darkred;}
+    100%    {background-color: #181818;}
+}
 /* END of document */

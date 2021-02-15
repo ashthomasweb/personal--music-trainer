@@ -33,67 +33,13 @@ function instrumentCycle() {
 
         for (let i = 0; i <= noteButtonArray.length - 1; i++) {
 
-            // // clears previous instrument listener via element cloning
-            // if (noteButtonArray[i].dataset.listener === 'false') {
-            //     // do nothing
-            // } else if (noteButtonArray[i].dataset.listener === 'true') {
-            //     let prevNode = noteButtonArray[i];
-            //     prevNode.parentNode.replaceChild(prevNode.cloneNode(false), prevNode);
-            // }
-
             // assign event listener
             noteButtonArray[i].addEventListener('mousedown', playSound);
-
-            // assign 'has listener' value
-            noteButtonArray[i].dataset.listener = 'true';
 
             // webAudio track connection
             instrumentChoice[1][i].connect(audioCx.destination);
 
-
-            // NOT WORKING - needs closures. 'i' is being called by last button pressed?
-            // 'on-end' conditional
-
-            
-
         }
-
-
-
-        // function test1Play() {
-        //     test1.play();
-        //     document.getElementById('C5-test').dataset.playing = 'true';
-        // }
-
-        // function test2Play() {
-        //     test2.play();
-        //     document.getElementById('B4-test').dataset.playing = 'true';
-        // }
-
-        // function test3Play() {
-        //     test3.play();
-        //     document.getElementById('Bb4-test').dataset.playing = 'true';
-        // }
-
-        // function test4Play() {
-        //     test4.play();
-        //     document.getElementById('A4-test').dataset.playing = 'true';
-        // }
-
-        // let test1 = new Audio("sounds/piano/piano-C5.mp3");
-        // let test2 = new Audio("sounds/piano/piano-B4.mp3");
-        // let test3 = new Audio("sounds/piano/piano-Bb4.mp3");
-        // let test4 = new Audio("sounds/piano/piano-A4.mp3");
-        
-        // let testArray = [test1, test2, test3, test4]
-        
-        // document.getElementById('C5-test').addEventListener('mousedown', test1Play);
-        // document.getElementById('B4-test').addEventListener('mousedown', test2Play);
-        // document.getElementById('Bb4-test').addEventListener('mousedown', test3Play);
-        // document.getElementById('A4-test').addEventListener('mousedown', test4Play);
-
-       
-        // NOT WORKING END
         
     }
 }
