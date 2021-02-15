@@ -27,7 +27,7 @@ function accidentalToggles(btnId) {
     // variable assignments
     btnInfo[btnId][2] = document.getElementById(btnInfo[btnId][0]).dataset;
     btnInfo[btnId][3] = document.getElementsByClassName(btnInfo[btnId][1]);
-    
+
     if (btnInfo[btnId][2].display === "true") {
         for (let i = 0; i < btnInfo[btnId][3].length; i++) {
             btnInfo[btnId][3][i].style.display = "none";
@@ -214,6 +214,19 @@ function scorePush() {
 
 }
 
+function play(url) {
+    return new Promise(function (resolve, reject) { // return a promise
+        var audio = new Audio(); // create audio wo/ src
+        audio.autoplay = true; // autoplay when loaded
+        audio.onerror = reject; // on error, reject
+        audio.onended = resolve; // when done, resolve
+        audio.src = url
+    });
+}
+
+
+
+
 // named event listener
 function playSound() {
 
@@ -237,15 +250,29 @@ function playSound() {
     // animate sounding note
     lightUp(this.parentElement);
 
+
+
+    
+
+
     // play note and repeat note condition
     if (noteButtonArray[i].dataset.playing === 'false') {
-        instrumentChoice[0][i].play();
+        // instrumentChoice[0][i].play();
+        console.log(instrumentChoice[0][i].src);
+        play(instrumentChoice[0][i].src).then(function () {
+            noteButtonArray[i].dataset.playing = 'false'
+            console.log("Done!");
+        });
         currentAudio = instrumentChoice[0][i];
         noteButtonArray[i].dataset.playing = 'true';
     } else if (noteButtonArray[i].dataset.playing === 'true') {
         instrumentChoice[0][i].pause();
         instrumentChoice[0][i].currentTime = 0;
-        instrumentChoice[0][i].play();
+        // instrumentChoice[0][i].play();
+        play(instrumentChoice[0][i].src).then(function () {
+            noteButtonArray[i].dataset.playing = 'false'
+            console.log("Done!");
+        });
         currentAudio = instrumentChoice[0][i];
         noteButtonArray[i].dataset.playing = 'true';
     }
@@ -269,7 +296,7 @@ function playSound() {
         // do nothing
     }
     console.log(instrumentChoice[0][0])
-    
+
 }
 
 // || Play Animations 
@@ -298,5 +325,19 @@ function lightUp(input) {
     }
 
 }
+
+// Event delegation
+
+// document.addEventListener('click', function (event) {
+//     console.log(event.target);
+//     if (event.target.closest('.C5-wrap')) {
+//         console.log('hi');
+//     }
+
+//     // if (event.target.matches('.wrap B4')) {
+//     // 	// Run your code to close a modal
+//     // }
+
+// }, false);
 
 // END of document 

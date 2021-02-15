@@ -27,6 +27,7 @@ const pianoChromaticC = [
     new Audio("sounds/piano/piano-G3.mp3"),
     new Audio("sounds/piano/piano-Gb3.mp3")
 ];
+
 for (let i = 0; i < pianoChromaticC.length; i++) {
     pianoTrackArray.push(audioCx.createMediaElementSource(pianoChromaticC[i]));
 }
@@ -83,6 +84,7 @@ const frenchHornChromaticC = [
     new Audio("sounds/french-horn/french-horn-G3.mp3"),
     new Audio("sounds/french-horn/french-horn-Gb3.mp3")
 ]
+
 for (let i = 0; i < frenchHornChromaticC.length; i++) {
     frenchHornTrackArray.push(audioCx.createMediaElementSource(frenchHornChromaticC[i]));
 }
