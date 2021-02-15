@@ -75,14 +75,14 @@ function modeSelect() {
     function allNotesOff() {
 
         function displayNone(item) {
-            document.getElementsByClassName(item)[0].style.display = "none";
+            document.getElementsByClassName(item)[0].style.opacity = "0.1";
         }
 
         chromIndex.forEach(displayNone);
     }
 
     function displayNoteClass(item) {
-        document.getElementsByClassName(item)[0].style.display = "block";
+        document.getElementsByClassName(item)[0].style.opacity = "1";
     }
 
     for (let i = 0; i < modeArray.length - 1; i++) {

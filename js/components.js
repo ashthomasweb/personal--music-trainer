@@ -309,7 +309,7 @@ function lightUp(input) {
 
     // check if animation is still running
     if (input.children[1].dataset.anim === 'true') {
-        input.style.backgroundColor = 'darkred';
+        input.style.backgroundColor = 'rgb(0, 78, 22)';
         stopAnim();
         setTimeout(function () {
             startAnim();

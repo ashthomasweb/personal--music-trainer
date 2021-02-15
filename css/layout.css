@@ -83,7 +83,6 @@ html {
     position: relative;
     width: 100%;
     cursor: pointer;
-    
 }
 
 .wrap div {
@@ -105,7 +104,11 @@ html {
     border-radius: 10px;
     background-color: ivory;
     cursor: pointer;
+    transition: background-color .2s;
+}
 
+.wrap button:hover {
+    background-color: rgb(69, 103, 79);
 }
 
 .C5 {
@@ -304,18 +307,13 @@ button:focus {
 }
 
 .anim-light-up {
-    background-color: darkred;
+    background-color: rgb(0, 78, 22);
     animation: note-light 1.5s;
 }
 
-.anim-light-up-short {
-    background-color: darkred;
-    animation: note-light 1s;
-}
-
 @keyframes note-light {
-    0%     {background-color: darkred;}
-    50%     {background-color: darkred;}
+    0%     {background-color: rgb(0, 78, 22);}
+    50%     {background-color: rgb(0, 78, 22);}
     100%    {background-color: #181818;}
 }
 /* END of document */
