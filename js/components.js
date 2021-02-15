@@ -214,16 +214,16 @@ function scorePush() {
 
 }
 
-// Promise object returning on audio end
-function playNote(url) {
-    return new Promise(function (resolve, reject) { // return a promise
-        var audio = new Audio(url); // create audio wo/ src
-        audio.play() // autoplay when loaded
-        audio.onerror = reject; // on error, reject
-        audio.onended = resolve; // when done, resolve
+// // Promise object returning on audio end
+// function playNote(url) {
+//     return new Promise(function (resolve, reject) { // return a promise
+//         var audio = new Audio(url); // create audio wo/ src
+//         audio.play() // autoplay when loaded
+//         audio.onerror = reject; // on error, reject
+//         audio.onended = resolve; // when done, resolve
         
-    });
-}
+//     });
+// }
 
 // named event listener
 function playSound() {
@@ -248,19 +248,19 @@ function playSound() {
 
     // play note and repeat note condition
     if (noteButtonArray[i].dataset.playing === 'false') {
-      
-        playNote(instrumentChoice[0][i].src).then(function () {
-            noteButtonArray[i].dataset.playing = 'false'
-        });
+        instrumentChoice[0][i].play();
+        // playNote(instrumentChoice[0][i].src).then(function () {
+        //     noteButtonArray[i].dataset.playing = 'false'
+        // });
         currentAudio = instrumentChoice[0][i];
         noteButtonArray[i].dataset.playing = 'true';
     } else if (noteButtonArray[i].dataset.playing === 'true') {
         instrumentChoice[0][i].pause();
         instrumentChoice[0][i].currentTime = 0;
-       
-        playNote(instrumentChoice[0][i].src).then(function () {
-            noteButtonArray[i].dataset.playing = 'false'
-        });
+        instrumentChoice[0][i].play();
+        // playNote(instrumentChoice[0][i].src).then(function () {
+        //     noteButtonArray[i].dataset.playing = 'false'
+        // });
         currentAudio = instrumentChoice[0][i];
         noteButtonArray[i].dataset.playing = 'true';
     }
