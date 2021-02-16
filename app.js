@@ -7,7 +7,7 @@ app.use(express.static(__dirname));
 
 // || Routes 
 app.get("/", function(req, res) {
-    res.sendFile(__dirname + "/welcome.html");
+    res.sendFile(__dirname + "/index.html");
 });
 
 
