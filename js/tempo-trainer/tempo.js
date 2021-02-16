@@ -14,9 +14,10 @@ function takeTempo() {
     sum = newArray.reduce((acc, val) => {
       return acc + val
     });
-    avg = (sum / newArray.length) / 16.67;
-    average = avg.toFixed(1);
+    avg = (sum / newArray.length);
+    average = (60000 / avg).toFixed(1);
     console.log(`Average BPM: ${average}`);
+    document.getElementsByClassName('tempo-display')[0].innerText = average;
     console.log(`newArray: ${newArray}`);
     // console.log(`counter is: ${counter}`);
     console.log('new');
