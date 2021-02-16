@@ -24,7 +24,7 @@
   <title>Scale Trainer</title>
 </head>
 
-<body">
+<body>
   <div class="grid-container">
     <div class="header">
       <h1>Melodic Trainer</h1>
@@ -47,7 +47,7 @@
       <h2>Messages</h2>
       <p>Initialize the digital instrument by choosing an instrument sample below.</p>
       <br>
-      <p>Repeat the entire melody back from the beginning each time. You can use the chords to find key-center at any time.</p>
+      <p id="msg-pane">Repeat the entire melody back from the beginning each time. You can use the chords to find key-center at any time.</p>
     </div>
     <div class="cadences">
       <h2>Cadences</h2>
@@ -74,7 +74,6 @@
       <button id="flat-switch" type="button" data-display="true" onclick="accidentalToggles(2)">Flats On/Off</button>
       <button id="sharp-switch" type="button" data-display="true" onclick="accidentalToggles(3)">Sharps On/Off</button>
       <button id="klang-switch" type="button" data-display="true" onclick="klangToggle()">Klangfarbenmelodie!</button>
-
     </div>
     <div class="note-container">
 
@@ -195,12 +194,12 @@
     </div>
   </div>
 
-  <script src="js/global.js" charset="utf-8"></script>
-  <script src="js/sources.js" charset="utf-8"></script>
-  <script src="js/webaudio.js"  charset="utf-8"></script>
-  <script src="js/modes.js"  charset="utf-8"></script>
-  <script src="js/components.js" charset="utf-8"></script>
-  <script src="js/cadences.js" charset="utf-8"></script>
+  <script src="js/melody-trainer/global.js" charset="utf-8"></script>
+  <script src="js/melody-trainer/sources.js" charset="utf-8"></script>
+  <script src="js/melody-trainer/webaudio.js" charset="utf-8"></script>
+  <script src="js/melody-trainer/modes.js" charset="utf-8"></script>
+  <script src="js/melody-trainer/components.js" charset="utf-8"></script>
+  <script src="js/melody-trainer/cadences.js" charset="utf-8"></script>
 </body>
 
 </html>

@@ -254,6 +254,7 @@ function playSound() {
         playNote(instrumentChoice[0][i].src).then(function () {
             noteButtonArray[i].dataset.playing = 'false'
         });
+
         noteButtonArray[i].dataset.playing = 'true';
     } else if (noteButtonArray[i].dataset.playing === 'true') {
         currentAudio.pause();
@@ -262,7 +263,7 @@ function playSound() {
         playNote(instrumentChoice[0][i].src).then(function () {
             noteButtonArray[i].dataset.playing = 'false'
         });
-        // currentAudio = instrumentChoice[0][i];
+
         noteButtonArray[i].dataset.playing = 'true';
     }
 
@@ -321,4 +322,24 @@ function lightUp(input) {
 
 }
 
+// || Message display 
+
+function displayMessage(msg) {
+
+    let pane = document.getElementById('msg-pane');
+
+    switch (msg) {
+
+        case '1':
+            pane.innerText = 'Test!'
+            break;
+
+        case '2':
+            pane.innerText = 'Test!'
+            break;
+
+        default:
+
+    }
+}
 // END of document 

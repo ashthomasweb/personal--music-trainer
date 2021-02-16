@@ -13,8 +13,8 @@ function instrumentCycle() {
         instrumentPos++;
     }
 
-    if (klangBool == true) {
-        instrumentChoice = instrumentBank[Math.random() * instrumentBank.length - 1];
+    if (klangBool === true) {
+        instrumentPos = Math.floor(Math.random() * instrumentBank.length);
     } else {
         // do nothing
     }
@@ -33,10 +33,8 @@ function instrumentCycle() {
 
         for (let i = 0; i <= noteButtonArray.length - 1; i++) {
 
-            // assign event listener
+            // assign event listener to html element
             noteButtonArray[i].addEventListener('mousedown', playSound);
-            noteButtonArray[i].addEventListener('mousehold', playSound);
-
 
             // webAudio track connection
             instrumentChoice[1][i].connect(audioCx.destination);
@@ -56,7 +54,7 @@ function testPlay(index, noteId) {
         audioCx.resume();
     }
 
-    // stop currently playing audio. needs refactor to gain decrease for legato feel
+    // stop currently playing audio
     if (currentAudio === undefined || cadenceBool == true) {
         // do nothing 
     } else {
