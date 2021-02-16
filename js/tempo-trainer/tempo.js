@@ -1,4 +1,4 @@
-// DOES NOT WORK
+// Tempo measurement file for "Music Trainer"
 
 let timingArray = [];
 let newArray = [];
@@ -6,33 +6,40 @@ let counter = 0;
 let x;
 
 function takeTempo() {
+
+  function sumAvgLog() {
+    // subtract value from previous value in array, push to newArray
+    newArray.push(timingArray[timingArray.length-1] - timingArray[timingArray.length-2]);
+    // average newArray
+    sum = newArray.reduce((acc, val) => {
+      return acc + val
+    });
+    avg = (sum / newArray.length) / 16.67;
+    average = avg.toFixed(1);
+    console.log(`Average BPM: ${average}`);
+    console.log(`newArray: ${newArray}`);
+    // console.log(`counter is: ${counter}`);
+    console.log('new');
+  }
+
   // push to array on click
   timingArray.push(counter);
 
   if ( counter === 0 ) {
     // start timerRaw
     timerRaw();
-  } else if ( timingArray.length > 2 ) {
-    newArray.push(timingArray[timingArray.length-1] - timingArray[timingArray.length-2]);
-    // subtract value from previous value in array, push to newArray
+  } else if ( timingArray.length > 2  && timingArray.length < 12) {
+    sumAvgLog();
 
-    sum = newArray.reduce((acc, val) => {
-      return acc + val
-    });
+  } else if ( timingArray.length >= 12 ) {
+    // average of last 9 in new array
+    console.log('Most recent 9. (Two measures of 4/4 plus downbeat)');
+    newArray.shift();
+    sumAvgLog();
 
-    let avg = sum / newArray.length;
-
-    console.log(`newArray: ${newArray}`);
-    console.log(`average time: ${avg}`);
-    console.log(`counter is: ${counter}`);
-    console.log('new');
   }
 
-
-
-
 }
-// average of last 10 in new array
 
 function timerRaw() {
     setInterval(function () {
@@ -43,4 +50,4 @@ function timerRaw() {
 
 }
 
-// DOES NOT WORK END
+// END of document
