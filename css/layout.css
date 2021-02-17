@@ -83,6 +83,7 @@ html {
     position: relative;
     width: 100%;
     cursor: pointer;
+    opacity: 0.1;
 }
 
 .wrap div {

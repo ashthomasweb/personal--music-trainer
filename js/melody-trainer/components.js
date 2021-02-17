@@ -48,6 +48,8 @@ function accidentalToggles(btnId) {
 // || Scale Degree Set 
 
 function buildMelody() {
+    pracModeBool = true;
+
     userPat = [];
 
     if (freeModeBool == true) {
@@ -93,6 +95,8 @@ function powerToggle() {
         instPower = true;
     }
 
+    modeSelect();
+    freeModeToggle();
 }
 
 // || Pattern Verification
@@ -116,6 +120,7 @@ function patCheck() {
         // step for successful turn, but incomplete pattern.
 
     } else {
+        pracModeBool = false;
         scorePush();
 
         setTimeout(() => alert("Game Over"), 10);

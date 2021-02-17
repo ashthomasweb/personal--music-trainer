@@ -48,7 +48,11 @@ function instrumentCycle() {
 function testPlay(index, noteId) {
     let item = document.getElementById(`${noteId}-wrap`);
     // console.log(item);
-    lightUp(item);
+    if ( pracModeBool === true ) {
+        // do nothing
+    } else {
+        lightUp(item);
+    }
     // check if context is in suspended state (autoplay policy)
     if (audioCx.state === 'suspended') {
         audioCx.resume();

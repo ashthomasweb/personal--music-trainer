@@ -6,6 +6,7 @@ const audioCx = new AudioContext();
 
 
 let freeModeBool = false;
+let pracModeBool = false;
 let klangBool = false;
 let initialLoad = true;
 let instPower = false;
@@ -16,10 +17,11 @@ let pastScores = [];
 // helper function variables
 let instrumentChoice;
 let instrumentPos;
+let modeType;
 
 let lastRoundScore = 0;
 
-let modeScore = "Chromatic";
+let modeScore = "Major";
 
 let melodyPat = [];
 let userPat = [];
