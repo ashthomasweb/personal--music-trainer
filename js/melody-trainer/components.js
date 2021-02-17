@@ -172,6 +172,19 @@ function klangToggle() {
     }
 }
 
+// || DOES NOT WORK
+
+// function accidentalDisplay() {
+//     accidentalBool = !accidentalBool;
+//     if (accidentalBool == true) {
+//         document.getElementById("acc-switch").style.backgroundColor = "pink";
+//     } else {
+//         document.getElementById("acc-switch").style.backgroundColor = "rgb(239, 239, 239)";
+//     }
+// }
+
+// || DOES NOT WORK END
+
 
 // || Past Scores 
 

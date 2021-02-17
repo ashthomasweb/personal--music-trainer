@@ -25,28 +25,28 @@ let chromIndex = ["Gb3", "G3", "Ab3", "A3", "Bb3", "B3", "C4", "Db4", "D4", "Eb4
 let wholeToneIndex = ["Gb3", "Ab3", "Bb3", "C4", "D4", "E4", "Gb4", "Ab4", "Bb4", "C5"];
 
 let modeArray = [
-    ["Major", majorIndex, 'major'],
-    ["Minor", minorIndex, 'minor'],
-    ["Anhematonic Major", anhemMajIndex, 'major'],
-    ["Anhematonic Minor", anhemMinIndex, 'minor'],
-    ["Major Blues", majorBluesIndex, 'major'],
-    ["Minor Blues", minorBluesIndex, 'minor'],
-    ["Harmonic Minor", harmMinorIndex, 'minor'],
-    ["Jazz Minor", jazzMinorIndex, 'minor'],
-    ["Bebop Tonic (I)", bebopTonicIndex, 'major'],
-    ["Bebop Predominant (ii)", bebopPreIndex, 'minor'],
-    ["Bebop Dominant (V)", bebopDomIndex, 'major'],
-    ["Lydian", lydianIndex, 'major'],
-    ["Ionian", ionianIndex, 'major'],
-    ["Mixolydian", mixolydianIndex, 'major'],
-    ["Dorian", dorianIndex, 'minor'],
-    ["Aeolian", aolianIndex, 'minor'],
-    ["Phrygian", phrygianIndex, 'minor'],
-    ["Locrian", locrianIndex, 'diminished'],
-    ["Octatonic Half/Whole", octHWIndex, 'diminished'],
-    ["Octatonic Whole/Half", octWHIndex, 'diminished'],
-    ["Chromatic", chromIndex, 'chromatic'],
-    ["Whole Tone", wholeToneIndex, 'augmented']
+    ["Major", majorIndex, 'major', 'fs'],
+    ["Minor", minorIndex, 'minor', 'Fs'],
+    ["Anhematonic Major", anhemMajIndex, 'major', 'fs'],
+    ["Anhematonic Minor", anhemMinIndex, 'minor', 'Fs'],
+    ["Major Blues", majorBluesIndex, 'major', 'FS'],
+    ["Minor Blues", minorBluesIndex, 'minor', 'MB'],
+    ["Harmonic Minor", harmMinorIndex, 'minor', 'Fs'],
+    ["Jazz Minor", jazzMinorIndex, 'minor', 'Fs'],
+    ["Bebop Tonic", bebopTonicIndex, 'major', 'FS'],
+    ["Bebop Predominant", bebopPreIndex, 'minor', 'BP'],
+    ["Bebop Dominant", bebopDomIndex, 'major', 'FS'],
+    ["Lydian", lydianIndex, 'major', 'fS'],
+    ["Ionian", ionianIndex, 'major', 'fs'],
+    ["Mixolydian", mixolydianIndex, 'major', 'Fs'],
+    ["Dorian", dorianIndex, 'minor', 'Fs'],
+    ["Aeolian", aolianIndex, 'minor', 'Fs'],
+    ["Phrygian", phrygianIndex, 'minor', 'Fs'],
+    ["Locrian", locrianIndex, 'diminished', 'Fs'],
+    ["Octatonic Half/Whole", octHWIndex, 'diminished', 'FS'],
+    ["Octatonic Whole/Half", octWHIndex, 'diminished', 'FS'],
+    ["Chromatic", chromIndex, 'chromatic', 'FS'],
+    ["Whole Tone", wholeToneIndex, 'augmented', 'FS']
 ];
 
 
@@ -75,13 +75,45 @@ function modeCycle() {
 // select tones for modes using mode index array
 function modeSelect() {
     
+    let sharpSwitch = document.getElementById('sharp-switch');
+    let flatSwitch = document.getElementById('flat-switch');
+   
+    function flatOnSharpOn() {
+        flatSwitch.dataset.display === 'false' && accidentalToggles(2);
+        sharpSwitch.dataset.display === 'false' && accidentalToggles(3);
+    }
+    function flatOffSharpOff() {
+        flatSwitch.dataset.display === 'true' && accidentalToggles(2);
+        sharpSwitch.dataset.display === 'true' && accidentalToggles(3);
+    }
+    function flatOnSharpOff() {
+        flatSwitch.dataset.display === 'false' && accidentalToggles(2);
+        sharpSwitch.dataset.display === 'true' && accidentalToggles(3);
+    }
+    function flatOffSharpOn() {
+        flatSwitch.dataset.display === 'true' && accidentalToggles(2);
+        sharpSwitch.dataset.display === 'false' && accidentalToggles(3);
+    }
+    
     function displayLow(item) {
+        document.getElementsByClassName(item)[0].style.display = "block";
         document.getElementsByClassName(item)[0].style.opacity = "0.1";
     }
+    function displayNone(item) {
+        document.getElementsByClassName(item)[0].style.display = "none";
+    }
+
+    // DOES NOT WORK CORRECTLY 
     // turn all notes off
     function allNotesOff() {
-        chromIndex.forEach(displayLow);
+        if ( accidentalBool === true ) {
+            chromIndex.forEach(displayLow);
+        } else {
+            chromIndex.forEach(displayNone);            
+        }
     }
+    // DOES NOT WORK CORRECTLY END
+
 
     function displayNoteClass(item) {
         document.getElementsByClassName(item)[0].style.opacity = "1";
@@ -92,6 +124,32 @@ function modeSelect() {
         if (modeChoice == modeArray[i][0]) {
             allNotesOff();
             modeArray[i][1].forEach(displayNoteClass);
+            
+            if ( modeArray[i][3] === 'BP' ) {
+                flatOnSharpOn();
+                document.getElementById('Bb3-wrap').children[0].children[1].style.display = 'none';
+                document.getElementById('Bb3-wrap').children[2].children[0].style.display = 'none';
+            } else if ( modeArray[i][3] === 'MB' ) {
+                flatOnSharpOff();
+                document.getElementById('Gb4-wrap').children[0].children[0].style.display = 'block';
+                document.getElementById('Gb4-wrap').children[2].children[0].style.display = 'block';    
+            } else {
+                flatOnSharpOn();
+                flatOffSharpOff();
+            }
+            if ( modeArray[i][3] === 'fs' ) {
+                flatOffSharpOff();
+            } 
+            if ( modeArray[i][3] === 'Fs' ) {
+                flatOnSharpOff();
+            } 
+            if ( modeArray[i][3] === 'fS' ) {
+                flatOffSharpOn();
+            } 
+            if ( modeArray[i][3] === 'FS' ) {
+                flatOnSharpOn();
+            } 
+
         }
 
     }
