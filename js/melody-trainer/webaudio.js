@@ -59,7 +59,7 @@ function instrumentCycle() {
         for (let i = 0; i <= noteButtonArray.length - 1; i++) {
 
             // assign event listener to html element
-            noteButtonArray[i].addEventListener('mousedown', playSound);
+            noteButtonArray[i].addEventListener('touchstart', playSound);
 
             // webAudio track connection
             instrumentChoice[1][i].connect(audioCx.destination);
