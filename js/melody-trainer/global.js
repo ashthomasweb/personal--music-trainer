@@ -11,7 +11,7 @@ let klangBool = false;
 let initialLoad = true;
 let instPower = false;
 let cadenceBool = false;
-let accidentalBool = true;
+let accDisplayBool = true;
 
 let pastScores = [];
 

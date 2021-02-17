@@ -24,6 +24,8 @@ let octWHIndex = ["Gb3", "Ab3", "A3", "B3", "C4", "D4", "Eb4", "F4", "Gb4", "Ab4
 let chromIndex = ["Gb3", "G3", "Ab3", "A3", "Bb3", "B3", "C4", "Db4", "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4", "C5"];
 let wholeToneIndex = ["Gb3", "Ab3", "Bb3", "C4", "D4", "E4", "Gb4", "Ab4", "Bb4", "C5"];
 
+// array of mode [Name, index, triad type, default accidental]
+// upper/lowercase f/s indicates flats/sharps on/off. Upper is ON
 let modeArray = [
     ["Major", majorIndex, 'major', 'fs'],
     ["Minor", minorIndex, 'minor', 'Fs'],
@@ -49,7 +51,6 @@ let modeArray = [
     ["Whole Tone", wholeToneIndex, 'augmented', 'FS']
 ];
 
-
 let modeChoice = modeArray[0][0];
 let availNotes = modeArray[0][1];
 let modePos = 0;
@@ -64,91 +65,98 @@ function modeCycle() {
     modeChoice = modeArray[modePos][0];
     availNotes = modeArray[modePos][1];
     modeType = modeArray[modePos][2];
-    console.log(modeType);
-
     document.getElementById("mode-type").innerText = modeChoice;
     modeScore = modeChoice;
     modeSelect();
-
 }
 
-// select tones for modes using mode index array
-function modeSelect() {
-    
-    let sharpSwitch = document.getElementById('sharp-switch');
-    let flatSwitch = document.getElementById('flat-switch');
-   
-    function flatOnSharpOn() {
-        flatSwitch.dataset.display === 'false' && accidentalToggles(2);
-        sharpSwitch.dataset.display === 'false' && accidentalToggles(3);
-    }
-    function flatOffSharpOff() {
-        flatSwitch.dataset.display === 'true' && accidentalToggles(2);
-        sharpSwitch.dataset.display === 'true' && accidentalToggles(3);
-    }
-    function flatOnSharpOff() {
-        flatSwitch.dataset.display === 'false' && accidentalToggles(2);
-        sharpSwitch.dataset.display === 'true' && accidentalToggles(3);
-    }
-    function flatOffSharpOn() {
-        flatSwitch.dataset.display === 'true' && accidentalToggles(2);
-        sharpSwitch.dataset.display === 'false' && accidentalToggles(3);
-    }
-    
+function accidentalDisplay(item) {
+
+    // display low opacity accidentals
     function displayLow(item) {
         document.getElementsByClassName(item)[0].style.display = "block";
         document.getElementsByClassName(item)[0].style.opacity = "0.1";
     }
+
+    // reset all notes between mode switch
     function displayNone(item) {
         document.getElementsByClassName(item)[0].style.display = "none";
     }
 
-    // DOES NOT WORK CORRECTLY 
     // turn all notes off
     function allNotesOff() {
-        if ( accidentalBool === true ) {
+        if (accDisplayBool === true) {
             chromIndex.forEach(displayLow);
         } else {
-            chromIndex.forEach(displayNone);            
+            chromIndex.forEach(displayNone);
         }
     }
-    // DOES NOT WORK CORRECTLY END
 
-
+    // display useable notes
     function displayNoteClass(item) {
+        document.getElementsByClassName(item)[0].style.display = "block";
         document.getElementsByClassName(item)[0].style.opacity = "1";
+    }
+
+    allNotesOff();
+    item.forEach(displayNoteClass);
+}
+
+// select tones for modes using mode index array
+function modeSelect() {
+
+    let sharpSwitch = document.getElementById('sharp-switch');
+    let flatSwitch = document.getElementById('flat-switch');
+
+    function flatOnSharpOn() {
+        flatSwitch.dataset.display === 'false' && accidentalToggles(2);
+        sharpSwitch.dataset.display === 'false' && accidentalToggles(3);
+    }
+
+    function flatOffSharpOff() {
+        flatSwitch.dataset.display === 'true' && accidentalToggles(2);
+        sharpSwitch.dataset.display === 'true' && accidentalToggles(3);
+    }
+
+    function flatOnSharpOff() {
+        flatSwitch.dataset.display === 'false' && accidentalToggles(2);
+        sharpSwitch.dataset.display === 'true' && accidentalToggles(3);
+    }
+
+    function flatOffSharpOn() {
+        flatSwitch.dataset.display === 'true' && accidentalToggles(2);
+        sharpSwitch.dataset.display === 'false' && accidentalToggles(3);
     }
 
     for (let i = 0; i < modeArray.length; i++) {
 
         if (modeChoice == modeArray[i][0]) {
-            allNotesOff();
-            modeArray[i][1].forEach(displayNoteClass);
-            
-            if ( modeArray[i][3] === 'BP' ) {
+            accidentalDisplay(modeArray[i][1]);
+
+            if (modeArray[i][3] === 'BP') {
                 flatOnSharpOn();
                 document.getElementById('Bb3-wrap').children[0].children[1].style.display = 'none';
                 document.getElementById('Bb3-wrap').children[2].children[0].style.display = 'none';
-            } else if ( modeArray[i][3] === 'MB' ) {
+            } else if (modeArray[i][3] === 'MB') {
                 flatOnSharpOff();
                 document.getElementById('Gb4-wrap').children[0].children[0].style.display = 'block';
-                document.getElementById('Gb4-wrap').children[2].children[0].style.display = 'block';    
+                document.getElementById('Gb4-wrap').children[2].children[0].style.display = 'block';
             } else {
                 flatOnSharpOn();
                 flatOffSharpOff();
             }
-            if ( modeArray[i][3] === 'fs' ) {
+            if (modeArray[i][3] === 'fs') {
                 flatOffSharpOff();
-            } 
-            if ( modeArray[i][3] === 'Fs' ) {
+            }
+            if (modeArray[i][3] === 'Fs') {
                 flatOnSharpOff();
-            } 
-            if ( modeArray[i][3] === 'fS' ) {
+            }
+            if (modeArray[i][3] === 'fS') {
                 flatOffSharpOn();
-            } 
-            if ( modeArray[i][3] === 'FS' ) {
+            }
+            if (modeArray[i][3] === 'FS') {
                 flatOnSharpOn();
-            } 
+            }
 
         }
 

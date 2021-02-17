@@ -40,7 +40,7 @@ function instrumentCycle() {
             instrumentChoice[1][i].connect(audioCx.destination);
 
         }
-        
+
     }
 }
 
@@ -48,7 +48,7 @@ function instrumentCycle() {
 function testPlay(index, noteId) {
     let item = document.getElementById(`${noteId}-wrap`);
     // console.log(item);
-    if ( pracModeBool === true ) {
+    if (pracModeBool === true) {
         // do nothing
     } else {
         lightUp(item);
@@ -65,7 +65,7 @@ function testPlay(index, noteId) {
         currentAudio.pause();
         currentAudio.currentTime = 0;
     }
-
+    
     instrumentChoice[0][index].play();
     currentAudio = instrumentChoice[0][index];
 }

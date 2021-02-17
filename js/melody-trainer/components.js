@@ -6,13 +6,10 @@ function accidentalToggles(btnId) {
     // button specific variables
     let sharpDisplay;
     let sharps;
-
     let flatDisplay;
     let flats;
-
     let degDisplay;
     let degrees;
-
     let solfDisplay;
     let syllables;
 
@@ -32,14 +29,14 @@ function accidentalToggles(btnId) {
         for (let i = 0; i < btnInfo[btnId][3].length; i++) {
             btnInfo[btnId][3][i].style.display = "none";
         }
-        document.getElementById(btnInfo[btnId][0]).style.backgroundColor = "pink";
+        document.getElementById(btnInfo[btnId][0]).style.backgroundColor = "rgb(239, 239, 239)";
         btnInfo[btnId][2].display = "false";
 
     } else if (btnInfo[btnId][2].display === "false") {
         for (let i = 0; i < btnInfo[btnId][3].length; i++) {
             btnInfo[btnId][3][i].style.display = "block";
         }
-        document.getElementById(btnInfo[btnId][0]).style.backgroundColor = "rgb(239, 239, 239)";
+        document.getElementById(btnInfo[btnId][0]).style.backgroundColor = "pink";
         btnInfo[btnId][2].display = "true";
 
     }
@@ -90,6 +87,10 @@ function powerToggle() {
 
     if (initialLoad == true) {
         document.getElementById("power-switch").style.backgroundColor = "pink";
+        document.getElementById("solf-switch").style.backgroundColor = "pink";
+        document.getElementById("deg-switch").style.backgroundColor = "pink";
+        document.getElementById("acc-switch").style.backgroundColor = "pink";
+
         instrumentCycle();
         initialLoad = !initialLoad;
         instPower = true;
@@ -97,6 +98,7 @@ function powerToggle() {
 
     modeSelect();
     freeModeToggle();
+
 }
 
 // || Pattern Verification
@@ -104,7 +106,6 @@ function powerToggle() {
 function patCheck() {
 
     if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1] && userPat.length === melodyPat.length) {
-        // console.log('Next round');
         userPointerOff();
 
         setTimeout(function () {
@@ -117,14 +118,11 @@ function patCheck() {
 
         lastRoundScore = userPat.length;
     } else if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1]) {
-        // step for successful turn, but incomplete pattern.
-
+        // step for successful turn, but incomplete pattern
     } else {
         pracModeBool = false;
         scorePush();
-
         setTimeout(() => alert("Game Over"), 10);
-
         melodyPat = [];
         userPat = [];
         lastRoundScore = 0;
@@ -172,19 +170,18 @@ function klangToggle() {
     }
 }
 
-// || DOES NOT WORK
+// Accidentals toggle switch
 
-// function accidentalDisplay() {
-//     accidentalBool = !accidentalBool;
-//     if (accidentalBool == true) {
-//         document.getElementById("acc-switch").style.backgroundColor = "pink";
-//     } else {
-//         document.getElementById("acc-switch").style.backgroundColor = "rgb(239, 239, 239)";
-//     }
-// }
-
-// || DOES NOT WORK END
-
+function accidentalToggle() {
+    accDisplayBool = !accDisplayBool;
+    if (accDisplayBool == true) {
+        document.getElementById("acc-switch").style.backgroundColor = "pink";
+    } else {
+        document.getElementById("acc-switch").style.backgroundColor = "rgb(239, 239, 239)";
+    }
+    // call display toggle function on current mode
+    accidentalDisplay(availNotes);
+}
 
 // || Past Scores 
 
@@ -237,7 +234,6 @@ function playNote(url) {
     return new Promise(function (resolve, reject) { // return a promise
         var audio = new Audio(url); // create audio wo/ src
         currentAudio = audio;
-
         audio.play() // autoplay when loaded
         audio.onerror = reject; // on error, reject
         audio.onended = resolve; // when done, resolve
