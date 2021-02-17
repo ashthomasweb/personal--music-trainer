@@ -24,6 +24,7 @@ function powerSwitch() {
         instPower = true;
     }
 
+    tonicStartToggle();
     modeSelect();
     freeModeToggle();
 }

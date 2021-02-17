@@ -27,9 +27,9 @@ let wholeToneIndex = ["Gb3", "Ab3", "Bb3", "C4", "D4", "E4", "Gb4", "Ab4", "Bb4"
 // array of mode [Name, index, triad type, default accidental]
 // upper/lowercase f/s indicates flats/sharps on/off. Upper is ON
 let modeArray = [
-    ["Major", majorIndex, 'major', 'fs'],
+    ["Major", majorIndex, 'major', 'Fs'],
     ["Minor", minorIndex, 'minor', 'Fs'],
-    ["Anhematonic Major", anhemMajIndex, 'major', 'fs'],
+    ["Anhematonic Major", anhemMajIndex, 'major', 'Fs'],
     ["Anhematonic Minor", anhemMinIndex, 'minor', 'Fs'],
     ["Major Blues", majorBluesIndex, 'major', 'FS'],
     ["Minor Blues", minorBluesIndex, 'minor', 'MB'],
@@ -39,7 +39,7 @@ let modeArray = [
     ["Bebop Predominant", bebopPreIndex, 'minor', 'BP'],
     ["Bebop Dominant", bebopDomIndex, 'major', 'FS'],
     ["Lydian", lydianIndex, 'major', 'fS'],
-    ["Ionian", ionianIndex, 'major', 'fs'],
+    ["Ionian", ionianIndex, 'major', 'Fs'],
     ["Mixolydian", mixolydianIndex, 'major', 'Fs'],
     ["Dorian", dorianIndex, 'minor', 'Fs'],
     ["Aeolian", aolianIndex, 'minor', 'Fs'],
@@ -51,7 +51,8 @@ let modeArray = [
     ["Whole Tone", wholeToneIndex, 'augmented', 'FS']
 ];
 
-let modeChoice = modeArray[0][0];
+let modeChoiceName = modeArray[0][0];
+let modeChoice = modeArray[0];
 let availNotes = modeArray[0][1];
 let modePos = 0;
 
@@ -62,11 +63,12 @@ function modeCycle() {
     } else {
         modePos++;
     }
-    modeChoice = modeArray[modePos][0];
+    modeChoice = modeArray[modePos];
+    modeChoiceName = modeArray[modePos][0];
     availNotes = modeArray[modePos][1];
     modeType = modeArray[modePos][2];
-    document.getElementById("mode-type").innerText = modeChoice;
-    modeScore = modeChoice;
+    document.getElementById("mode-type").innerText = modeChoiceName;
+    modeScore = modeChoiceName;
     modeSelect();
 }
 
@@ -130,7 +132,8 @@ function modeSelect() {
 
     for (let i = 0; i < modeArray.length; i++) {
 
-        if (modeChoice == modeArray[i][0]) {
+        if (modeChoiceName == modeArray[i][0]) {
+            // display notes
             accidentalDisplay(modeArray[i][1]);
 
             if (modeArray[i][3] === 'BP') {
@@ -164,4 +167,18 @@ function modeSelect() {
 
 }
 
+// Accidental difference array
+function accDifference() {
+    if ( accDisplayBool === false ) {
+        accidentalToggle();
+    } else {
+        // do nothing
+    }
+    
+    diffArray = chromIndex.filter(x => !modeChoice[1].includes(x));
+    
+
+    console.log(diffArray);
+
+}
 // End of document

@@ -12,8 +12,12 @@ let initialLoad = true;
 let instPower = false;
 let cadenceBool = false;
 let accDisplayBool = true;
+let accModeBool = false;
+let tonicStartBool = false;
 
 let pastScores = [];
+let diffArray = []
+
 
 // helper function variables
 let instrumentChoice;

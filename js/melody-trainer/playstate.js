@@ -1,22 +1,9 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // || Scale Degree Set 
 
 function buildMelody() {
+    let newNote;
     pracModeBool = true;
 
     userPat = [];
@@ -27,7 +14,12 @@ function buildMelody() {
         // do nothing
     }
 
-    let newNote = availNotes[Math.floor(Math.random() * availNotes.length)];
+    if ( accModeBool === true && Math.floor(Math.random() * 5) === 0 ) {
+        newNote = diffArray[Math.floor(Math.random() * diffArray.length)];
+    } else {
+        newNote = availNotes[Math.floor(Math.random() * availNotes.length)];
+    }
+
 
     // force tonic more often
     if (newNote !== "C4") {
@@ -36,9 +28,14 @@ function buildMelody() {
         }
     }
 
+    // force tonic on first turn
+    if ( tonicStartBool === true && melodyPat.length === 0 ) {
+        Math.floor(Math.random() * 2) === 0 ? newNote = "C4" : newNote = "C5" ;
+    }
+
     noteSwitch(newNote);
     melodyPat.push(newNote);
-    // console.log(`Melody pattern is: ${melodyPat}`);
+    console.log(`Melody pattern is: ${melodyPat}`);
 
     if (klangBool == true) {
         instrumentCycle();
@@ -68,6 +65,7 @@ function patCheck() {
     } else if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1]) {
         // step for successful turn, but incomplete pattern
     } else {
+        console.log(`This is the userPat: ${userPat}`);
         pracModeBool = false;
         freeModeToggle();
         scorePush();

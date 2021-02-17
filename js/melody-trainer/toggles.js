@@ -81,6 +81,27 @@ function accidentalToggle() {
     accidentalDisplay(availNotes);
 }
 
+function accidentalModeToggle() {
+    accModeBool = !accModeBool;
+    accDifference();
+    if (accModeBool == true) {
+        document.getElementById("acc-mode-switch").style.backgroundColor = "pink";
+    } else {
+        document.getElementById("acc-mode-switch").style.backgroundColor = "rgb(239, 239, 239)";
+    }
+}
+
+
+// Tonic Start
+
+function tonicStartToggle() {
+    tonicStartBool = !tonicStartBool;
+    if (tonicStartBool == true) {
+        document.getElementById("tonic-switch").style.backgroundColor = "pink";
+    } else {
+        document.getElementById("tonic-switch").style.backgroundColor = "rgb(239, 239, 239)";
+    }
+}
 
 
 // END of document 
