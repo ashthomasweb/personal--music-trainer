@@ -48,9 +48,12 @@ function accidentalToggles(btnId) {
 function freeModeToggle() {
     freeModeBool = !freeModeBool;
     if (freeModeBool == true) {
-        document.getElementById("free-mode-switch").style.backgroundColor = "pink";
+        document.getElementById("free-mode-switch").style.backgroundColor = "red";
+        document.getElementById("free-mode-switch").style.color = "black";
+
     } else {
         document.getElementById("free-mode-switch").style.backgroundColor = "rgb(239, 239, 239)";
+        document.getElementById("free-mode-switch").style.color = "grey";
     }
 }
 

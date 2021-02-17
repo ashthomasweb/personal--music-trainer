@@ -28,11 +28,11 @@
   <div class="grid-container">
     <div class="header">
       <h1>Melodic Trainer</h1>
-      <button type="button" onclick="document.location='/'">Menu</button>
+      <button type="button" onclick="document.location='https://rideoutweb.github.io/personal--music-trainer/'">Menu</button>
       <br>
       <button id="power-switch" type="button" onclick="powerSwitch()">Power</button>
       <button type="button" onclick="buildMelody()">Start Practice!</button>
-      <button id="free-mode-switch" type="button" onclick="freeModeToggle()">Free Mode</button>
+      <div id="free-mode-switch" class="free-mode-display">Free Mode</div>
     </div>
     <div class="scores">
       <h2>High Score</h2>
@@ -203,7 +203,7 @@
   <script src="js/melody-trainer/webaudio.js" charset="utf-8"></script>
   <script src="js/melody-trainer/playstate.js" charset="utf-8"></script>
   <script src="js/melody-trainer/modes.js" charset="utf-8"></script>
-  <script src="js/melody-trainer/components.js" charset="utf-8"></script>
+  <script src="js/melody-trainer/toggles.js" charset="utf-8"></script>
   <script src="js/melody-trainer/cadences.js" charset="utf-8"></script>
   <script src="js/melody-trainer/animations.js" charset="utf-8"></script>
 </body>
