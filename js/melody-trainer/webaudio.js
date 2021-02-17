@@ -3,6 +3,31 @@
 // array of instrument sources
 let instrumentBank = [pianoSource, tenorSaxSource, pipeOrganSource, frenchHornSource, violinSource, marimbaSource];
 
+function powerSwitch() {
+
+    if (instPower == true) {
+        audioCx.suspend;
+        document.getElementById("power-switch").style.backgroundColor = "rgb(239, 239, 239)";
+    } else {
+        audioCx.resume;
+        document.getElementById("power-switch").style.backgroundColor = "pink";
+    }
+
+    if (initialLoad == true) {
+        document.getElementById("power-switch").style.backgroundColor = "pink";
+        document.getElementById("solf-switch").style.backgroundColor = "pink";
+        document.getElementById("deg-switch").style.backgroundColor = "pink";
+        document.getElementById("acc-switch").style.backgroundColor = "pink";
+
+        instrumentCycle();
+        initialLoad = !initialLoad;
+        instPower = true;
+    }
+
+    modeSelect();
+    freeModeToggle();
+}
+
 // changes instrument source
 function instrumentCycle() {
 
@@ -44,8 +69,81 @@ function instrumentCycle() {
     }
 }
 
+// Promise object returning on audio end
+function playNotePromise(url) {
+    return new Promise(function (resolve, reject) { // return a promise
+        var audio = new Audio(url); // create audio wo/ src
+        currentAudio = audio;
+        audio.play() // autoplay when loaded
+        audio.onerror = reject; // on error, reject
+        audio.onended = resolve; // when done, resolve
+
+    });
+}
+
+// named event listener
+function playSound() {
+
+    let i = Array.from(this.parentElement.parentElement.children).indexOf(this.parentElement);
+
+    // resume audioCx
+    if (audioCx.state === 'suspended') {
+        audioCx.resume();
+    }
+
+    // stop currently playing audio. needs refactor as gain decrease for legato feel
+    if (currentAudio === undefined || cadenceBool == true) {
+        // do nothing 
+    } else {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+
+    // animate sounding note
+    lightUp(this.parentElement);
+
+    // play note and repeat note condition
+    if (noteButtonArray[i].dataset.playing === 'false') {
+
+        playNotePromise(instrumentChoice[0][i].src).then(function () {
+            noteButtonArray[i].dataset.playing = 'false'
+        });
+
+        noteButtonArray[i].dataset.playing = 'true';
+    } else if (noteButtonArray[i].dataset.playing === 'true') {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+
+        playNotePromise(instrumentChoice[0][i].src).then(function () {
+            noteButtonArray[i].dataset.playing = 'false'
+        });
+
+        noteButtonArray[i].dataset.playing = 'true';
+    }
+
+    // grab played noted name and push to userPat array for checking
+    let userPick = noteButtonArray[i].parentElement.className.replace('wrap ', '').replace(' anim-light-up', '');
+    userPat.push(userPick);
+    // console.log(`This is the userPat: ${userPat}`);
+
+    // prevent pattern check during 'free mode'
+    if (freeModeBool === true) {
+        // do nothing
+    } else {
+        patCheck();
+    }
+
+    // cycle instrument if klang is 'on'
+    if (klangBool == true) {
+        instrumentCycle();
+    } else {
+        // do nothing
+    }
+
+}
+
 // webAudio declared function for noteSwitch
-function testPlay(index, noteId) {
+function playNote(index, noteId) {
     let item = document.getElementById(`${noteId}-wrap`);
     // console.log(item);
     if (pracModeBool === true) {
@@ -75,87 +173,84 @@ function noteSwitch(noteId) {
     switch (noteId) {
 
         case "C5":
-            testPlay(0, noteId);
+            playNote(0, noteId);
             break;
 
         case "B4":
-            testPlay(1, noteId);
+            playNote(1, noteId);
             break;
 
         case "Bb4":
-            testPlay(2, noteId);
+            playNote(2, noteId);
             break;
 
         case "A4":
-            testPlay(3, noteId);
+            playNote(3, noteId);
             break;
 
         case "Ab4":
-            testPlay(4, noteId);
+            playNote(4, noteId);
             break;
 
         case "G4":
-            testPlay(5, noteId);
+            playNote(5, noteId);
             break;
 
         case "Gb4":
-            testPlay(6, noteId);
+            playNote(6, noteId);
             break;
 
         case "F4":
-            testPlay(7, noteId);
+            playNote(7, noteId);
             break;
 
         case "E4":
-            testPlay(8, noteId);
+            playNote(8, noteId);
             break;
 
         case "Eb4":
-            testPlay(9, noteId);
+            playNote(9, noteId);
             break;
 
         case "D4":
-            testPlay(10, noteId);
+            playNote(10, noteId);
             break;
 
         case "Db4":
-            testPlay(11, noteId);
+            playNote(11, noteId);
             break;
 
         case "C4":
-            testPlay(12, noteId);
+            playNote(12, noteId);
             break;
 
         case "B3":
 
-            testPlay(13, noteId);
+            playNote(13, noteId);
             break;
 
         case "Bb3":
-            testPlay(14, noteId);
+            playNote(14, noteId);
             break;
 
         case "A3":
-            testPlay(15, noteId);
+            playNote(15, noteId);
             break;
 
         case "Ab3":
-            testPlay(16, noteId);
+            playNote(16, noteId);
             break;
 
         case "G3":
-            testPlay(17, noteId);
+            playNote(17, noteId);
             break;
 
         case "Gb3":
-            testPlay(18, noteId);
+            playNote(18, noteId);
             break;
 
         default:
     }
 }
-
-
-
 
 // END of document
