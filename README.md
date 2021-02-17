@@ -26,11 +26,9 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 * Playable on any device.
 
 ## To-do List:
-* Create Tempo Trainer.
 * Create Melodic Dictation Trainer.
 * Sample extended range for piano.
 * Create Key Center option with piano extended range.
-* Klangfarbenmelodie mode.
 
 ## Known Issues
 * Incomplete. 
