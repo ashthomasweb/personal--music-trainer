@@ -74,12 +74,26 @@ function instrumentCycle() {
     }
 }
 
+// // Promise object returning on audio end
+// function playNotePromise(url) {
+//     return new Promise(function (resolve, reject) {
+//         // create audio wo/ src
+//         var audio = url;
+//         currentAudio = audio;
+//         // autoplay when loaded
+//         audio.play();
+//         audio.onerror = reject;
+//         audio.onended = resolve;
+//     });
+// }
+
 // Promise object returning on audio end
 function playNotePromise(url) {
-    return new Promise( (resolve, reject) => {
-        // create obj with webAudio node
-        var audio = url;
+    return new Promise(function (resolve, reject) {
+        // create audio wo/ src
+        var audio = new Audio(url);
         currentAudio = audio;
+        // autoplay when loaded
         audio.play();
         audio.onerror = reject;
         audio.onended = resolve;
@@ -108,18 +122,18 @@ function playSound() {
     lightUp(this.parentElement);
 
     console.log(instrumentChoice[0][i].src);
-    console.log(instrumentChoice[0][i]);
+    console.log(instrumentChoice[0][i].src);
 
     // play note and repeat note condition
     if (noteButtonArray[i].dataset.playing === 'false') {
-        playNotePromise(instrumentChoice[0][i]).then(function () {
+        playNotePromise(instrumentChoice[0][i].src).then(function () {
             noteButtonArray[i].dataset.playing = 'false'
         });
         noteButtonArray[i].dataset.playing = 'true';
     } else if (noteButtonArray[i].dataset.playing === 'true') {
         currentAudio.pause();
         currentAudio.currentTime = 0;
-        playNotePromise(instrumentChoice[0][i]).then(function () {
+        playNotePromise(instrumentChoice[0][i].src).then(function () {
             noteButtonArray[i].dataset.playing = 'false'
         });
         noteButtonArray[i].dataset.playing = 'true';
