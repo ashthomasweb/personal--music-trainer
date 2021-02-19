@@ -398,6 +398,23 @@ button:focus {
     color: grey;
 }
 
+.color-box {
+    position: absolute;
+    left: -50px;
+    display: none;
+
+}
+
+.wrap input {
+    display: none;
+    position: absolute;
+
+}
+
+.color-pick {
+    
+}
+
 
 
 /* END of document */

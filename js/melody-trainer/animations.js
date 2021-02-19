@@ -32,3 +32,14 @@ function lightUp(input) {
     }
 
 }
+
+// Color Picker
+
+function changeColor() {
+    let C5btn = document.getElementById('C5-btn');
+    let C5pick = document.getElementById('pick-C5');
+
+    C5btn.style.backgroundColor = C5pick.value;
+
+
+}

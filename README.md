@@ -31,7 +31,7 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 * Create Key Center option with piano extended range.
 
 ## Known Issues
-* Incomplete. 
+* Mobile issues: webAudio tends to error and produce poor sound quality. HTML5 audio is extremely laggy.
 
 ## Status
 Project is: _in development_. This is a long-term project. Check back later!

@@ -14,7 +14,7 @@ let cadenceBool = false;
 let accDisplayBool = true;
 let accModeBool = false;
 let tonicStartBool = false;
-
+let colorPickBool = false;
 let pastScores = [];
 let diffArray = []
 

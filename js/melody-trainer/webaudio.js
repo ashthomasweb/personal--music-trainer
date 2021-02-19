@@ -2,11 +2,11 @@
 
 // array of instrument sources
 let instrumentBank = [
-    pianoSource, 
-    tenorSaxSource, 
-    pipeOrganSource, 
-    frenchHornSource, 
-    violinSource, 
+    pianoSource,
+    tenorSaxSource,
+    pipeOrganSource,
+    frenchHornSource,
+    violinSource,
     marimbaSource
 ];
 
@@ -74,26 +74,37 @@ function instrumentCycle() {
     }
 }
 
-// // Promise object returning on audio end
-// function playNotePromise(url) {
-//     return new Promise(function (resolve, reject) {
-//         // create audio wo/ src
-//         var audio = url;
-//         currentAudio = audio;
-//         // autoplay when loaded
-//         audio.play();
-//         audio.onerror = reject;
-//         audio.onended = resolve;
-//     });
+// function adjustPromise(mobile) {
+//     if (mobile.matches) {
+//         // Promise object returning on audio end
+//        console.log( 'mobile');
+//     } else {
+//         console.log('desktop');
+//         // Promise object returning on audio end
+//         function playNotePromise(url) {
+//             return new Promise(function (resolve, reject) {
+//                 // create audio wo/ src
+//                 var audio = new Audio(url);
+//                 currentAudio = audio;
+//                 // autoplay when loaded
+//                 audio.play();
+//                 audio.onerror = reject;
+//                 audio.onended = resolve;
+//             });
+//         }
+//     }
 // }
+// let mobile = window.matchMedia("(min-width: 0px) and (max-width: 450px)");
+// adjustPromise(mobile);
+// mobile.addListener(adjustPromise);
 
-// Promise object returning on audio end
+
 function playNotePromise(url) {
     return new Promise(function (resolve, reject) {
-        // create audio wo/ src
-        var audio = new Audio(url);
+        // webAudio url
+        var audio = url;
         currentAudio = audio;
-        // autoplay when loaded
+        // play when loaded
         audio.play();
         audio.onerror = reject;
         audio.onended = resolve;
@@ -126,14 +137,14 @@ function playSound() {
 
     // play note and repeat note condition
     if (noteButtonArray[i].dataset.playing === 'false') {
-        playNotePromise(instrumentChoice[0][i].src).then(function () {
+        playNotePromise(instrumentChoice[0][i]).then(function () {
             noteButtonArray[i].dataset.playing = 'false'
         });
         noteButtonArray[i].dataset.playing = 'true';
     } else if (noteButtonArray[i].dataset.playing === 'true') {
         currentAudio.pause();
         currentAudio.currentTime = 0;
-        playNotePromise(instrumentChoice[0][i].src).then(function () {
+        playNotePromise(instrumentChoice[0][i]).then(function () {
             noteButtonArray[i].dataset.playing = 'false'
         });
         noteButtonArray[i].dataset.playing = 'true';

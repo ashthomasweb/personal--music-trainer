@@ -91,7 +91,6 @@ function accidentalModeToggle() {
     }
 }
 
-
 // Tonic Start
 
 function tonicStartToggle() {
@@ -103,5 +102,25 @@ function tonicStartToggle() {
     }
 }
 
+// Color Picker
+
+function colorPicker() {
+    colorPickBool = !colorPickBool;
+    if (colorPickBool == true) {
+        document.getElementById("color-switch").style.backgroundColor = "pink";
+        document.getElementsByClassName('color-box')[0].style.display = 'block';
+        for ( let i = 0; i < document.getElementsByClassName('color-pick').length; i++ ) {
+            document.getElementsByClassName('color-pick')[i].style.display = 'block';
+        }
+
+
+    } else {
+        document.getElementById("color-switch").style.backgroundColor = "rgb(239, 239, 239)";
+        document.getElementsByClassName('color-box')[0].style.display = 'none';
+        for ( let i = 0; i < document.getElementsByClassName('color-pick').length; i++ ) {
+            document.getElementsByClassName('color-pick')[i].style.display = 'none';
+        }
+    }
+}
 
 // END of document 
