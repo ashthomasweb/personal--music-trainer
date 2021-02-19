@@ -1,5 +1,13 @@
 /* Layout CSS file for "Music Trainer" */
 
+:root {
+    --pianokey: ivory;
+    --keyhover: rgb(69, 103, 79);
+}
+
+
+
+
 html {
     -ms-touch-action: manipulation;
         touch-action: manipulation;
@@ -103,13 +111,9 @@ html {
     width: 130px;
     height: 100%;
     border-radius: 10px;
-    background-color: ivory;
+    background-color: var(--pianokey);
     cursor: pointer;
     transition: background-color .2s;
-}
-
-.wrap button:hover {
-    background-color: rgb(69, 103, 79);
 }
 
 .C5 {
@@ -117,9 +121,17 @@ html {
     display: inline-block;
 }
 
+.C5 button:hover {
+    background-color: var(--keyhover0);
+}
+
 .B4 {
     grid-area: B4;
     display: inline-block;
+}
+
+.B4 button:hover {
+    background-color: var(--keyhover1);
 }
 
 .Bb4 {
@@ -127,9 +139,17 @@ html {
     display: inline-block;
 }
 
+.Bb4 button:hover {
+    background-color: var(--keyhover2);
+}
+
 .A4 {
     grid-area: A4;
     display: inline-block;
+}
+
+.A4 button:hover {
+    background-color: var(--keyhover3);
 }
 
 .Ab4 {
@@ -137,9 +157,16 @@ html {
     display: inline-block;
 }
 
+.Ab4 button:hover {
+    background-color: var(--keyhover4);
+}
+
 .G4 {
     grid-area: G4;
     display: inline-block;
+}
+.G4 button:hover {
+    background-color: var(--keyhover5);
 }
 
 .Gb4 {
@@ -147,9 +174,17 @@ html {
     display: inline-block;
 }
 
+.Gb4 button:hover {
+    background-color: var(--keyhover6);
+}
+
 .F4 {
     grid-area: F4;
     display: inline-block;
+}
+
+.F4 button:hover {
+    background-color: var(--keyhover7);
 }
 
 .E4 {
@@ -157,9 +192,17 @@ html {
     display: inline-block;
 }
 
+.E4 button:hover {
+    background-color: var(--keyhover8);
+}
+
 .Eb4 {
     grid-area: Eb4;
     display: inline-block;
+}
+
+.Eb4 button:hover {
+    background-color: var(--keyhover9);
 }
 
 .D4 {
@@ -167,9 +210,17 @@ html {
     display: inline-block;
 }
 
+.D4 button:hover {
+    background-color: var(--keyhover10);
+}
+
 .Db4 {
     grid-area: Db4;
     display: inline-block;
+}
+
+.Db4 button:hover {
+    background-color: var(--keyhover11);
 }
 
 .C4 {
@@ -177,9 +228,17 @@ html {
     display: inline-block;
 }
 
+.C4 button:hover {
+    background-color: var(--keyhover12);
+}
+
 .B3 {
     grid-area: B3;
     display: inline-block;
+}
+
+.B3 button:hover {
+    background-color: var(--keyhover13);
 }
 
 .Bb3 {
@@ -187,9 +246,17 @@ html {
     display: inline-block;
 }
 
+.Bb3 button:hover {
+    background-color: var(--keyhover14);
+}
+
 .A3 {
     grid-area: A3;
     display: inline-block;
+}
+
+.A3 button:hover {
+    background-color: var(--keyhover15);
 }
 
 .Ab3 {
@@ -197,14 +264,26 @@ html {
     display: inline-block;
 }
 
+.Ab3 button:hover {
+    background-color: var(--keyhover16);
+}
+
 .G3 {
     grid-area: G3;
     display: inline-block;
 }
 
+.G3 button:hover {
+    background-color: var(--keyhover17);
+}
+
 .Gb3 {
     grid-area: Gb3;
     display: inline-block;
+}
+
+.Gb3 button:hover {
+    background-color: var(--keyhover18);
 }
 
 button:focus {
@@ -411,9 +490,9 @@ button:focus {
 
 }
 
-.color-pick {
+/* .color-pick {
     
-}
+} */
 
 
 

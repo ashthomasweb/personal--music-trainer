@@ -81,30 +81,29 @@
       <button id="acc-switch" type="button" onclick="accidentalToggle()">Accidental Display</button>
       <button id="acc-mode-switch" type="button" onclick="accidentalModeToggle()">Accidental Mode</button>
       <button id="tonic-switch" type="button" onclick="tonicStartToggle()">Tonic Start</button>
-      <button id="color-switch" type="button" onclick="colorPicker()">Color Picker</button>
+      <button id="color-switch" style="display: inline-block;" type="button" onclick="colorPicker()">Color Pick</button>
+      <button id="color-save" style="width: 50px; display: inline-block;" type="color-submit" onclick="changeColor()">Save</button>
 
     </div>
+    
     <div class="note-container">
-      <div class="color-box">
-        <button style="width: 50px;" type="color-submit" onclick="changeColor()">Save</button>
-      </div>
       
       <div id="C5-wrap" class="wrap C5">
         <div class="syllable">Do</div>
-        <input type="color" id="color-C5"  class="color-pick" value="#e66465">
+        <input type="color" id="color-C5"  class="color-pick" value="#006400">
         <button id="C5-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class=" degree">1<span class="degree-hat">^</span></div>
       </div>
 
       <div id="B4-wrap" class="wrap B4">
-        <input type="color" id="color-B4" class="color-pick" value="#e66465">
+        <input type="color" id="color-B4" class="color-pick" value="#006400">
         <div class="syllable">Ti</div>
         <button id="B4-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree">7<span class="degree-hat">^</span></div>
       </div>
 
       <div id="Bb4-wrap" class="wrap Bb4">
-        <input type="color" id="color-Bb4"  class="color-pick" value="#e66465">
+        <input type="color" id="color-Bb4"  class="color-pick" value="#006400">
         <div class="syllable"><span class="acc-flat">Te</span><span class="acc-sharp">Li</span></div>
         <button id="Bb4-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree"><span class="acc-sharp">#6<span class="degree-hat-accidental">^</span></span><span
@@ -112,14 +111,14 @@
       </div>
 
       <div id="A4-wrap" class="wrap A4">
-        <input type="color" id="color-A4"  class="color-pick" value="#e66465">
+        <input type="color" id="color-A4"  class="color-pick" value="#006400">
         <div class="syllable">La</div>
         <button id="A4-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree">6<span class="degree-hat">^</span></div>
       </div>
 
       <div id="Ab4-wrap" class="wrap Ab4">
-        <input type="color" id="color-Ab4"  class="color-pick" value="#e66465">
+        <input type="color" id="color-Ab4"  class="color-pick" value="#006400">
         <div class="syllable"><span class="acc-flat">Le</span><span class="acc-sharp">Si</span></div>
         <button id="Ab4-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree"><span class="acc-sharp">#5<span class="degree-hat-accidental">^</span></span><span
@@ -127,14 +126,14 @@
       </div>
 
       <div id="G4-wrap" class="wrap G4">
-        <input type="color" id="color-G4"  class="color-pick" value="#e66465">
+        <input type="color" id="color-G4"  class="color-pick" value="#006400">
         <div class="syllable">So</div>
         <button id="G4-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree">5<span class="degree-hat">^</span></div>
       </div>
 
       <div id="Gb4-wrap" class="wrap Gb4">
-        <input type="color" id="color-Gb4"  class="color-pick" value="#e66465">
+        <input type="color" id="color-Gb4"  class="color-pick" value="#006400">
         <div class="syllable"><span class="acc-sharp">Fi</span><span class="acc-flat">Se</span></div>
         <button id="Gb4-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree"><span class="acc-sharp">#4<span class="degree-hat-accidental">^</span></span><span
@@ -142,21 +141,21 @@
       </div>
 
       <div id="F4-wrap" class="wrap F4">
-        <input type="color" id="color-F4"  class="color-pick" value="#e66465">
+        <input type="color" id="color-F4"  class="color-pick" value="#006400">
         <div class="syllable">Fa</div>
         <button id="F4-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree">4<span class="degree-hat">^</span></div>
       </div>
 
       <div id="E4-wrap" class="wrap E4">
-        <input type="color" id="color-E4"  class="color-pick" value="#e66465">
+        <input type="color" id="color-E4"  class="color-pick" value="#006400">
         <div class="syllable">Mi</div>
         <button id="E4-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree">3<span class="degree-hat">^</span></div>
       </div>
 
       <div id="Eb4-wrap" class="wrap Eb4">
-        <input type="color" id="color-Eb4"  class="color-pick" value="#e66465">
+        <input type="color" id="color-Eb4"  class="color-pick" value="#006400">
         <div class="syllable"><span class="acc-flat">Me</span><span class="acc-sharp">Ri</span></div>
         <button id="Eb4-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree"><span class="acc-sharp">#2<span class="degree-hat-accidental">^</span></span><span
@@ -164,14 +163,14 @@
       </div>
 
       <div id="D4-wrap" class="wrap D4">
-        <input type="color" id="color-D4"  class="color-pick" value="#e66465">
+        <input type="color" id="color-D4"  class="color-pick" value="#006400">
         <div class="syllable">Re</div>
         <button id="D4-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree">2<span class="degree-hat">^</span></div>
       </div>
 
       <div id="Db4-wrap" class="wrap Db4">
-        <input type="color" id="color-Db4"  class="color-pick" value="#e66465">
+        <input type="color" id="color-Db4"  class="color-pick" value="#006400">
         <div class="solf2 syllable"><span class="acc-flat">Ra</span><span class="acc-sharp">Di</span></div>
         <button id="Db4-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree"><span class="acc-sharp">#1<span class="degree-hat-accidental">^</span></span><span
@@ -179,21 +178,21 @@
       </div>
 
       <div id="C4-wrap" class="wrap C4">
-        <input type="color" id="color-C4"  class="color-pick" value="#e66465">
+        <input type="color" id="color-C4"  class="color-pick" value="#006400">
         <div class="solf1 syllable">Do</div>
         <button id="C4-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree">1<span class="degree-hat">^</span></div>
       </div>
 
       <div id="B3-wrap" class="wrap B3">
-        <input type="color" id="color-B3"  class="color-pick" value="#e66465">
+        <input type="color" id="color-B3"  class="color-pick" value="#006400">
         <div class="syllable">Ti</div>
         <button id="B3-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree">7<span class="degree-hat">^</span></div>
       </div>
 
       <div id="Bb3-wrap" class="wrap Bb3">
-        <input type="color" id="color-Bb3"  class="color-pick" value="#e66465">
+        <input type="color" id="color-Bb3"  class="color-pick" value="#006400">
         <div class="syllable"><span class="acc-flat">Te</span><span class="acc-sharp">Li</span></div>
         <button id="Bb3-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree"><span class="acc-sharp">#6<span class="degree-hat-accidental">^</span></span><span
@@ -201,14 +200,14 @@
       </div>
 
       <div id="A3-wrap" class="wrap A3">
-        <input type="color" id="color-A3"  class="color-pick" value="#e66465">
+        <input type="color" id="color-A3"  class="color-pick" value="#006400">
         <div class="syllable">La</div>
         <button id="A3-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree">6<span class="degree-hat">^</span></div>
       </div>
 
       <div id="Ab3-wrap" class="wrap Ab3">
-        <input type="color" id="color-Ab3"  class="color-pick" value="#e66465">
+        <input type="color" id="color-Ab3"  class="color-pick" value="#006400">
         <div class="syllable"><span class="acc-flat">Le</span><span class="acc-sharp">Si</span></div>
         <button id="Ab3-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree"><span class="acc-sharp">#5<span class="degree-hat-accidental">^</span></span><span
@@ -216,14 +215,14 @@
       </div>
 
       <div id="G3-wrap" class="wrap G3">
-        <input type="color" id="color-G3"  class="color-pick" value="#e66465">
+        <input type="color" id="color-G3"  class="color-pick" value="#006400">
         <div class="syllable">So</div>
         <button id="G3-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree">5<span class="degree-hat">^</span></div>
       </div>
 
       <div id="Gb3-wrap" class="wrap Gb3">
-        <input type="color" id="color-Gb3"  class="color-pick" value="#e66465">
+        <input type="color" id="color-Gb3"  class="color-pick" value="#006400">
         <div class="syllable"><span class="acc-flat">Se</span><span class="acc-sharp">Fi</span></div>
         <button id="Gb3-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree"><span class="acc-sharp">#4<span class="degree-hat-accidental">^</span></span><span

@@ -17,6 +17,7 @@ let tonicStartBool = false;
 let colorPickBool = false;
 let pastScores = [];
 let diffArray = []
+let colorArray = [];
 
 
 // helper function variables
