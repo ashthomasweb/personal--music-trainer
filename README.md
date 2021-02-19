@@ -23,7 +23,6 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 
 ## Features
 * In progress
-* Playable on any device.
 
 ## To-do List:
 * Create Melodic Dictation Trainer.
@@ -31,13 +30,13 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 * Create Key Center option with piano extended range.
 
 ## Known Issues
-* Mobile issues: webAudio tends to error and produce poor sound quality. HTML5 audio is extremely laggy.
+* Mobile issues: webAudio tends to error and produce poor sound quality. HTML5 audio is extremely laggy. Possible desktop-only app until further development.
 
 ## Status
-Project is: _in development_. This is a long-term project. Check back later!
+Project is: _in development_.
 
 ## Inspiration
-I built a memory game during my career transition that inspired me to connect the old and the new.
+I built a memory game during my career transition that inspired me to connect the old and the new. Synesthesia and color hearing both led me to include color choice options. 
 
 ## Contact
 Created by Ashley Thomas (https://www.ashthomasweb.com/) - feel free to contact me!
