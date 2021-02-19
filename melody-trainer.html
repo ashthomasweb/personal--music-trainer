@@ -83,6 +83,7 @@
       <button id="tonic-switch" type="button" onclick="tonicStartToggle()">Tonic Start</button>
       <button id="color-switch" style="display: inline-block;" type="button" onclick="colorPicker()">Color Pick</button>
       <button id="color-save" style="width: 50px; display: inline-block;" type="color-submit" onclick="changeColor()">Save</button>
+      <button id="keyboard-switch" type="button" onclick="keyboardToggle()">Keyboard On/Off</button>
 
     </div>
     
@@ -100,6 +101,7 @@
         <div class="syllable">Ti</div>
         <button id="B4-btn" type="button" data-anim="false" data-playing="false" class="note-btn"></button>
         <div class="degree">7<span class="degree-hat">^</span></div>
+        <button id="B4-keypress" type="button" onclick="assignKey()" class="keypress-btn">Assign</button>
       </div>
 
       <div id="Bb4-wrap" class="wrap Bb4">

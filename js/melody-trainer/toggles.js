@@ -102,6 +102,38 @@ function tonicStartToggle() {
     }
 }
 
+// Keybaord On
+
+function keyboardToggle() {
+    keyboardBool = !keyboardBool;
+    if (keyboardBool == true) {
+        document.getElementById("keyboard-switch").style.backgroundColor = "pink";
+        document.getElementById('B4-keypress').style.display = 'block';
+    } else {
+        document.getElementById("keyboard-switch").style.backgroundColor = "rgb(239, 239, 239)";
+        document.getElementById('B4-keypress').style.display = 'none';
+    }
+}
+
+let keyArray = [];
+
+function assignKey() {
+    window.addEventListener('keydown', (e) => {
+        console.log(e.keyCode);
+        keyArray.push(e.keyCode);
+    });
+    windowListener();
+}
+
+function windowListener() {
+    window.addEventListener('keydown', (e) => {
+        if( e.keyCode === keyArray[0] ) { // key is 'f'
+            noteSwitch('G4');
+        }
+    });
+}
+
+
 // Color Picker
 
 function colorPicker() {

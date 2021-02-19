@@ -117,7 +117,7 @@ html {
     height: 80%;
 }
 
-.wrap button {
+.note-btn {
     z-index: 20;
     position: absolute;
     left: 0;
@@ -705,6 +705,14 @@ button:focus {
     display: none;
     position: absolute;
 
+}
+
+
+.keypress-btn {
+    position: absolute;
+    left: 348px !important;
+    width: 55px !important;
+    display: none;
 }
 
 /* .color-pick {
