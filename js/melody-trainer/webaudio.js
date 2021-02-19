@@ -132,8 +132,8 @@ function playSound() {
     // animate sounding note
     lightUp(this.parentElement);
 
-    console.log(instrumentChoice[0][i].src);
-    console.log(instrumentChoice[0][i].src);
+    // console.log(instrumentChoice[0][i].src);
+    // console.log(instrumentChoice[0][i].src);
 
     // play note and repeat note condition
     if (noteButtonArray[i].dataset.playing === 'false') {
@@ -151,7 +151,7 @@ function playSound() {
     }
 
     // grab played noted name and push to userPat array for checking
-    let userPick = noteButtonArray[i].parentElement.className.replace('wrap ', '').replace(' anim-light-up', '');
+    let userPick = noteButtonArray[i].parentElement.id.replace('-wrap', '');
     userPat.push(userPick);
     // console.log(`This is the userPat: ${userPat}`);
 

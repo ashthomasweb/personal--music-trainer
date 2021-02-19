@@ -5,19 +5,28 @@ function lightUp(input) {
     // 'input' is the 'wrap' element containing the note elements
     //  as defined in the webAudio switch and listeners
 
+    // console.log('This is the passed variable: ' + input);
+    // console.log(input);
+    // console.log(Array.from(input.parentNode.children).indexOf(input));
+
+
+    let index = Array.from(input.parentNode.children).indexOf(input)
+
+    
+
     function startAnim() {
-        input.classList.add('anim-light-up');
+        input.classList.add('anim-light-' + index);
         input.children[1].dataset.anim = 'true';
 
         input.addEventListener('animationend', () => {
-            input.classList.remove('anim-light-up');
-            input.children[1].dataset.anim = 'false'
+            input.classList.remove('anim-light-' + index);
+            input.children[1].dataset.anim = 'false';
             input.style.backgroundColor = '#181818';
         });
     }
 
     function stopAnim() {
-        input.classList.remove('anim-light-up');
+        input.classList.remove('anim-light-' + index);
     }
 
     // check if animation is still running
@@ -46,7 +55,7 @@ function changeColor() {
 
     }
     
-    console.log(colorArray);
+    // console.log(colorArray);
     createElement();
 }
 
