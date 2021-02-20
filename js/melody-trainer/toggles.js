@@ -173,7 +173,7 @@ function windowListener() {
 }
 
 function windowEventListener(e) {
-    e.keyCode === keyArray[0] && playNote('C5');
+    e.keyCode === keyArray[0] && playNote(0, 'C5');
     e.keyCode === keyArray[1] && noteSwitch('B4');
     e.keyCode === keyArray[2] && noteSwitch('Bb4');
     e.keyCode === keyArray[3] && noteSwitch('A4');

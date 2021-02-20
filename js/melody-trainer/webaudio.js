@@ -132,8 +132,6 @@ function playSound() {
     // animate sounding note
     lightUp(this.parentElement);
 
-    // console.log(instrumentChoice[0][i].src);
-    // console.log(instrumentChoice[0][i].src);
 
     // play note and repeat note condition
     if (noteButtonArray[i].dataset.playing === 'false') {
@@ -150,7 +148,7 @@ function playSound() {
         noteButtonArray[i].dataset.playing = 'true';
     }
 
-    // grab played noted name and push to userPat array for checking
+    // grab played note name and push to userPat array for checking
     let userPick = noteButtonArray[i].parentElement.id.replace('-wrap', '');
     userPat.push(userPick);
     // console.log(`This is the userPat: ${userPat}`);
@@ -177,8 +175,10 @@ function playNote(index, noteId) {
     // console.log(item);
     if (pracModeBool === true) {
         // do nothing
+        lightUp(item);
     } else {
         lightUp(item);
+
     }
     // check if context is in suspended state (autoplay policy)
     if (audioCx.state === 'suspended') {
@@ -195,6 +195,8 @@ function playNote(index, noteId) {
     currentAudio = instrumentChoice[0][index];
 }
 
+
+// If practice mode is on, keyboard lights don't animate because keybaord isn't calling playNote directly like a click listener. Or, make pracModeBool only affect generated pattern playback, not user input
 function noteSwitch(noteId) {
 
     switch (noteId) {
