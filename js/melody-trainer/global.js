@@ -16,9 +16,13 @@ let accModeBool = false;
 let tonicStartBool = false;
 let colorPickBool = false;
 let keyboardBool = false;
-let pastScores = [];
 let diffArray = []
+
+// send to local Storage
+let pastScores = [];
 let colorArray = [];
+let keyArray = [];
+
 
 
 // helper function variables

@@ -6,7 +6,7 @@ function lightUp(input) {
     //  as defined in the webAudio switch and listeners
 
     // console.log('This is the passed variable: ' + input);
-    console.log(input.children[2]);
+    // console.log(input.children[2]);
     // console.log(Array.from(input.parentNode.children).indexOf(input));
 
 
@@ -53,7 +53,6 @@ let C5pick = document.getElementById('pick-C5');
 
 function changeColor() {
     colorArray = [];
-    let C5btn = document.getElementById('C5-btn');
     let colorPick = document.getElementsByClassName('color-pick');
 
     for ( let i = 0; i < document.getElementsByClassName('wrap').length - 1; i++ ) {

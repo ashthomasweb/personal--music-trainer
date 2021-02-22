@@ -108,71 +108,42 @@ function keyboardToggle() {
     keyboardBool = !keyboardBool;
     if (keyboardBool == true) {
         document.getElementById("keyboard-switch").style.backgroundColor = "pink";
-        console.log(document.getElementById('B4-keypress'))
-        document.getElementById('C5-keypress').style.display = 'block';
-        document.getElementById('B4-keypress').style.display = 'block';
-        document.getElementById('Bb4-keypress').style.display = 'block';
-        document.getElementById('A4-keypress').style.display = 'block';
-        document.getElementById('Ab4-keypress').style.display = 'block';
-        document.getElementById('G4-keypress').style.display = 'block';
-        document.getElementById('Gb4-keypress').style.display = 'block';
-        document.getElementById('F4-keypress').style.display = 'block';
-        document.getElementById('E4-keypress').style.display = 'block';
-        document.getElementById('Eb4-keypress').style.display = 'block';
-        document.getElementById('D4-keypress').style.display = 'block';
-        document.getElementById('Db4-keypress').style.display = 'block';
-        document.getElementById('C4-keypress').style.display = 'block';
-        document.getElementById('B3-keypress').style.display = 'block';
-        document.getElementById('Bb3-keypress').style.display = 'block';
-        document.getElementById('A3-keypress').style.display = 'block';
-        document.getElementById('Ab3-keypress').style.display = 'block';
-        document.getElementById('G3-keypress').style.display = 'block';
-        document.getElementById('Gb3-keypress').style.display = 'block';
+        for ( let i = 0; i < assignBtns.length; i++ ) {
+            assignBtns[i].style.display = 'block';
+        }
     } else {
         document.getElementById("keyboard-switch").style.backgroundColor = "rgb(239, 239, 239)";
-        document.getElementById('C5-keypress').style.display = 'none';
-        document.getElementById('B4-keypress').style.display = 'none';
-        document.getElementById('Bb4-keypress').style.display = 'none';
-        document.getElementById('A4-keypress').style.display = 'none';
-        document.getElementById('Ab4-keypress').style.display = 'none';
-        document.getElementById('G4-keypress').style.display = 'none';
-        document.getElementById('Gb4-keypress').style.display = 'none';
-        document.getElementById('F4-keypress').style.display = 'none';
-        document.getElementById('E4-keypress').style.display = 'none';
-        document.getElementById('Eb4-keypress').style.display = 'none';
-        document.getElementById('D4-keypress').style.display = 'none';
-        document.getElementById('Db4-keypress').style.display = 'none';
-        document.getElementById('C4-keypress').style.display = 'none';
-        document.getElementById('B3-keypress').style.display = 'none';
-        document.getElementById('Bb3-keypress').style.display = 'none';
-        document.getElementById('A3-keypress').style.display = 'none';
-        document.getElementById('Ab3-keypress').style.display = 'none';
-        document.getElementById('G3-keypress').style.display = 'none';
-        document.getElementById('Gb3-keypress').style.display = 'none';
+        for ( let i = 0; i < assignBtns.length; i++ ) {
+            assignBtns[i].style.display = 'none';
+        }
     }
 }
 
-let keyArray = [];
 
 function assignKey() {
     removeEventListener('keydown', windowEventListener);
     window.addEventListener('keydown', assignListener);
-    windowListener();
+    window.addEventListener('keydown', windowEventListener);
+
 }
 
-
+let assignBtns = Array.from(document.getElementsByClassName('keypress-btn'));
+   
 function assignListener(e) {
     let index = e.target.name;
-    console.log(index);
+    let i;
+    for (i = 0; i < keyArray.length; i++) {
+        if ( keyArray[i] === e.keyCode ) {
+            keyArray[i] = 'undefined';
+            assignBtns[i].innerText = 'Assign';
+        } 
+    }
+    let y = "\"" + e.key + "\"";
+    assignBtns[index].innerText = y.toUpperCase();
     keyArray[index] = e.keyCode;
     removeEventListener('keydown', assignListener);
 }
 
-function windowListener() {
-    window.addEventListener('keydown', windowEventListener);
-}
-
-// needs userPat push
 function windowEventListener(e) {
     for ( let i = 0; i < noteArray.length; i++ ) {
 
