@@ -172,26 +172,34 @@ function windowListener() {
     window.addEventListener('keydown', windowEventListener);
 }
 
+// needs userPat push
 function windowEventListener(e) {
-    e.keyCode === keyArray[0] && playNote(0, 'C5');
-    e.keyCode === keyArray[1] && noteSwitch('B4');
-    e.keyCode === keyArray[2] && noteSwitch('Bb4');
-    e.keyCode === keyArray[3] && noteSwitch('A4');
-    e.keyCode === keyArray[4] && noteSwitch('Ab4');
-    e.keyCode === keyArray[5] && noteSwitch('G4');
-    e.keyCode === keyArray[6] && noteSwitch('Gb4');
-    e.keyCode === keyArray[7] && noteSwitch('F4');
-    e.keyCode === keyArray[8] && noteSwitch('E4');
-    e.keyCode === keyArray[9] && noteSwitch('Eb4');
-    e.keyCode === keyArray[10] && noteSwitch('D4');
-    e.keyCode === keyArray[11] && noteSwitch('Db4');
-    e.keyCode === keyArray[12] && noteSwitch('C4');
-    e.keyCode === keyArray[13] && noteSwitch('B3');
-    e.keyCode === keyArray[14] && noteSwitch('Bb3');
-    e.keyCode === keyArray[15] && noteSwitch('A3');
-    e.keyCode === keyArray[16] && noteSwitch('Ab3');
-    e.keyCode === keyArray[17] && noteSwitch('G3');
-    e.keyCode === keyArray[18] && noteSwitch('Gb3');
+    for ( let i = 0; i < noteArray.length; i++ ) {
+
+        if (e.keyCode === keyArray[i]) {
+            playNote(i, noteArray[i])
+            userPat.push(noteArray[i]);
+        }
+    }
+
+    // e.keyCode === keyArray[1] && noteSwitch('B4');
+    // e.keyCode === keyArray[2] && noteSwitch('Bb4');
+    // e.keyCode === keyArray[3] && noteSwitch('A4');
+    // e.keyCode === keyArray[4] && noteSwitch('Ab4');
+    // e.keyCode === keyArray[5] && noteSwitch('G4');
+    // e.keyCode === keyArray[6] && noteSwitch('Gb4');
+    // e.keyCode === keyArray[7] && noteSwitch('F4');
+    // e.keyCode === keyArray[8] && noteSwitch('E4');
+    // e.keyCode === keyArray[9] && noteSwitch('Eb4');
+    // e.keyCode === keyArray[10] && noteSwitch('D4');
+    // e.keyCode === keyArray[11] && noteSwitch('Db4');
+    // e.keyCode === keyArray[12] && noteSwitch('C4');
+    // e.keyCode === keyArray[13] && noteSwitch('B3');
+    // e.keyCode === keyArray[14] && noteSwitch('Bb3');
+    // e.keyCode === keyArray[15] && noteSwitch('A3');
+    // e.keyCode === keyArray[16] && noteSwitch('Ab3');
+    // e.keyCode === keyArray[17] && noteSwitch('G3');
+    // e.keyCode === keyArray[18] && noteSwitch('Gb3');
 }
 
 // Color Picker
