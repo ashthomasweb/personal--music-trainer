@@ -6,7 +6,7 @@ function lightUp(input) {
     //  as defined in the webAudio switch and listeners
 
     // console.log('This is the passed variable: ' + input);
-    // console.log(input);
+    console.log(input.children[2]);
     // console.log(Array.from(input.parentNode.children).indexOf(input));
 
 
@@ -16,10 +16,14 @@ function lightUp(input) {
 
     function startAnim() {
         input.classList.add('anim-light-' + index);
+        input.children[2].classList.add('anim-light-' + index);
+
         input.children[1].dataset.anim = 'true';
 
         input.addEventListener('animationend', () => {
             input.classList.remove('anim-light-' + index);
+            input.children[2].classList.remove('anim-light-' + index);
+
             input.children[1].dataset.anim = 'false';
             input.style.backgroundColor = '#181818';
         });
@@ -27,6 +31,8 @@ function lightUp(input) {
 
     function stopAnim() {
         input.classList.remove('anim-light-' + index);
+        input.children[2].classList.remove('anim-light-' + index);
+
     }
 
     // check if animation is still running
