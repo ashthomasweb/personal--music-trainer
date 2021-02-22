@@ -108,12 +108,12 @@ function keyboardToggle() {
     keyboardBool = !keyboardBool;
     if (keyboardBool == true) {
         document.getElementById("keyboard-switch").style.backgroundColor = "pink";
-        for ( let i = 0; i < assignBtns.length; i++ ) {
+        for (let i = 0; i < assignBtns.length; i++) {
             assignBtns[i].style.display = 'block';
         }
     } else {
         document.getElementById("keyboard-switch").style.backgroundColor = "rgb(239, 239, 239)";
-        for ( let i = 0; i < assignBtns.length; i++ ) {
+        for (let i = 0; i < assignBtns.length; i++) {
             assignBtns[i].style.display = 'none';
         }
     }
@@ -124,30 +124,32 @@ function assignKey() {
     removeEventListener('keydown', windowEventListener);
     window.addEventListener('keydown', assignListener);
     window.addEventListener('keydown', windowEventListener);
-
 }
 
-let assignBtns = Array.from(document.getElementsByClassName('keypress-btn'));
-   
+
 function assignListener(e) {
     let index = e.target.name;
     let i;
-    for (i = 0; i < keyArray.length; i++) {
-        if ( keyArray[i] === e.keyCode ) {
-            keyArray[i] = 'undefined';
+    for (i = 0; i <= keyArray.length; i++) {
+        keyArray[18] = null;
+        if (keyArray[i] === e.key) {
+            keyArray[i] = null;
             assignBtns[i].innerText = 'Assign';
-        } 
+        }
     }
-    let y = "\"" + e.key + "\"";
-    assignBtns[index].innerText = y.toUpperCase();
-    keyArray[index] = e.keyCode;
+    let toString = "\"" + e.key + "\"";
+    assignBtns[index].innerText = toString.toUpperCase();
+    keyArray[index] = e.key;
+
+    // local storage create
+    localStorageCreate(keyArray);
+
     removeEventListener('keydown', assignListener);
 }
 
 function windowEventListener(e) {
-    for ( let i = 0; i < noteArray.length; i++ ) {
-
-        if (e.keyCode === keyArray[i]) {
+    for (let i = 0; i <= noteArray.length; i++) {
+        if (e.key === keyArray[i]) {
             playNote(i, noteArray[i])
             userPat.push(noteArray[i]);
         }
@@ -161,18 +163,60 @@ function colorPicker() {
     if (colorPickBool == true) {
         document.getElementById("color-switch").style.backgroundColor = "pink";
 
-        for ( let i = 0; i < document.getElementsByClassName('color-pick').length; i++ ) {
+        for (let i = 0; i < document.getElementsByClassName('color-pick').length; i++) {
             document.getElementsByClassName('color-pick')[i].style.display = 'block';
         }
-
 
     } else {
         document.getElementById("color-switch").style.backgroundColor = "rgb(239, 239, 239)";
 
-        for ( let i = 0; i < document.getElementsByClassName('color-pick').length; i++ ) {
+        for (let i = 0; i < document.getElementsByClassName('color-pick').length; i++) {
             document.getElementsByClassName('color-pick')[i].style.display = 'none';
         }
     }
 }
+
+// Local Storage 
+
+function localStorageCreate(input) {
+    input === keyArray && localStorage.setItem("keyArray", JSON.stringify(keyArray));
+    input === pastScores && localStorage.setItem("pastScores", JSON.stringify(pastScores));
+    input === colorArray && localStorage.setItem("colorArray", JSON.stringify(colorArray));
+}
+
+function localStorageRetrieve(output) {
+    if (output === keyArray) {
+        return JSON.parse(localStorage.getItem("keyArray"));
+    }
+    if (output === pastScores) {
+        return JSON.parse(localStorage.getItem("pastScores"));
+    }
+    if (output === colorArray) {
+        return JSON.parse(localStorage.getItem("colorArray"));
+    }
+
+}
+
+// on load, restore array contents from previous session
+function localStorageKeyboard() {
+    if (localStorage.getItem("keyArray") !== undefined) {
+        keyArray = JSON.parse(localStorage.getItem("keyArray"));
+        console.log(keyArray);
+        for (let i = 0; i < assignBtns.length; i++) {
+            let toString = "\"" + keyArray[i] + "\"";
+            if (keyArray[i] !== null) {
+
+                assignBtns[i].innerText = toString.toUpperCase();
+            } else {
+                // do nothing
+            }
+        }
+
+        window.addEventListener('keydown', windowEventListener);
+    }
+}
+
+
+
 
 // END of document 
