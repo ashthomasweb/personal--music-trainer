@@ -1,4 +1,3 @@
-
 // || Play Animations 
 
 function lightUp(input) {
@@ -12,17 +11,17 @@ function lightUp(input) {
 
     let index = Array.from(input.parentNode.children).indexOf(input)
 
-    
+
 
     function startAnim() {
         input.classList.add('anim-light-' + index);
-        input.children[2].classList.add('anim-light-' + index);
+        // input.children[2].classList.add('anim-btn-' + index);
 
         input.children[1].dataset.anim = 'true';
 
         input.addEventListener('animationend', () => {
             input.classList.remove('anim-light-' + index);
-            input.children[2].classList.remove('anim-light-' + index);
+            // input.children[2].classList.remove('anim-btn-' + index);
 
             input.children[1].dataset.anim = 'false';
             input.style.backgroundColor = '#181818';
@@ -31,7 +30,7 @@ function lightUp(input) {
 
     function stopAnim() {
         input.classList.remove('anim-light-' + index);
-        input.children[2].classList.remove('anim-light-' + index);
+        // input.children[2].classList.remove('anim-btn-' + index);
 
     }
 
@@ -49,21 +48,40 @@ function lightUp(input) {
 }
 
 // Color Picker
-let C5pick = document.getElementById('pick-C5');
 
-function changeColor() {
-    colorArray = [];
-    let colorPick = document.getElementsByClassName('color-pick');
-
-    for ( let i = 0; i < document.getElementsByClassName('wrap').length - 1; i++ ) {
-        colorArray.push(colorPick[i].value)
-
+function retrieveColors() {
+    if ( localStorageRetrieve(colorArray) !== null) { // if has local storage
+        console.log('has storage');
+        colorArray = localStorageRetrieve(colorArray);
+        for (let i = 0; i <= document.getElementsByClassName('wrap').length - 1; i++) {
+            colorPick[i].value = colorArray[i];
+        }
     }
-    
-    // console.log(colorArray);
-    createElement();
+    changeColor();
 }
 
+let colorPick = Array.from(document.getElementsByClassName('color-pick'));
+
+function changeColor() {
+    
+    if ( localStorageRetrieve(colorArray) !== null) { // if has local storage
+       // do nothing
+    } else { // if no local storage
+        console.log('no storage');
+        colorArray = [];
+        for (let i = 0; i <= document.getElementsByClassName('wrap').length - 1; i++) {
+            colorArray.push(colorPick[i].value);
+        }
+    
+    }
+    
+    for (let i = 0; i <= document.getElementsByClassName('wrap').length - 1; i++) {
+        colorArray[i] = colorPick[i].value;
+    }
+
+    localStorageCreate(colorArray);
+    createElement();
+}
 
 function createElement() {
 
@@ -90,8 +108,11 @@ function createElement() {
         --keyhover16: ${colorArray[16]}; 
         --keyhover17: ${colorArray[17]}; 
         --keyhover18: ${colorArray[18]}; 
-
     }`;
     document.getElementsByTagName('head')[0].appendChild(style);
-    
+
 }
+
+
+
+

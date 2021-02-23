@@ -138,12 +138,12 @@ function modeSelect() {
 
             if (modeArray[i][3] === 'BP') {
                 flatOnSharpOn();
-                document.getElementById('Bb3-wrap').children[0].children[1].style.display = 'none';
-                document.getElementById('Bb3-wrap').children[2].children[0].style.display = 'none';
+                document.getElementById('Bb3-wrap').children[1].children[1].style.display = 'none';
+                document.getElementById('Bb3-wrap').children[3].children[0].style.display = 'none';
             } else if (modeArray[i][3] === 'MB') {
                 flatOnSharpOff();
-                document.getElementById('Gb4-wrap').children[0].children[0].style.display = 'block';
-                document.getElementById('Gb4-wrap').children[2].children[0].style.display = 'block';
+                document.getElementById('Gb4-wrap').children[1].children[0].style.display = 'block';
+                document.getElementById('Gb4-wrap').children[3].children[0].style.display = 'block';
             } else {
                 flatOnSharpOn();
                 flatOffSharpOff();
@@ -169,6 +169,7 @@ function modeSelect() {
 
 // Accidental difference array
 function accDifference() {
+
     if ( accDisplayBool === false ) {
         accidentalToggle();
     } else {
@@ -176,7 +177,6 @@ function accDifference() {
     }
     
     diffArray = chromIndex.filter(x => !modeChoice[1].includes(x));
-    
 
     console.log(diffArray);
 

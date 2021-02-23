@@ -74,30 +74,6 @@ function instrumentCycle() {
     }
 }
 
-// function adjustPromise(mobile) {
-//     if (mobile.matches) {
-//         // Promise object returning on audio end
-//        console.log( 'mobile');
-//     } else {
-//         console.log('desktop');
-//         // Promise object returning on audio end
-//         function playNotePromise(url) {
-//             return new Promise(function (resolve, reject) {
-//                 // create audio wo/ src
-//                 var audio = new Audio(url);
-//                 currentAudio = audio;
-//                 // autoplay when loaded
-//                 audio.play();
-//                 audio.onerror = reject;
-//                 audio.onended = resolve;
-//             });
-//         }
-//     }
-// }
-// let mobile = window.matchMedia("(min-width: 0px) and (max-width: 450px)");
-// adjustPromise(mobile);
-// mobile.addListener(adjustPromise);
-
 
 function playNotePromise(url) {
     return new Promise(function (resolve, reject) {

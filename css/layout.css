@@ -129,7 +129,7 @@ html {
     border-radius: 10px;
     background-color: var(--pianokey);
     cursor: pointer;
-    transition: background-color .2s;
+    transition: background-color .2s ease-out;
 }
 
 .C5 {
@@ -558,7 +558,7 @@ button:focus {
 .degree {
     z-index: 15;
     position: absolute;
-    right: 50px;
+    right: 60px;
     height: 38px;
     min-height: 35px;
     padding: 11px;
@@ -570,7 +570,6 @@ button:focus {
     color: #bbb;
     width: 100px;
     display: inline-block;
-
 }
 
 .degree span {
@@ -587,7 +586,7 @@ button:focus {
     font-size: 18px;
     border-radius: 14px;
     position: absolute;
-    left: 50px;
+    left: 60px;
     color: #bbb;
     width: 100px;
     display: inline-block;

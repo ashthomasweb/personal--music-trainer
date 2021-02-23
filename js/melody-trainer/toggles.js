@@ -152,6 +152,7 @@ function windowEventListener(e) {
         if (e.key === keyArray[i]) {
             playNote(i, noteArray[i])
             userPat.push(noteArray[i]);
+            klangBool == true && instrumentCycle();
         }
     }
 }
@@ -185,12 +186,15 @@ function localStorageCreate(input) {
 }
 
 function localStorageRetrieve(output) {
+
     if (output === keyArray) {
         return JSON.parse(localStorage.getItem("keyArray"));
     }
+
     if (output === pastScores) {
         return JSON.parse(localStorage.getItem("pastScores"));
     }
+
     if (output === colorArray) {
         return JSON.parse(localStorage.getItem("colorArray"));
     }
@@ -202,10 +206,10 @@ function localStorageKeyboard() {
     if (localStorage.getItem("keyArray") !== undefined) {
         keyArray = JSON.parse(localStorage.getItem("keyArray"));
         console.log(keyArray);
+
         for (let i = 0; i < assignBtns.length; i++) {
             let toString = "\"" + keyArray[i] + "\"";
             if (keyArray[i] !== null) {
-
                 assignBtns[i].innerText = toString.toUpperCase();
             } else {
                 // do nothing
@@ -217,6 +221,11 @@ function localStorageKeyboard() {
 }
 
 
+function loadUserPrefs() {
+    localStorageKeyboard();
+    retrieveColors();
+    getPastScores();
+}
 
 
 // END of document 

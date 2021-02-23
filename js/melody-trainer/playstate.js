@@ -122,6 +122,19 @@ function scorePush() {
         scoreInst = instrumentChoice[2];
     }
 
+   
+
+     // for ( let i = 1; i <= pastScores.length; i++ ) {
+
+    //     lastPastScore = pastScores[pastScores.length - i];
+    //     document.getElementsByClassName('scores')[0].insertBefore(document.getElementsByClassName('scores')[0].children[3].cloneNode(true), document.getElementsByClassName('scores')[0].children[3]);
+    //     let newLocal = pastScores[pastScores.length - i][1] + " - " + pastScores[pastScores.length - i][0] + " - " + pastScores[pastScores.length - i][2];
+    //     emptyScore.innerText = newLocal;
+    //     console.log(pastScores);
+    // }
+    
+
+
     // get most recent completed pattern length
     scoreValue = lastRoundScore;
 
@@ -141,12 +154,43 @@ function scorePush() {
         }
     });
 
+
     // inserts cloned element at top of list and updates last score info
     parent.insertBefore(clone, emptyScore);
     emptyScore.innerText = lastPastScore[1] + " - " + lastPastScore[0] + " - " + lastPastScore[2];
 
+    localStorageCreate(pastScores);
+
 }
 
+function getPastScores() {
+    let allScores = [];
+    
+
+    if ( localStorageRetrieve(pastScores) !== null ) {
+        pastScores = localStorageRetrieve(pastScores);
+        for ( let i = pastScores.length; i > 0; i-- ) {
+
+            document.getElementsByClassName('scores')[0].insertBefore(document.getElementsByClassName('scores')[0].children[3].cloneNode(true), document.getElementsByClassName('scores')[0].children[3]);
+            document.getElementsByClassName('scores')[0].children[3].innerText = pastScores[pastScores.length - i][1] + " - " + pastScores[pastScores.length - i][0] + " - " + pastScores[pastScores.length - i][2];
+            
+            console.log(pastScores);
+        }
+        document.getElementsByClassName('scores')[0].insertBefore(document.getElementsByClassName('scores')[0].children[3].cloneNode(true), document.getElementsByClassName('scores')[0].children[3]);
+        document.getElementsByClassName('scores')[0].children[3].innerText = '...';
+    }
+
+    pastScores.forEach((item) => {
+        allScores.push(item[1]);
+    });
+    // finds most recent highest past score and populates scorebox
+    pastScores.forEach((item) => {
+        if (item[1] === Math.max.apply(null, allScores)) {
+            document.getElementById("high-score").innerText = item[1] + " - " + item[0] + " - " + item[2];
+        }
+    });
+
+}
 
 
 // || Message display 
