@@ -33,7 +33,6 @@ function powerSwitch() {
         document.getElementsByClassName('header')[0].children[4].style.opacity = '0.1';
         document.getElementsByClassName('header')[0].children[4].style.pointerEvents = 'none';
        
-
     } else if (instPower === false) {
         audioCx.resume;
         // turn on notes and instrument select

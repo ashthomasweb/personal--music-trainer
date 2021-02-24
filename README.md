@@ -31,7 +31,7 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 * Add 'Tonic Start' and 'Accidental Mode' to score history
 
 ## Known Issues
-* Mobile issues: webAudio tends to error and produce poor sound quality. HTML5 audio is extremely laggy. Possible desktop-only app until further development.
+* 
 
 ## Status
 Project is: _in development_.

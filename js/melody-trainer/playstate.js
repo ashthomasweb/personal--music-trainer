@@ -42,7 +42,6 @@ function buildMelody() {
 }
 
 
-
 // || Pattern Verification
 let buildTimer;
 
@@ -68,15 +67,12 @@ function clear() {
 
 function patCheck() {
 
-
     if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1] && userPat.length === melodyPat.length) {
         userPointerOff();
 
         build();
         pointer();
-        // setTimeout(buildTimer, 1500);
-        // setTimeout(pointerTimer, 1700);
-
+        
         lastRoundScore = userPat.length;
 
     } else if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1]) {
