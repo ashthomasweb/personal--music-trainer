@@ -12,28 +12,59 @@ let instrumentBank = [
 
 function powerSwitch() {
 
-    if (instPower == true) {
+    if (instPower === true) {
+        userPointerOff();
+        endPractice();
+        
+        instPower = !instPower;
         audioCx.suspend;
         document.getElementById("power-switch").style.backgroundColor = "rgb(239, 239, 239)";
-    } else {
+        if ( freeModeBool === true ) {
+            freeModeToggle();
+        } else {
+            // do nothing
+        }
+        // turn off notes and instrument select
+        document.getElementsByClassName('note-container')[0].style.pointerEvents = 'none';
+        chromIndex.forEach( (item) => document.getElementsByClassName(item)[0].style.opacity = "0.1" );
+        document.getElementsByClassName('instrument')[0].children[2].style.opacity = '0.1';
+        document.getElementsByClassName('instrument')[0].children[2].style.pointerEvents = 'none';
+
+        document.getElementsByClassName('header')[0].children[4].style.opacity = '0.1';
+        document.getElementsByClassName('header')[0].children[4].style.pointerEvents = 'none';
+       
+
+    } else if (instPower === false) {
         audioCx.resume;
-        document.getElementById("power-switch").style.backgroundColor = "pink";
-    }
+        // turn on notes and instrument select
+        document.getElementsByClassName('note-container')[0].style.pointerEvents = 'auto';
+        document.getElementsByClassName('instrument')[0].children[2].style.pointerEvents = 'auto';
+        document.getElementsByClassName('instrument')[0].children[2].style.opacity = '1';
 
-    if (initialLoad == true) {
-        document.getElementById("power-switch").style.backgroundColor = "pink";
-        document.getElementById("solf-switch").style.backgroundColor = "pink";
-        document.getElementById("deg-switch").style.backgroundColor = "pink";
-        document.getElementById("acc-switch").style.backgroundColor = "pink";
+        document.getElementsByClassName('header')[0].children[4].style.opacity = '1';
+        document.getElementsByClassName('header')[0].children[4].style.pointerEvents = 'auto';
 
-        instrumentCycle();
-        initialLoad = !initialLoad;
+        document.getElementById("power-switch").style.backgroundColor = "pink";
+        
+        if (initialLoad === true) {
+            initialLoad = !initialLoad;
+            document.getElementById("power-switch").style.backgroundColor = "pink";
+            document.getElementById("solf-switch").style.backgroundColor = "pink";
+            document.getElementById("deg-switch").style.backgroundColor = "pink";
+            document.getElementById("acc-switch").style.backgroundColor = "pink";
+            instrumentCycle();
+            // start with Tonic Start enabled
+            tonicStartToggle();
+        }
+
         instPower = true;
+        
+        userPointerOn();
+        // turn on inital mode
+        modeSelect();
+        // start in Free Mode
+        freeModeToggle();
     }
-
-    tonicStartToggle();
-    modeSelect();
-    freeModeToggle();
 }
 
 // changes instrument source
@@ -57,23 +88,20 @@ function instrumentCycle() {
 
     // changes on-screen instrument selection
     document.getElementById("instr-type").innerText = instrumentChoice[2];
-
-    // initializes sounds to note-buttons
-    soundLoader();
-
+    
     // applies instrument source via listeners
     function soundLoader() {
-
         for (let i = 0; i <= noteButtonArray.length - 1; i++) {
             // assign event listener to html element
             noteButtonArray[i].addEventListener('mousedown', playSound);
             // webAudio track connect to destination
             instrumentChoice[1][i].connect(audioCx.destination);
         }
-
     }
-}
 
+    // initializes sounds to note-buttons
+    soundLoader();
+}
 
 function playNotePromise(url) {
     return new Promise(function (resolve, reject) {
@@ -108,7 +136,6 @@ function playSound() {
     // animate sounding note
     lightUp(this.parentElement);
 
-
     // play note and repeat note condition
     if (noteButtonArray[i].dataset.playing === 'false') {
         playNotePromise(instrumentChoice[0][i]).then(function () {
@@ -130,7 +157,7 @@ function playSound() {
     // console.log(`This is the userPat: ${userPat}`);
 
     // prevent pattern check during 'free mode'
-    if (freeModeBool === true) {
+    if (freeModeBool === true || instPower === false) {
         // do nothing
     } else {
         patCheck();
@@ -172,7 +199,8 @@ function playNote(index, noteId) {
 }
 
 
-// If practice mode is on, keyboard lights don't animate because keybaord isn't calling playNote directly like a click listener. Or, make pracModeBool only affect generated pattern playback, not user input
+// If practice mode is on, keyboard lights don't animate because keybaord isn't calling playNote directly 
+// like a click listener. Or, make pracModeBool only affect generated pattern playback, not user input
 function noteSwitch(noteId) {
 
     switch (noteId) {

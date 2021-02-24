@@ -1,5 +1,3 @@
-
-
 // || Scale Degree Set 
 
 function buildMelody() {
@@ -14,12 +12,11 @@ function buildMelody() {
         // do nothing
     }
 
-    if ( accModeBool === true && Math.floor(Math.random() * 5) === 0 ) {
+    if (accModeBool === true && Math.floor(Math.random() * 5) === 0) {
         newNote = diffArray[Math.floor(Math.random() * diffArray.length)];
     } else {
         newNote = availNotes[Math.floor(Math.random() * availNotes.length)];
     }
-
 
     // force tonic more often
     if (newNote !== "C4") {
@@ -29,8 +26,8 @@ function buildMelody() {
     }
 
     // force tonic on first turn
-    if ( tonicStartBool === true && melodyPat.length === 0 ) {
-        Math.floor(Math.random() * 2) === 0 ? newNote = "C4" : newNote = "C5" ;
+    if (tonicStartBool === true && melodyPat.length === 0) {
+        Math.floor(Math.random() * 2) === 0 ? newNote = "C4" : newNote = "C5";
     }
 
     noteSwitch(newNote);
@@ -47,36 +44,62 @@ function buildMelody() {
 
 
 // || Pattern Verification
+let buildTimer;
+
+function build() {
+    buildTimer = setTimeout(function () {
+        userPat = [];
+        buildMelody();
+    }, 1500);
+}
+
+let pointerTimer;
+
+function pointer() { 
+    pointerTimer = setTimeout(function () {
+        userPointerOn();
+    }, 1700);
+}
+ 
+function clear() {
+    clearTimeout(buildTimer);
+    clearTimeout(pointerTimer);
+}
 
 function patCheck() {
+
 
     if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1] && userPat.length === melodyPat.length) {
         userPointerOff();
 
-        setTimeout(function () {
-            userPat = [];
-            buildMelody();
-        }, 1500);
-        setTimeout(function () {
-            userPointerOn();
-        }, 1700);
+        build();
+        pointer();
+        // setTimeout(buildTimer, 1500);
+        // setTimeout(pointerTimer, 1700);
 
         lastRoundScore = userPat.length;
+
     } else if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1]) {
         // step for successful turn, but incomplete pattern
     } else {
-        console.log(`This is the userPat: ${userPat}`);
-        pracModeBool = false;
-        freeModeToggle();
-        scorePush();
+        endPractice();
         setTimeout(() => alert("Game Over"), 10);
-        melodyPat = [];
-        userPat = [];
-        lastRoundScore = 0;
     }
+
 }
 
-// || Pointer Events toggle 
+function endPractice() {
+    clear();
+    console.log(`This is the userPat: ${userPat}`);
+    pracModeBool = false;
+    freeModeToggle();
+    scorePush();
+    melodyPat = [];
+    userPat = [];
+    lastRoundScore = 0;
+}
+
+// || Pointer Events Toggle 
 
 function userPointerOff() {
     let wrapArray = document.getElementsByClassName("wrap");
@@ -94,22 +117,19 @@ function userPointerOn() {
     }
 }
 
-
-
-
-
-
-
-
 // || Past Scores 
 
 function scorePush() {
-    // type, score, mode variables
+    // Type, Score, Mode Variables
+
+    // one round of score data
     let scoreInst;
     let scoreValue = 0;
     let scoreMode = modeScore;
+    // helper arrays
     let allScores = [];
-    let lastScore = [];
+    let lastScoreArray = [];
+    // element cloning and score population
     let lastPastScore;
     let parent = document.getElementsByClassName('scores')[0];
     let emptyScore = document.getElementsByClassName('scores')[0].children[3];
@@ -122,73 +142,34 @@ function scorePush() {
         scoreInst = instrumentChoice[2];
     }
 
-   
-
-     // for ( let i = 1; i <= pastScores.length; i++ ) {
-
-    //     lastPastScore = pastScores[pastScores.length - i];
-    //     document.getElementsByClassName('scores')[0].insertBefore(document.getElementsByClassName('scores')[0].children[3].cloneNode(true), document.getElementsByClassName('scores')[0].children[3]);
-    //     let newLocal = pastScores[pastScores.length - i][1] + " - " + pastScores[pastScores.length - i][0] + " - " + pastScores[pastScores.length - i][2];
-    //     emptyScore.innerText = newLocal;
-    //     console.log(pastScores);
-    // }
-    
-
-
     // get most recent completed pattern length
     scoreValue = lastRoundScore;
 
     // set of last score info
-    lastScore = [scoreInst, scoreValue, scoreMode];
+    lastScoreArray = [scoreInst, scoreValue, scoreMode];
+
     // push last score info to array
-    pastScores.push(lastScore);
-    lastPastScore = pastScores[pastScores.length - 1];
+    pastScores.push(lastScoreArray);
+
+    // push all scoreValue to array for high score check
     pastScores.forEach((item) => {
         allScores.push(item[1]);
     });
 
-    // finds most recent highest past score and populates scorebox
+    // finds most recent highest score and populates scorebox
     pastScores.forEach((item) => {
         if (item[1] === Math.max.apply(null, allScores)) {
             document.getElementById("high-score").innerText = item[1] + " - " + item[0] + " - " + item[2];
         }
     });
 
-
     // inserts cloned element at top of list and updates last score info
+    lastPastScore = pastScores[pastScores.length - 1];
     parent.insertBefore(clone, emptyScore);
     emptyScore.innerText = lastPastScore[1] + " - " + lastPastScore[0] + " - " + lastPastScore[2];
 
+    // sends pastScores array to local storage
     localStorageCreate(pastScores);
-
-}
-
-function getPastScores() {
-    let allScores = [];
-    
-
-    if ( localStorageRetrieve(pastScores) !== null ) {
-        pastScores = localStorageRetrieve(pastScores);
-        for ( let i = pastScores.length; i > 0; i-- ) {
-
-            document.getElementsByClassName('scores')[0].insertBefore(document.getElementsByClassName('scores')[0].children[3].cloneNode(true), document.getElementsByClassName('scores')[0].children[3]);
-            document.getElementsByClassName('scores')[0].children[3].innerText = pastScores[pastScores.length - i][1] + " - " + pastScores[pastScores.length - i][0] + " - " + pastScores[pastScores.length - i][2];
-            
-            console.log(pastScores);
-        }
-        document.getElementsByClassName('scores')[0].insertBefore(document.getElementsByClassName('scores')[0].children[3].cloneNode(true), document.getElementsByClassName('scores')[0].children[3]);
-        document.getElementsByClassName('scores')[0].children[3].innerText = '...';
-    }
-
-    pastScores.forEach((item) => {
-        allScores.push(item[1]);
-    });
-    // finds most recent highest past score and populates scorebox
-    pastScores.forEach((item) => {
-        if (item[1] === Math.max.apply(null, allScores)) {
-            document.getElementById("high-score").innerText = item[1] + " - " + item[0] + " - " + item[2];
-        }
-    });
 
 }
 
@@ -213,3 +194,5 @@ function displayMessage(msg) {
 
     }
 }
+
+// END of document

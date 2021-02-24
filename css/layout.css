@@ -108,6 +108,7 @@ html {
     width: 100%;
     cursor: pointer;
     opacity: 0.1;
+    pointer-events: none;
 }
 
 .wrap div {
@@ -523,6 +524,11 @@ button:focus {
     background-color: rgba(128, 125, 125, .3);
 }
 
+.header button:nth-child(5) {
+    pointer-events: none;
+    opacity: 0.1;
+}
+
 .scores {
     grid-area: scores;
     background-color: rgba(128, 125, 125, .3);
@@ -533,6 +539,11 @@ button:focus {
 .instrument {
     grid-area: instrument;
     background-color: rgba(128, 125, 125, .3);
+}
+
+.instrument button:nth-child(3) {
+    opacity: 0.1;
+    pointer-events: none;
 }
 
 .messages {
@@ -714,9 +725,6 @@ button:focus {
     display: none;
 }
 
-/* .color-pick {
-    
-} */
 
 
 

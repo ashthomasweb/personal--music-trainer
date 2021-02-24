@@ -72,7 +72,7 @@ function modeCycle() {
     modeSelect();
 }
 
-function accidentalDisplay(item) {
+function displayAccidentals(item) {
 
     // display low opacity accidentals
     function displayLow(item) {
@@ -100,13 +100,14 @@ function accidentalDisplay(item) {
         document.getElementsByClassName(item)[0].style.opacity = "1";
     }
 
+    // turn all notes off and reset with current mode
     allNotesOff();
     item.forEach(displayNoteClass);
 }
 
 // select tones for modes using mode index array
 function modeSelect() {
-
+    // toggle switches
     let sharpSwitch = document.getElementById('sharp-switch');
     let flatSwitch = document.getElementById('flat-switch');
 
@@ -130,11 +131,12 @@ function modeSelect() {
         sharpSwitch.dataset.display === 'false' && accidentalToggles(3);
     }
 
+    // check for current mode and select appropriate accidentals from modeArray
     for (let i = 0; i < modeArray.length; i++) {
 
         if (modeChoiceName == modeArray[i][0]) {
             // display notes
-            accidentalDisplay(modeArray[i][1]);
+            displayAccidentals(modeArray[i][1]);
 
             if (modeArray[i][3] === 'BP') {
                 flatOnSharpOn();
@@ -167,18 +169,4 @@ function modeSelect() {
 
 }
 
-// Accidental difference array
-function accDifference() {
-
-    if ( accDisplayBool === false ) {
-        accidentalToggle();
-    } else {
-        // do nothing
-    }
-    
-    diffArray = chromIndex.filter(x => !modeChoice[1].includes(x));
-
-    console.log(diffArray);
-
-}
 // End of document

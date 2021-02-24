@@ -2,7 +2,6 @@
 
 // || Toggle switches 
 
-
 function accidentalToggles(btnId) {
     // button specific variables
     let sharpDisplay;
@@ -39,7 +38,6 @@ function accidentalToggles(btnId) {
         }
         document.getElementById(btnInfo[btnId][0]).style.backgroundColor = "pink";
         btnInfo[btnId][2].display = "true";
-
     }
 }
 
@@ -50,7 +48,6 @@ function freeModeToggle() {
     if (freeModeBool == true) {
         document.getElementById("free-mode-switch").style.backgroundColor = "red";
         document.getElementById("free-mode-switch").style.color = "black";
-
     } else {
         document.getElementById("free-mode-switch").style.backgroundColor = "rgb(239, 239, 239)";
         document.getElementById("free-mode-switch").style.color = "grey";
@@ -68,9 +65,10 @@ function klangToggle() {
     }
 }
 
-// Accidentals toggle switch
+// || Accidentals 
 
-function accidentalToggle() {
+// display toggle switch
+function accidentalDisplayToggle() {
     accDisplayBool = !accDisplayBool;
     if (accDisplayBool == true) {
         document.getElementById("acc-switch").style.backgroundColor = "pink";
@@ -78,12 +76,24 @@ function accidentalToggle() {
         document.getElementById("acc-switch").style.backgroundColor = "rgb(239, 239, 239)";
     }
     // call display toggle function on current mode
-    accidentalDisplay(availNotes);
+    displayAccidentals(availNotes);
 }
 
+// accidental difference array - finds unused notes
+function accidentalDifference() {
+    if ( accDisplayBool === false ) {
+        accidentalDisplayToggle();
+    } else {
+        // do nothing
+    }
+    // finds unused notes, makes them available during practice mode
+    diffArray = chromIndex.filter( x => !modeChoice[1].includes(x) );
+}
+
+// accidentals possible in practice mode
 function accidentalModeToggle() {
     accModeBool = !accModeBool;
-    accDifference();
+    accidentalDifference();
     if (accModeBool == true) {
         document.getElementById("acc-mode-switch").style.backgroundColor = "pink";
     } else {
@@ -102,8 +112,9 @@ function tonicStartToggle() {
     }
 }
 
-// Keyboard On
+// Keyboard 
 
+// keyboard toggle
 function keyboardToggle() {
     keyboardBool = !keyboardBool;
     if (keyboardBool == true) {
@@ -119,34 +130,37 @@ function keyboardToggle() {
     }
 }
 
-
+// user clicked assign button
 function assignKey() {
     removeEventListener('keydown', windowEventListener);
     window.addEventListener('keydown', assignListener);
     window.addEventListener('keydown', windowEventListener);
 }
 
-
+// listens for new key
 function assignListener(e) {
+    // indexable value of target
     let index = e.target.name;
-    let i;
-    for (i = 0; i <= keyArray.length; i++) {
+    for (let i = 0; i <= keyArray.length; i++) {
+        // set empty array length, required for data retrieval
         keyArray[18] = null;
+        // replace already used key
         if (keyArray[i] === e.key) {
             keyArray[i] = null;
             assignBtns[i].innerText = 'Assign';
         }
     }
-    let toString = "\"" + e.key + "\"";
-    assignBtns[index].innerText = toString.toUpperCase();
+    // set key/Assign to element
+    let addQuotes = "\"" + e.key + "\"";
+    assignBtns[index].innerText = addQuotes.toUpperCase();
+    // set key to storage array
     keyArray[index] = e.key;
-
-    // local storage create
     localStorageCreate(keyArray);
-
+    // remove assignment listener
     removeEventListener('keydown', assignListener);
 }
 
+// window listener for keyboard playback
 function windowEventListener(e) {
     for (let i = 0; i <= noteArray.length; i++) {
         if (e.key === keyArray[i]) {
@@ -159,73 +173,19 @@ function windowEventListener(e) {
 
 // Color Picker
 
-function colorPicker() {
+function colorPickerToggle() {
     colorPickBool = !colorPickBool;
     if (colorPickBool == true) {
         document.getElementById("color-switch").style.backgroundColor = "pink";
-
-        for (let i = 0; i < document.getElementsByClassName('color-pick').length; i++) {
-            document.getElementsByClassName('color-pick')[i].style.display = 'block';
+        for (let i = 0; i < document.getElementsByClassName('color-picker').length; i++) {
+            document.getElementsByClassName('color-picker')[i].style.display = 'block';
         }
-
     } else {
         document.getElementById("color-switch").style.backgroundColor = "rgb(239, 239, 239)";
-
-        for (let i = 0; i < document.getElementsByClassName('color-pick').length; i++) {
-            document.getElementsByClassName('color-pick')[i].style.display = 'none';
+        for (let i = 0; i < document.getElementsByClassName('color-picker').length; i++) {
+            document.getElementsByClassName('color-picker')[i].style.display = 'none';
         }
     }
 }
-
-// Local Storage 
-
-function localStorageCreate(input) {
-    input === keyArray && localStorage.setItem("keyArray", JSON.stringify(keyArray));
-    input === pastScores && localStorage.setItem("pastScores", JSON.stringify(pastScores));
-    input === colorArray && localStorage.setItem("colorArray", JSON.stringify(colorArray));
-}
-
-function localStorageRetrieve(output) {
-
-    if (output === keyArray) {
-        return JSON.parse(localStorage.getItem("keyArray"));
-    }
-
-    if (output === pastScores) {
-        return JSON.parse(localStorage.getItem("pastScores"));
-    }
-
-    if (output === colorArray) {
-        return JSON.parse(localStorage.getItem("colorArray"));
-    }
-
-}
-
-// on load, restore array contents from previous session
-function localStorageKeyboard() {
-    if (localStorage.getItem("keyArray") !== undefined) {
-        keyArray = JSON.parse(localStorage.getItem("keyArray"));
-        console.log(keyArray);
-
-        for (let i = 0; i < assignBtns.length; i++) {
-            let toString = "\"" + keyArray[i] + "\"";
-            if (keyArray[i] !== null) {
-                assignBtns[i].innerText = toString.toUpperCase();
-            } else {
-                // do nothing
-            }
-        }
-
-        window.addEventListener('keydown', windowEventListener);
-    }
-}
-
-
-function loadUserPrefs() {
-    localStorageKeyboard();
-    retrieveColors();
-    getPastScores();
-}
-
 
 // END of document 

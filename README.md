@@ -28,6 +28,7 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 * Create Melodic Dictation Trainer.
 * Sample extended range for piano.
 * Create Key Center option with piano extended range.
+* Add 'Tonic Start' and 'Accidental Mode' to score history
 
 ## Known Issues
 * Mobile issues: webAudio tends to error and produce poor sound quality. HTML5 audio is extremely laggy. Possible desktop-only app until further development.

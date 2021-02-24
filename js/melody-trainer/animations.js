@@ -4,25 +4,19 @@ function lightUp(input) {
     // 'input' is the 'wrap' element containing the note elements
     //  as defined in the webAudio switch and listeners
 
-    // console.log('This is the passed variable: ' + input);
-    // console.log(input.children[2]);
-    // console.log(Array.from(input.parentNode.children).indexOf(input));
-
-
+    // get indexable value 
     let index = Array.from(input.parentNode.children).indexOf(input)
-
-
 
     function startAnim() {
         input.classList.add('anim-light-' + index);
-        // input.children[2].classList.add('anim-btn-' + index);
+        // input.children[2].classList.add('anim-btn-' + index); // apply animation to button
 
+        // value for checking if anim is running, to allow repeated notes to be animated
         input.children[1].dataset.anim = 'true';
 
         input.addEventListener('animationend', () => {
             input.classList.remove('anim-light-' + index);
-            // input.children[2].classList.remove('anim-btn-' + index);
-
+            // input.children[2].classList.remove('anim-btn-' + index); // apply animation to button
             input.children[1].dataset.anim = 'false';
             input.style.backgroundColor = '#181818';
         });
@@ -30,14 +24,14 @@ function lightUp(input) {
 
     function stopAnim() {
         input.classList.remove('anim-light-' + index);
-        // input.children[2].classList.remove('anim-btn-' + index);
-
+        // input.children[2].classList.remove('anim-btn-' + index); // apply animation to button
     }
 
     // check if animation is still running
     if (input.children[1].dataset.anim === 'true') {
         input.style.backgroundColor = 'rgb(0, 78, 22)';
         stopAnim();
+        // send to async to allow for repeated notes, otherwise event listeners block reapplication of animation class
         setTimeout(function () {
             startAnim();
         }, 0);
@@ -47,22 +41,8 @@ function lightUp(input) {
 
 }
 
-// Color Picker
 
-function retrieveColors() {
-    if ( localStorageRetrieve(colorArray) !== null) { // if has local storage
-        console.log('has storage');
-        colorArray = localStorageRetrieve(colorArray);
-        for (let i = 0; i <= document.getElementsByClassName('wrap').length - 1; i++) {
-            colorPick[i].value = colorArray[i];
-        }
-    }
-    changeColor();
-}
-
-let colorPick = Array.from(document.getElementsByClassName('color-pick'));
-
-function changeColor() {
+function saveColors() {
     
     if ( localStorageRetrieve(colorArray) !== null) { // if has local storage
        // do nothing
@@ -70,19 +50,22 @@ function changeColor() {
         console.log('no storage');
         colorArray = [];
         for (let i = 0; i <= document.getElementsByClassName('wrap').length - 1; i++) {
-            colorArray.push(colorPick[i].value);
+            colorArray.push(colorPicker[i].value);
         }
     
     }
-    
+    // 
     for (let i = 0; i <= document.getElementsByClassName('wrap').length - 1; i++) {
-        colorArray[i] = colorPick[i].value;
+        colorArray[i] = colorPicker[i].value;
     }
-
+    // send color array to storage
     localStorageCreate(colorArray);
+    // append new stylesheet
     createElement();
 }
 
+// create stylesheet for note color animations. Due to need for async timing in lightUp(), 
+// appended stylesheet is necessary for note independence
 function createElement() {
 
     var style = document.createElement('style');
@@ -109,10 +92,11 @@ function createElement() {
         --keyhover17: ${colorArray[17]}; 
         --keyhover18: ${colorArray[18]}; 
     }`;
+    // create new stylesheet, insert in <head>
     document.getElementsByTagName('head')[0].appendChild(style);
 
 }
 
 
 
-
+// END of document
