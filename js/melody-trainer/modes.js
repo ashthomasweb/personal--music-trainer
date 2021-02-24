@@ -138,11 +138,11 @@ function modeSelect() {
             // display notes
             displayAccidentals(modeArray[i][1]);
 
-            if (modeArray[i][3] === 'BP') {
+            if (modeArray[i][3] === 'BP') { // assignment specific to Bebop Predominant mode
                 flatOnSharpOn();
                 document.getElementById('Bb3-wrap').children[1].children[1].style.display = 'none';
                 document.getElementById('Bb3-wrap').children[3].children[0].style.display = 'none';
-            } else if (modeArray[i][3] === 'MB') {
+            } else if (modeArray[i][3] === 'MB') { // assignment specific to Minor Blues mode
                 flatOnSharpOff();
                 document.getElementById('Gb4-wrap').children[1].children[0].style.display = 'block';
                 document.getElementById('Gb4-wrap').children[3].children[0].style.display = 'block';
@@ -169,4 +169,4 @@ function modeSelect() {
 
 }
 
-// End of document
+// END of document

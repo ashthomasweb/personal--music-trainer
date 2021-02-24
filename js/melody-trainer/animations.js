@@ -1,3 +1,5 @@
+//  Animations JS file for "Music Trainer"
+
 // || Play Animations 
 
 function lightUp(input) {
@@ -31,7 +33,7 @@ function lightUp(input) {
     if (input.children[1].dataset.anim === 'true') {
         input.style.backgroundColor = 'rgb(0, 78, 22)';
         stopAnim();
-        // send to async to allow for repeated notes, otherwise event listeners block reapplication of animation class
+        // send to async to allow for repeated notes, otherwise event listeners block reapplication of class
         setTimeout(function () {
             startAnim();
         }, 0);
@@ -40,7 +42,6 @@ function lightUp(input) {
     }
 
 }
-
 
 function saveColors() {
     
@@ -96,7 +97,5 @@ function createElement() {
     document.getElementsByTagName('head')[0].appendChild(style);
 
 }
-
-
 
 // END of document

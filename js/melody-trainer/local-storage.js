@@ -21,7 +21,6 @@ function localStorageRetrieve(output) {
 
 function retrieveColors() {
     if (localStorageRetrieve(colorArray) !== null) {
-        console.log('has storage');
         colorArray = localStorageRetrieve(colorArray);
         for (let i = 0; i <= document.getElementsByClassName('wrap').length - 1; i++) {
             colorPicker[i].value = colorArray[i];

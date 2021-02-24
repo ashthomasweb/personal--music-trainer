@@ -1,4 +1,4 @@
-//  Global varialbe JS file for "Music Trainer"
+//  Global variable JS file for "Music Trainer"
 
 // || WebAudio initialization
 const AudioContext = window.AudioContext || window.webkitAudioContext;
