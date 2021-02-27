@@ -154,7 +154,6 @@ function playSound() {
     // grab played note name and push to userPat array for checking
     let userPick = noteButtonArray[i].parentElement.id.replace('-wrap', '');
     userPat.push(userPick);
-    // console.log(`This is the userPat: ${userPat}`);
 
     // prevent pattern check during 'free mode'
     if (freeModeBool === true || instrumentPower === false) {
@@ -188,14 +187,17 @@ function playNote(index, noteId) {
         audioCx.resume();
     }
     // stop currently playing audio
-    if (currentAudio === undefined || cadenceBool == true) {
+    if (currentAudio === undefined || cadenceBool === true) {
         // do nothing 
     } else {
         currentAudio.pause();
         currentAudio.currentTime = 0;
     }
     instrumentChoice[0][index].play();
-    currentAudio = instrumentChoice[0][index];
+    if ( cadenceBool === false ) {
+        console.log('hi');
+        currentAudio = instrumentChoice[0][index];
+    }
 }
 
 

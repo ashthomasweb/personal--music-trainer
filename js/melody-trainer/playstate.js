@@ -45,7 +45,10 @@ function buildMelody() {
 
 
 // || Pattern Verification
+
+// named timers for successful round completion and to be cleared
 let buildTimer;
+let pointerTimer;
 
 function build() {
     buildTimer = setTimeout(function () {
@@ -53,8 +56,6 @@ function build() {
         buildMelody();
     }, 1500);
 }
-
-let pointerTimer;
 
 function pointer() { 
     pointerTimer = setTimeout(function () {
@@ -85,7 +86,6 @@ function patCheck() {
 }
 
 function endPractice() {
-    // console.log(`This is the userPat: ${userPat}`);
     clearPracTimers();
     pracModeBool = false;
     freeModeToggle();
@@ -166,7 +166,6 @@ function scorePush() {
     localStorageCreate(pastScores);
 
 }
-
 
 // || Message display 
 

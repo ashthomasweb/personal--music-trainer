@@ -9,8 +9,7 @@ function chord(a, b, c, d, e, f, g) {
 
 function playScale() {
 
-
-    if (modeChoice === "Major" || modeChoice === "Minor") {
+    if (modeChoice[0] === "Major" || modeChoice[0] === "Minor") {
 
         noteSwitch("C4");
 
@@ -18,7 +17,7 @@ function playScale() {
             noteSwitch("C5");
         }, 800);
 
-        if (modeChoice === "Minor") {
+        if (modeChoice[0] === "Minor") {
             setTimeout(function () {
                 noteSwitch("Bb4");
             }, 1500);
@@ -28,7 +27,7 @@ function playScale() {
             }, 1500);
         }
 
-        if (modeChoice === "Minor") {
+        if (modeChoice[0] === "Minor") {
             setTimeout(function () {
                 noteSwitch("Ab4");
             }, 2000);
@@ -46,7 +45,7 @@ function playScale() {
             noteSwitch("F4");
         }, 3000);
 
-        if (modeChoice === "Minor") {
+        if (modeChoice[0] === "Minor") {
             setTimeout(function () {
                 noteSwitch("Eb4");
             }, 3500);
@@ -64,7 +63,7 @@ function playScale() {
             noteSwitch("C4");
         }, 4500);
 
-        if (modeChoice === "Minor") {
+        if (modeChoice[0] === "Minor") {
             setTimeout(function () {
                 noteSwitch("Eb4");
             }, 5050);
@@ -78,7 +77,7 @@ function playScale() {
             noteSwitch("G4");
         }, 5600);
 
-        if (modeChoice === "Minor") {
+        if (modeChoice[0] === "Minor") {
             setTimeout(function () {
                 noteSwitch("Eb4");
             }, 6150);
@@ -101,7 +100,7 @@ function playScale() {
         }, 8000);
 
 
-    } else if (modeChoice === "Chromatic") {
+    } else if (modeChoice[0] === "Chromatic") {
 
         noteSwitch("C4");
 
