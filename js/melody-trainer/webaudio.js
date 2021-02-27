@@ -11,58 +11,59 @@ let instrumentBank = [
 ];
 
 function powerSwitch() {
+    let noteContainer = document.getElementsByClassName('note-container')[0];
+    let instrumentBtn = document.getElementsByClassName('instrument')[0].children[2];
+    let practiceBtn = document.getElementsByClassName('header')[0].children[4];
+    let powerSwitch = document.getElementById("power-switch");
+    let solfegeSwitch = document.getElementById("solf-switch");
+    let degreeSwitch = document.getElementById("deg-switch");
+    let accidentalSwitch = document.getElementById("acc-switch");
+    let switchArray = [powerSwitch, solfegeSwitch, degreeSwitch, accidentalSwitch];
+    let btnsToDisplay = [instrumentBtn, practiceBtn];
 
-    if (instPower === true) {
+    if (instrumentPower === true) {
+        instrumentPower = !instrumentPower;
+        audioCx.suspend;
         userPointerOff();
         endPractice();
-        
-        instPower = !instPower;
-        audioCx.suspend;
-        document.getElementById("power-switch").style.backgroundColor = "rgb(239, 239, 239)";
-        if ( freeModeBool === true ) {
-            freeModeToggle();
-        } else {
-            // do nothing
-        }
-        // turn off notes and instrument select
-        document.getElementsByClassName('note-container')[0].style.pointerEvents = 'none';
-        chromIndex.forEach( (item) => document.getElementsByClassName(item)[0].style.opacity = "0.1" );
-        document.getElementsByClassName('instrument')[0].children[2].style.opacity = '0.1';
-        document.getElementsByClassName('instrument')[0].children[2].style.pointerEvents = 'none';
+        freeModeBool && freeModeToggle();
 
-        document.getElementsByClassName('header')[0].children[4].style.opacity = '0.1';
-        document.getElementsByClassName('header')[0].children[4].style.pointerEvents = 'none';
-       
-    } else if (instPower === false) {
+        // ghost out notes and instrument selection button
+        powerSwitch.style.backgroundColor = "rgb(239, 239, 239)";
+        noteContainer.style.pointerEvents = 'none';
+        btnsToDisplay.forEach((item) => {
+            item.style.opacity = '0.1';
+            item.style.pointerEvents = 'none';
+        });
+
+        // ghost all notes
+        chromIndex.forEach((item) => document.getElementsByClassName(item)[0].style.opacity = "0.1");
+
+    } else if (instrumentPower === false) {
+        instrumentPower = !instrumentPower;
         audioCx.resume;
-        // turn on notes and instrument select
-        document.getElementsByClassName('note-container')[0].style.pointerEvents = 'auto';
-        document.getElementsByClassName('instrument')[0].children[2].style.pointerEvents = 'auto';
-        document.getElementsByClassName('instrument')[0].children[2].style.opacity = '1';
+        userPointerOn();
+        freeModeToggle();
 
-        document.getElementsByClassName('header')[0].children[4].style.opacity = '1';
-        document.getElementsByClassName('header')[0].children[4].style.pointerEvents = 'auto';
+        // activate notes and instrument selection button
+        powerSwitch.style.backgroundColor = "pink";
+        noteContainer.style.pointerEvents = 'auto';
+        btnsToDisplay.forEach((item) => {
+            item.style.opacity = '1';
+            item.style.pointerEvents = 'auto';
+        });
 
-        document.getElementById("power-switch").style.backgroundColor = "pink";
-        
         if (initialLoad === true) {
             initialLoad = !initialLoad;
-            document.getElementById("power-switch").style.backgroundColor = "pink";
-            document.getElementById("solf-switch").style.backgroundColor = "pink";
-            document.getElementById("deg-switch").style.backgroundColor = "pink";
-            document.getElementById("acc-switch").style.backgroundColor = "pink";
+            // initial options selection
+            switchArray.forEach((item) => item.style.backgroundColor = 'pink');
             instrumentCycle();
-            // start with Tonic Start enabled
+            // initialize with Tonic Start enabled
             tonicStartToggle();
         }
 
-        instPower = true;
-        
-        userPointerOn();
-        // turn on inital mode
+        // unghost modal notes
         modeSelect();
-        // start in Free Mode
-        freeModeToggle();
     }
 }
 
@@ -87,7 +88,7 @@ function instrumentCycle() {
 
     // changes on-screen instrument selection
     document.getElementById("instr-type").innerText = instrumentChoice[2];
-    
+
     // applies instrument source via listeners
     function soundLoader() {
         for (let i = 0; i <= noteButtonArray.length - 1; i++) {
@@ -156,7 +157,7 @@ function playSound() {
     // console.log(`This is the userPat: ${userPat}`);
 
     // prevent pattern check during 'free mode'
-    if (freeModeBool === true || instPower === false) {
+    if (freeModeBool === true || instrumentPower === false) {
         // do nothing
     } else {
         patCheck();

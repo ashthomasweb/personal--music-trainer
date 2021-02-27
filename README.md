@@ -36,7 +36,7 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 * Add percussion bank
 
 ## Known Issues
-* 
+* Windows 95 feel UI
 
 ## Status
 Project is: _in development_.

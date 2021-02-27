@@ -11,7 +11,7 @@ let assignBtns = Array.from(document.getElementsByClassName('keypress-btn'));
 let colorPicker = Array.from(document.getElementsByClassName('color-picker'));
 
 // webAudio powerSwitch
-let instPower = false; 
+let instrumentPower = false; 
 let initialLoad = true; 
 
 // toggle booleans
