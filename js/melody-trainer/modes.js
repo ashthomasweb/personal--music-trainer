@@ -132,7 +132,7 @@ function modeSelect() {
     }
 
     // check for current mode and select appropriate accidentals from modeArray
-    for (let i = 0; i < modeArray.length; i++) {
+    for (let i = 0; i <= modeArray.length - 1; i++) {
 
         if (modeChoiceName == modeArray[i][0]) {
             // display notes

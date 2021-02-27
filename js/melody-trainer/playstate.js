@@ -1,4 +1,6 @@
-// || Scale Degree Set 
+// Playstate JavaScript file for "Music Trainer"
+
+// || Melody pattern generation
 
 function buildMelody() {
     let newNote;
@@ -60,7 +62,7 @@ function pointer() {
     }, 1700);
 }
  
-function clear() {
+function clearPracTimers() {
     clearTimeout(buildTimer);
     clearTimeout(pointerTimer);
 }
@@ -69,12 +71,10 @@ function patCheck() {
 
     if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1] && userPat.length === melodyPat.length) {
         userPointerOff();
-
+        // timed next round generation and animation
         build();
         pointer();
-        
         lastRoundScore = userPat.length;
-
     } else if (melodyPat[melodyPat.length - (melodyPat.length - userPat.length) - 1] === userPat[userPat.length - 1]) {
         // step for successful turn, but incomplete pattern
     } else {
@@ -85,8 +85,8 @@ function patCheck() {
 }
 
 function endPractice() {
-    clear();
-    console.log(`This is the userPat: ${userPat}`);
+    // console.log(`This is the userPat: ${userPat}`);
+    clearPracTimers();
     pracModeBool = false;
     freeModeToggle();
     scorePush();
@@ -100,7 +100,7 @@ function endPractice() {
 function userPointerOff() {
     let wrapArray = document.getElementsByClassName("wrap");
 
-    for (let i = 0; i < wrapArray.length - 1; i++) {
+    for (let i = 0; i <= wrapArray.length - 1; i++) {
         wrapArray[i].style.pointerEvents = "none";
     }
 }
@@ -108,7 +108,7 @@ function userPointerOff() {
 function userPointerOn() {
     let wrapArray = document.getElementsByClassName("wrap");
 
-    for (let i = 0; i < wrapArray.length - 1; i++) {
+    for (let i = 0; i <= wrapArray.length - 1; i++) {
         wrapArray[i].style.pointerEvents = "auto";
     }
 }
@@ -116,15 +116,13 @@ function userPointerOn() {
 // || Past Scores 
 
 function scorePush() {
-    // Type, Score, Mode Variables
-
-    // one round of score data
-    let scoreInst;
-    let scoreValue = 0;
-    let scoreMode = modeScore;
     // helper arrays
     let allScores = [];
     let lastScoreArray = [];
+    // score data
+    let scoreInst;
+    let scoreValue = 0;
+    let scoreMode = modeScore;
     // element cloning and score population
     let lastPastScore;
     let parent = document.getElementsByClassName('scores')[0];
