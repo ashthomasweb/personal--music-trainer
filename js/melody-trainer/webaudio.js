@@ -180,7 +180,6 @@ function playNote(index, noteId) {
         lightUp(item);
     } else {
         lightUp(item);
-
     }
     // check if context is in suspended state (autoplay policy)
     if (audioCx.state === 'suspended') {
@@ -199,7 +198,6 @@ function playNote(index, noteId) {
         currentAudio = instrumentChoice[0][index];
     }
 }
-
 
 // If practice mode is on, keyboard lights don't animate because keybaord isn't calling playNote directly 
 // like a click listener. Or, make pracModeBool only affect generated pattern playback, not user input
