@@ -53,9 +53,8 @@ function saveColors() {
         for (let i = 0; i <= document.getElementsByClassName('wrap').length - 1; i++) {
             colorArray.push(colorPicker[i].value);
         }
-    
     }
-    // 
+    
     for (let i = 0; i <= document.getElementsByClassName('wrap').length - 1; i++) {
         colorArray[i] = colorPicker[i].value;
     }

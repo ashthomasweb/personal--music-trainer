@@ -44,5 +44,6 @@ let userPat = [];
 
 // rotating value for stopping audio
 let currentAudio; 
+let currentChord = [];
 
 // END of document 

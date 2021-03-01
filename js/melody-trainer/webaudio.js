@@ -195,7 +195,6 @@ function playNote(index, noteId) {
     }
     instrumentChoice[0][index].play();
     if ( cadenceBool === false ) {
-        console.log('hi');
         currentAudio = instrumentChoice[0][index];
     }
 }

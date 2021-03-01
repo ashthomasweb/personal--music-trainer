@@ -3,23 +3,25 @@
 let sourceNoteIndex = ['C5', 'B4', 'Bb4', 'A4', 'Ab4', 'G4', 'Gb4', 'F4', 'E4', 'Eb4', 'D4', 'Db4', 'C4', 'B3', 'Bb3', 'A3', 'Ab3', 'G3', 'Gb3']
 
 function chord(a, b, c, d, e, f, g) {
+    stopChord();
     let args = Array.from(arguments);
-    console.log(args);
-    cadenceBool = true;
-    // args.forEach((item) => noteSwitch(item));
-    cadenceBool = false;
-    console.log(instrumentChoice[0]);
-    args.forEach( (item) => {
+    args.forEach((item) => {
         let noteIndex = sourceNoteIndex.indexOf(item);
-        playChordPromise(instrumentChoice[0][noteIndex].src);
-    })
+        currentChord.push(instrumentChoice[0][noteIndex]);
+    });
+
+    cadenceBool = true;
+    args.forEach((item) => noteSwitch(item));
+    cadenceBool = false;
+
 }
 
-function playChordPromise(url) {
-        // HTML5 url
-        var audio = new Audio(url);
-        audio.play();
-       
+function stopChord() {
+    currentChord.forEach( item => {
+        item.pause();
+        item.currentTime = 0;
+    });
+    currentChord = [];
 }
 
 function playScale() {
