@@ -127,7 +127,7 @@ function playSound() {
 
     // stop currently playing audio. needs refactor as gain decrease for legato feel
     if (currentAudio === undefined || cadenceBool == true) {
-        // do nothing 
+        // do nothing
     } else {
         currentAudio.pause();
         currentAudio.currentTime = 0;
@@ -174,7 +174,7 @@ function playSound() {
 // webAudio function for noteSwitch
 function playNote(index, noteId) {
     let item = document.getElementById(`${noteId}-wrap`);
-    // console.log(item);
+    console.log(item);
     if (pracModeBool === true) {
         // do nothing
         lightUp(item);
@@ -187,7 +187,7 @@ function playNote(index, noteId) {
     }
     // stop currently playing audio
     if (currentAudio === undefined || cadenceBool === true) {
-        // do nothing 
+        // do nothing
     } else {
         currentAudio.pause();
         currentAudio.currentTime = 0;
@@ -198,7 +198,7 @@ function playNote(index, noteId) {
     }
 }
 
-// If practice mode is on, keyboard lights don't animate because keybaord isn't calling playNote directly 
+// If practice mode is on, keyboard lights don't animate because keybaord isn't calling playNote directly
 // like a click listener. Or, make pracModeBool only affect generated pattern playback, not user input
 function noteSwitch(noteId) {
 
