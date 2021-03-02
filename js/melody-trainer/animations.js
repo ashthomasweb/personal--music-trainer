@@ -9,9 +9,9 @@ function lightUp(input) {
 
     // get indexable value
     let index = Array.from(input.parentNode.children).indexOf(input);
-    console.log('From lightUp');
-    console.log(input);
-    console.log(index);
+    // console.log('From lightUp');
+    // console.log(input);
+    // console.log(index);
     let colorsArray = localStorageRetrieve(colorArray);
     // console.log(colorsArray);
 
@@ -28,7 +28,7 @@ function lightUp(input) {
     }
     
     function stopAnim() {
-        input.style.transition = 'background-color 1s';
+        input.style.transition = 'background-color 1.5s';
         input.style.backgroundColor = 'rgba(0, 0, 0, 0)';
     }
 

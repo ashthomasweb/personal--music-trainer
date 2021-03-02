@@ -81,13 +81,13 @@ function accidentalDisplayToggle() {
 
 // accidental difference array - finds unused notes
 function accidentalDifference() {
-    if ( accDisplayBool === false ) {
+    if (accDisplayBool === false) {
         accidentalDisplayToggle();
     } else {
         // do nothing
     }
     // finds unused notes, makes them available during practice mode
-    diffArray = chromIndex.filter( x => !modeChoice[1].includes(x) );
+    diffArray = chromIndex.filter(x => !modeChoice[1].includes(x));
 }
 
 // accidentals possible in practice mode
@@ -150,7 +150,7 @@ function assignListener(e) {
             assignBtns[i].innerText = 'Assign';
         }
     }
-    // set key/Assign to element
+    // set key/assign to element
     let addQuotes = "\"" + e.key + "\"";
     assignBtns[index].innerText = addQuotes.toUpperCase();
     // set key to storage array
@@ -164,9 +164,23 @@ function assignListener(e) {
 function windowEventListener(e) {
     for (let i = 0; i <= noteArray.length; i++) {
         if (e.key === keyArray[i]) {
-            playNote(i, noteArray[i])
-            userPat.push(noteArray[i]);
-            klangBool == true && instrumentCycle();
+            // check length between clicks and conditional
+            firstClick = timer;
+            timer = Date.now();
+            if (timer - firstClick > 100) {
+                note = noteArray[i];
+                firstNote = note;
+            } else {
+                note = noteArray[i];
+            }
+            if (timer - firstClick < 100) {
+                chord(note, firstNote);
+            } else {
+                playNote(i, noteArray[i]);
+            }
+            pracModeBool && userPat.push(noteArray[i]);
+
+            performCheck();
         }
     }
 }

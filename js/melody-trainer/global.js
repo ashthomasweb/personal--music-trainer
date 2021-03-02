@@ -33,6 +33,12 @@ let modeType; // mode triad quality
 let lastRoundScore = 0; // playstate scorePush
 let modeScore = "Major"; //
 
+// helper variables for keyboard listener diads
+let timer = 0;
+let note;
+let firstClick = 0;
+let firstNote;
+
 // send to local Storage
 let pastScores = [];
 let colorArray = []; // user saved values

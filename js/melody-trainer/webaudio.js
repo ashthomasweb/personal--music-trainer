@@ -157,22 +157,25 @@ function playSound() {
     let userPick = noteButtonArray[i].parentElement.id.replace('-wrap', '');
     userPat.push(userPick);
 
+    performCheck();
+}
+
+function performCheck() {
+    
     // prevent pattern check during 'free mode'
     if (freeModeBool === true || instrumentPower === false) {
         // do nothing
     } else {
         patCheck();
     }
-
+    
     // cycle instrument if klang is 'on'
     if (klangBool == true) {
         instrumentCycle();
     } else {
         // do nothing
     }
-
 }
-
 // webAudio function for noteSwitch
 function playNote(index, noteId) {
     let wrap = document.getElementById(`${noteId}-wrap`);
@@ -191,13 +194,16 @@ function playNote(index, noteId) {
     if (currentAudio === undefined || cadenceBool === true) {
         // do nothing
     } else {
+        console.log('hi');
         currentAudio.pause();
         currentAudio.currentTime = 0;
+        
     }
     instrumentChoice[0][index].play();
     if ( cadenceBool === false ) {
         currentAudio = instrumentChoice[0][index];
     }
+   
 }
 
 // If practice mode is on, keyboard lights don't animate because keybaord isn't calling playNote directly
