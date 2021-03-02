@@ -12,16 +12,24 @@ function lightUp(input) {
     console.log('From lightUp');
     console.log(input);
     console.log(index);
+    let colorsArray = localStorageRetrieve(colorArray);
+    // console.log(colorsArray);
+
 
     function startAnim() {
         input.style.transition = 'background-color .1s';
-        input.style.backgroundColor = 'green';
+
+        if ( localStorageRetrieve(colorArray) !== null) { // if has local storage
+            input.style.backgroundColor = colorsArray[index];
+        } else {
+            input.style.backgroundColor = 'green';
+        }
+
     }
     
     function stopAnim() {
         input.style.transition = 'background-color 1s';
         input.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-
     }
 
     new Promise(function(resolve, reject) {
@@ -145,3 +153,4 @@ function createElement() {
 }
 
 // END of document
+
