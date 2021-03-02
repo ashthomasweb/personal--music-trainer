@@ -108,7 +108,6 @@ function playNotePromise(url) {
         // webAudio url
         var audio = url;
         currentAudio = audio;
-        console.log(currentAudio);
         // play when loaded
         audio.play();
         audio.onerror = reject;

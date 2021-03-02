@@ -6,6 +6,9 @@ function chord(a, b, c, d, e, f, g) {
     stopChord();
     let args = Array.from(arguments);
     args.forEach((item) => {
+        // console.log(item);
+        // console.log(document.getElementsByClassName(item)[0]);
+        // document.getElementsByClassName(item)[0].classList = "wrap " + item;
         let noteIndex = sourceNoteIndex.indexOf(item);
         currentChord.push(instrumentChoice[0][noteIndex]);
     });
