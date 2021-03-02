@@ -134,7 +134,9 @@ function playSound() {
     }
 
     // animate sounding note
-    // lightUp(this.parentElement);
+    let wrap = this.parentElement;
+    // console.log(wrap);
+    lightUp(wrap);
 
     // play note and repeat note condition
     if (noteButtonArray[i].dataset.playing === 'false') {
@@ -173,14 +175,14 @@ function playSound() {
 
 // webAudio function for noteSwitch
 function playNote(index, noteId) {
-    // let item = document.getElementById(`${noteId}-wrap`);
-    // console.log(item);
-    // if (pracModeBool === true) {
-    //     // do nothing
-    //     lightUp(item);
-    // } else {
-    //     lightUp(item);
-    // }
+    let wrap = document.getElementById(`${noteId}-wrap`);
+    // console.log(wrap);
+    if (pracModeBool === true) {
+        // do nothing
+        lightUp(wrap);
+    } else {
+        lightUp(wrap);
+    }
     // check if context is in suspended state (autoplay policy)
     if (audioCx.state === 'suspended') {
         audioCx.resume();

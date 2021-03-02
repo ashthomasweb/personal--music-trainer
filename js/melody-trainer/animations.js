@@ -9,19 +9,28 @@ function lightUp(input) {
 
     // get indexable value
     let index = Array.from(input.parentNode.children).indexOf(input);
-
-    // console.log(input);
+    console.log('From lightUp');
+    console.log(input);
+    console.log(index);
 
     function startAnim() {
-
+        input.style.transition = 'background-color .1s';
+        input.style.backgroundColor = 'green';
     }
-
+    
     function stopAnim() {
+        input.style.transition = 'background-color 1s';
+        input.style.backgroundColor = 'rgba(0, 0, 0, 0)';
 
     }
 
+    new Promise(function(resolve, reject) {
+        startAnim();
+        setTimeout(() => resolve(), 100);
+    }).then(function() {
+        stopAnim();
 
-
+    });
 }
 
 
@@ -78,13 +87,13 @@ function lightUp(input) {
 
 
 function noteSwitchTest() {
-  noteSwitch('C5');
+    noteSwitch('C5');
 }
 
 function saveColors() {
 
-    if ( localStorageRetrieve(colorArray) !== null) { // if has local storage
-       // do nothing
+    if (localStorageRetrieve(colorArray) !== null) { // if has local storage
+        // do nothing
     } else { // if no local storage
         console.log('no storage');
         colorArray = [];
