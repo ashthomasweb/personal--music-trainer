@@ -127,14 +127,16 @@ function playSound() {
 
     // stop currently playing audio. needs refactor as gain decrease for legato feel
     if (currentAudio === undefined || cadenceBool == true) {
-        // do nothing 
+        // do nothing
     } else {
         currentAudio.pause();
         currentAudio.currentTime = 0;
     }
 
     // animate sounding note
-    lightUp(this.parentElement);
+    let wrap = this.parentElement;
+    // console.log(wrap);
+    lightUp(wrap);
 
     // play note and repeat note condition
     if (noteButtonArray[i].dataset.playing === 'false') {
@@ -155,31 +157,34 @@ function playSound() {
     let userPick = noteButtonArray[i].parentElement.id.replace('-wrap', '');
     userPat.push(userPick);
 
+    performCheck();
+}
+
+function performCheck() {
+    
     // prevent pattern check during 'free mode'
     if (freeModeBool === true || instrumentPower === false) {
         // do nothing
     } else {
         patCheck();
     }
-
+    
     // cycle instrument if klang is 'on'
     if (klangBool == true) {
         instrumentCycle();
     } else {
         // do nothing
     }
-
 }
-
 // webAudio function for noteSwitch
 function playNote(index, noteId) {
-    let item = document.getElementById(`${noteId}-wrap`);
-    // console.log(item);
+    let wrap = document.getElementById(`${noteId}-wrap`);
+    // console.log(wrap);
     if (pracModeBool === true) {
         // do nothing
-        lightUp(item);
+        lightUp(wrap);
     } else {
-        lightUp(item);
+        lightUp(wrap);
     }
     // check if context is in suspended state (autoplay policy)
     if (audioCx.state === 'suspended') {
@@ -187,18 +192,21 @@ function playNote(index, noteId) {
     }
     // stop currently playing audio
     if (currentAudio === undefined || cadenceBool === true) {
-        // do nothing 
+        // do nothing
     } else {
+        console.log('hi');
         currentAudio.pause();
         currentAudio.currentTime = 0;
+        
     }
     instrumentChoice[0][index].play();
     if ( cadenceBool === false ) {
         currentAudio = instrumentChoice[0][index];
     }
+   
 }
 
-// If practice mode is on, keyboard lights don't animate because keybaord isn't calling playNote directly 
+// If practice mode is on, keyboard lights don't animate because keybaord isn't calling playNote directly
 // like a click listener. Or, make pracModeBool only affect generated pattern playback, not user input
 function noteSwitch(noteId) {
 

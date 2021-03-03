@@ -2,56 +2,106 @@
 
 // || Play Animations
 
+
 function lightUp(input) {
     // 'input' is the 'wrap' element containing the note elements
     //  as defined in the webAudio switch and listeners
 
     // get indexable value
     let index = Array.from(input.parentNode.children).indexOf(input);
+    // console.log('From lightUp');
+    // console.log(input);
+    // console.log(index);
+    let colorsArray = localStorageRetrieve(colorArray);
+    // console.log(colorsArray);
 
-    console.log(input);
-
-    function animationEnd() {
-        input.classList.remove('anim-light-' + index);
-        // input.children[2].classList.remove('anim-btn-' + index); // apply animation to button
-        input.children[1].dataset.anim = 'false';
-        input.style.backgroundColor = '#181818';
-    }
 
     function startAnim() {
-        input.classList.add('anim-light-' + index);
-        // input.children[2].classList.add('anim-btn-' + index); // apply animation to button
+        input.style.transition = 'background-color .1s';
 
-        // value for checking if anim is running, to allow repeated notes to be animated
-        input.children[1].dataset.anim = 'true';
+        if ( localStorageRetrieve(colorArray) !== null) { // if has local storage
+            input.style.backgroundColor = colorsArray[index];
+        } else {
+            input.style.backgroundColor = 'green';
+        }
 
-        input.addEventListener('animationend', animationEnd);
     }
-
+    
     function stopAnim() {
-        input.classList.remove('anim-light-' + index);
-        input.removeEventListener('animationend', animationEnd);
-        // input.children[2].classList.remove('anim-btn-' + index); // apply animation to button
+        input.style.transition = 'background-color 1.5s';
+        input.style.backgroundColor = 'rgba(0, 0, 0, 0)';
     }
 
-    // check if animation is still running
-    if (input.children[1].dataset.anim === 'true') {
-        // input.style.backgroundColor = 'rgb(0, 78, 22)';
-        stopAnim();
-        // send to async to allow for repeated notes, otherwise event listeners block reapplication of class
-        setTimeout(function () {
-            startAnim();
-        }, 0);
-    } else {
+    new Promise(function(resolve, reject) {
         startAnim();
-    }
+        setTimeout(() => resolve(), 100);
+    }).then(function() {
+        stopAnim();
 
+    });
+}
+
+
+
+// ORIGINAL
+// function lightUp(input) {
+//     // 'input' is the 'wrap' element containing the note elements
+//     //  as defined in the webAudio switch and listeners
+//
+//     // get indexable value
+//     let index = Array.from(input.parentNode.children).indexOf(input);
+//
+//     // console.log(input);
+//
+//     window.addEventListener('animationend', animationEnd);
+//     function animationEnd() {
+//         input.classList.remove('anim-light-' + index);
+//         // input.children[2].classList.remove('anim-btn-' + index); // apply animation to button
+//         input.children[2].dataset.anim = 'false';
+//         input.style.backgroundColor = '#181818';
+//     }
+//
+//     function startAnim() {
+//
+//         input.classList.add('anim-light-' + index);
+//         // input.children[2].classList.add('anim-btn-' + index); // apply animation to button
+//
+//         // value for checking if anim is running, to allow repeated notes to be animated
+//         input.children[2].dataset.anim = 'true';
+//
+//     }
+//
+//     function stopAnim() {
+//         input.classList.remove('anim-light-' + index);
+//         // input.removeEventListener('animationend', animationEnd);
+//         // input.children[2].classList.remove('anim-btn-' + index); // apply animation to button
+//     }
+//
+//     // check if animation is still running
+//     if (input.children[2].dataset.anim === 'true') {
+//         console.log(input.children[2]);
+//         // input.style.backgroundColor = 'rgb(0, 78, 22)';
+//         stopAnim();
+//         // send to async to allow for repeated notes, otherwise event listeners block reapplication of class
+//         setTimeout(function () {
+//             animationEnd();
+//             startAnim();
+//         }, 0);
+//     } else {
+//         startAnim();
+//     }
+//
+// }
+
+
+function noteSwitchTest() {
+    noteSwitch('C5');
 }
 
 function saveColors() {
 
-    if ( localStorageRetrieve(colorArray) !== null) { // if has local storage
-       // do nothing
+    if (localStorageRetrieve(colorArray) !== null) { // if has local storage
+        // do nothing
     } else { // if no local storage
         console.log('no storage');
         colorArray = [];
@@ -103,3 +153,4 @@ function createElement() {
 }
 
 // END of document
+

@@ -80,7 +80,8 @@ function patCheck() {
         // step for successful turn, but incomplete pattern
     } else {
         endPractice();
-        setTimeout(() => alert("Game Over"), 10);
+        // setTimeout(() => alert("Game Over"), 10);
+        displayMessage(1);
     }
 
 }
@@ -175,11 +176,11 @@ function displayMessage(msg) {
 
     switch (msg) {
 
-        case '1':
-            pane.innerText = 'Test!'
+        case 1:
+            pane.innerText = 'Game Over! Try Again.'
             break;
 
-        case '2':
+        case 2:
             pane.innerText = 'Test!'
             break;
 
