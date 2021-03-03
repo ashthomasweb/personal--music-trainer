@@ -42,7 +42,7 @@ let firstNote;
 // send to local Storage
 let pastScores = [];
 let colorArray = []; // user saved values
-let keyArray = []; // user saved values
+let keyArray = [];
 
 // pattern arrays
 let melodyPat = [];

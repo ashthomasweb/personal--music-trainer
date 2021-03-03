@@ -30,12 +30,13 @@ function retrieveColors() {
 }
 
 function retrieveKeyPrefs() {
-    if (localStorage.getItem("keyArray") !== undefined) {
+    if (localStorage.getItem("keyArray") === null) {
+        // do nothing
+    } else {
         keyArray = JSON.parse(localStorage.getItem("keyArray"));
-
         for (let i = 0; i < assignBtns.length; i++) {
             let keyToString = "\"" + keyArray[i] + "\"";
-            if (keyArray[i] !== null) {
+            if (keyArray[i] !== 'Assign') {
                 assignBtns[i].innerText = keyToString.toUpperCase();
             } else {
                 // do nothing
@@ -75,6 +76,9 @@ function retrieveScores() {
 
 // onload load scores, colors, keys
 function loadUserPrefs() {
+    for (let i = 0; i <= 18; i++) {
+        keyArray.push('Assign');
+    }
     retrieveKeyPrefs();
     retrieveColors();
     retrieveScores();

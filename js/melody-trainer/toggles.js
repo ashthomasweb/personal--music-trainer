@@ -132,6 +132,7 @@ function keyboardToggle() {
 
 // user clicked assign button
 function assignKey() {
+    // localStorageCreate(keyArray);
     removeEventListener('keydown', windowEventListener);
     window.addEventListener('keydown', assignListener);
     window.addEventListener('keydown', windowEventListener);
@@ -142,11 +143,9 @@ function assignListener(e) {
     // indexable value of target
     let index = e.target.name;
     for (let i = 0; i <= keyArray.length; i++) {
-        // set empty array length, required for data retrieval
-        keyArray[18] = null;
         // replace already used key
         if (keyArray[i] === e.key) {
-            keyArray[i] = null;
+            keyArray[i] = 'Assign';
             assignBtns[i].innerText = 'Assign';
         }
     }
