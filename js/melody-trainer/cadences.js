@@ -20,105 +20,113 @@ function chord(a, b, c, d, e, f, g) {
 }
 
 function stopChord() {
-    currentChord.forEach( item => {
+    currentChord.forEach(item => {
         item.pause();
         item.currentTime = 0;
     });
     currentChord = [];
 }
 
+// Scale Playback
+
+
+
+
+// playback from root
+
+
+// end with tonic triad
+
+
 function playScale() {
 
-    if (modeChoice[0] === "Major" || modeChoice[0] === "Minor") {
+    let availArray = chromIndex.filter(x => modeChoice[1].includes(x));
+    let majTri = ['C4', 'E4', 'G4', 'E4', 'C4', 'G3'];
+    let minTri = ['C4', 'Eb4', 'G4', 'Eb4', 'C4', 'G3'];
+    let dimTri = ['C4', 'Eb4', 'Gb4', 'Eb4', 'C4', 'Gb3'];
+    let augTri = ['C4', 'E4', 'Ab4', 'E4', 'C4', 'Ab3'];
+    let startNote = availArray.indexOf('C4');
+    let lastNote = availArray[availArray.length - 1];
 
-        noteSwitch("C4");
 
-        setTimeout(function () {
-            noteSwitch("C5");
-        }, 800);
 
-        if (modeChoice[0] === "Minor") {
+    if (modeChoice[0] !== 'Chromatic') {
+
+        new Promise(function (resolve, reject) {
+
+            // ascending octave
+            noteSwitch('C4');
+
             setTimeout(function () {
-                noteSwitch("Bb4");
-            }, 1500);
-        } else {
+                noteSwitch(lastNote);
+            }, 800);
+
+            setTimeout(() => resolve(), 800);
+
+        }).then(function (result) {
+            let index = 700;
+            let number = (availArray.length - 2) - startNote;
+            console.log(number);
+
+            // descending modular section loop in promise for varying scale length
+            for (let i = availArray.length - 2; i > startNote; i--) {
+
+                setTimeout(function () {
+                    noteSwitch(availArray[i]);
+                }, index);
+
+                index = index + 500;
+
+            }
+            // begin arpeggios 
+            if (modeType === 'major') {
+                for (let i = 0; i <= majTri.length - 1; i++) {
+
+                    setTimeout(function () {
+                        noteSwitch(majTri[i]);
+                    }, index);
+
+                    index = index + 550;
+                }
+            }
+
+            if (modeType === 'minor') {
+                for (let i = 0; i <= minTri.length - 1; i++) {
+
+                    setTimeout(function () {
+                        noteSwitch(minTri[i]);
+                    }, index);
+
+                    index = index + 550;
+                }
+            }
+            if (modeType === 'diminished') {
+                for (let i = 0; i <= dimTri.length - 1; i++) {
+
+                    setTimeout(function () {
+                        noteSwitch(dimTri[i]);
+                    }, index);
+
+                    index = index + 550;
+                }
+            }
+            if (modeType === 'augmented') {
+                for (let i = 0; i <= augTri.length - 1; i++) {
+
+                    setTimeout(function () {
+                        noteSwitch(augTri[i]);
+                    }, index);
+
+                    index = index + 550;
+                }
+            }
+
+
             setTimeout(function () {
-                noteSwitch("B4");
-            }, 1500);
-        }
+                noteSwitch('C4');
+            }, index + 100);
 
-        if (modeChoice[0] === "Minor") {
-            setTimeout(function () {
-                noteSwitch("Ab4");
-            }, 2000);
-        } else {
-            setTimeout(function () {
-                noteSwitch("A4");
-            }, 2000);
-        }
-
-        setTimeout(function () {
-            noteSwitch("G4");
-        }, 2500);
-
-        setTimeout(function () {
-            noteSwitch("F4");
-        }, 3000);
-
-        if (modeChoice[0] === "Minor") {
-            setTimeout(function () {
-                noteSwitch("Eb4");
-            }, 3500);
-        } else {
-            setTimeout(function () {
-                noteSwitch("E4");
-            }, 3500);
-        }
-
-        setTimeout(function () {
-            noteSwitch("D4");
-        }, 4000);
-
-        setTimeout(function () {
-            noteSwitch("C4");
-        }, 4500);
-
-        if (modeChoice[0] === "Minor") {
-            setTimeout(function () {
-                noteSwitch("Eb4");
-            }, 5050);
-        } else {
-            setTimeout(function () {
-                noteSwitch("E4");
-            }, 5050);
-        }
-
-        setTimeout(function () {
-            noteSwitch("G4");
-        }, 5600);
-
-        if (modeChoice[0] === "Minor") {
-            setTimeout(function () {
-                noteSwitch("Eb4");
-            }, 6150);
-        } else {
-            setTimeout(function () {
-                noteSwitch("E4");
-            }, 6150);
-        }
-
-        setTimeout(function () {
-            noteSwitch("C4");
-        }, 6750);
-
-        setTimeout(function () {
-            noteSwitch("G3");
-        }, 7350);
-
-        setTimeout(function () {
-            noteSwitch("C4");
-        }, 8000);
-
+        });
 
     } else if (modeChoice[0] === "Chromatic") {
 
@@ -157,6 +165,7 @@ function playScale() {
         }, 5100);
 
     }
+
 
 }
 

@@ -163,7 +163,7 @@ function assignListener(e) {
 function windowEventListener(e) {
     for (let i = 0; i <= noteArray.length; i++) {
         if (e.key === keyArray[i]) {
-            // check length between clicks and conditional
+            // check length between clicks
             firstClick = timer;
             timer = Date.now();
             if (timer - firstClick > 100) {

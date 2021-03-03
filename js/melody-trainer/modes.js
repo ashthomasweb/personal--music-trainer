@@ -54,6 +54,7 @@ let modeArray = [
 let modeChoiceName = modeArray[0][0];
 let modeChoice = modeArray[0];
 let availNotes = modeArray[0][1];
+let modeType = modeArray[0][2]; // mode triad quality
 let modePos = 0;
 
 // switch modes and change display text

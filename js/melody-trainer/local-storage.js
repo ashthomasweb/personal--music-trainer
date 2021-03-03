@@ -36,13 +36,8 @@ function retrieveKeyPrefs() {
         keyArray = JSON.parse(localStorage.getItem("keyArray"));
         for (let i = 0; i < assignBtns.length; i++) {
             let keyToString = "\"" + keyArray[i] + "\"";
-<<<<<<< HEAD
             if (keyArray[i] === 'Assign') {
                 assignBtns[i].innerText = keyToString;
-=======
-            if (keyArray[i] !== 'Assign') {
-                assignBtns[i].innerText = keyToString.toUpperCase();
->>>>>>> b31fbeeb006c52a8b60414139f6f77e07a020052
             } else {
                 assignBtns[i].innerText = keyToString.toUpperCase();
             }

@@ -29,7 +29,6 @@ let cadenceBool = false; // if cadence is playing
 let diffArray = [] // finding notes not displayed
 let instrumentChoice; // instrumentCycle
 let instrumentPos; // instrumentCycle
-let modeType; // mode triad quality
 let lastRoundScore = 0; // playstate scorePush
 let modeScore = "Major"; //
 
