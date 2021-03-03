@@ -35,10 +35,10 @@ function retrieveKeyPrefs() {
 
         for (let i = 0; i < assignBtns.length; i++) {
             let keyToString = "\"" + keyArray[i] + "\"";
-            if (keyArray[i] !== null) {
-                assignBtns[i].innerText = keyToString.toUpperCase();
+            if (keyArray[i] === 'Assign') {
+                assignBtns[i].innerText = keyToString;
             } else {
-                // do nothing
+                assignBtns[i].innerText = keyToString.toUpperCase();
             }
         }
 
