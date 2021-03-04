@@ -12,7 +12,7 @@ let instrumentBank = [
 
 function powerSwitch() {
     let noteContainer = document.getElementsByClassName('note-container')[0];
-    let instrumentBtn = document.getElementsByClassName('instrument')[0].children[2];
+    let instrumentBtn = document.getElementsByClassName('dropdown')[0].children[0];
     let practiceBtn = document.getElementsByClassName('header')[0].children[4];
     let powerSwitch = document.getElementById("power-switch");
     let solfegeSwitch = document.getElementById("solf-switch");
@@ -68,6 +68,14 @@ function powerSwitch() {
 }
 
 // changes instrument source
+
+
+
+
+
+
+
+
 function instrumentCycle() {
 
     // selects first instrument from array, then loops through array

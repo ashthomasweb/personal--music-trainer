@@ -43,13 +43,16 @@
     </div>
     <div class="instrument">
       <h2>Instrument</h2>
-      
+
       <div class="dropdown">
-        <button class="dropbtn">Dropdown</button>
-        <div class="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+        <button onclick="displayInstMenu()" class="dropbtn">Select Instrument</button>
+        <div id="dropdown-content">
+          <p onclick="getInst()">Piano</p>
+          <p onclick="getInst()">Tenor Sax</p>
+          <p onclick="getInst()">Violin</p>
+          <p onclick="getInst()">Pipe Organ</p>
+          <p onclick="getInst()">French Horn</p>
+          <p onclick="getInst()">Marimba</p>
         </div>
       </div>
 
@@ -57,7 +60,6 @@
 
 
       <p id="instr-type">None Selected</p>
-      <button type="button" onclick="instrumentCycle()">Select Instrument</button>
     </div>
     <div class="messages">
       <h2>Messages</h2>

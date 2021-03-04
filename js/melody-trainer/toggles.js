@@ -201,4 +201,43 @@ function colorPickerToggle() {
     }
 }
 
+// Instrument Dropdown Menu
+
+
+
+function displayInstMenu() {
+
+    let menu = getComputedStyle(document.querySelector('#dropdown-content'));
+    let element = document.querySelector('#dropdown-content');
+
+    // window.removeEventListener('click', () => displayInstMenu() );
+
+    if ( menu.display === 'block' ) {
+        element.style.display = 'none';
+        instMenuBool = false;
+    } else if ( menu.display === 'none' ) {
+        element.style.display = 'block';
+        instMenuBool = true;
+    }
+
+}
+
+
+function getInst() {
+    let newInst = event.target.innerText;
+    let currentInst = instrumentChoice[2];
+
+    for ( let i = 0; i < 30; i++ ) {
+        if ( newInst === currentInst ) {
+            displayInstMenu();
+            return
+        } else {
+            instrumentCycle();
+            currentInst = instrumentChoice[2];
+        }
+    }
+    
+}
+
+
 // END of document 
