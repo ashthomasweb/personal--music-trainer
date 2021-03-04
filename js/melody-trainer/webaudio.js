@@ -66,14 +66,11 @@ function powerSwitch() {
 
         // unghost modal notes
         modeSelect();
+        
     }
 }
 
 // changes instrument source
-
-
-
-
 
 
 

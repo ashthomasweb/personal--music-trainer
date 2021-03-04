@@ -42,62 +42,6 @@ function lightUp(input) {
 }
 
 
-
-// ORIGINAL
-// function lightUp(input) {
-//     // 'input' is the 'wrap' element containing the note elements
-//     //  as defined in the webAudio switch and listeners
-//
-//     // get indexable value
-//     let index = Array.from(input.parentNode.children).indexOf(input);
-//
-//     // console.log(input);
-//
-//     window.addEventListener('animationend', animationEnd);
-//     function animationEnd() {
-//         input.classList.remove('anim-light-' + index);
-//         // input.children[2].classList.remove('anim-btn-' + index); // apply animation to button
-//         input.children[2].dataset.anim = 'false';
-//         input.style.backgroundColor = '#181818';
-//     }
-//
-//     function startAnim() {
-//
-//         input.classList.add('anim-light-' + index);
-//         // input.children[2].classList.add('anim-btn-' + index); // apply animation to button
-//
-//         // value for checking if anim is running, to allow repeated notes to be animated
-//         input.children[2].dataset.anim = 'true';
-//
-//     }
-//
-//     function stopAnim() {
-//         input.classList.remove('anim-light-' + index);
-//         // input.removeEventListener('animationend', animationEnd);
-//         // input.children[2].classList.remove('anim-btn-' + index); // apply animation to button
-//     }
-//
-//     // check if animation is still running
-//     if (input.children[2].dataset.anim === 'true') {
-//         console.log(input.children[2]);
-//         // input.style.backgroundColor = 'rgb(0, 78, 22)';
-//         stopAnim();
-//         // send to async to allow for repeated notes, otherwise event listeners block reapplication of class
-//         setTimeout(function () {
-//             animationEnd();
-//             startAnim();
-//         }, 0);
-//     } else {
-//         startAnim();
-//     }
-//
-// }
-
-
-function noteSwitchTest() {
-    noteSwitch('C5');
-}
-
 function saveColors() {
 
     if (localStorageRetrieve(colorArray) !== null) { // if has local storage

@@ -423,6 +423,8 @@ button:focus {
 
 .cadences {
     grid-area: cadences;
+    overflow-y: scroll;
+
     background-color: rgba(128, 125, 125, .3);
 }
 
@@ -492,7 +494,13 @@ button:focus {
     font-size: 1px;
 }
 
+.mode-cadence {
+    display: none;
+}
 
+.cadences div:nth-child(1) {
+    display: block;
+}
 
 /* intro screen  */
 .welcome-greeting {
