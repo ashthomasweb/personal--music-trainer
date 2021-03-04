@@ -36,12 +36,12 @@ html {
 
 .grid-container {
     grid-template-areas:
-        "header ....... notes notes ....... scores"
-        "messages ....... notes notes ....... scores"
+        "header ....... notes notes ....... instrument"
+        "messages ....... notes notes ....... mode"
         "messages ....... notes notes ....... cadences"
         "messages ....... notes notes ........ cadences"
-        "instrument ....... notes notes ........ options"
-        "mode ....... notes notes ....... options";
+        "scores ....... notes notes ........ options"
+        "scores ....... notes notes ....... options";
     position: relative;
     top: 50vh;
     transform: translateY(-50%);
@@ -131,7 +131,6 @@ html {
     border-radius: 10px;
     background-color: var(--pianokey);
     cursor: pointer;
-    /* transition: background-color .2s ease-out; */
 }
 
 .C5 {
@@ -143,17 +142,7 @@ html {
     background-color: var(--keyhover0);
 }
 
-/* 
-.anim-light-0 {
-    background-color: var(--keyhover0);
-    animation: note-light-0 1.5s;
-}
 
-@keyframes note-light-0 {
-    0%     {background-color: var(--keyhover0); }
-    50%    {background-color: var(--keyhover0);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
 
 .B4 {
     grid-area: B4;
@@ -164,17 +153,6 @@ html {
     background-color: var(--keyhover1);
 }
 
-/* 
-.anim-light-1 {
-    background-color: var(--keyhover1);
-    animation: note-light-1 1.5s;
-}
-
-@keyframes note-light-1 {
-    0%     {background-color: var(--keyhover1); }
-    50%    {background-color: var(--keyhover1);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
 
 .Bb4 {
     grid-area: Bb4;
@@ -185,18 +163,6 @@ html {
     background-color: var(--keyhover2);
 }
 
-/* 
-.anim-light-2 {
-    background-color: var(--keyhover2);
-    animation: note-light-2 1.5s;
-}
-
-@keyframes note-light-2 {
-    0%     {background-color: var(--keyhover2); }
-    50%    {background-color: var(--keyhover2);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
-
 .A4 {
     grid-area: A4;
     display: inline-block;
@@ -206,17 +172,7 @@ html {
     background-color: var(--keyhover3);
 }
 
-/* 
-.anim-light-3 {
-    background-color: var(--keyhover3);
-    animation: note-light-3 1.5s;
-}
 
-@keyframes note-light-3 {
-    0%     {background-color: var(--keyhover3); }
-    50%    {background-color: var(--keyhover3);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
 
 .Ab4 {
     grid-area: Ab4;
@@ -227,18 +183,6 @@ html {
     background-color: var(--keyhover4);
 }
 
-/* 
-.anim-light-4 {
-    background-color: var(--keyhover4);
-    animation: note-light-4 1.5s;
-}
-
-@keyframes note-light-4 {
-    0%     {background-color: var(--keyhover4); }
-    50%    {background-color: var(--keyhover4);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
-
 .G4 {
     grid-area: G4;
     display: inline-block;
@@ -248,17 +192,6 @@ html {
     background-color: var(--keyhover5);
 }
 
-/* 
-.anim-light-5 {
-    background-color: var(--keyhover5);
-    animation: note-light-5 1.5s;
-}
-
-@keyframes note-light-5 {
-    0%     {background-color: var(--keyhover5); }
-    50%    {background-color: var(--keyhover5);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
 
 .Gb4 {
     grid-area: Gb4;
@@ -269,18 +202,6 @@ html {
     background-color: var(--keyhover6);
 }
 
-/* 
-.anim-light-6 {
-    background-color: var(--keyhover6);
-    animation: note-light-6 1.5s;
-}
-
-@keyframes note-light-6 {
-    0%     {background-color: var(--keyhover6); }
-    50%    {background-color: var(--keyhover6);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
-
 .F4 {
     grid-area: F4;
     display: inline-block;
@@ -289,18 +210,6 @@ html {
 .F4 button:hover {
     background-color: var(--keyhover7);
 }
-
-/* 
-.anim-light-7 {
-    background-color: var(--keyhover7);
-    animation: note-light-7 1.5s;
-}
-
-@keyframes note-light-7 {
-    0%     {background-color: var(--keyhover7); }
-    50%    {background-color: var(--keyhover7);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
 
 .E4 {
     grid-area: E4;
@@ -311,18 +220,6 @@ html {
     background-color: var(--keyhover8);
 }
 
-/* 
-.anim-light-8 {
-    background-color: var(--keyhover8);
-    animation: note-light-8 1.5s;
-}
-
-@keyframes note-light-8 {
-    0%     {background-color: var(--keyhover8); }
-    50%    {background-color: var(--keyhover8);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
-
 .Eb4 {
     grid-area: Eb4;
     display: inline-block;
@@ -332,17 +229,7 @@ html {
     background-color: var(--keyhover9);
 }
 
-/* 
-.anim-light-9 {
-    background-color: var(--keyhover9);
-    animation: note-light-9 1.5s;
-}
 
-@keyframes note-light-9 {
-    0%     {background-color: var(--keyhover9); }
-    50%    {background-color: var(--keyhover9);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
 
 .D4 {
     grid-area: D4;
@@ -353,18 +240,6 @@ html {
     background-color: var(--keyhover10);
 }
 
-/* 
-.anim-light-10 {
-    background-color: var(--keyhover10);
-    animation: note-light-10 1.5s;
-}
-
-@keyframes note-light-10 {
-    0%     {background-color: var(--keyhover10); }
-    50%    {background-color: var(--keyhover10);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
-
 .Db4 {
     grid-area: Db4;
     display: inline-block;
@@ -373,18 +248,6 @@ html {
 .Db4 button:hover {
     background-color: var(--keyhover11);
 }
-
-/* 
-.anim-light-11 {
-    background-color: var(--keyhover11);
-    animation: note-light-11 1.5s;
-}
-
-@keyframes note-light-11 {
-    0%     {background-color: var(--keyhover11); }
-    50%    {background-color: var(--keyhover11);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
 
 .C4 {
     grid-area: C4;
@@ -395,17 +258,6 @@ html {
     background-color: var(--keyhover12);
 }
 
-/* .anim-light-12 {
-    background-color: var(--keyhover12);
-    animation: note-light-12 1.5s;
-}
-
-@keyframes note-light-12 {
-    0%     {background-color: var(--keyhover12); }
-    50%    {background-color: var(--keyhover12);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
-
 .B3 {
     grid-area: B3;
     display: inline-block;
@@ -414,18 +266,6 @@ html {
 .B3 button:hover {
     background-color: var(--keyhover13);
 }
-
-/* 
-.anim-light-13 {
-    background-color: var(--keyhover13);
-    animation: note-light-13 1.5s;
-}
-
-@keyframes note-light-13 {
-    0%     {background-color: var(--keyhover13); }
-    50%    {background-color: var(--keyhover13);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
 
 .Bb3 {
     grid-area: Bb3;
@@ -436,18 +276,6 @@ html {
     background-color: var(--keyhover14);
 }
 
-/* 
-.anim-light-14 {
-    background-color: var(--keyhover14);
-    animation: note-light-14 1.5s;
-}
-
-@keyframes note-light-14 {
-    0%     {background-color: var(--keyhover14); }
-    50%    {background-color: var(--keyhover14);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
-
 .A3 {
     grid-area: A3;
     display: inline-block;
@@ -456,18 +284,6 @@ html {
 .A3 button:hover {
     background-color: var(--keyhover15);
 }
-
-/* 
-.anim-light-15 {
-    background-color: var(--keyhover15);
-    animation: note-light-15 1.5s;
-}
-
-@keyframes note-light-15 {
-    0%     {background-color: var(--keyhover15); }
-    50%    {background-color: var(--keyhover15);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
 
 .Ab3 {
     grid-area: Ab3;
@@ -478,18 +294,6 @@ html {
     background-color: var(--keyhover16);
 }
 
-/* 
-.anim-light-16 {
-    background-color: var(--keyhover16);
-    animation: note-light-16 1.5s;
-}
-
-@keyframes note-light-16 {
-    0%     {background-color: var(--keyhover16); }
-    50%    {background-color: var(--keyhover16);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
-
 .G3 {
     grid-area: G3;
     display: inline-block;
@@ -499,18 +303,6 @@ html {
     background-color: var(--keyhover17);
 }
 
-/* 
-.anim-light-17 {
-    background-color: var(--keyhover17);
-    animation: note-light-17 1.5s;
-}
-
-@keyframes note-light-17 {
-    0%     {background-color: var(--keyhover17); }
-    50%    {background-color: var(--keyhover17);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
-
 .Gb3 {
     grid-area: Gb3;
     display: inline-block;
@@ -519,19 +311,6 @@ html {
 .Gb3 button:hover {
     background-color: var(--keyhover18);
 }
-
-/* 
-.anim-light-18 {
-    background-color: var(--keyhover18);
-    animation: note-light-18 1.5s;
-}
-
-@keyframes note-light-18 {
-    0%     {background-color: var(--keyhover18); }
-    50%    {background-color: var(--keyhover18);}
-    100%   {background-color: rgba(0, 0, 0, 0);}
-} */
-
 
 
 button:focus {
@@ -577,7 +356,7 @@ button:focus {
     display: inline-block;
 }
 
-#dropdown-content {
+#dropdown-inst {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -588,7 +367,7 @@ button:focus {
     z-index: 100;
 }
 
-#dropdown-content p {
+#dropdown-inst p {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -597,10 +376,34 @@ button:focus {
 
 
 
-#dropdown-content p:hover {
+#dropdown-inst p:hover {
     background-color: #bbb;
 }
 
+
+#dropdown-mode {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    max-height: 150px;
+    overflow-y: scroll;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+#dropdown-mode p {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+
+#dropdown-mode p:hover {
+    background-color: #bbb;
+}
 
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;

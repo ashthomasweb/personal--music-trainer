@@ -207,17 +207,15 @@ function colorPickerToggle() {
 
 function displayInstMenu() {
 
-    let menu = getComputedStyle(document.querySelector('#dropdown-content'));
-    let element = document.querySelector('#dropdown-content');
+    let menu = getComputedStyle(document.querySelector('#dropdown-inst'));
+    let element = document.querySelector('#dropdown-inst');
 
     // window.removeEventListener('click', () => displayInstMenu() );
 
     if ( menu.display === 'block' ) {
         element.style.display = 'none';
-        instMenuBool = false;
     } else if ( menu.display === 'none' ) {
         element.style.display = 'block';
-        instMenuBool = true;
     }
 
 }
@@ -234,6 +232,38 @@ function getInst() {
         } else {
             instrumentCycle();
             currentInst = instrumentChoice[2];
+        }
+    }
+    
+}
+
+function displayModeMenu() {
+
+    let menu = getComputedStyle(document.querySelector('#dropdown-mode'));
+    let element = document.querySelector('#dropdown-mode');
+
+    // window.removeEventListener('click', () => displayInstMenu() );
+
+    if ( menu.display === 'block' ) {
+        element.style.display = 'none';
+    } else if ( menu.display === 'none' ) {
+        element.style.display = 'block';
+    }
+
+}
+
+
+function getMode() {
+    let newMode = event.target.innerText;
+    let currentMode = modeChoiceName;
+
+    for ( let i = 0; i < 30; i++ ) {
+        if ( newMode === currentMode ) {
+            displayModeMenu();
+            return
+        } else {
+            modeCycle();
+            currentMode = modeChoiceName;
         }
     }
     

@@ -13,13 +13,15 @@ let instrumentBank = [
 function powerSwitch() {
     let noteContainer = document.getElementsByClassName('note-container')[0];
     let instrumentBtn = document.getElementsByClassName('dropdown')[0].children[0];
+    let modeBtn = document.getElementsByClassName('dropdown')[1].children[0];
+
     let practiceBtn = document.getElementsByClassName('header')[0].children[4];
     let powerSwitch = document.getElementById("power-switch");
     let solfegeSwitch = document.getElementById("solf-switch");
     let degreeSwitch = document.getElementById("deg-switch");
     let accidentalSwitch = document.getElementById("acc-switch");
     let switchArray = [powerSwitch, solfegeSwitch, degreeSwitch, accidentalSwitch];
-    let btnsToDisplay = [instrumentBtn, practiceBtn];
+    let btnsToDisplay = [instrumentBtn, practiceBtn, modeBtn];
 
     if (instrumentPower === true) {
         instrumentPower = !instrumentPower;

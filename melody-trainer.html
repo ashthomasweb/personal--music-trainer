@@ -46,7 +46,7 @@
 
       <div class="dropdown">
         <button onclick="displayInstMenu()" class="dropbtn">Select Instrument</button>
-        <div id="dropdown-content">
+        <div id="dropdown-inst">
           <p onclick="getInst()">Piano</p>
           <p onclick="getInst()">Tenor Sax</p>
           <p onclick="getInst()">Violin</p>
@@ -55,10 +55,6 @@
           <p onclick="getInst()">Marimba</p>
         </div>
       </div>
-
-
-
-
       <p id="instr-type">None Selected</p>
     </div>
     <div class="messages">
@@ -85,8 +81,34 @@
     </div>
     <div class="mode">
       <h2>Mode</h2>
+      <div class="dropdown">
+        <button onclick="displayModeMenu()" class="dropbtn">Select Mode</button>
+        <div id="dropdown-mode">
+          <p onclick="getMode()">Major</p>
+          <p onclick="getMode()">Minor</p>
+          <p onclick="getMode()">Anhematonic Major</p>
+          <p onclick="getMode()">Anhematonic Minor</p>
+          <p onclick="getMode()">Major Blues</p>
+          <p onclick="getMode()">Minor Blues</p>
+          <p onclick="getMode()">Harmonic Minor</p>
+          <p onclick="getMode()">Jazz Minor</p>
+          <p onclick="getMode()">Bebop Tonic</p>
+          <p onclick="getMode()">Bebop Predominant</p>
+          <p onclick="getMode()">Bebop Dominant</p>
+          <p onclick="getMode()">Lydian</p>
+          <p onclick="getMode()">Ionian</p>
+          <p onclick="getMode()">Mixolydian</p>
+          <p onclick="getMode()">Dorian</p>
+          <p onclick="getMode()">Aeolian</p>
+          <p onclick="getMode()">Phrygian</p>
+          <p onclick="getMode()">Locrian</p>
+          <p onclick="getMode()">Octatonic Half/Whole</p>
+          <p onclick="getMode()">Octatonic Whole/Half</p>
+          <p onclick="getMode()">Chromatic</p>
+          <p onclick="getMode()">Whole Tone</p>
+        </div>
+      </div>
       <p id="mode-type">Major</p>
-      <button type="button" onclick="modeCycle()">Change Scale</button>
     </div>
     <div class="options">
       <h2>Options</h2>
