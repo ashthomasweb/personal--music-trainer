@@ -26,29 +26,35 @@ let wholeToneIndex = ["Gb3", "Ab3", "Bb3", "C4", "D4", "E4", "Gb4", "Ab4", "Bb4"
 
 // array of mode [Name, index, triad type, default accidental]
 // upper/lowercase f/s indicates flats/sharps on/off. Upper is ON
+let majTri = ['C4', 'E4', 'G4', 'E4', 'C4', 'G3'];
+let minTri = ['C4', 'Eb4', 'G4', 'Eb4', 'C4', 'G3'];
+let dimTri = ['C4', 'Eb4', 'Gb4', 'Eb4', 'C4', 'Gb3'];
+let augTri = ['C4', 'E4', 'Ab4', 'E4', 'C4', 'Ab3'];
+let chrTri = ['C4', 'F4', 'G4', 'F4', 'C4', 'G3'];
+
 let modeArray = [
-    ["Major", majorIndex, 'major', 'Fs'],
-    ["Minor", minorIndex, 'minor', 'Fs'],
-    ["Anhematonic Major", anhemMajIndex, 'major', 'Fs'],
-    ["Anhematonic Minor", anhemMinIndex, 'minor', 'Fs'],
-    ["Major Blues", majorBluesIndex, 'major', 'FS'],
-    ["Minor Blues", minorBluesIndex, 'minor', 'MB'],
-    ["Harmonic Minor", harmMinorIndex, 'minor', 'Fs'],
-    ["Jazz Minor", jazzMinorIndex, 'minor', 'Fs'],
-    ["Bebop Tonic", bebopTonicIndex, 'major', 'FS'],
-    ["Bebop Predominant", bebopPreIndex, 'minor', 'BP'],
-    ["Bebop Dominant", bebopDomIndex, 'major', 'FS'],
-    ["Lydian", lydianIndex, 'major', 'fS'],
-    ["Ionian", ionianIndex, 'major', 'Fs'],
-    ["Mixolydian", mixolydianIndex, 'major', 'Fs'],
-    ["Dorian", dorianIndex, 'minor', 'Fs'],
-    ["Aeolian", aolianIndex, 'minor', 'Fs'],
-    ["Phrygian", phrygianIndex, 'minor', 'Fs'],
-    ["Locrian", locrianIndex, 'diminished', 'Fs'],
-    ["Octatonic Half/Whole", octHWIndex, 'diminished', 'FS'],
-    ["Octatonic Whole/Half", octWHIndex, 'diminished', 'FS'],
-    ["Chromatic", chromIndex, 'chromatic', 'FS'],
-    ["Whole Tone", wholeToneIndex, 'augmented', 'FS']
+    ["Major", majorIndex, majTri, 'Fs'],
+    ["Minor", minorIndex, minTri, 'Fs'],
+    ["Anhematonic Major", anhemMajIndex, majTri, 'Fs'],
+    ["Anhematonic Minor", anhemMinIndex, minTri, 'Fs'],
+    ["Major Blues", majorBluesIndex, majTri, 'FS'],
+    ["Minor Blues", minorBluesIndex, minTri, 'MB'],
+    ["Harmonic Minor", harmMinorIndex, minTri, 'Fs'],
+    ["Jazz Minor", jazzMinorIndex, minTri, 'Fs'],
+    ["Bebop Tonic", bebopTonicIndex, majTri, 'FS'],
+    ["Bebop Predominant", bebopPreIndex, minTri, 'BP'],
+    ["Bebop Dominant", bebopDomIndex, majTri, 'FS'],
+    ["Lydian", lydianIndex, majTri, 'fS'],
+    ["Ionian", ionianIndex, majTri, 'Fs'],
+    ["Mixolydian", mixolydianIndex, majTri, 'Fs'],
+    ["Dorian", dorianIndex, minTri, 'Fs'],
+    ["Aeolian", aolianIndex, minTri, 'Fs'],
+    ["Phrygian", phrygianIndex, minTri, 'Fs'],
+    ["Locrian", locrianIndex, dimTri, 'Fs'],
+    ["Octatonic Half/Whole", octHWIndex, dimTri, 'FS'],
+    ["Octatonic Whole/Half", octWHIndex, dimTri, 'FS'],
+    ["Chromatic", chromIndex, chrTri, 'FS'],
+    ["Whole Tone", wholeToneIndex, augTri, 'FS']
 ];
 
 let modeChoiceName = modeArray[0][0];

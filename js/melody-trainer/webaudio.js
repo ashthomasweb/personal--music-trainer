@@ -194,10 +194,8 @@ function playNote(index, noteId) {
     if (currentAudio === undefined || cadenceBool === true) {
         // do nothing
     } else {
-        console.log('hi');
         currentAudio.pause();
         currentAudio.currentTime = 0;
-        
     }
     instrumentChoice[0][index].play();
     if ( cadenceBool === false ) {
@@ -206,8 +204,6 @@ function playNote(index, noteId) {
    
 }
 
-// If practice mode is on, keyboard lights don't animate because keybaord isn't calling playNote directly
-// like a click listener. Or, make pracModeBool only affect generated pattern playback, not user input
 function noteSwitch(noteId) {
 
     switch (noteId) {
