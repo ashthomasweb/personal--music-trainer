@@ -344,7 +344,7 @@ button:focus {
 
 
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: seagreen;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -354,6 +354,7 @@ button:focus {
 .dropdown {
     position: relative;
     display: inline-block;
+    width: 100%;
 }
 
 #dropdown-inst {
@@ -373,8 +374,6 @@ button:focus {
     text-decoration: none;
     display: block;
 }
-
-
 
 #dropdown-inst p:hover {
     background-color: #bbb;
@@ -400,17 +399,19 @@ button:focus {
 }
 
 
-
 #dropdown-mode p:hover {
     background-color: #bbb;
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: darkseagreen;
 }
 
 
 .dropdown button:nth-child(1) {
+    width: 120px;
+    border-radius: 5px;
+    margin: 10px auto;
     opacity: 0.1;
     pointer-events: none;
 }
