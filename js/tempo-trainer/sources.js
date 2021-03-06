@@ -1,6 +1,6 @@
 //  Instrument Sources for "Music Trainer"
 
-// piano
+// piano - change to percussion sounds
 const pianoTrackArray = []
 const pianoChromaticC = [
     new Audio("sounds/piano/piano-C5.mp3"),

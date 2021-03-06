@@ -1,0 +1,30 @@
+
+/* intro screen  */
+.welcome-greeting {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.welcome-greeting h1 {
+    font-size: 60px;
+}
+
+.welcome-greeting h2 {
+    font-size: 30px;
+}
+
+.welcome-greeting ul {
+    font-size: 26px;
+}
+
+.welcome-greeting li {
+    display: inline-block;
+    margin: 0 10px;
+    font-weight: 700;
+}
+

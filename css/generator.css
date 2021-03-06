@@ -1,5 +1,101 @@
+.grid-container {
+    grid-template-areas:
+        "header messages messages mode mode instrument"
+        "length start options options cadence generate"
+        "....... ....... ....... ....... ....... ......."
+        "....... prog prog prog prog ......."
+        "piano piano piano piano piano piano"
+        "piano piano piano piano piano piano";
+
+}
+
+
+.your-progression {
+    z-index: 100;
+    grid-area: prog;
+    background-color: rgba(128, 125, 125, .3);
+    position: relative;
+    top: 82px;
+}
+
+.your-progression p {
+    position: absolute;
+
+}
+
+
+
+.piano-container {
+    grid-area: piano;
+    grid-template-areas:
+        "C5 C5 C5"
+        "B4 B4 B4"
+        "Bb4 Bb4 Bb4"
+        "A4 A4 A4"
+        "Ab4 Ab4 Ab4"
+        "G4 G4 G4"
+        "Gb4 Gb4 Gb4"
+        "F4 F4 F4"
+        "E4 E4 E4"
+        "Eb4 Eb4 Eb4"
+        "D4 D4 D4"
+        "Db4 Db4 Db4"
+        "C4 C4 C4"
+        "B3 B3 B3"
+        "Bb3 Bb3 Bb3"
+        "A3 A3 A3"
+        "Ab3 Ab3 Ab3"
+        "G3 G3 G3"
+        "Gb3 Gb3 Gb3";
+
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, fr);
+    grid-template-rows: repeat(19, fr);
+    grid-gap: 4px;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 0 auto;
+    background-color: #181818;
+}
+
+.length {
+    grid-area: length;
+    background-color: rgba(128, 125, 125, .3);
+
+}
+
+.start-point {
+    grid-area: start;
+    background-color: rgba(128, 125, 125, .3);
+
+}
+
+.cadence {
+    grid-area: cadence;
+    overflow-y: scroll;
+
+    background-color: rgba(128, 125, 125, .3);
+}
+
+.generate {
+    grid-area: generate;
+
+    background-color: rgba(128, 125, 125, .3);
+
+}
+
+.options {
+    grid-area: options;
+    background-color: rgba(128, 125, 125, .3);
+}
+
+
+
 .slidecontainer {
     width: 100%;
+    padding: 0 15px;
 }
 
 .slider {
@@ -33,3 +129,42 @@
     cursor: pointer;
 }
 
+
+/* from tempo trainer  needs refactor*/
+
+.tempo-box {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.tempo-box h1 {
+    font-size: 50px;
+}
+
+.tempo-box h2 {
+    font-size: 30px;
+}
+
+.tempo-box p {
+    width: 200px;
+    height: 50px;
+    font-size: 24px;
+    margin: 25px auto;
+    border: 5px solid #181818;
+    border-radius: 5px;
+    background-color: ivory;
+}
+
+.tempo-box button {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    background-color: darkblue;
+    color: ivory;
+    font-size: 30px;
+}
