@@ -132,8 +132,9 @@ function getProgression(start, cadence) {
     return progression;
 }
 
-// Assign values
+// Generator selection variables
 
+// Assign values
 function assignValues() {
     progression = [];
     progLength = slider.value;
@@ -145,8 +146,7 @@ function assignValues() {
     document.getElementById('chord-prog').innerHTML = getProgression(start, cadence);
 }
 
-// W3 Range Slider
-
+// number of chords
 var slider = document.getElementById("myRange");
 var output = document.getElementById("chord-num");
 output.innerHTML = slider.value;
@@ -155,9 +155,7 @@ slider.oninput = function() {
   output.innerHTML = this.value;
 }
 
-
-
-
+// start progression on given harmony
 var startx = document.getElementById("myStart");
 var outputStart = document.getElementById("chord-start");
 outputStart.innerHTML = startx.value;
@@ -168,9 +166,7 @@ startx.oninput = function() {
     return majorHarmony[this.value - 1]
 }
 
-
-
-
+// type of cadence 
 var endx = document.getElementById("myCadence");
 var outputEnd = document.getElementById("chord-end");
 outputEnd.innerHTML = endx.value;
