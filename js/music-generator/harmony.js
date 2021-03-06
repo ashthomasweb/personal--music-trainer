@@ -1,6 +1,8 @@
 // Harmonic Generator for "Music Trainer"
 let progLength;
 let majorHarmony = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii'];
+let cadenceType = ['Authentic', 'Plagal', 'Deceptive', 'Half'];
+
 
 // get number of harmonies 
 function getProgressionLength(measures, chordsPerMeasure, resolveForward) {
@@ -92,16 +94,17 @@ function strongMotion(x) {
     }
 }
 
+let progression = [];
 function getProgression(start, cadence) {
-    let progression = [];
     let i = progLength - 1;
-    let cadenceType = ['Authentic', 'Plagal', 'Deceptive', 'Half'];
 
     function startGeneration() {
         for (let i = 1; i <= progLength - 1; i++) {
             progression[i] = strongMotion(progression[i - 1]);
         }
     }
+
+
     progression[0] = start;
     startGeneration();
 
@@ -128,3 +131,52 @@ function getProgression(start, cadence) {
     }
     return progression;
 }
+
+// Assign values
+
+function assignValues() {
+    progression = [];
+    progLength = slider.value;
+    let start = outputStart.innerHTML;
+    let cadence = outputEnd.innerHTML;
+
+    console.log(start);
+    console.log(cadence);
+    document.getElementById('chord-prog').innerHTML = getProgression(start, cadence);
+}
+
+// W3 Range Slider
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("chord-num");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+
+
+
+
+var startx = document.getElementById("myStart");
+var outputStart = document.getElementById("chord-start");
+outputStart.innerHTML = startx.value;
+
+startx.oninput = function() {
+
+    outputStart.innerHTML = majorHarmony[this.value - 1];
+    return majorHarmony[this.value - 1]
+}
+
+
+
+
+var endx = document.getElementById("myCadence");
+var outputEnd = document.getElementById("chord-end");
+outputEnd.innerHTML = endx.value;
+
+endx.oninput = function() {
+    outputEnd.innerHTML = cadenceType[this.value - 1];
+    return cadenceType[this.value - 1]
+}
+

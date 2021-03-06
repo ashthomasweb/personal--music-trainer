@@ -21,29 +21,22 @@
   <link rel="stylesheet" href="css/mqueries.css">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 
-  <title>Tempo Trainer</title>
+  <title>Music Generator</title>
 </head>
 
 <body>
   <div class="grid-container">
     <div class="header">
-      <h1>Tempo Trainer</h1>
+      <h1>Music Generator</h1>
       <button type="button"
         onclick="document.location='https://rideoutweb.github.io/personal--music-trainer/'">Menu</button>
       <br>
       <button id="power-switch" type="button" onclick="powerSwitch()">Power</button>
-      <button type="button" onclick="buildMelody()">Start Practice!</button>
       <div id="free-mode-switch" class="free-mode-display">Free Mode</div>
     </div>
-    <div class="scores">
-      <h2>High Score</h2>
-      <p id="high-score">...</p>
-      <h2>Past Scores</h2>
-      <p>...</p>
-    </div>
+   
     <div class="instrument">
       <h2>Instrument</h2>
-
       <div class="dropdown">
         <button onclick="displayInstMenu()" class="dropbtn">Select Instrument</button>
         <div id="dropdown-inst">
@@ -85,15 +78,37 @@
     </div>
     <div class="options">
       <h2>Options</h2>
-      <p>Tempo Options</p>
+      <p>Form Options</p>
+      <p>Length Options</p>
+
 
     </div>
+
+
+
     <div class="tempo-container">
       <div class="tempo-box">
-        <h1>Tempo Trainer!</h1>
-        <button type="button" onclick="takeTempo()">Steady!</button>
+        <h1>Forever Music!</h1>
+        <button type="button" onclick="assignValues()">Get Progression</button>
+        <p><span id="chord-prog"></span></p>
+        
        <div class="your-tempo">
-         <p class="tempo-display">...</p>
+        <p>How many chords?</p>
+        <div class="slidecontainer">
+          <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+          <p>Value: <span id="chord-num"></span></p>
+        </div>
+        <p>Where to start?</p>
+        <div class="slidecontainer">
+          <input type="range" min="1" max="7" value="1" class="slider" id="myStart">
+          <p>Value: <span id="chord-start"></span></p>
+        </div>
+        <p>How to end?</p>
+        <div class="slidecontainer">
+          <input type="range" min="1" max="4" value="1" class="slider" id="myCadence">
+          <p>Value: <span id="chord-end"></span></p>
+        </div>
+        
        </div> 
     
       </div>
@@ -102,12 +117,15 @@
     </div>
 
    
+    
   </div> 
 
 
 
 
   <script src="js/tempo-trainer/tempo.js" charset="utf-8"></script>
+  <script src="js/music-generator/harmony.js" charset="utf-8"></script>
+
 
 
 </body>
