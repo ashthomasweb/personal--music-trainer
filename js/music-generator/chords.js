@@ -3,15 +3,14 @@
 let sourceNoteIndex = ['C5', 'B4', 'Bb4', 'A4', 'Ab4', 'G4', 'Gb4', 'F4', 'E4', 'Eb4', 'D4', 'Db4', 'C4', 'B3', 'Bb3', 'A3', 'Ab3', 'G3', 'Gb3']
 
 function chord(a, b, c, d, e, f, g) {
-    console.log('hi');
-    // stopChord();
+    stopChord();
     let args = Array.from(arguments);
     args.forEach((item) => {
         // console.log(item);
         // console.log(document.getElementsByClassName(item)[0]);
         // document.getElementsByClassName(item)[0].classList = "wrap " + item;
         let noteIndex = sourceNoteIndex.indexOf(item);
-        currentChord.push(instrumentChoice[0][noteIndex]);
+        currentChord.push(pianoChromaticC[noteIndex]);
     });
 
     cadenceBool = true;

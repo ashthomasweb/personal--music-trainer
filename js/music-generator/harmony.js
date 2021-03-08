@@ -176,3 +176,48 @@ endx.oninput = function() {
     return cadenceType[this.value - 1]
 }
 
+// play progression
+let progTimer = 0;
+function playProg() {
+    progTimer = 0;
+    console.log(progression);
+    for ( let i = 0; i <= progression.length - 1; i++ ) {
+        setTimeout(() => {
+            playRoman(progression[i]);
+        }, progTimer + 500);
+        progTimer = progTimer + 500;
+    }
+    
+    
+}
+
+
+function playRoman(numeral) {
+
+    switch (numeral) {
+
+        case "I":
+            chord('C4', 'E4', 'G4');
+            break;
+        case "ii":
+            chord('D4', 'F4', 'A4');
+            break;
+        case "iii":
+            chord('E4', 'G4', 'B4');
+            break;
+        case "IV":
+            chord('C4', 'F4', 'A4');
+            break;
+        case "V":
+            chord('G3', 'B3', 'D4');
+            break;
+        case "vi":
+            chord('A3', 'C4', 'E4');
+            break;
+        case "vii":
+            chord('B3', 'D4', 'F4');
+            break;
+        default:
+            console.log('Fin.')
+    }
+}
