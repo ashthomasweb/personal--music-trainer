@@ -1,3 +1,7 @@
+// || WebAudio initialization
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const audioCx = new AudioContext();
+
 //  Instrument Sources for "Music Trainer"
 
 // piano
