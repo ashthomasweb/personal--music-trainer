@@ -30,7 +30,7 @@ const pianoChromaticC = [
 for (let i = 0; i < pianoChromaticC.length; i++) {
     pianoTrackArray.push(audioCont.createMediaElementSource(pianoChromaticC[i]));
 };
-const pianoSource = [pianoChromaticC, pianoTrackArray, "Piano"];
+// const pianoSource = [pianoChromaticC, pianoTrackArray, "Piano"];
 
 function soundLoader() {
     for (let i = 0; i <= pianoChromaticC.length - 1; i++) {

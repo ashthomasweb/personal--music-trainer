@@ -7,9 +7,11 @@ let x;
 
 function takeTempo() {
 
+  playClick(0);
+
   function sumAvgLog() {
     // subtract value from previous value in array, push to newArray
-    newArray.push(timingArray[timingArray.length-1] - timingArray[timingArray.length-2]);
+    newArray.push(timingArray[timingArray.length - 1] - timingArray[timingArray.length - 2]);
     // average newArray
     sum = newArray.reduce((acc, val) => {
       return acc + val
@@ -26,13 +28,13 @@ function takeTempo() {
   // push to array on click
   timingArray.push(counter);
 
-  if ( counter === 0 ) {
+  if (counter === 0) {
     // start timerRaw
     timerRaw();
-  } else if ( timingArray.length > 2  && timingArray.length < 12) {
+  } else if (timingArray.length > 2 && timingArray.length < 12) {
     sumAvgLog();
 
-  } else if ( timingArray.length >= 12 ) {
+  } else if (timingArray.length >= 12) {
     // average of last 9 in new array
     console.log('Most recent 9. (Two measures of 4/4 plus downbeat)');
     newArray.shift();
@@ -43,12 +45,24 @@ function takeTempo() {
 }
 
 function timerRaw() {
-    setInterval(function () {
-        counter = counter + 10;
-    }, 10);
+  setInterval(function () {
+    counter = counter + 10;
+  }, 10);
 
-    return counter;
+  return counter;
 
 }
+
+
+function resetTempo() {
+  document.getElementsByClassName('tempo-display')[0].innerText = '...';
+
+  timingArray = [];
+  newArray = [];
+  counter = 0;
+
+}
+
+
 
 // END of document
