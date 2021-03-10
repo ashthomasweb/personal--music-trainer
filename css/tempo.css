@@ -4,7 +4,7 @@
     grid-template-areas:
         "header ....... tempo tempo ....... instrument"
         "messages ....... tempo tempo ....... mode"
-        "messages ....... tempo tempo ....... cadences"
+        "messages ....... tempo tempo ....... range"
         "messages ....... tempo tempo ........ cadences"
         "scores ....... tempo tempo ........ options"
         "scores ....... tempo tempo ....... options";
@@ -86,4 +86,8 @@
     background-color: darkblue;
     color: ivory;
     font-size: 30px;
+}
+
+.range {
+    grid-area: range;
 }
