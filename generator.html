@@ -67,7 +67,8 @@
     <div class="generate">
       <button type="button" onclick="assignValues()">Get Progression</button>
       <button type="button" onmousedown="playProg()">Play</button>
-
+      <button type="button" onmousedown="playVoices()">Voices</button>
+      <button type="button" onmousedown="playVoicesBlock()">Block</button>
     </div>
 
     <div class="mode">
@@ -105,6 +106,8 @@
       <p>Form Options</p>
       <p>Other Options</p>
       <button onclick="chord('C4', 'Eb4', 'G4', 'A4')" class="dropbtn">ii6</button>
+      <br>
+      <button onclick="getVoiceLeading()" class="dropbtn">Voice-Lead variable</button>
 
     </div>
 
@@ -146,6 +149,7 @@
 
   <script src="js/music-generator/harmony.js" charset="utf-8"></script>
   <script src="js/music-generator/chords.js" charset="utf-8"></script>
+  <script src="js/music-generator/voice-leading.js" charset="utf-8"></script>
 
 
 

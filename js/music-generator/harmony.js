@@ -176,8 +176,19 @@ endx.oninput = function() {
     return cadenceType[this.value - 1]
 }
 
+
+
+
+
+
+
+
+
+
+
 // play progression
 let progTimer = 0;
+
 function playProg() {
     progTimer = 0;
     console.log(progression);
@@ -190,7 +201,6 @@ function playProg() {
     
     
 }
-
 
 function playRoman(numeral) {
 
@@ -221,3 +231,5 @@ function playRoman(numeral) {
             console.log('Fin.')
     }
 }
+
+
