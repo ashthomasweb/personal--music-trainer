@@ -5,7 +5,7 @@
         "header ....... tempo tempo ....... instrument"
         "messages ....... tempo tempo ....... mode"
         "messages ....... tempo tempo ....... range"
-        "messages ....... tempo tempo ........ cadences"
+        "messages ....... tempo tempo ........ sense"
         "scores ....... tempo tempo ........ options"
         "scores ....... tempo tempo ....... options";
 
@@ -90,4 +90,12 @@
 
 .range {
     grid-area: range;
+    background-color: rgba(128, 125, 125, .3);
+
+}
+
+.sensitivity {
+    grid-area: sense;
+    background-color: rgba(128, 125, 125, .3);
+
 }

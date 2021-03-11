@@ -34,8 +34,10 @@
         onclick="document.location='https://rideoutweb.github.io/personal--music-trainer/'">Menu</button>
       <br>
       <button id="power-switch" type="button" onclick="powerSwitch()">Power</button>
-      <button type="button" onclick="buildMelody()">Start Practice!</button>
       <div id="free-mode-switch" class="free-mode-display">Free Mode</div>
+      <br>
+      <button type="button" onclick="startTraining()">Start Practice!</button>
+
     </div>
     <div class="scores">
       <h2>High Score</h2>
@@ -66,11 +68,7 @@
       <p id="msg-pane">Repeat the entire melody back from the beginning each time. You can use the chords to find
         key-center at any time.</p>
     </div>
-    <div class="cadences">
-     
-      <h2>Scale</h2>
-      <button type="button" onmousedown="playScale()">Play</button>
-    </div>
+
     <div class="mode">
       <h2>Mode</h2>
       <div class="dropdown">
@@ -80,39 +78,47 @@
           <p onclick="getMode()">Minor</p>
           <p onclick="getMode()">Anhematonic Major</p>
           <p onclick="getMode()">Anhematonic Minor</p>
-     
+
         </div>
       </div>
       <p id="mode-type">Major</p>
     </div>
-    
-      <div class="range">
-        <p>Range Options</p>
-        <p>Which Tempos?</p>
-        <div class="slidecontainer">
-          <input type="range" min="1" max="30" value="1" class="slider" id="lowRange">
-          <p>Value: <span id="low-num">20</span></p>
-          <input type="range" min="1" max="30" value="30" class="slider" id="highRange">
-          <p>Value: <span id="high-num">240</span></p>
-        </div>
+
+    <div class="range">
+      <p>Range Options</p>
+      <p>Which Tempos?</p>
+      <div class="slidecontainer">
+        <input type="range" min="1" max="30" value="1" class="slider" id="lowRange">
+        <p>Low: <span id="low-num">20</span></p>
+        <input type="range" min="1" max="30" value="30" class="slider" id="highRange">
+        <p>High: <span id="high-num">240</span></p>
       </div>
-    
+    </div>
+
+    <div class="sensitivity">
+      <h2>Sensitivity</h2>
+      <input type="range" min="1" max="4" value="3" class="slider" id="sensRange">
+      <p>Within <span id="sens-num">15</span> BPM</p>
+    </div>
+
     <div class="tempo-container">
       <div class="tempo-box">
         <h1>Tempo Trainer!</h1>
-        <button type="button" onmousedown="takeTempo()">Steady!</button>
-       <div class="your-tempo">
-         <p class="tempo-display">...</p>
-       </div> 
-       <button type="button" onmousedown="resetTempo()">Reset</button>
-    
+        <button id="tempo-btn" type="button" onmousedown="takeTempo()">Steady!</button>
+        <div class="your-tempo">
+          <p class="tempo-target">...</p>
+          <p class="tempo-display">...</p>
+
+        </div>
+        <button type="button" onmousedown="resetTempo()">Reset</button>
+
       </div>
 
 
     </div>
 
-   
-  </div> 
+
+  </div>
 
 
   <script src="js/global.js" charset="utf-8"></script>
@@ -121,13 +127,12 @@
   <script src="js/tempo-trainer/webaudiotempo.js" charset="utf-8"></script>
 
 
-  
+
   <script src="js/tempo-trainer/tempo.js" charset="utf-8"></script>
-  
-  
+
+
   <script src="js/local-storage.js" charset="utf-8"></script>
 
 </body>
 
 </html>
-

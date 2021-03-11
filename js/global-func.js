@@ -1,4 +1,3 @@
-
 // Instrument Dropdown Menu
 
 
@@ -83,4 +82,39 @@ function getMode() {
         }
     }
 
+}
+
+function displayMessage(msg) {
+
+    let pane = document.getElementById('msg-pane');
+
+    switch (msg) {
+
+        case 1:
+            pane.innerText = 'Game Over! Try Again.'
+            break;
+
+        case 2:
+            pane.innerText = 'Test!'
+            break;
+
+        case 3:
+            pane.innerText = 'No Tempos selected. Check range sliders!'
+            break;
+
+        case 4:
+            pane.innerText = 'Find the tempo in your inner ear before starting to click. Start when your are ready!'
+            break;
+
+        case 5:
+            pane.innerText = 'Try Again!'
+            break;
+
+        case 6:
+            pane.innerText = 'Good Job!'
+            break;
+
+        default:
+
+    }
 }
