@@ -1,55 +1,55 @@
-let noteIndex = ['Gb3', 'G3', 'Ab3', 'A3', 'Bb3', 'B3', 'C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4', 'C5'];
+let noteIndex = ['G2', 'Ab2', 'A2', 'Bb2', 'B2', 'C3', 'Db3', 'D3', 'Eb3', 'E3', 'F3', 'Gb3', 'G3', 'Ab3', 'A3', 'Bb3', 'B3', 'C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4', 'C5', 'Db5', 'D5', 'Eb5', 'E5', 'F5', 'Gb5', 'G5', 'Ab5', 'A5', 'Bb5', 'B5', 'C6', 'Db6', 'D6'];
 
 let romanNumerals = [
     ['I',
-        ['root', ['C4']],
-        ['third', ['E4']],
-        ['fifth', ['G3', 'G4']],
-        ['seventh', ['B3', 'B4']]
+        ['root', ['C3', 'C4', 'C5', 'C6']],
+        ['third', ['E3', 'E4', 'E5']],
+        ['fifth', ['G2', 'G3', 'G4', 'G5']],
+        ['seventh', ['B2', 'B3', 'B4', 'B5']]
     ],
 
     ['ii',
-        ['root', ['D4']],
-        ['third', ['F4']],
-        ['fifth', ['A3', 'A4']],
-        ['seventh', ['C4', 'C5']]
+        ['root', ['D3', 'D4', 'D5', 'D6']],
+        ['third', ['F3', 'F4', 'F5']],
+        ['fifth', ['A2', 'A3', 'A4', 'A5']],
+        ['seventh', ['C3', 'C4', 'C5', 'C6']]
     ],
 
 
     ['iii',
-        ['root', ['E4']],
-        ['third', ['G3', 'G4']],
-        ['fifth', ['B3', 'B4']],
-        ['seventh', ['D4']]
+        ['root', ['E3', 'E4', 'E5']],
+        ['third', ['G2', 'G3', 'G4', 'G5']],
+        ['fifth', ['B2', 'B3', 'B4', 'B5']],
+        ['seventh', ['D3', 'D4', 'D5', 'D6']]
     ],
 
 
     ['IV',
-        ['root', ['F4']],
-        ['third', ['A3', 'A4']],
-        ['fifth', ['C4', 'C5']],
-        ['seventh', ['E4']]
+        ['root', ['F3', 'F4', 'F5']],
+        ['third', ['A2', 'A3', 'A4', 'A5']],
+        ['fifth', ['C3', 'C4', 'C5', 'C6']],
+        ['seventh', ['E3', 'E4', 'E5']]
     ],
 
     ['V',
-        ['root', ['G3', 'G4']],
-        ['third', ['B3', 'B4']],
-        ['fifth', ['D4']],
-        ['seventh', ['F4', ]]
+        ['root', ['G2', 'G3', 'G4', 'G5']],
+        ['third', ['B2', 'B3', 'B4', 'B5']],
+        ['fifth', ['D3', 'D4', 'D5', 'D6']],
+        ['seventh', ['F3', 'F4', 'F5']]
     ],
 
     ['vi',
-        ['root', ['A3', 'A4']],
-        ['third', ['C4', 'C5']],
-        ['fifth', ['E4']],
-        ['seventh', ['G3', 'G4']]
+        ['root', ['A2', 'A3', 'A4', 'A5']],
+        ['third', ['C3', 'C4', 'C5', 'C6']],
+        ['fifth', ['E3', 'E4', 'E5']],
+        ['seventh', ['G2', 'G3', 'G4', 'G5']]
     ],
 
     ['vii',
-        ['root', ['B3', 'B4']],
-        ['third', ['D4']],
-        ['fifth', ['F4']],
-        ['seventh', ['A3', 'A4']]
+        ['root', ['B2', 'B3', 'B4', 'B5']],
+        ['third', ['D3', 'D4', 'D5', 'D6']],
+        ['fifth', ['F3', 'F4', 'F5']],
+        ['seventh', ['A2', 'A3', 'A4', 'A5']]
     ]
 ];
 
@@ -162,6 +162,26 @@ function playVoices() {
             noteSwitch(bassVoiceArray[i]);
             noteSwitch(tenorVoiceArray[i]);
             noteSwitch(altoVoiceArray[i]);
+            noteSwitch(sopranoVoiceArray[i]);
+        }, voicesTimer + 400);
+        voicesTimer = voicesTimer + 400;
+    }
+}
+
+function arpeggiateVoices() {
+    voicesTimer = 0;
+
+    for (let i = 0; i <= progression.length - 1; i++) {
+        setTimeout(() => {
+            noteSwitch(bassVoiceArray[i]);
+        }, voicesTimer + 100);
+        setTimeout(() => {
+            noteSwitch(tenorVoiceArray[i]);
+        }, voicesTimer + 200);
+        setTimeout(() => {
+            noteSwitch(altoVoiceArray[i]);
+        }, voicesTimer + 300);
+        setTimeout(() => {
             noteSwitch(sopranoVoiceArray[i]);
         }, voicesTimer + 400);
         voicesTimer = voicesTimer + 400;

@@ -1,6 +1,6 @@
 //  Cadences and scale playback JS file for "Music Trainer"
 
-let sourceNoteIndex = ['C5', 'B4', 'Bb4', 'A4', 'Ab4', 'G4', 'Gb4', 'F4', 'E4', 'Eb4', 'D4', 'Db4', 'C4', 'B3', 'Bb3', 'A3', 'Ab3', 'G3', 'Gb3']
+let sourceNoteIndex = ['D6', 'Db6', 'C6', 'B5', 'Bb5', 'A5', 'Ab5', 'G5', 'Gb5', 'F5', 'E5', 'Eb5', 'D5', 'Db5', 'C5', 'B4', 'Bb4', 'A4', 'Ab4', 'G4', 'Gb4', 'F4', 'E4', 'Eb4', 'D4', 'Db4', 'C4', 'B3', 'Bb3', 'A3', 'Ab3', 'G3', 'Gb3', 'F3', 'E3', 'Eb3', 'D3', 'Db3', 'C3', 'B2', 'Bb2', 'A2', 'Ab2', 'G2']
 
 function chord(a, b, c, d, e, f, g) {
     stopChord();
@@ -10,7 +10,7 @@ function chord(a, b, c, d, e, f, g) {
         // console.log(document.getElementsByClassName(item)[0]);
         // document.getElementsByClassName(item)[0].classList = "wrap " + item;
         let noteIndex = sourceNoteIndex.indexOf(item);
-        currentChord.push(pianoChromaticC[noteIndex]);
+        currentChord.push(pianoExtendedC[noteIndex]);
     });
 
     cadenceBool = true;
