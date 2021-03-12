@@ -91,6 +91,38 @@ function soprano() {
 
 
 
+function getStartTones() {
+
+    let firstChord = progression[0];
+
+    for (let i = 0; i <= romanNumerals.length - 1; i++) {
+        if (romanNumerals[i][0] === firstChord) {
+            firstChord = romanNumerals[i];
+            startingNote = romanNumerals[i][1][1][0];
+        }
+    }
+
+    bass();
+
+    startingNote = firstChord[2][1][firstChord[2][1].length-1];
+
+    soprano();
+
+    startingNote = firstChord[3][1][Math.floor(Math.random() * firstChord[3][1].length - 1)];
+
+    tenor();
+    
+    startingNote = firstChord[1][1][Math.floor(Math.random() * firstChord[3][1].length - 1)];
+
+    alto();
+
+    console.log(bassVoiceArray);
+    console.log(tenorVoiceArray);
+    console.log(altoVoiceArray);
+    console.log(sopranoVoiceArray);
+}
+
+
 function getVoiceLeading() {
 
     tempVoiceArray = [];
@@ -119,7 +151,7 @@ function getVoiceLeading() {
         function voiceLead(startingNote, resolveChord) {
             let chordMemberIndexArray = [];
             let differenceOfArray = [];
-            for (let i = 1; i <= resolveChord.length - 1; i++) {
+            for (let i = 1; i <= resolveChord.length - 2; i++) {
                 resolveChord[i][1].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
             }
             // console.log('this is chordMemberIndexArray');
