@@ -1,4 +1,3 @@
-
 let noteIndex = ['G2', 'Ab2', 'A2', 'Bb2', 'B2', 'C3', 'Db3', 'D3', 'Eb3', 'E3', 'F3', 'Gb3', 'G3', 'Ab3', 'A3', 'Bb3', 'B3', 'C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4', 'C5', 'Db5', 'D5', 'Eb5', 'E5', 'F5', 'Gb5', 'G5', 'Ab5', 'A5', 'Bb5', 'B5', 'C6', 'Db6', 'D6'];
 
 let romanNumerals = [
@@ -96,8 +95,6 @@ function soprano() {
 
 }
 
-
-
 function getStartTones() {
     // get first chord as string
     let firstChord = progression[0];
@@ -142,11 +139,6 @@ function getStartTones() {
         }
     })
 
-    // console.log(bassTones);
-    // console.log(tenorTones);
-    // console.log(altoTones);
-    // console.log(sopranoTones);
-
     // lowest root
     startingNote = firstChord[1][1][0];
     bass();
@@ -158,7 +150,7 @@ function getStartTones() {
     alto();
 
     // highest third
-    startingNote = firstChord[2][1][firstChord[2][1].length-1];
+    startingNote = firstChord[2][1][firstChord[2][1].length - 1];
     soprano();
 }
 
@@ -223,8 +215,7 @@ function getVoiceLeading() {
             differenceOfArray.splice(indexOfSmallestDistanceInDiff, 1);
             chordMemberIndexArray.splice(indexOfSmallestDistanceInDiff, 1);
 
-            // console.log('after splice: ' + differenceOfArray);
-            // console.log('after splice: ' + chordMemberIndexArray);
+
 
             indexOfSmallestDistanceInDiff = differenceOfArray.indexOf(Math.min(...differenceOfArray));
             let goodTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistanceInDiff]];
@@ -237,9 +228,7 @@ function getVoiceLeading() {
 
             let resolution;
             let currentNote = startingNote;
-            // console.log('smoothest: ' + smoothestTransition);
-            // console.log('good: ' + goodTransition);
-            // console.log('okay: ' + okayTransition);
+
 
             let resolutionOptions = [smoothestTransition, goodTransition, okayTransition];
 
@@ -253,23 +242,16 @@ function getVoiceLeading() {
 
                 resolutionOptions.forEach((item) => {
 
-                    
-                    if ( noteIndex.indexOf(item) < noteIndex.indexOf(currentNote) ) {
+                    if (noteIndex.indexOf(item) < noteIndex.indexOf(currentNote)) {
                         directionDown = item;
-                    } else if ( noteIndex.indexOf(item) > noteIndex.indexOf(currentNote) ) {
+                    } else if (noteIndex.indexOf(item) > noteIndex.indexOf(currentNote)) {
                         directionUp = item;
                     }
-                
-                    
+
                 });
 
                 console.log(directionUp, directionDown);
-                // console.log(
-                //     noteIndex.indexOf(currentNote),
-                //     noteIndex.indexOf(smoothestTransition),
-                //     noteIndex.indexOf(goodTransition),
-                //     noteIndex.indexOf(okayTransition)
-                // )
+
             }
 
             voiceLeadDirection();
@@ -279,13 +261,9 @@ function getVoiceLeading() {
             console.log(resolution);
             tempVoiceArray.push(resolution);
         }
-        // console.log(voiceLead(startingNote, resolveChord));
         voiceLead(startingNote, resolveChord)
 
     }
-    // temp array
-    // console.log(tempVoiceArray);
-
 
 }
 
@@ -296,7 +274,6 @@ function playVoices() {
 
     for (let i = 0; i <= progression.length - 1; i++) {
         setTimeout(() => {
-            // chord(bassVoiceArray[i], tenorVoiceArray[i], altoVoiceArray[i], sopranoVoiceArray[i]);
             noteSwitch(bassVoiceArray[i]);
             noteSwitch(tenorVoiceArray[i]);
             noteSwitch(altoVoiceArray[i]);
@@ -332,11 +309,9 @@ function playVoicesBlock() {
     for (let i = 0; i <= progression.length - 1; i++) {
         setTimeout(() => {
             chord(bassVoiceArray[i], tenorVoiceArray[i], altoVoiceArray[i], sopranoVoiceArray[i]);
-            // noteSwitch(bassVoiceArray[i]);
-            // noteSwitch(tenorVoiceArray[i]);
-            // noteSwitch(altoVoiceArray[i]);
-            // noteSwitch(sopranoVoiceArray[i]);
         }, voicesTimer + 800);
         voicesTimer = voicesTimer + 800;
     }
 }
+
+// END of document 
