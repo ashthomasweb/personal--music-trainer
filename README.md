@@ -26,13 +26,10 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 
 ## To-do List:
 * Create Melodic Dictation Trainer.
-* Sample extended range for piano.
+
 * Create Key Center option with piano extended range.
 * Add 'Tonic Start' and 'Accidental Mode' to score history
-* Refactor cadences
-* Add 'Mode Type' scalar playback
-* Add 'Mode Name' menu controls
-* Generate tempo prompts
+
 * Add percussion bank
 
 ## Known Issues
