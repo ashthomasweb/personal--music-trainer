@@ -141,8 +141,6 @@ function assignValues() {
     let start = outputStart.innerHTML;
     let cadence = outputEnd.innerHTML;
 
-    console.log(start);
-    console.log(cadence);
     document.getElementById('chord-prog').innerHTML = getProgression(start, cadence);
 }
 
@@ -176,17 +174,7 @@ endx.oninput = function() {
     return cadenceType[this.value - 1]
 }
 
-
-
-
-
-
-
-
-
-
-
-// play progression
+// play progression in ugly blocks
 let progTimer = 0;
 
 function playProg() {
@@ -233,3 +221,4 @@ function playRoman(numeral) {
 }
 
 
+// END of document 

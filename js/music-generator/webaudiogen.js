@@ -80,8 +80,6 @@ function playNote(i) {
 
 }
 
-
-
 function noteSwitch(noteId) {
 
     switch (noteId) {
@@ -222,3 +220,5 @@ function noteSwitch(noteId) {
             console.log('Fin.')
     }
 }
+
+// END of document 
