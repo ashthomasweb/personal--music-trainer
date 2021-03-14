@@ -183,7 +183,15 @@ function getVoiceLeading() {
             let chordMemberIndexArray = [];
             let differenceOfArray = [];
             // length of resolveChord loop determines how many color tones are included. (-2) is triad, (-1) includes sevenths.
-            for (let i = 1; i <= resolveChord.length - 2; i++) {
+            function seventhChance() {
+                if ( Math.floor(Math.random() * 3) === 1 ) {
+                    return 1;
+                } else {
+                    return 2;
+                }
+            }
+
+            for (let i = 1; i <= resolveChord.length - seventhChance(); i++) {
                 // gets index of all chord members in resolution chord
                 resolveChord[i][1].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
             }
