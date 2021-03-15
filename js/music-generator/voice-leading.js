@@ -71,33 +71,35 @@ let sopranoVoiceArray = [];
 
 function bass() {
     // console.log('bass');
-    getVoiceLeading();
+    getVoiceLeading('triad');
     bassVoiceArray = [...tempVoiceArray];
 }
 
 function tenor() {
     // console.log('tenor');
-    getVoiceLeading();
+    getVoiceLeading('triad');
     tenorVoiceArray = [...tempVoiceArray];
     console.log(tenorVoiceArray);
 }
 
 function alto() {
     // console.log('alto');
-    getVoiceLeading();
+    getVoiceLeading('seventh');
     altoVoiceArray = [...tempVoiceArray];
 }
 
 function soprano() {
     // console.log('soprano');
-    getVoiceLeading();
+    getVoiceLeading('seventh');
     sopranoVoiceArray = [...tempVoiceArray];
 
 }
+let directionArray = [];
 
 function getStartTones() {
     // get first chord as string
     let firstChord = progression[0];
+    directionArray = [];
     // find first chord object
     for (let i = 0; i <= romanNumerals.length - 1; i++) {
         if (romanNumerals[i][0] === firstChord) {
@@ -111,7 +113,21 @@ function getStartTones() {
     let tenorTones = [];
     let altoTones = [];
     let sopranoTones = [];
+    let direction;
 
+    for ( let i = 0; i <= progression.length - 2; i++ ) {
+        let num = Math.floor(Math.random() * 4);
+        if ( num === 0 ) {
+            direction = 'up';
+        } else if ( num === 1 ) {
+            direction = 'down';
+        } else {
+            direction = 'smoothest';
+        }
+        directionArray.push(direction);
+    }
+
+    
 
     allChordTones.push(...firstChord[1][1]);
     allChordTones.push(...firstChord[2][1]);
@@ -155,7 +171,7 @@ function getStartTones() {
 }
 
 
-function getVoiceLeading() {
+function getVoiceLeading(extensions) {
     // empty array to hold all voice leading options
     tempVoiceArray = [];
     // run function on entire progression
@@ -177,12 +193,12 @@ function getVoiceLeading() {
 
         function voiceLead(startingNote, resolveChord) {
             console.log(i + ' time through')
-            console.log(startingNote)
+            console.log('starting note is: ' + startingNote)
             // console.log(noteIndex.indexOf(startingNote));
             // console.log(i + ' TIME THROUGH');
             let chordMemberIndexArray = [];
             let differenceOfArray = [];
-            // length of resolveChord loop determines how many color tones are included. (-2) is triad, (-1) includes sevenths.
+
             function seventhChance() {
                 if ( Math.floor(Math.random() * 3) === 1 ) {
                     return 1;
@@ -190,11 +206,20 @@ function getVoiceLeading() {
                     return 2;
                 }
             }
-
-            for (let i = 1; i <= resolveChord.length - seventhChance(); i++) {
-                // gets index of all chord members in resolution chord
-                resolveChord[i][1].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
+            
+            if ( extensions === 'triad' ) {
+                // length of resolveChord loop determines how many color tones are included. (-2) is triad, (-1) includes sevenths.
+                for (let i = 1; i <= resolveChord.length - 2; i++) {
+                    // gets index of all chord members in resolution chord
+                    resolveChord[i][1].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
+                }
+            } else if ( extensions === 'seventh' ) {
+                for (let i = 1; i <= resolveChord.length - seventhChance(); i++) {
+                    // gets index of all chord members in resolution chord
+                    resolveChord[i][1].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
+                }
             }
+
             // array of all chord members
             // console.log('below is chordMemberIndexArray - indexes from noteIndex');
             // console.log(chordMemberIndexArray);
@@ -240,11 +265,12 @@ function getVoiceLeading() {
 
             let resolutionOptions = [smoothestTransition, goodTransition, okayTransition];
 
+            // random chance of smoothest or next best voice-leading option
             function voiceLeadChance() {
                 resolution = resolutionOptions[Math.floor(Math.random() * (resolutionOptions.length - 1))];
             }
-
-            function voiceLeadDirection() {
+            // categorization of voice leading options
+            function voiceLeadDirectionOptions() {
                 let directionUp;
                 let directionDown;
 
@@ -258,15 +284,30 @@ function getVoiceLeading() {
 
                 });
 
+
+                if ( directionArray[i] === 'up' ) {
+                    if ( directionUp ) {
+                        resolution = directionUp;
+                    }
+                } else if ( directionArray[i] === 'down' ) {
+                    if ( directionDown ) {
+                        resolution = directionDown;
+                    }
+                }
+
+                console.log(i, directionArray);
+
                 console.log(directionUp, directionDown);
 
             }
-
-            voiceLeadDirection();
+            // smoothest or next best option
             voiceLeadChance();
+            // check direction array for shift
+            voiceLeadDirectionOptions();
 
+            // assign resolution to startingNote for next loop through
             startingNote = resolution;
-            console.log(resolution);
+            // console.log(resolution);
             tempVoiceArray.push(resolution);
         }
         voiceLead(startingNote, resolveChord)
