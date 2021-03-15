@@ -6,7 +6,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-
   <meta name="description" content="A musical ear-training application. In development">
   <meta name="keywords" content="ear-training, classical music practice, melody trainer" />
   <meta name="author" content="Ashley Thomas" />
@@ -20,9 +19,7 @@
   <link rel="stylesheet" href="css/module.css">
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/mqueries.css">
-
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
-
   <title>Music Generator</title>
 </head>
 
@@ -45,7 +42,6 @@
         key-center at any time.</p>
     </div>
 
-
     <div class="instrument">
       <h2>Instrument</h2>
       <div class="dropdown">
@@ -60,9 +56,7 @@
         </div>
       </div>
       <p id="instr-type">None Selected</p>
-      
     </div>
-
 
     <div class="generate">
       <button type="button" onclick="assignValues()">Get Progression</button>
@@ -70,7 +64,6 @@
       <button type="button" onmousedown="playVoices()">Voices</button>
       <button type="button" onmousedown="playVoicesBlock()">Block</button>
       <button type="button" onmousedown="arpeggiateVoices()">Arpeggiate</button>
-
     </div>
 
     <div class="mode">
@@ -91,7 +84,7 @@
       <p>Length Options</p>
       <p>How many chords?</p>
       <div class="slidecontainer">
-        <input type="range" min="1" max="32" value="2" class="slider" id="myRange">
+        <input type="range" min="3" max="32" value="9" class="slider" id="myRange">
         <p>Value: <span id="chord-num"></span></p>
       </div>
     </div>
@@ -100,7 +93,7 @@
       <p>Where to start?</p>
       <div class="slidecontainer">
         <input type="range" min="1" max="7" value="1" class="slider" id="myStart">
-        <p>Value: <span id="chord-start"></span></p>
+        <p>Value: <span id="chord-start">Authentic</span></p>
       </div>
     </div>
 
@@ -110,7 +103,6 @@
       <button onclick="chord('C4', 'Eb4', 'G4', 'A4')" class="dropbtn">ii6</button>
       <br>
       <button onclick="getStartTones()" class="dropbtn">Get Start Tones</button>
-
     </div>
 
     <div class="cadence">
@@ -121,42 +113,21 @@
       </div>
     </div>
 
-
-
-
     <div class="your-progression">
       <p><span id="chord-prog"></span></p>
     </div>
 
-
     <div class="piano-container">
-
     </div>
-
-
-
-
 
   </div>
 
-
-
   <script src="js/global.js" charset="utf-8"></script>
   <script src="js/global-func.js" charset="utf-8"></script>
-
   <script src="js/music-generator/webaudiogen.js" charset="utf-8"></script>
-
-
-  
-
   <script src="js/music-generator/harmony.js" charset="utf-8"></script>
-  <script src="js/music-generator/chords.js" charset="utf-8"></script>
   <script src="js/music-generator/voice-leading.js" charset="utf-8"></script>
-
-
-
-
-
+  <script src="js/music-generator/playback.js" charset="utf-8"></script>
 
 </body>
 

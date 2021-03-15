@@ -11,7 +11,6 @@ function getProgressionLength(measures, chordsPerMeasure, resolveForward) {
     return progLength;
 }
 
-// NOT WORKING - if else if else statements not working. Will generate a progression, but static motion is prevalent as the motion funcitons are not working.
 function upSecond(x) {
     let startPosition = majorHarmony.indexOf(x);
     let finishPosition;
@@ -95,6 +94,7 @@ function strongMotion(x) {
 }
 
 let progression = [];
+
 function getProgression(start, cadence) {
     let i = progLength - 1;
 
@@ -113,8 +113,8 @@ function getProgression(start, cadence) {
         progression[i - 1] = 'V';
     }
     if (cadence === cadenceType[1]) {
-        progression[i] = 'IV';
-        progression[i - 1] = 'I';
+        progression[i] = 'I';
+        progression[i - 1] = 'IV';
     }
     if (cadence === cadenceType[2]) {
         progression[i] = 'vi';
@@ -124,11 +124,20 @@ function getProgression(start, cadence) {
         progression[i] = 'V';
     }
 
-    for (let index = 1; index <= progression.length - 1; index++) {
-        if (checkIsStrong(progression[index - 1], progression[index]) === false) {
-            return getProgression(start, cadence);
+    if (cadence === 'Plagal') {
+        for (let index = 1; index <= progression.length - 2; index++) {
+            if (checkIsStrong(progression[index - 1], progression[index]) === false) {
+                return getProgression(start, cadence);
+            }
+        }
+    } else {
+        for (let index = 1; index <= progression.length - 1; index++) {
+            if (checkIsStrong(progression[index - 1], progression[index]) === false) {
+                return getProgression(start, cadence);
+            }
         }
     }
+
     return progression;
 }
 
@@ -139,8 +148,7 @@ function assignValues() {
     progression = [];
     progLength = slider.value;
     let start = outputStart.innerHTML;
-    let cadence = outputEnd.innerHTML;
-
+    let cadence = outputCadenceSlide.innerHTML;
     document.getElementById('chord-prog').innerHTML = getProgression(start, cadence);
 }
 
@@ -149,75 +157,29 @@ var slider = document.getElementById("myRange");
 var output = document.getElementById("chord-num");
 output.innerHTML = slider.value;
 
-slider.oninput = function() {
-  output.innerHTML = this.value;
+slider.oninput = function () {
+    output.innerHTML = this.value;
 }
 
 // start progression on given harmony
 var startx = document.getElementById("myStart");
 var outputStart = document.getElementById("chord-start");
-outputStart.innerHTML = startx.value;
+outputStart.innerHTML = majorHarmony[startx.value - 1];
 
-startx.oninput = function() {
+startx.oninput = function () {
 
     outputStart.innerHTML = majorHarmony[this.value - 1];
     return majorHarmony[this.value - 1]
 }
 
 // type of cadence 
-var endx = document.getElementById("myCadence");
-var outputEnd = document.getElementById("chord-end");
-outputEnd.innerHTML = endx.value;
+var cadenceSlide = document.getElementById("myCadence");
+var outputCadenceSlide = document.getElementById("chord-end");
+outputCadenceSlide.innerHTML = cadenceType[cadenceSlide.value - 1];
 
-endx.oninput = function() {
-    outputEnd.innerHTML = cadenceType[this.value - 1];
+cadenceSlide.oninput = function () {
+    outputCadenceSlide.innerHTML = cadenceType[this.value - 1];
     return cadenceType[this.value - 1]
-}
-
-// play progression in ugly blocks
-let progTimer = 0;
-
-function playProg() {
-    progTimer = 0;
-    console.log(progression);
-    for ( let i = 0; i <= progression.length - 1; i++ ) {
-        setTimeout(() => {
-            playRoman(progression[i]);
-        }, progTimer + 500);
-        progTimer = progTimer + 500;
-    }
-    
-    
-}
-
-function playRoman(numeral) {
-
-    switch (numeral) {
-
-        case "I":
-            chord('C4', 'E4', 'G4');
-            break;
-        case "ii":
-            chord('D4', 'F4', 'A4');
-            break;
-        case "iii":
-            chord('E4', 'G4', 'B4');
-            break;
-        case "IV":
-            chord('C4', 'F4', 'A4');
-            break;
-        case "V":
-            chord('G3', 'B3', 'D4');
-            break;
-        case "vi":
-            chord('A3', 'C4', 'E4');
-            break;
-        case "vii":
-            chord('B3', 'D4', 'F4');
-            break;
-        default:
-            console.log('Fin.')
-    }
 }
 
 

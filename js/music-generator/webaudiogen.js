@@ -50,7 +50,16 @@ const pianoExtendedC = [
     new Audio("sounds/gen-piano/gen-piano-Bb2.mp3"),
     new Audio("sounds/gen-piano/gen-piano-A2.mp3"),
     new Audio("sounds/gen-piano/gen-piano-Ab2.mp3"),
-    new Audio("sounds/gen-piano/gen-piano-G2.mp3")
+    new Audio("sounds/gen-piano/gen-piano-G2.mp3"),
+    new Audio("sounds/gen-piano/gen-piano-Gb2.mp3"),
+    new Audio("sounds/gen-piano/gen-piano-F2.mp3"),
+    new Audio("sounds/gen-piano/gen-piano-E2.mp3"),
+    new Audio("sounds/gen-piano/gen-piano-Eb2.mp3"),
+    new Audio("sounds/gen-piano/gen-piano-D2.mp3"),
+    new Audio("sounds/gen-piano/gen-piano-Db2.mp3"),
+    new Audio("sounds/gen-piano/gen-piano-C2.mp3"),
+    new Audio("sounds/gen-piano/gen-piano-B1.mp3"),
+
 ];
 for (let i = 0; i < pianoExtendedC.length; i++) {
     pianoTrackArray.push(audioCont.createMediaElementSource(pianoExtendedC[i]));
@@ -215,6 +224,30 @@ function noteSwitch(noteId) {
             break;
         case "G2":
             playNote(43, noteId);
+            break;
+        case "Gb2":
+            playNote(44, noteId);
+            break;
+        case "F2":
+            playNote(45, noteId);
+            break;
+        case "E2":
+            playNote(46, noteId);
+            break;
+        case "Eb2":
+            playNote(47, noteId);
+            break;
+        case "D2":
+            playNote(48, noteId);
+            break;
+        case "Db2":
+            playNote(49, noteId);
+            break;
+        case "C2":
+            playNote(50, noteId);
+            break;
+        case "B1":
+            playNote(51, noteId);
             break;
         default:
             console.log('Fin.')
