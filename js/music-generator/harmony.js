@@ -63,6 +63,15 @@ function staticMotion(x) {
     return majorHarmony[majorHarmony.indexOf(x)];
 }
 
+function anyToHome(x) {
+    if ( x === 'I' ) {
+        return majorHarmony[Math.ceil(Math.random() * 6)];
+    } else {
+        return majorHarmony[0];
+    }
+}
+
+// function to ensure progression moves into cadential figure with strong motion 
 function checkIsStrong(chord, resolution) {
     if (upSecond(chord) === resolution) {
         return true;
@@ -72,13 +81,15 @@ function checkIsStrong(chord, resolution) {
         return true;
     } else if (staticMotion(chord) === resolution) {
         return true;
+    } else if (anyToHome(chord) === resolution) {
+        return true;
     } else {
         return false;
     }
 }
 
 function strongMotion(x) {
-    let num = Math.floor(Math.random() * 4);
+    let num = Math.floor(Math.random() * 5);
     if (num === 0) {
         return upSecond(x);
     }
@@ -90,6 +101,9 @@ function strongMotion(x) {
     }
     if (num === 3) {
         return staticMotion(x);
+    }
+    if (num >= 4) {
+        return anyToHome(x);
     }
 }
 
@@ -103,7 +117,6 @@ function getProgression(start, cadence) {
             progression[i] = strongMotion(progression[i - 1]);
         }
     }
-
 
     progression[0] = start;
     startGeneration();
@@ -143,44 +156,8 @@ function getProgression(start, cadence) {
 
 // Generator selection variables
 
-// Assign values
-function assignValues() {
-    progression = [];
-    progLength = slider.value;
-    let start = outputStart.innerHTML;
-    let cadence = outputCadenceSlide.innerHTML;
-    document.getElementById('chord-prog').innerHTML = getProgression(start, cadence);
-}
 
-// number of chords
-var slider = document.getElementById("myRange");
-var output = document.getElementById("chord-num");
-output.innerHTML = slider.value;
 
-slider.oninput = function () {
-    output.innerHTML = this.value;
-}
-
-// start progression on given harmony
-var startx = document.getElementById("myStart");
-var outputStart = document.getElementById("chord-start");
-outputStart.innerHTML = majorHarmony[startx.value - 1];
-
-startx.oninput = function () {
-
-    outputStart.innerHTML = majorHarmony[this.value - 1];
-    return majorHarmony[this.value - 1]
-}
-
-// type of cadence 
-var cadenceSlide = document.getElementById("myCadence");
-var outputCadenceSlide = document.getElementById("chord-end");
-outputCadenceSlide.innerHTML = cadenceType[cadenceSlide.value - 1];
-
-cadenceSlide.oninput = function () {
-    outputCadenceSlide.innerHTML = cadenceType[this.value - 1];
-    return cadenceType[this.value - 1]
-}
 
 
 // END of document 

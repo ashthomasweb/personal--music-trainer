@@ -62,30 +62,29 @@ let altoVoiceArray = [];
 let sopranoVoiceArray = [];
 
 function bass() {
-    // console.log('bass');
     getVoiceLeading('triad');
     bassVoiceArray = [...tempVoiceArray];
 }
 
 function tenor() {
-    // console.log('tenor');
     getVoiceLeading('triad');
     tenorVoiceArray = [...tempVoiceArray];
-    console.log(tenorVoiceArray);
 }
 
 function alto() {
-    // console.log('alto');
     getVoiceLeading('seventh');
     altoVoiceArray = [...tempVoiceArray];
 }
 
 function soprano() {
-    // console.log('soprano');
     getVoiceLeading('seventh');
     sopranoVoiceArray = [...tempVoiceArray];
-
+    console.log('S ' + sopranoVoiceArray);
+    console.log('A ' + altoVoiceArray);
+    console.log('T ' + tenorVoiceArray);
+    console.log('B ' + bassVoiceArray);
 }
+
 let directionArray = [];
 
 function getStartTones() {
@@ -117,9 +116,7 @@ function getStartTones() {
             direction = 'smoothest';
         }
         directionArray.push(direction);
-
     }
-
 
     let cadenceType = document.getElementById('chord-end').textContent;
 
@@ -132,7 +129,6 @@ function getStartTones() {
         directionArray[directionArray.length - 2] = 'up';
     }
 
-
     allChordTones.push(...firstChord[1][1]);
     allChordTones.push(...firstChord[2][1]);
     allChordTones.push(...firstChord[3][1]);
@@ -140,7 +136,6 @@ function getStartTones() {
     allChordTones.forEach((item) => {
         allChordToneIndex.push(noteIndex.indexOf(item));
     })
-
 
     allChordToneIndex.forEach((item) => {
         if (item < 18) {
@@ -219,34 +214,25 @@ function getVoiceLeading(extensions) {
                     resolveChord[i][1].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
                 }
             }
-
-
+            // get smoothest transition via difference of current note's index and nearest note's index
             chordMemberIndexArray.forEach((item) => {
                 differenceOfArray.push(Math.abs(noteIndex.indexOf(startingNote) - item));
             });
-
-           
             let indexOfSmallestDistanceInDiff = differenceOfArray.indexOf(Math.min(...differenceOfArray));
-
-          
             let smoothestTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistanceInDiff]];
-
-        
+            // repeat procedure after removing previous to find next best option
             differenceOfArray.splice(indexOfSmallestDistanceInDiff, 1);
             chordMemberIndexArray.splice(indexOfSmallestDistanceInDiff, 1);
-
             indexOfSmallestDistanceInDiff = differenceOfArray.indexOf(Math.min(...differenceOfArray));
             let goodTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistanceInDiff]];
-
+            // repeat procedure after removing previous to find next best option again
             differenceOfArray.splice(indexOfSmallestDistanceInDiff, 1);
             chordMemberIndexArray.splice(indexOfSmallestDistanceInDiff, 1);
-
             indexOfSmallestDistanceInDiff = differenceOfArray.indexOf(Math.min(...differenceOfArray));
             let okayTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistanceInDiff]];
 
             let resolution;
             let currentNote = startingNote;
-
 
             let resolutionOptions = [smoothestTransition, goodTransition, okayTransition];
 
@@ -297,4 +283,4 @@ function getVoiceLeading(extensions) {
 
 }
 
-
+// END of document 
