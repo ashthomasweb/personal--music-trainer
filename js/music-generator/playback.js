@@ -78,30 +78,39 @@ function playVoicesBlock() {
 let index = 0;
 
 function iterateVoices() {
-
-    chord(bassVoiceArray[index], tenorVoiceArray[index], altoVoiceArray[index], sopranoVoiceArray[index]);
+    if ( index === progression.length ) {
+        index = 0;
+    }
+    phraseContainer.forEach((item) => {
+        chord(item[0][1][0][index], item[0][1][1][index], item[0][1][2][index], item[0][1][3][index]);
+        
+    });
+    
     index++;
 }
 
 function playFromArray() {
     index = 0;
     voicesTimer = 0;
-    builtPhrase.forEach((item, i) => {
-        if (i !== 0) {
-            builtPhrase[i].forEach((item) => {
-                console.log(item);
-                if (item.length !== 0) {
-                    setTimeout(() => {
-                        iterateVoices();
-                    }, voicesTimer + 800);
-                    voicesTimer = voicesTimer + 800;
-                    
-                } else {
-                    voicesTimer = voicesTimer + 800;
+    phraseContainer.forEach((phrase) => {
 
-                }
-            })
-        }
+        phrase.forEach((item, i) => {
+            if (i !== 0) {
+                phrase[i].forEach((item) => {
+                    // console.log(item);
+                    if (item.length !== 0) {
+                        setTimeout(() => {
+                            iterateVoices();
+                        }, voicesTimer + 680);
+                        voicesTimer = voicesTimer + 680;
+                        
+                    } else {
+                        voicesTimer = voicesTimer + 680;
+                        
+                    }
+                })
+            }
+        });
     });
 }
 

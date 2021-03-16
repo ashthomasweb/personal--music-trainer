@@ -165,6 +165,12 @@ function getStartTones() {
     // highest third
     startingNote = firstChord[2][1][firstChord[2][1].length - 1];
     soprano();
+
+    let satbArray = [];
+    
+    satbArray.push(bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray)
+    builtPhrase[0].push(satbArray);
+
 }
 
 

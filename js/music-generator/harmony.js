@@ -157,13 +157,19 @@ function getProgression(start, cadence) {
 // Generator selection variables
 let phraseUnit = [];
 let builtPhrase = [];
+let phraseContainer = [];
 
 // calls all phrasing helper functions
 function buildPhrasing() {
     harmonicUnit();
     
-    console.log(basicPhrase());
     builtPhrase = basicPhrase();
+    
+
+    console.log('basic ' + builtPhrase);
+    phraseContainer.push(builtPhrase);
+    console.log('phrase container');
+    console.log(phraseContainer);
 }
 
 // makes a base unit of chords
@@ -214,7 +220,8 @@ function harmonicVariation() {
 }
 
 // harmonic sequencing
-function harmonicSequence() {
+function harmonicSequence() {   
+
 
 }
 
