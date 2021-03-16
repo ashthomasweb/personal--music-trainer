@@ -79,10 +79,10 @@ function alto() {
 function soprano() {
     getVoiceLeading('seventh');
     sopranoVoiceArray = [...tempVoiceArray];
-    console.log('S ' + sopranoVoiceArray);
-    console.log('A ' + altoVoiceArray);
-    console.log('T ' + tenorVoiceArray);
-    console.log('B ' + bassVoiceArray);
+    // console.log('S ' + sopranoVoiceArray);
+    // console.log('A ' + altoVoiceArray);
+    // console.log('T ' + tenorVoiceArray);
+    // console.log('B ' + bassVoiceArray);
 }
 
 let directionArray = [];
@@ -107,7 +107,7 @@ function getStartTones() {
     let direction;
 
     for (let i = 0; i <= progression.length - 2; i++) {
-        let num = Math.floor(Math.random() * 5);
+        let num = Math.floor(Math.random() * 6);
         if (num === 0) {
             direction = 'up';
         } else if (num === 1) {
@@ -122,11 +122,11 @@ function getStartTones() {
 
     if (cadenceType === 'Authentic' || cadenceType === 'Plagal') {
         directionArray[directionArray.length - 1] = 'down';
-        directionArray[directionArray.length - 2] = 'down';
+        directionArray[directionArray.length - 2] = 'smoothest';
     }
     if (cadenceType === 'Half' || cadenceType === 'Deceptive') {
         directionArray[directionArray.length - 1] = 'up';
-        directionArray[directionArray.length - 2] = 'up';
+        directionArray[directionArray.length - 2] = 'smoothest';
     }
 
     allChordTones.push(...firstChord[1][1]);
@@ -238,7 +238,12 @@ function getVoiceLeading(extensions) {
 
             // random chance of smoothest or next best voice-leading option
             function voiceLeadChance() {
-                resolution = resolutionOptions[Math.floor(Math.random() * (resolutionOptions.length - 1))];
+                let num = Math.floor(Math.random() * 3);
+                if ( num === 0 ) {
+                    resolution = resolutionOptions[1];
+                } else {
+                    resolution = resolutionOptions[0];
+                }
             }
             // categorization of voice leading options
             function voiceLeadDirectionOptions() {
@@ -258,10 +263,14 @@ function getVoiceLeading(extensions) {
                 if (directionArray[i] === 'up') {
                     if (directionUp) {
                         resolution = directionUp;
+                    } else {
+                        resolution = smoothestTransition;
                     }
                 } else if (directionArray[i] === 'down') {
                     if (directionDown) {
                         resolution = directionDown;
+                    } else {
+                        resolution = smoothestTransition;
                     }
                 }
 

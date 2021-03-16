@@ -64,6 +64,8 @@
       <button type="button" onmousedown="playVoices()">Voices</button>
       <button type="button" onmousedown="playVoicesBlock()">Block</button>
       <button type="button" onmousedown="arpeggiateVoices()">Arpeggiate</button>
+      <button onclick="playFromArray()" class="dropbtn">Forever Play</button>
+
     </div>
 
     <div class="mode">
@@ -100,7 +102,8 @@
     <div class="options">
       <p>Form Options</p>
       <p>Other Options</p>
-      <button onclick="chord('C4', 'Eb4', 'G4', 'A4')" class="dropbtn">ii6</button>
+      <button onclick="buildPhrasing()" class="dropbtn">Forever!</button>
+      <br>
       <br>
       <button onclick="getStartTones()" class="dropbtn">Get Start Tones</button>
     </div>

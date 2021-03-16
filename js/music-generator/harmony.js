@@ -64,7 +64,7 @@ function staticMotion(x) {
 }
 
 function anyToHome(x) {
-    if ( x === 'I' ) {
+    if (x === 'I') {
         return majorHarmony[Math.ceil(Math.random() * 6)];
     } else {
         return majorHarmony[0];
@@ -155,9 +155,68 @@ function getProgression(start, cadence) {
 }
 
 // Generator selection variables
+let phraseUnit = [];
+let builtPhrase = [];
 
+// calls all phrasing helper functions
+function buildPhrasing() {
+    harmonicUnit();
+    
+    console.log(basicPhrase());
+    builtPhrase = basicPhrase();
+}
 
+// makes a base unit of chords
+function harmonicUnit() {
+    progLength = 7;
+    getProgression('I', 'Authentic');
+    console.log(progression);
+}
 
+// gets phrase length
+function basicPhrase() {
+    phraseUnit = [
+        ['A'],
+        [[], [], [], []],
+        [[], [], [], []],
+        [[], [], [], []],
+        [[], [], [], []]
+    ];
+    harmonicRhythm();
+    return phraseUnit;
+}
+
+// harmonic rhythm handler
+function harmonicRhythm() {
+
+    phraseUnit[1][0].push(progression[0]);
+    phraseUnit[1][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
+    phraseUnit[2][0].push(progression[2]);
+    phraseUnit[2][Math.floor((Math.random() * 2) + 2)].push(progression[3]);
+    phraseUnit[3][0].push(progression[4]);
+    phraseUnit[3][Math.floor((Math.random() * 2) + 2)].push(progression[5]);
+    phraseUnit[4][0].push(progression[6]);
+}
+
+// cadence handler
+function cadenceHandler() {
+
+}
+
+// form construction
+function buildForm() {
+
+}
+
+// construct harmonic variations
+function harmonicVariation() {
+
+}
+
+// harmonic sequencing
+function harmonicSequence() {
+
+}
 
 
 // END of document 

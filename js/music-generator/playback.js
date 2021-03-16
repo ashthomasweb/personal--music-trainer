@@ -49,17 +49,17 @@ function arpeggiateVoices() {
     for (let i = 0; i <= progression.length - 1; i++) {
         setTimeout(() => {
             noteSwitch(bassVoiceArray[i]);
-        }, voicesTimer + 100);
+        }, voicesTimer + 550);
         setTimeout(() => {
             noteSwitch(tenorVoiceArray[i]);
-        }, voicesTimer + 200);
+        }, voicesTimer + 1100);
         setTimeout(() => {
             noteSwitch(altoVoiceArray[i]);
-        }, voicesTimer + 300);
+        }, voicesTimer + 1650);
         setTimeout(() => {
             noteSwitch(sopranoVoiceArray[i]);
-        }, voicesTimer + 400);
-        voicesTimer = voicesTimer + 1000;
+        }, voicesTimer + 2200);
+        voicesTimer = voicesTimer + 2200;
     }
 }
 
@@ -73,6 +73,40 @@ function playVoicesBlock() {
         voicesTimer = voicesTimer + 800;
     }
 }
+
+
+let index = 0;
+
+function iterateVoices() {
+
+    chord(bassVoiceArray[index], tenorVoiceArray[index], altoVoiceArray[index], sopranoVoiceArray[index]);
+    index++;
+}
+
+function playFromArray() {
+    index = 0;
+    voicesTimer = 0;
+    builtPhrase.forEach((item, i) => {
+        if (i !== 0) {
+            builtPhrase[i].forEach((item) => {
+                console.log(item);
+                if (item.length !== 0) {
+                    setTimeout(() => {
+                        iterateVoices();
+                    }, voicesTimer + 800);
+                    voicesTimer = voicesTimer + 800;
+                    
+                } else {
+                    voicesTimer = voicesTimer + 800;
+
+                }
+            })
+        }
+    });
+}
+
+
+
 
 // play progression in ugly blocks
 let progTimer = 0;
