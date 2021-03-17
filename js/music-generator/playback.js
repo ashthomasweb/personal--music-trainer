@@ -74,18 +74,35 @@ function playVoicesBlock() {
     }
 }
 
+let allVoicesPlayback = [];
+let combinedVoicesPlayback = [[], [] , [], []];
+function getAllVoices() {
+    for ( let i = 0; i <= allVoicesPlayback.length - 1; i++ ) {
+        
+        combinedVoicesPlayback[0] = combinedVoicesPlayback[0].concat(allVoicesPlayback[i][0]);
+        combinedVoicesPlayback[1] = combinedVoicesPlayback[1].concat(allVoicesPlayback[i][1]);
+        combinedVoicesPlayback[2] = combinedVoicesPlayback[2].concat(allVoicesPlayback[i][2]);
+        combinedVoicesPlayback[3] = combinedVoicesPlayback[3].concat(allVoicesPlayback[i][3]);
+    }
+    console.log(allVoicesPlayback);
+    console.log(combinedVoicesPlayback);
+}
 
 let index = 0;
 
 function iterateVoices() {
-    if ( index === progression.length ) {
-        index = 0;
-    }
-    phraseContainer.forEach((item) => {
-        chord(item[0][1][0][index], item[0][1][1][index], item[0][1][2][index], item[0][1][3][index]);
+    console.log( 'iteration: ' );
+    console.log(index);
+    // if ( index === progression.length ) {
+    //     index = 0;
+    // }
+  
+    // combinedVoicesPlayback.forEach((item) => {
+    //     console.log(item);
         
-    });
+    // });
     
+    chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
     index++;
 }
 

@@ -167,9 +167,9 @@ function getStartTones() {
     soprano();
 
     let satbArray = [];
-    
     satbArray.push(bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray)
     builtPhrase[0].push(satbArray);
+    allVoicesPlayback.push(satbArray);
 
 }
 

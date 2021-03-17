@@ -165,10 +165,9 @@ function buildPhrasing() {
     
     builtPhrase = basicPhrase();
     
-
-    console.log('basic ' + builtPhrase);
+    console.log('basic phrase: ' + builtPhrase);
     phraseContainer.push(builtPhrase);
-    console.log('phrase container');
+    console.log('phrase container: ');
     console.log(phraseContainer);
 }
 
@@ -176,7 +175,7 @@ function buildPhrasing() {
 function harmonicUnit() {
     progLength = 7;
     getProgression('I', 'Authentic');
-    console.log(progression);
+    // console.log(progression);
 }
 
 // gets phrase length
