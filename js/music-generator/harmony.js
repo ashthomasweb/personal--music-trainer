@@ -110,6 +110,7 @@ function strongMotion(x) {
 let progression = [];
 
 function getProgression(start, cadence) {
+    progression = [];
     let i = progLength - 1;
 
     function startGeneration() {
@@ -154,46 +155,175 @@ function getProgression(start, cadence) {
     return progression;
 }
 
-// Generator selection variables
+
+
+
+// build basic harmonic unit
+
+// assign authentic cadence
+
+// copy it with small variation and new cadence and perhaps new voice leading
+
+// create alternate material !authentic cadence both harmonic and phrasing
+
+// repeat first A section with authentic cadence
+
+// transition to BPrime as new A
+
+// rinse repeat
+
+
 let phraseUnit = [];
 let builtPhrase = [];
 let phraseContainer = [];
 
-// calls all phrasing helper functions
-function buildPhrasing() {
-    harmonicUnit();
-    
-    builtPhrase = basicPhrase();
-    
-    console.log('basic phrase: ' + builtPhrase);
-    phraseContainer.push(builtPhrase);
-    console.log('phrase container: ');
-    console.log(phraseContainer);
+// form construction
+function buildForm(input) {
+    for (let i = 0; i < input; i++) {
+
+        for (let ii = 0; ii < 4; ii++) {
+            if (ii === 0) {
+                buildUnit(0, i + 1);
+                getStartTones();
+            }
+            if (ii === 1) {
+                buildUnit(1, i + 1);
+                getStartTones();
+
+            }
+            if (ii === 2) {
+                buildUnit(2, i + 1);
+                getStartTones();
+
+            }
+            if (ii === 3) {
+                buildUnit(3, i + 1);
+                getStartTones();
+
+            }
+        }
+
+    }
+    playFromArray();
 }
+
+// calls all builder helper functions and provides data for playback via phraseContainer
+function buildUnit(section, formNum) {
+    builtPhrase = getPhraseUnit();
+
+    harmonicUnit(section, formNum);
+
+    phraseContainer.push(builtPhrase);
+}
+
 
 // makes a base unit of chords
-function harmonicUnit() {
+function harmonicUnit(section, formNum) {
     progLength = 7;
-    getProgression('I', 'Authentic');
-    // console.log(progression);
+    if (section === 0) {
+        getProgression('I', cadenceType[(Math.floor(Math.random() * 3)) + 1]);
+        builtPhrase[0][1] = [...progression];
+        builtPhrase[0][0] = formNum + ':A';
+    }
+    if (section === 1) {
+        let chance = Math.ceil(Math.random() * 2)
+
+        if (chance === 1) {
+            progression[progression.length - 1] = 'I';
+            progression[progression.length - 2] = 'V';
+            // progression[progression.length - 3] = 'I';
+        }
+        if (chance === 2) {
+            progression[progression.length - 1] = 'I';
+            progression[progression.length - 2] = 'IV';
+            // progression[progression.length - 3] = 'I';
+        }
+        if (chance === 2) {
+            progression[progression.length - 1] = 'vi';
+            progression[progression.length - 2] = 'V';
+            // progression[progression.length - 3] = 'I';
+        }
+
+        builtPhrase[0][0] = formNum + ':A1';
+        builtPhrase[0][1] = [...progression];
+    }
+    if (section === 2) {
+        let chance = Math.ceil(Math.random() * 6)
+        getProgression( majorHarmony[chance], cadenceType[ (Math.floor(Math.random() * 3)) + 1 ] );
+        builtPhrase[0][0] = formNum + ':B';
+        builtPhrase[0][1] = [...progression];
+    }
+    if (section === 3) {
+        progression = [...phraseContainer[formNum - 1][0][1]];
+        progression[progression.length - 1] = 'I';
+        progression[progression.length - 2] = 'V';
+        builtPhrase[0][0] = formNum + ':A';
+        builtPhrase[0][1] = [...progression];
+        // builtPhrase[0][2] = phraseContainer[formNum - 1][0][2];
+        
+    }
 }
 
+
+// // cadence handler
+// function cadenceHandler(section) {
+//     // return anything but Authentic
+//     if (section === 0) {
+//         return cadenceType[(Math.ceil(Math.random() * 3)) + 1]
+//     }
+//     if (section === 1) {
+//         // do nothing
+//     }
+//     if (section === 2) {
+//         return cadenceType[(Math.ceil(Math.random() * 3)) + 1]
+//     }
+//     if (section === 3) {
+//         // do nothing
+//         // add transition to new section
+//     }
+
+// }
+
+
 // gets phrase length
-function basicPhrase() {
+function getPhraseUnit() {
     phraseUnit = [
-        ['A'],
-        [[], [], [], []],
-        [[], [], [], []],
-        [[], [], [], []],
-        [[], [], [], []]
+        [
+            ['section'],
+            ['progression']
+        ],
+        [
+            [],
+            [],
+            [],
+            []
+        ],
+        [
+            [],
+            [],
+            [],
+            []
+        ],
+        [
+            [],
+            [],
+            [],
+            []
+        ],
+        [
+            [],
+            [],
+            [],
+            []
+        ]
     ];
+
     harmonicRhythm();
     return phraseUnit;
 }
 
 // harmonic rhythm handler
 function harmonicRhythm() {
-
     phraseUnit[1][0].push(progression[0]);
     phraseUnit[1][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
     phraseUnit[2][0].push(progression[2]);
@@ -203,26 +333,19 @@ function harmonicRhythm() {
     phraseUnit[4][0].push(progression[6]);
 }
 
-// cadence handler
-function cadenceHandler() {
-
-}
-
-// form construction
-function buildForm() {
-
-}
-
-// construct harmonic variations
-function harmonicVariation() {
-
-}
-
-// harmonic sequencing
-function harmonicSequence() {   
 
 
-}
+
+// // construct harmonic variations
+// function harmonicVariation() {
+
+// }
+
+// // harmonic sequencing
+// function harmonicSequence() {   
+
+
+// }
 
 
 // END of document 

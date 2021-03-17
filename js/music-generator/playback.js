@@ -3,7 +3,7 @@
 let sourceNoteIndex = ['D6', 'Db6', 'C6', 'B5', 'Bb5', 'A5', 'Ab5', 'G5', 'Gb5', 'F5', 'E5', 'Eb5', 'D5', 'Db5', 'C5', 'B4', 'Bb4', 'A4', 'Ab4', 'G4', 'Gb4', 'F4', 'E4', 'Eb4', 'D4', 'Db4', 'C4', 'B3', 'Bb3', 'A3', 'Ab3', 'G3', 'Gb3', 'F3', 'E3', 'Eb3', 'D3', 'Db3', 'C3', 'B2', 'Bb2', 'A2', 'Ab2', 'G2', 'Gb2', 'F2', 'E2', 'Eb2', 'D2', 'Db2', 'C2', 'B1']
 
 function chord(a, b, c, d, e, f, g) {
-    stopChord();
+    // stopChord();
     let args = Array.from(arguments);
     args.forEach((item) => {
         // console.log(item);
@@ -13,9 +13,16 @@ function chord(a, b, c, d, e, f, g) {
         currentChord.push(pianoExtendedC[noteIndex]);
     });
 
-    cadenceBool = true;
-    args.forEach((item) => noteSwitch(item));
-    cadenceBool = false;
+    // cadenceBool = true;
+    let chance = Math.floor(Math.random() * 4);
+    if ( chance === 0 ) {
+        arpeggiateVoices(args);
+    } else {
+        args.forEach((item) => {
+            noteSwitch(item);
+        });
+    }
+    // cadenceBool = false;
 
 }
 
@@ -43,23 +50,23 @@ function playVoices() {
     }
 }
 
-function arpeggiateVoices() {
+function arpeggiateVoices(input) {
     voicesTimer = 0;
 
     for (let i = 0; i <= progression.length - 1; i++) {
         setTimeout(() => {
-            noteSwitch(bassVoiceArray[i]);
-        }, voicesTimer + 550);
+            noteSwitch(input[0]);
+        }, voicesTimer + 170);
         setTimeout(() => {
-            noteSwitch(tenorVoiceArray[i]);
-        }, voicesTimer + 1100);
+            noteSwitch(input[1]);
+        }, voicesTimer + 340);
         setTimeout(() => {
-            noteSwitch(altoVoiceArray[i]);
-        }, voicesTimer + 1650);
+            noteSwitch(input[2]);
+        }, voicesTimer + 510);
         setTimeout(() => {
-            noteSwitch(sopranoVoiceArray[i]);
-        }, voicesTimer + 2200);
-        voicesTimer = voicesTimer + 2200;
+            noteSwitch(input[3]);
+        }, voicesTimer + 680);
+        voicesTimer = voicesTimer + 680;
     }
 }
 
@@ -74,6 +81,8 @@ function playVoicesBlock() {
     }
 }
 
+
+// Play from phrasing chart
 let allVoicesPlayback = [];
 let combinedVoicesPlayback = [[], [] , [], []];
 function getAllVoices() {
@@ -90,25 +99,18 @@ function getAllVoices() {
 
 let index = 0;
 
-function iterateVoices() {
+function iterateThruHarmonies() {
     console.log( 'iteration: ' );
     console.log(index);
-    // if ( index === progression.length ) {
-    //     index = 0;
-    // }
-  
-    // combinedVoicesPlayback.forEach((item) => {
-    //     console.log(item);
-        
-    // });
-    
     chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
     index++;
 }
 
 function playFromArray() {
+
     index = 0;
     voicesTimer = 0;
+    getAllVoices();
     phraseContainer.forEach((phrase) => {
 
         phrase.forEach((item, i) => {
@@ -117,7 +119,7 @@ function playFromArray() {
                     // console.log(item);
                     if (item.length !== 0) {
                         setTimeout(() => {
-                            iterateVoices();
+                            iterateThruHarmonies();
                         }, voicesTimer + 680);
                         voicesTimer = voicesTimer + 680;
                         
