@@ -11,18 +11,20 @@ function chord(a, b, c, d, e, f, g) {
         // document.getElementsByClassName(item)[0].classList = "wrap " + item;
         let noteIndex = sourceNoteIndex.indexOf(item);
         // prevet soprano from being stopped
-        if ( i !== 3 || i !== 1 ) {
+        if (i !== 3 || i !== 1) {
             currentChord.push(pianoExtendedC[noteIndex]);
         }
     });
 
-    let chance = Math.floor(Math.random() * 0);
-    if ( chance === 0 ) { 
+    let chance = Math.floor(Math.random() * 4);
+    if (chance === 0) {
         arpeggiateVoices(args);
-    } else {
+    } else if (chance === 1) {
         args.forEach((item) => {
             noteSwitch(item);
         });
+    } else {
+        arpeggiateVoicesCompound(args);
     }
 }
 
@@ -56,7 +58,7 @@ function playVoices() {
 function arpeggiateVoices(input) {
     voicesTimer = 0;
     let chance = Math.floor(Math.random() * 3);
-    if ( chance === 0 ) {
+    if (chance === 0) {
 
         setTimeout(() => {
             noteSwitch(input[0]);
@@ -71,7 +73,7 @@ function arpeggiateVoices(input) {
             noteSwitch(input[3]);
         }, voicesTimer + 510);
         voicesTimer = voicesTimer + 680;
-    } else if ( chance === 1 ) {
+    } else if (chance === 1) {
         setTimeout(() => {
             noteSwitch(input[3]);
         }, voicesTimer);
@@ -97,6 +99,33 @@ function arpeggiateVoices(input) {
     }
 }
 
+function arpeggiateVoicesCompound(input) {
+    voicesTimer = 0;
+    // let chance = Math.floor(Math.random() * 3);
+
+        setTimeout(() => {
+            noteSwitch(input[1]);
+        }, voicesTimer);
+        setTimeout(() => {
+            noteSwitch(input[2]);
+        }, voicesTimer + 113.333);
+        setTimeout(() => {
+            noteSwitch(input[3]);
+        }, voicesTimer + 226.667);
+        setTimeout(() => {
+            noteSwitch(input[1]);
+        }, voicesTimer + 340);
+        setTimeout(() => {
+            noteSwitch(input[2]);
+        }, voicesTimer + 453.333);
+        setTimeout(() => {
+            noteSwitch(input[3]);
+        }, voicesTimer + 566.667);
+        voicesTimer = voicesTimer + 680;
+
+}
+
+
 function playVoicesBlock() {
     voicesTimer = 0;
 
@@ -110,10 +139,16 @@ function playVoicesBlock() {
 
 // Play from phrasing chart
 let allVoicesPlayback = [];
-let combinedVoicesPlayback = [[], [] , [], []];
+let combinedVoicesPlayback = [
+    [],
+    [],
+    [],
+    []
+];
+
 function getAllVoices() {
-    for ( let i = 0; i <= allVoicesPlayback.length - 1; i++ ) {
-        
+    for (let i = 0; i <= allVoicesPlayback.length - 1; i++) {
+
         combinedVoicesPlayback[0] = combinedVoicesPlayback[0].concat(allVoicesPlayback[i][0]);
         combinedVoicesPlayback[1] = combinedVoicesPlayback[1].concat(allVoicesPlayback[i][1]);
         combinedVoicesPlayback[2] = combinedVoicesPlayback[2].concat(allVoicesPlayback[i][2]);
@@ -126,7 +161,7 @@ function getAllVoices() {
 let index = 0;
 
 function iterateThruHarmonies() {
-    console.log( 'iteration: ' );
+    console.log('iteration: ');
     console.log(index);
     chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
     index++;
@@ -148,10 +183,10 @@ function playFromArray() {
                             iterateThruHarmonies();
                         }, voicesTimer + 680);
                         voicesTimer = voicesTimer + 680;
-                        
+
                     } else {
                         voicesTimer = voicesTimer + 680;
-                        
+
                     }
                 })
             }
