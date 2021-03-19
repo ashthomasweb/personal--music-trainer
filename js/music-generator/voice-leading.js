@@ -173,7 +173,6 @@ function getStartTones() {
 
 }
 
-
 function getVoiceLeading(extensions) {
     // empty array to hold all voice leading options
     tempVoiceArray = [];

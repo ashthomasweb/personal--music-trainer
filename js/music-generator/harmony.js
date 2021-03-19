@@ -1,15 +1,8 @@
 // Harmonic Generator for "Music Trainer"
+
 let progLength;
 let majorHarmony = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii'];
 let cadenceType = ['Authentic', 'Plagal', 'Deceptive', 'Half'];
-
-
-// get number of harmonies 
-function getProgressionLength(measures, chordsPerMeasure, resolveForward) {
-    progLength = measures * chordsPerMeasure;
-    resolveForward && progLength++;
-    return progLength;
-}
 
 function upSecond(x) {
     let startPosition = majorHarmony.indexOf(x);
@@ -155,9 +148,6 @@ function getProgression(start, cadence) {
     return progression;
 }
 
-
-
-
 // build basic harmonic unit
 
 // assign authentic cadence
@@ -216,7 +206,6 @@ function buildUnit(section, formNum) {
     phraseContainer.push(builtPhrase);
 }
 
-
 // makes a base unit of chords
 function harmonicUnit(section, formNum) {
     progLength = 7;
@@ -249,7 +238,7 @@ function harmonicUnit(section, formNum) {
     }
     if (section === 2) {
         let chance = Math.ceil(Math.random() * 6)
-        getProgression( majorHarmony[chance], cadenceType[ (Math.floor(Math.random() * 3)) + 1 ] );
+        getProgression(majorHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
         builtPhrase[0][0] = formNum + ':B';
         builtPhrase[0][1] = [...progression];
     }
@@ -260,10 +249,9 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][0] = formNum + ':A';
         builtPhrase[0][1] = [...progression];
         // builtPhrase[0][2] = phraseContainer[formNum - 1][0][2];
-        
+
     }
 }
-
 
 // // cadence handler
 // function cadenceHandler(section) {
@@ -283,7 +271,6 @@ function harmonicUnit(section, formNum) {
 //     }
 
 // }
-
 
 // gets phrase length
 function getPhraseUnit() {
@@ -333,9 +320,6 @@ function harmonicRhythm() {
     phraseUnit[4][0].push(progression[6]);
 }
 
-
-
-
 // // construct harmonic variations
 // function harmonicVariation() {
 
@@ -344,8 +328,6 @@ function harmonicRhythm() {
 // // harmonic sequencing
 // function harmonicSequence() {   
 
-
 // }
-
 
 // END of document 

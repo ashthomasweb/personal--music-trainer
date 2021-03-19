@@ -1,3 +1,5 @@
+// Page Elements for Music Generator
+
 // Assign values
 function assignValues() {
     progression = [];
@@ -22,7 +24,6 @@ var outputStart = document.getElementById("chord-start");
 outputStart.innerHTML = majorHarmony[startx.value - 1];
 
 startx.oninput = function () {
-
     outputStart.innerHTML = majorHarmony[this.value - 1];
     return majorHarmony[this.value - 1]
 }
@@ -36,3 +37,5 @@ cadenceSlide.oninput = function () {
     outputCadenceSlide.innerHTML = cadenceType[this.value - 1];
     return cadenceType[this.value - 1]
 }
+
+// END of document

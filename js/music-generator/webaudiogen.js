@@ -1,9 +1,6 @@
 // for legacy browsers
 const AudioContext = window.AudioContext || window.webkitAudioContext;
-
 const audioCont = new AudioContext();
-
-
 
 const pianoTrackArray = [];
 const pianoExtendedC = [
@@ -59,12 +56,10 @@ const pianoExtendedC = [
     new Audio("sounds/gen-piano/gen-piano-Db2.mp3"),
     new Audio("sounds/gen-piano/gen-piano-C2.mp3"),
     new Audio("sounds/gen-piano/gen-piano-B1.mp3"),
-
 ];
 for (let i = 0; i < pianoExtendedC.length; i++) {
     pianoTrackArray.push(audioCont.createMediaElementSource(pianoExtendedC[i]));
 };
-// const pianoSource = [pianoExtendedC, pianoTrackArray, "Piano"];
 
 function soundLoader() {
     for (let i = 0; i <= pianoExtendedC.length - 1; i++) {
@@ -75,18 +70,13 @@ function soundLoader() {
 
 soundLoader();
 
-
 // webAudio function for noteSwitch
 function playNote(i) {
-
     // check if context is in suspended state (autoplay policy)
     if (audioCont.state === 'suspended') {
         audioCont.resume();
     }
-
     pianoExtendedC[i].play();
-
-
 }
 
 function noteSwitch(noteId) {
