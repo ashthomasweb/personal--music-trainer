@@ -1,7 +1,9 @@
 // Harmonic Generator for "Music Trainer"
 
 let progLength;
-let majorHarmony = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii'];
+// let majorHarmony = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii'];
+let majorHarmony = ['i', 'iidim', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
+
 let cadenceType = ['Authentic', 'Plagal', 'Deceptive', 'Half'];
 
 function upSecond(x) {
@@ -57,7 +59,7 @@ function staticMotion(x) {
 }
 
 function anyToHome(x) {
-    if (x === 'I') {
+    if (x === 'i') {
         return majorHarmony[Math.ceil(Math.random() * 6)];
     } else {
         return majorHarmony[0];
@@ -116,15 +118,15 @@ function getProgression(start, cadence) {
     startGeneration();
 
     if (cadence === cadenceType[0]) {
-        progression[i] = 'I';
+        progression[i] = 'i';
         progression[i - 1] = 'V';
     }
     if (cadence === cadenceType[1]) {
-        progression[i] = 'I';
-        progression[i - 1] = 'IV';
+        progression[i] = 'i';
+        progression[i - 1] = 'iv';
     }
     if (cadence === cadenceType[2]) {
-        progression[i] = 'vi';
+        progression[i] = 'bVI';
         progression[i - 1] = 'V';
     }
     if (cadence === cadenceType[3]) {
@@ -210,7 +212,7 @@ function buildUnit(section, formNum) {
 function harmonicUnit(section, formNum) {
     progLength = 7;
     if (section === 0) {
-        getProgression('I', cadenceType[(Math.floor(Math.random() * 3)) + 1]);
+        getProgression('i', cadenceType[(Math.floor(Math.random() * 3)) + 1]);
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][0] = formNum + ':A';
     }
@@ -218,17 +220,17 @@ function harmonicUnit(section, formNum) {
         let chance = Math.ceil(Math.random() * 2)
 
         if (chance === 1) {
-            progression[progression.length - 1] = 'I';
+            progression[progression.length - 1] = 'i';
             progression[progression.length - 2] = 'V';
             // progression[progression.length - 3] = 'I';
         }
         if (chance === 2) {
-            progression[progression.length - 1] = 'I';
-            progression[progression.length - 2] = 'IV';
+            progression[progression.length - 1] = 'i';
+            progression[progression.length - 2] = 'iv';
             // progression[progression.length - 3] = 'I';
         }
         if (chance === 2) {
-            progression[progression.length - 1] = 'vi';
+            progression[progression.length - 1] = 'bVI';
             progression[progression.length - 2] = 'V';
             // progression[progression.length - 3] = 'I';
         }
@@ -244,7 +246,7 @@ function harmonicUnit(section, formNum) {
     }
     if (section === 3) {
         progression = [...phraseContainer[formNum - 1][0][1]];
-        progression[progression.length - 1] = 'I';
+        progression[progression.length - 1] = 'i';
         progression[progression.length - 2] = 'V';
         builtPhrase[0][0] = formNum + ':A';
         builtPhrase[0][1] = [...progression];
@@ -277,7 +279,8 @@ function getPhraseUnit() {
     phraseUnit = [
         [
             ['section'],
-            ['progression']
+            ['progression'],
+            ['voice-leading']
         ],
         [
             [],

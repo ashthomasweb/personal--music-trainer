@@ -5,16 +5,19 @@ let sourceNoteIndex = ['D6', 'Db6', 'C6', 'B5', 'Bb5', 'A5', 'Ab5', 'G5', 'Gb5',
 function chord(a, b, c, d, e, f, g) {
     stopChord();
     let args = Array.from(arguments);
-    args.forEach((item) => {
+    args.forEach((item, i) => {
         // console.log(item);
         // console.log(document.getElementsByClassName(item)[0]);
         // document.getElementsByClassName(item)[0].classList = "wrap " + item;
         let noteIndex = sourceNoteIndex.indexOf(item);
-        currentChord.push(pianoExtendedC[noteIndex]);
+        // prevet soprano from being stopped
+        if ( i !== 3 || i !== 1 ) {
+            currentChord.push(pianoExtendedC[noteIndex]);
+        }
     });
 
     let chance = Math.floor(Math.random() * 0);
-    if ( chance === 0 ) {
+    if ( chance === 0 ) { 
         arpeggiateVoices(args);
     } else {
         args.forEach((item) => {
@@ -52,7 +55,9 @@ function playVoices() {
 // Arpeggiate voices without stopping repeated notes
 function arpeggiateVoices(input) {
     voicesTimer = 0;
-    for (let i = 0; i <= progression.length - 1; i++) {
+    let chance = Math.floor(Math.random() * 3);
+    if ( chance === 0 ) {
+
         setTimeout(() => {
             noteSwitch(input[0]);
         }, voicesTimer);
@@ -66,6 +71,29 @@ function arpeggiateVoices(input) {
             noteSwitch(input[3]);
         }, voicesTimer + 510);
         voicesTimer = voicesTimer + 680;
+    } else if ( chance === 1 ) {
+        setTimeout(() => {
+            noteSwitch(input[3]);
+        }, voicesTimer);
+        setTimeout(() => {
+            noteSwitch(input[2]);
+        }, voicesTimer + 170);
+        setTimeout(() => {
+            noteSwitch(input[1]);
+        }, voicesTimer + 340);
+        setTimeout(() => {
+            noteSwitch(input[0]);
+        }, voicesTimer + 510);
+        voicesTimer = voicesTimer + 680;
+    } else {
+        setTimeout(() => {
+            noteSwitch(input[0]);
+        }, voicesTimer);
+        setTimeout(() => {
+            noteSwitch(input[1]);
+            noteSwitch(input[2]);
+            noteSwitch(input[3]);
+        }, voicesTimer + 340);
     }
 }
 
