@@ -2,6 +2,76 @@
 
 let sourceNoteIndex = ['D6', 'Db6', 'C6', 'B5', 'Bb5', 'A5', 'Ab5', 'G5', 'Gb5', 'F5', 'E5', 'Eb5', 'D5', 'Db5', 'C5', 'B4', 'Bb4', 'A4', 'Ab4', 'G4', 'Gb4', 'F4', 'E4', 'Eb4', 'D4', 'Db4', 'C4', 'B3', 'Bb3', 'A3', 'Ab3', 'G3', 'Gb3', 'F3', 'E3', 'Eb3', 'D3', 'Db3', 'C3', 'B2', 'Bb2', 'A2', 'Ab2', 'G2', 'Gb2', 'F2', 'E2', 'Eb2', 'D2', 'Db2', 'C2', 'B1']
 
+
+
+// Play from phrasing chart
+let allVoicesPlayback = [];
+let combinedVoicesPlayback = [
+    [],
+    [],
+    [],
+    []
+];
+
+function getAllVoices() {
+    for (let i = 0; i <= allVoicesPlayback.length - 1; i++) {
+
+        combinedVoicesPlayback[0] = combinedVoicesPlayback[0].concat(allVoicesPlayback[i][0]);
+        combinedVoicesPlayback[1] = combinedVoicesPlayback[1].concat(allVoicesPlayback[i][1]);
+        combinedVoicesPlayback[2] = combinedVoicesPlayback[2].concat(allVoicesPlayback[i][2]);
+        combinedVoicesPlayback[3] = combinedVoicesPlayback[3].concat(allVoicesPlayback[i][3]);
+    }
+    console.log(allVoicesPlayback);
+    console.log(combinedVoicesPlayback);
+}
+
+let index = 0;
+
+function iterateThruHarmonies() {
+    console.log('iteration: ');
+    console.log(index);
+    let chance = Math.floor(Math.random() * 2);
+    // if ( chance === 0 ) {
+        chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
+    // } else {
+    //     chord(combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
+    // }
+    index++;
+}
+
+function playFromArray() {
+
+    index = 0;
+    voicesTimer = 0;
+    getAllVoices();
+    phraseContainer.forEach((phrase) => {
+
+        phrase.forEach((item, i) => {
+            if (i !== 0) {
+                phrase[i].forEach((item) => {
+                    // console.log(item);
+                    if (item.length !== 0) {
+
+                        // PRIMARY PLAY - TEMPO AND FUNCTION CALL
+                        setTimeout(() => {
+                            iterateThruHarmonies();
+                        }, voicesTimer + 680);
+                        voicesTimer = voicesTimer + 680;
+
+                    } else {
+                        voicesTimer = voicesTimer + 680;
+
+                    }
+                })
+            }
+        });
+    });
+}
+
+
+
+
+
 function chord(a, b, c, d, e, f, g) {
     stopChord();
     let args = Array.from(arguments);
@@ -15,17 +85,17 @@ function chord(a, b, c, d, e, f, g) {
             currentChord.push(pianoExtendedC[noteIndex]);
         }
     });
-
-    let chance = Math.floor(Math.random() * 4);
-    if (chance === 0) {
-        arpeggiateVoices(args);
-    } else if (chance === 1) {
+    
+    // let chance = Math.floor(Math.random() * 4);
+    // if (chance === 0) {
+    //     arpeggiateVoices(args);
+    // } else if (chance === 1) {
         args.forEach((item) => {
             noteSwitch(item);
         });
-    } else {
-        arpeggiateVoicesCompound(args);
-    }
+    // } else {
+    //     arpeggiateVoicesCompound(args);
+    // }
 }
 
 function stopChord() {
@@ -35,6 +105,8 @@ function stopChord() {
     });
     currentChord = [];
 }
+
+
 
 // global timing variable
 let voicesTimer = 0;
@@ -137,62 +209,7 @@ function playVoicesBlock() {
     }
 }
 
-// Play from phrasing chart
-let allVoicesPlayback = [];
-let combinedVoicesPlayback = [
-    [],
-    [],
-    [],
-    []
-];
 
-function getAllVoices() {
-    for (let i = 0; i <= allVoicesPlayback.length - 1; i++) {
-
-        combinedVoicesPlayback[0] = combinedVoicesPlayback[0].concat(allVoicesPlayback[i][0]);
-        combinedVoicesPlayback[1] = combinedVoicesPlayback[1].concat(allVoicesPlayback[i][1]);
-        combinedVoicesPlayback[2] = combinedVoicesPlayback[2].concat(allVoicesPlayback[i][2]);
-        combinedVoicesPlayback[3] = combinedVoicesPlayback[3].concat(allVoicesPlayback[i][3]);
-    }
-    console.log(allVoicesPlayback);
-    console.log(combinedVoicesPlayback);
-}
-
-let index = 0;
-
-function iterateThruHarmonies() {
-    console.log('iteration: ');
-    console.log(index);
-    chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
-    index++;
-}
-
-function playFromArray() {
-
-    index = 0;
-    voicesTimer = 0;
-    getAllVoices();
-    phraseContainer.forEach((phrase) => {
-
-        phrase.forEach((item, i) => {
-            if (i !== 0) {
-                phrase[i].forEach((item) => {
-                    // console.log(item);
-                    if (item.length !== 0) {
-                        setTimeout(() => {
-                            iterateThruHarmonies();
-                        }, voicesTimer + 680);
-                        voicesTimer = voicesTimer + 680;
-
-                    } else {
-                        voicesTimer = voicesTimer + 680;
-
-                    }
-                })
-            }
-        });
-    });
-}
 
 // play progression in ugly blocks
 let progTimer = 0;
@@ -237,5 +254,7 @@ function playRoman(numeral) {
             console.log('Fin.')
     }
 }
+
+
 
 // END of document 
