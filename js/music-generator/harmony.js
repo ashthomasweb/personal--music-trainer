@@ -1,6 +1,7 @@
 // Harmonic Generator for "Music Trainer"
 
 let progLength;
+
 // let majorHarmony = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii'];
 let majorHarmony = ['i', 'iidim', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
 
@@ -194,10 +195,10 @@ function buildForm(input) {
 
             }
         }
-
+        
+        progression = [...progression]
     }
     playFromArray();
-    progression = [...progression]
 }
 
 // calls all builder helper functions and provides data for playback via phraseContainer
@@ -249,11 +250,12 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][1] = [...progression];
     }
     if (section === 3) {
-        progression = [...phraseContainer[formNum - 1][0][1]];
-        progression[progression.length - 1] = 'i';
-        progression[progression.length - 2] = 'V';
+        // Probable cause of undefined variables in array
+        aprogression = [...phraseContainer[formNum - 1][0][1]];
+        aprogression[aprogression.length - 1] = 'i';
+        aprogression[aprogression.length - 2] = 'V';
         builtPhrase[0][0] = formNum + ':A';
-        builtPhrase[0][1] = [...progression];
+        builtPhrase[0][1] = [...aprogression];
         // builtPhrase[0][2] = phraseContainer[formNum - 1][0][2];
 
     }
@@ -283,8 +285,7 @@ function getPhraseUnit() {
     phraseUnit = [
         [
             ['section'],
-            ['progression'],
-            ['voice-leading']
+            ['progression']
         ],
         [
             [],
