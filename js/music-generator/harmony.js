@@ -151,20 +151,6 @@ function getProgression(start, cadence) {
     return progression;
 }
 
-// build basic harmonic unit
-
-// assign authentic cadence
-
-// copy it with small variation and new cadence and perhaps new voice leading
-
-// create alternate material !authentic cadence both harmonic and phrasing
-
-// repeat first A section with authentic cadence
-
-// transition to BPrime as new A
-
-// rinse repeat
-
 
 let phraseUnit = [];
 let builtPhrase = [];
@@ -191,12 +177,10 @@ function buildForm(input) {
             }
             if (ii === 3) {
                 buildUnit(3, i + 1);
-                getStartTones();
-
+                getStartTones('final');
             }
         }
 
-        // progression = [...progression]
     }
     playFromArray();
 }
@@ -244,18 +228,20 @@ function harmonicUnit(section, formNum) {
             progression[progression.length - 1] = 'V';
         }
 
-        // let sequence = [...progression];
-        // sequence.forEach((item, i) => {
-        //     if ( i === 6 ) {
-        //         item = majorHarmony[0]
-        //     } else {
-        //         item = majorHarmony.indexOf(item) + 1;
-        //     }
-        // });
+        let sequence = [...progression];
+        sequence.forEach((item, i) => {
+           console.log( 'hi');
+            if ( i === 6 ) {
+                console.log(item);
+                item = majorHarmony[0];
+            } else {
+                item = majorHarmony[majorHarmony.indexOf(item)] + 1;
+            }
+        });
         harmonicRhythm();
 
         builtPhrase[0][0] = formNum + ':A1';
-        builtPhrase[0][1] = [...progression];
+        builtPhrase[0][1] = [...sequence];
     } else if (section === 2) {
         let chance = Math.ceil(Math.random() * 6)
         getProgression(majorHarmony[chance], cadenceType[(Math.floor(Math.random() * 2)) + 2]);
@@ -264,16 +250,12 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][0] = formNum + ':B';
         builtPhrase[0][1] = [...progression];
     } else if (section === 3) {
-        // Probable cause of undefined variables in array
         progression = [...phraseContainer[formNum - 1][0][1]];
         progression[progression.length - 1] = 'i';
         progression[progression.length - 2] = 'V';
         harmonicRhythm();
-
         builtPhrase[0][0] = formNum + ':A';
         builtPhrase[0][1] = [...progression];
-        // builtPhrase[0][2] = phraseContainer[formNum - 1][0][2];
-
     }
 }
 
@@ -331,7 +313,6 @@ function getPhraseUnit() {
 
     return phraseUnit;
 }
-
 
 
 // // construct harmonic variations

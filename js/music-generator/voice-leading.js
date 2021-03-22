@@ -222,7 +222,7 @@ function getStartTones() {
     let satbArray = [];
     satbArray.push(bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray)
     builtPhrase[0].push(satbArray);
-    allVoicesPlayback.push(satbArray);
+    allVoicesPlayback.push(satbArray)
 
 }
 
@@ -297,7 +297,7 @@ function getVoiceLeading(extensions) {
             // random chance of smoothest or next best voice-leading option
             function voiceLeadChance() {
                 let num = Math.floor(Math.random() * 3);
-                if ( num === 0 ) {
+                if (num === 0) {
                     resolution = resolutionOptions[1];
                 } else {
                     resolution = resolutionOptions[0];

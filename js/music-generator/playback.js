@@ -27,8 +27,6 @@ function getAllVoices() {
 let index = 0;
 
 function iterateThruHarmonies() {
-    console.log('iteration: ');
-    console.log(index);
     let chance = Math.floor(Math.random() * 2);
     // if ( chance === 0 ) {
         chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
@@ -68,9 +66,6 @@ function playFromArray() {
 }
 
 
-
-
-
 function chord(a, b, c, d, e, f, g) {
     stopChord();
     let args = Array.from(arguments);
@@ -104,8 +99,6 @@ function stopChord() {
     });
     currentChord = [];
 }
-
-
 
 // global timing variable
 let voicesTimer = 0;
@@ -209,7 +202,6 @@ function playVoicesBlock() {
 }
 
 
-
 // play progression in ugly blocks
 let progTimer = 0;
 
@@ -253,7 +245,6 @@ function playRoman(numeral) {
             console.log('Fin.')
     }
 }
-
 
 
 // END of document 
