@@ -195,8 +195,8 @@ function buildForm(input) {
 
             }
         }
-        
-        progression = [...progression]
+
+        // progression = [...progression]
     }
     playFromArray();
 }
@@ -212,15 +212,27 @@ function buildUnit(section, formNum) {
 
 // makes a base unit of chords
 function harmonicUnit(section, formNum) {
+    // harmonic rhythm handler
+    function harmonicRhythm() {
+        builtPhrase[1][0].push(progression[0]);
+        builtPhrase[1][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
+        builtPhrase[2][0].push(progression[2]);
+        builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[3]);
+        builtPhrase[3][0].push(progression[4]);
+        builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[5]);
+        builtPhrase[4][0].push(progression[6]);
+    }
+
     progLength = 7;
     if (section === 0) {
         let chance = Math.ceil(Math.random() * 6)
 
         getProgression(majorHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
+        harmonicRhythm();
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][0] = formNum + ':A';
-    }
-    if (section === 1) {
+
+    } else if (section === 1) {
         let chance = Math.ceil(Math.random() * 2)
 
         if (chance === 1) {
@@ -240,22 +252,26 @@ function harmonicUnit(section, formNum) {
         //         item = majorHarmony.indexOf(item) + 1;
         //     }
         // });
+        harmonicRhythm();
+
         builtPhrase[0][0] = formNum + ':A1';
         builtPhrase[0][1] = [...progression];
-    }
-    if (section === 2) {
+    } else if (section === 2) {
         let chance = Math.ceil(Math.random() * 6)
         getProgression(majorHarmony[chance], cadenceType[(Math.floor(Math.random() * 2)) + 2]);
+        harmonicRhythm();
+
         builtPhrase[0][0] = formNum + ':B';
         builtPhrase[0][1] = [...progression];
-    }
-    if (section === 3) {
+    } else if (section === 3) {
         // Probable cause of undefined variables in array
-        aprogression = [...phraseContainer[formNum - 1][0][1]];
-        aprogression[aprogression.length - 1] = 'i';
-        aprogression[aprogression.length - 2] = 'V';
+        progression = [...phraseContainer[formNum - 1][0][1]];
+        progression[progression.length - 1] = 'i';
+        progression[progression.length - 2] = 'V';
+        harmonicRhythm();
+
         builtPhrase[0][0] = formNum + ':A';
-        builtPhrase[0][1] = [...aprogression];
+        builtPhrase[0][1] = [...progression];
         // builtPhrase[0][2] = phraseContainer[formNum - 1][0][2];
 
     }
@@ -313,20 +329,10 @@ function getPhraseUnit() {
         ]
     ];
 
-    harmonicRhythm();
     return phraseUnit;
 }
 
-// harmonic rhythm handler
-function harmonicRhythm() {
-    phraseUnit[1][0].push(progression[0]);
-    phraseUnit[1][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
-    phraseUnit[2][0].push(progression[2]);
-    phraseUnit[2][Math.floor((Math.random() * 2) + 2)].push(progression[3]);
-    phraseUnit[3][0].push(progression[4]);
-    phraseUnit[3][Math.floor((Math.random() * 2) + 2)].push(progression[5]);
-    phraseUnit[4][0].push(progression[6]);
-}
+
 
 // // construct harmonic variations
 // function harmonicVariation() {
