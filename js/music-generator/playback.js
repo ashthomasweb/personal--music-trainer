@@ -28,11 +28,11 @@ let index = 0;
 
 function iterateThruHarmonies() {
     let chance = Math.floor(Math.random() * 2);
-    // if ( chance === 0 ) {
+    if ( chance === 0 ) {
         chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
-    // } else {
-    //     chord(combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
-    // }
+    } else {
+        chord(combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
+    }
     index++;
 }
 
@@ -74,22 +74,22 @@ function chord(a, b, c, d, e, f, g) {
         // console.log(document.getElementsByClassName(item)[0]);
         // document.getElementsByClassName(item)[0].classList = "wrap " + item;
         let noteIndex = sourceNoteIndex.indexOf(item);
-        // prevet soprano from being stopped
-        if (i !== 3 || i !== 1) {
+        // prevet soprano and bass from being stopped
+        if (i !== 3 || i !== 0) {
             currentChord.push(pianoExtendedC[noteIndex]);
         }
     });
     
-    // let chance = Math.floor(Math.random() * 4);
-    // if (chance === 0) {
-    //     arpeggiateVoices(args);
-    // } else if (chance === 1) {
+    let chance = Math.floor(Math.random() * 4);
+    if (chance === 0) {
+        arpeggiateVoices(args);
+    } else if (chance === 1) {
         args.forEach((item) => {
             noteSwitch(item);
         });
-    // } else {
-    //     arpeggiateVoicesCompound(args);
-    // }
+    } else {
+        arpeggiateVoicesCompound(args);
+    }
 }
 
 function stopChord() {
