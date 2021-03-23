@@ -185,98 +185,7 @@ function buildForm(input) {
     playFromArray();
 }
 
-// calls all builder helper functions and provides data for playback via phraseContainer
-function buildUnit(section, formNum) {
-    builtPhrase = getPhraseUnit();
 
-    harmonicUnit(section, formNum);
-
-    phraseContainer.push(builtPhrase);
-}
-
-// makes a base unit of chords
-function harmonicUnit(section, formNum) {
-    // harmonic rhythm handler
-    function harmonicRhythm() {
-        builtPhrase[1][0].push(progression[0]);
-        builtPhrase[1][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
-        builtPhrase[2][0].push(progression[2]);
-        builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[3]);
-        builtPhrase[3][0].push(progression[4]);
-        builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[5]);
-        builtPhrase[4][0].push(progression[6]);
-    }
-
-    progLength = 7;
-    if (section === 0) {
-        let chance = Math.ceil(Math.random() * 6)
-
-        getProgression(majorHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
-        harmonicRhythm();
-        builtPhrase[0][1] = [...progression];
-        builtPhrase[0][0] = formNum + ':A';
-
-    } else if (section === 1) {
-        let chance = Math.ceil(Math.random() * 2)
-
-        if (chance === 1) {
-            progression[progression.length - 1] = 'bVI';
-            progression[progression.length - 2] = 'V';
-            // progression[progression.length - 3] = 'I';
-        }
-        if (chance === 2) {
-            progression[progression.length - 1] = 'V';
-        }
-
-        let sequence = [...progression];
-        sequence.forEach((item, i) => {
-           console.log( 'hi');
-            if ( i === 6 ) {
-                console.log(item);
-                item = majorHarmony[0];
-            } else {
-                item = majorHarmony[majorHarmony.indexOf(item)] + 1;
-            }
-        });
-        harmonicRhythm();
-
-        builtPhrase[0][0] = formNum + ':A1';
-        builtPhrase[0][1] = [...sequence];
-    } else if (section === 2) {
-        let chance = Math.ceil(Math.random() * 6)
-        getProgression(majorHarmony[chance], cadenceType[(Math.floor(Math.random() * 2)) + 2]);
-        harmonicRhythm();
-
-        builtPhrase[0][0] = formNum + ':B';
-        builtPhrase[0][1] = [...progression];
-    } else if (section === 3) {
-        progression = [...phraseContainer[formNum - 1][0][1]];
-        progression[progression.length - 1] = 'i';
-        progression[progression.length - 2] = 'V';
-        harmonicRhythm();
-        builtPhrase[0][0] = formNum + ':A';
-        builtPhrase[0][1] = [...progression];
-    }
-}
-
-// // cadence handler
-// function cadenceHandler(section) {
-//     // return anything but Authentic
-//     if (section === 0) {
-//         return cadenceType[(Math.ceil(Math.random() * 3)) + 1]
-//     }
-//     if (section === 1) {
-//         // do nothing
-//     }
-//     if (section === 2) {
-//         return cadenceType[(Math.ceil(Math.random() * 3)) + 1]
-//     }
-//     if (section === 3) {
-//         // do nothing
-//         // add transition to new section
-//     }
-
-// }
 
 // gets phrase length
 function getPhraseUnit() {
@@ -314,11 +223,92 @@ function getPhraseUnit() {
     return phraseUnit;
 }
 
+function sequenceHarmony(input) {
+    for (let ii = 1; ii < input; ii++) {
+        progression.forEach((item, i, progression) => {
+            if (majorHarmony.indexOf(item) === majorHarmony.length - 1) {
+                progression[i] = majorHarmony[0];
+            } else {
+                progression[i] = majorHarmony[majorHarmony.indexOf(item) + 1];
+            }
+        });
+    }
+}
 
-// // construct harmonic variations
-// function harmonicVariation() {
 
-// }
+// calls all builder helper functions and provides data for playback via phraseContainer
+function buildUnit(section, formNum) {
+    // gets empty phrase
+    builtPhrase = getPhraseUnit();
+    // gets progression and generates harmonic rhythm
+    harmonicUnit(section, formNum);
+    // push to container for play handling
+    phraseContainer.push(builtPhrase);
+}
+
+// makes a base unit of chords
+function harmonicUnit(section, formNum) {
+
+    // harmonic rhythm handler
+    function harmonicRhythm() {
+        builtPhrase[1][0].push(progression[0]);
+        builtPhrase[1][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
+        builtPhrase[2][0].push(progression[2]);
+        builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[3]);
+        builtPhrase[3][0].push(progression[4]);
+        builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[5]);
+        builtPhrase[4][0].push(progression[6]);
+    }
+
+    progLength = 7;
+    if (section === 0) {
+        let chance = Math.ceil(Math.random() * 6)
+
+        getProgression(majorHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
+        harmonicRhythm();
+        builtPhrase[0][1] = [...progression];
+        builtPhrase[0][0] = formNum + ':A';
+
+    } else if (section === 1) {
+        let chance = Math.ceil(Math.random() * 2);
+
+        if (chance === 1) {
+            progression[progression.length - 1] = 'bVI';
+            progression[progression.length - 2] = 'V';
+        }
+        if (chance === 2) {
+            progression[progression.length - 1] = 'V';
+        }
+
+        chance = Math.ceil(Math.random() * 15);
+        if ( chance <= 8 ) {
+            sequenceHarmony(chance);
+        } else if ( chance > 8 ) {
+            sequenceHarmony(4)
+        }
+        
+        harmonicRhythm();
+        builtPhrase[0][0] = formNum + ':A1';
+        builtPhrase[0][1] = [...progression];
+
+    } else if (section === 2) {
+        let chance = Math.ceil(Math.random() * 6)
+        getProgression(upFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
+        harmonicRhythm();
+
+        builtPhrase[0][0] = formNum + ':B';
+        builtPhrase[0][1] = [...progression];
+    } else if (section === 3) {
+        progression = [...phraseContainer[formNum - 1][0][1]];
+        progression[progression.length - 1] = 'i';
+        progression[progression.length - 2] = 'V';
+        harmonicRhythm();
+        builtPhrase[0][0] = formNum + ':A';
+        builtPhrase[0][1] = [...progression];
+    }
+}
+
+
 
 // // harmonic sequencing
 // function harmonicSequence() {   

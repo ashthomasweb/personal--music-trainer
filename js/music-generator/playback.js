@@ -20,8 +20,8 @@ function getAllVoices() {
         combinedVoicesPlayback[2] = combinedVoicesPlayback[2].concat(allVoicesPlayback[i][2]);
         combinedVoicesPlayback[3] = combinedVoicesPlayback[3].concat(allVoicesPlayback[i][3]);
     }
-    console.log(allVoicesPlayback);
-    console.log(combinedVoicesPlayback);
+    // console.log(allVoicesPlayback);
+    // console.log(combinedVoicesPlayback);
 }
 
 let index = 0;
