@@ -67,14 +67,14 @@ function playFromArray() {
 
 
 function chord(a, b, c, d, e, f, g) {
-    stopChord();
+    // stopChord();
     let args = Array.from(arguments);
     args.forEach((item, i) => {
         // console.log(item);
         // console.log(document.getElementsByClassName(item)[0]);
         // document.getElementsByClassName(item)[0].classList = "wrap " + item;
         let noteIndex = sourceNoteIndex.indexOf(item);
-        // prevet soprano and bass from being stopped
+        // prevent soprano and bass from being stopped
         if (i !== 3 || i !== 0) {
             currentChord.push(pianoExtendedC[noteIndex]);
         }
