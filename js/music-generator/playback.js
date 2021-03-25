@@ -61,7 +61,7 @@ let index = 0;
 
 function iterateThruHarmonies() {
     // THIS is where I can control which voices play per beat
-    let chance = Math.floor(Math.random() * 3);
+    let chance = Math.floor(Math.random() * 0);
     if ( chance === 0 ) {
         chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
     } else if ( chance === 1 ) {
@@ -76,7 +76,7 @@ function iterateThruHarmonies() {
 
 
 function chord(a, b, c, d, e, f, g) {
-    // stopChord();
+    stopChord();
     let args = Array.from(arguments);
     args.forEach((item, i) => {
         // console.log(item);
@@ -90,13 +90,13 @@ function chord(a, b, c, d, e, f, g) {
     });
     
     // THIS is where I can engage textures
-    let chance = Math.floor(Math.random() * 4);
+    let chance = Math.floor(Math.random() * 0);
     if (chance === 0) {
-        arpeggiateVoices(args);
-    } else if (chance === 1) {
         args.forEach((item) => {
             noteSwitch(item);
         });
+    } else if (chance === 1) {
+        arpeggiateVoices(args);
     } else {
         arpeggiateVoicesCompound(args);
     }
@@ -107,6 +107,7 @@ function stopChord() {
         item.pause();
         item.currentTime = 0;
     });
+    console.log(currentChord);
     currentChord = [];
 }
 

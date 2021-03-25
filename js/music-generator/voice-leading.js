@@ -217,7 +217,6 @@ function getStartTones() {
 
 
     // THIS is where I can check for bass notes
-    console.log('test');
     checkforRoot();
     // THIS is where I can check for bass notes
 
@@ -234,7 +233,7 @@ function checkforRoot() {
         let rootBool = false;
         let roots = [];
         // get current chord
-        console.log(progression[i]);
+        // console.log(progression[i]);
         let currentChord = progression[i];
         // look in romanNumeral array for rootArray
         romanNumerals.forEach((item) => {
@@ -242,7 +241,7 @@ function checkforRoot() {
                 roots = [...item[1][1]];
             }
         });
-        console.log(roots);
+        // console.log(roots);
         // run .includes()
         if ( roots.includes(bassVoiceArray[i]) ) {
             rootBool = true;
@@ -256,7 +255,7 @@ function checkforRoot() {
         if ( roots.includes(sopranoVoiceArray[i]) ) {
             rootBool = true;
         }
-        console.log(rootBool);
+        // console.log(rootBool);
         
         noteIndex.indexOf(bassVoiceArray[i])
         noteIndex.indexOf(roots[0]);
