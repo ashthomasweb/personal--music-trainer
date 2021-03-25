@@ -125,22 +125,16 @@ function tenor() {
 }
 
 function alto() {
-    getVoiceLeading('seventh');
+    getVoiceLeading('seventh', true);
     altoVoiceArray = [...tempVoiceArray];
 }
 
 function soprano() {
     getVoiceLeading('seventh');
     sopranoVoiceArray = [...tempVoiceArray];
-    // console.log('S ' + sopranoVoiceArray);
-    // console.log('A ' + altoVoiceArray);
-    // console.log('T ' + tenorVoiceArray);
-    // console.log('B ' + bassVoiceArray);
 }
 
 let directionArray = [];
-
-
 
 function getStartTones() {
     // get first chord as string
@@ -235,13 +229,6 @@ function getStartTones() {
 }
 
 function checkforRoot() {
-    console.log(progression);
-    console.log(romanNumerals);
-
-    // console.log(bassVoiceArray);
-    // console.log(sopranoVoiceArray.includes('C5'));
-
-
 
     for (let i = 0; i <= progression.length - 1; i++) {
         let rootBool = false;
@@ -287,12 +274,10 @@ function checkforRoot() {
             bassVoiceArray[i] = nearestRoot;
         }
 
-
-
     }
 }
 
-function getVoiceLeading(extensions) {
+function getVoiceLeading(extensions, counterpoint) {
     // empty array to hold all voice leading options
     tempVoiceArray = [];
     // run function on entire progression
@@ -310,7 +295,7 @@ function getVoiceLeading(extensions) {
             }
         }
 
-        function voiceLead(startingNote, resolveChord) {
+        function voiceLead(startingNote, resolveChord, counterpoint) {
             let chordMemberIndexArray = [];
             let differenceOfArray = [];
 
@@ -369,32 +354,52 @@ function getVoiceLeading(extensions) {
                     resolution = resolutionOptions[0];
                 }
             }
+
+            
             // categorization of voice leading options
             function voiceLeadDirectionOptions() {
                 let directionUp;
                 let directionDown;
-
+                
                 resolutionOptions.forEach((item) => {
-
+                    
                     if (noteIndex.indexOf(item) < noteIndex.indexOf(currentNote)) {
                         directionDown = item;
                     } else if (noteIndex.indexOf(item) > noteIndex.indexOf(currentNote)) {
                         directionUp = item;
                     }
-
+                    
                 });
+                
+                // THIS is where I can control basic counterpoint
 
-                if (directionArray[i] === 'up') {
-                    if (directionUp) {
-                        resolution = directionUp;
-                    } else {
-                        resolution = smoothestTransition;
+                if ( counterpoint === true ) {
+                    if (directionArray[i] === 'up') {
+                        if (directionUp) {
+                            resolution = directionDown;
+                        } else {
+                            resolution = smoothestTransition;
+                        }
+                    } else if (directionArray[i] === 'down') {
+                        if (directionDown) {
+                            resolution = directionUp;
+                        } else {
+                            resolution = smoothestTransition;
+                        }
                     }
-                } else if (directionArray[i] === 'down') {
-                    if (directionDown) {
-                        resolution = directionDown;
-                    } else {
-                        resolution = smoothestTransition;
+                } else {
+                    if (directionArray[i] === 'up') {
+                        if (directionUp) {
+                            resolution = directionUp;
+                        } else {
+                            resolution = smoothestTransition;
+                        }
+                    } else if (directionArray[i] === 'down') {
+                        if (directionDown) {
+                            resolution = directionDown;
+                        } else {
+                            resolution = smoothestTransition;
+                        }
                     }
                 }
 

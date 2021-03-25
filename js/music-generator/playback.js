@@ -4,39 +4,6 @@ let sourceNoteIndex = ['D6', 'Db6', 'C6', 'B5', 'Bb5', 'A5', 'Ab5', 'G5', 'Gb5',
 
 
 // Play from phrasing chart
-let allVoicesPlayback = [];
-let combinedVoicesPlayback = [
-    [],
-    [],
-    [],
-    []
-];
-
-function getAllVoices() {
-    for (let i = 0; i <= allVoicesPlayback.length - 1; i++) {
-
-        combinedVoicesPlayback[0] = combinedVoicesPlayback[0].concat(allVoicesPlayback[i][0]);
-        combinedVoicesPlayback[1] = combinedVoicesPlayback[1].concat(allVoicesPlayback[i][1]);
-        combinedVoicesPlayback[2] = combinedVoicesPlayback[2].concat(allVoicesPlayback[i][2]);
-        combinedVoicesPlayback[3] = combinedVoicesPlayback[3].concat(allVoicesPlayback[i][3]);
-    }
-    // console.log(allVoicesPlayback);
-    // console.log(combinedVoicesPlayback);
-}
-
-let index = 0;
-
-function iterateThruHarmonies() {
-    let chance = Math.floor(Math.random() * 3);
-    if ( chance === 0 ) {
-        chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
-    } else if ( chance === 1 ) {
-        chord(combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
-    } else if ( chance === 2 ) {
-        chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
-    }
-    index++;
-}
 
 function playFromArray() {
 
@@ -51,12 +18,17 @@ function playFromArray() {
                     // console.log(item);
                     if (item.length !== 0) {
 
+                        // THIS is where i can control tempo
+
                         // PRIMARY PLAY - TEMPO AND FUNCTION CALL
                         setTimeout(() => {
                             iterateThruHarmonies();
                         }, voicesTimer + 680);
                         voicesTimer = voicesTimer + 680;
 
+                        // THIS is where i can control tempo
+
+                        
                     } else {
                         voicesTimer = voicesTimer + 680;
 
@@ -65,6 +37,41 @@ function playFromArray() {
             }
         });
     });
+}
+
+
+let allVoicesPlayback = [];
+let combinedVoicesPlayback = [
+    [],
+    [],
+    [],
+    []
+];
+
+function getAllVoices() {
+    for (let i = 0; i <= allVoicesPlayback.length - 1; i++) {
+        combinedVoicesPlayback[0] = combinedVoicesPlayback[0].concat(allVoicesPlayback[i][0]);
+        combinedVoicesPlayback[1] = combinedVoicesPlayback[1].concat(allVoicesPlayback[i][1]);
+        combinedVoicesPlayback[2] = combinedVoicesPlayback[2].concat(allVoicesPlayback[i][2]);
+        combinedVoicesPlayback[3] = combinedVoicesPlayback[3].concat(allVoicesPlayback[i][3]);
+    }
+}
+
+let index = 0;
+
+function iterateThruHarmonies() {
+    // THIS is where I can control which voices play per beat
+    let chance = Math.floor(Math.random() * 3);
+    if ( chance === 0 ) {
+        chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
+    } else if ( chance === 1 ) {
+        chord(combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
+    } else if ( chance === 2 ) {
+        chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
+    }
+    // THIS is where I can control which voices play per beat
+
+    index++;
 }
 
 
@@ -82,6 +89,7 @@ function chord(a, b, c, d, e, f, g) {
         }
     });
     
+    // THIS is where I can engage textures
     let chance = Math.floor(Math.random() * 4);
     if (chance === 0) {
         arpeggiateVoices(args);
@@ -102,23 +110,11 @@ function stopChord() {
     currentChord = [];
 }
 
+
+// || TEXTURES 
+
 // global timing variable
 let voicesTimer = 0;
-
-// Play voices as blocks without stopping repeated notes
-function playVoices() {
-    voicesTimer = 0;
-
-    for (let i = 0; i <= progression.length - 1; i++) {
-        setTimeout(() => {
-            noteSwitch(bassVoiceArray[i]);
-            noteSwitch(tenorVoiceArray[i]);
-            noteSwitch(altoVoiceArray[i]);
-            noteSwitch(sopranoVoiceArray[i]);
-        }, voicesTimer + 700);
-        voicesTimer = voicesTimer + 700;
-    }
-}
 
 // Arpeggiate voices without stopping repeated notes
 function arpeggiateVoices(input) {
@@ -200,6 +196,22 @@ function playVoicesBlock() {
             chord(bassVoiceArray[i], tenorVoiceArray[i], altoVoiceArray[i], sopranoVoiceArray[i]);
         }, voicesTimer + 800);
         voicesTimer = voicesTimer + 800;
+    }
+}
+
+
+// Play voices as blocks without stopping repeated notes
+function playVoices() {
+    voicesTimer = 0;
+
+    for (let i = 0; i <= progression.length - 1; i++) {
+        setTimeout(() => {
+            noteSwitch(bassVoiceArray[i]);
+            noteSwitch(tenorVoiceArray[i]);
+            noteSwitch(altoVoiceArray[i]);
+            noteSwitch(sopranoVoiceArray[i]);
+        }, voicesTimer + 700);
+        voicesTimer = voicesTimer + 700;
     }
 }
 
