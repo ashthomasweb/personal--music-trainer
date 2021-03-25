@@ -240,7 +240,7 @@ function noteSwitch(noteId) {
             playNote(51, noteId);
             break;
         default:
-            console.log('Fin.')
+            // console.log('Fin.')
     }
 }
 

@@ -140,6 +140,8 @@ function soprano() {
 
 let directionArray = [];
 
+
+
 function getStartTones() {
     // get first chord as string
     let firstChord = progression[0];
@@ -219,11 +221,75 @@ function getStartTones() {
     startingNote = firstChord[2][1][firstChord[2][1].length - 1];
     soprano();
 
+
+    // THIS is where I can check for bass notes
+    console.log('test');
+    checkforRoot();
+    // THIS is where I can check for bass notes
+
     let satbArray = [];
-    satbArray.push(bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray)
+    satbArray.push(bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray);
     builtPhrase[0].push(satbArray);
     allVoicesPlayback.push(satbArray)
 
+}
+
+function checkforRoot() {
+    console.log(progression);
+    console.log(romanNumerals);
+
+    // console.log(bassVoiceArray);
+    // console.log(sopranoVoiceArray.includes('C5'));
+
+
+
+    for (let i = 0; i <= progression.length - 1; i++) {
+        let rootBool = false;
+        let roots = [];
+        // get current chord
+        console.log(progression[i]);
+        let currentChord = progression[i];
+        // look in romanNumeral array for rootArray
+        romanNumerals.forEach((item) => {
+            if (item[0] === currentChord) {
+                roots = [...item[1][1]];
+            }
+        });
+        console.log(roots);
+        // run .includes()
+        if ( roots.includes(bassVoiceArray[i]) ) {
+            rootBool = true;
+        }
+        if ( roots.includes(tenorVoiceArray[i]) ) {
+            rootBool = true;
+        }
+        if ( roots.includes(altoVoiceArray[i]) ) {
+            rootBool = true;
+        }
+        if ( roots.includes(sopranoVoiceArray[i]) ) {
+            rootBool = true;
+        }
+        console.log(rootBool);
+        
+        noteIndex.indexOf(bassVoiceArray[i])
+        noteIndex.indexOf(roots[0]);
+        noteIndex.indexOf(roots[1]);
+
+        let nearestRoot;
+        if (noteIndex.indexOf(bassVoiceArray[i]) < 7 ) {
+            nearestRoot = roots[0];
+        } else {
+            nearestRoot = roots[1];
+        }
+
+        // if false then move bass to nearest root
+        if ( rootBool === false ) {
+            bassVoiceArray[i] = nearestRoot;
+        }
+
+
+
+    }
 }
 
 function getVoiceLeading(extensions) {

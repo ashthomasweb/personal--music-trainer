@@ -165,21 +165,22 @@ function buildForm(input) {
                 buildUnit(0, i + 1);
                 getStartTones();
             }
-            if (ii === 1) {
-                buildUnit(1, i + 1);
-                getStartTones();
+            // if (ii === 1) {
+            //     buildUnit(1, i + 1);
+            //     getStartTones();
 
-            }
-            if (ii === 2) {
-                buildUnit(2, i + 1);
-                getStartTones();
+            // }
+            // if (ii === 2) {
+            //     buildUnit(2, i + 1);
+            //     getStartTones();
 
-            }
-            if (ii === 3) {
-                buildUnit(3, i + 1);
-                getStartTones('final');
-            }
+            // }
+            // if (ii === 3) {
+            //     buildUnit(3, i + 1);
+            //     getStartTones('final');
+            // }
         }
+
 
     }
     playFromArray();
