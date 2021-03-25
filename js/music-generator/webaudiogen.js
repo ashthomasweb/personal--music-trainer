@@ -2,6 +2,21 @@
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioCont = new AudioContext();
 
+function createGainArray() {
+    let array = [];
+    for (let i = 0; i < 51; i++) {
+        array.push(audioCont.createGain());
+    }
+    return array;
+}
+let [gainNode0, gainNode1, gainNode2, gainNode3, gainNode4, gainNode5, gainNode6, gainNode7, gainNode8, gainNode9, gainNode10, gainNode11, gainNode12, gainNode13, gainNode14, gainNode15, gainNode16, gainNode17, gainNode18, gainNode19, gainNode20, gainNode21, gainNode22, gainNode23, gainNode24, gainNode25, gainNode26, gainNode27, gainNode28, gainNode29, gainNode30, gainNode31, gainNode32, gainNode33, gainNode34, gainNode35, gainNode36, gainNode37, gainNode38, gainNode39, gainNode40, gainNode41, gainNode42, gainNode43, gainNode44, gainNode45, gainNode46, gainNode47, gainNode48, gainNode49, gainNode50,
+    gainNode51
+] = createGainArray();
+
+let gainNodes = [gainNode0, gainNode1, gainNode2, gainNode3, gainNode4, gainNode5, gainNode6, gainNode7, gainNode8, gainNode9, gainNode10, gainNode11, gainNode12, gainNode13, gainNode14, gainNode15, gainNode16, gainNode17, gainNode18, gainNode19, gainNode20, gainNode21, gainNode22, gainNode23, gainNode24, gainNode25, gainNode26, gainNode27, gainNode28, gainNode29, gainNode30, gainNode31, gainNode32, gainNode33, gainNode34, gainNode35, gainNode36, gainNode37, gainNode38, gainNode39, gainNode40, gainNode41, gainNode42, gainNode43, gainNode44, gainNode45, gainNode46, gainNode47, gainNode48, gainNode49, 
+    gainNode50, gainNode51  
+];
+
 const pianoTrackArray = [];
 const pianoExtendedC = [
     new Audio("sounds/gen-piano/gen-piano-D6.mp3"),
@@ -62,9 +77,10 @@ for (let i = 0; i < pianoExtendedC.length; i++) {
 };
 
 function soundLoader() {
-    for (let i = 0; i <= pianoExtendedC.length - 1; i++) {
+    for (let i = 0; i <= pianoExtendedC.length - 2; i++) {
         // webAudio track connect to destination
-        pianoTrackArray[i].connect(audioCont.destination);
+        pianoTrackArray[i].connect(gainNodes[i]);
+        gainNodes[i].connect(audioCont.destination);
     }
 }
 

@@ -125,12 +125,12 @@ function tenor() {
 }
 
 function alto() {
-    getVoiceLeading('seventh', true);
+    getVoiceLeading('seventh');
     altoVoiceArray = [...tempVoiceArray];
 }
 
 function soprano() {
-    getVoiceLeading('seventh');
+    getVoiceLeading('seventh', true);
     sopranoVoiceArray = [...tempVoiceArray];
 }
 
@@ -217,6 +217,7 @@ function getStartTones() {
 
 
     // THIS is where I can check for bass notes
+    // console.log('test');
     checkforRoot();
     // THIS is where I can check for bass notes
 

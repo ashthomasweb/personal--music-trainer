@@ -28,7 +28,7 @@ function playFromArray() {
 
                         // THIS is where i can control tempo
 
-                        
+
                     } else {
                         voicesTimer = voicesTimer + 680;
 
@@ -61,36 +61,38 @@ let index = 0;
 
 function iterateThruHarmonies() {
     // THIS is where I can control which voices play per beat
-    let chance = Math.floor(Math.random() * 0);
-    if ( chance === 0 ) {
+    let chance = Math.floor(Math.random() * 4);
+    if (chance === 0) {
         chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
-    } else if ( chance === 1 ) {
+    } else if (chance === 1) {
         chord(combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
-    } else if ( chance === 2 ) {
+    } else if (chance === 2) {
         chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
+    } else if (chance === 3) {
+        chord(combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
     }
     // THIS is where I can control which voices play per beat
 
     index++;
 }
 
-
 function chord(a, b, c, d, e, f, g) {
     stopChord();
     let args = Array.from(arguments);
     args.forEach((item, i) => {
-        // console.log(item);
-        // console.log(document.getElementsByClassName(item)[0]);
-        // document.getElementsByClassName(item)[0].classList = "wrap " + item;
         let noteIndex = sourceNoteIndex.indexOf(item);
+
+        // THIS is where I can control which notes sustain
         // prevent soprano and bass from being stopped
-        if (i !== 3 || i !== 0) {
-            currentChord.push(pianoExtendedC[noteIndex]);
+        if ( i > 0) {
+        currentChord.push(noteIndex);
         }
+        // THIS is where I can control which notes sustain
+
     });
-    
+
     // THIS is where I can engage textures
-    let chance = Math.floor(Math.random() * 0);
+    let chance = Math.floor(Math.random() * 3);
     if (chance === 0) {
         args.forEach((item) => {
             noteSwitch(item);
@@ -104,13 +106,16 @@ function chord(a, b, c, d, e, f, g) {
 
 function stopChord() {
     currentChord.forEach(item => {
-        item.pause();
-        item.currentTime = 0;
+        let tempNode = gainNodes[item];
+        console.log(tempNode);
+        tempNode.gain.setValueAtTime(1, audioCont.currentTime);
+        tempNode.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.01);
+        pianoExtendedC[item].pause();
+        pianoExtendedC[item].currentTime = 0;
+        tempNode.gain.setValueAtTime(1, audioCont.currentTime + .03);
     });
-    console.log(currentChord);
     currentChord = [];
 }
-
 
 // || TEXTURES 
 
@@ -166,25 +171,25 @@ function arpeggiateVoicesCompound(input) {
     voicesTimer = 0;
     // let chance = Math.floor(Math.random() * 3);
 
-        setTimeout(() => {
-            noteSwitch(input[1]);
-        }, voicesTimer);
-        setTimeout(() => {
-            noteSwitch(input[2]);
-        }, voicesTimer + 113.333);
-        setTimeout(() => {
-            noteSwitch(input[3]);
-        }, voicesTimer + 226.667);
-        setTimeout(() => {
-            noteSwitch(input[1]);
-        }, voicesTimer + 340);
-        setTimeout(() => {
-            noteSwitch(input[2]);
-        }, voicesTimer + 453.333);
-        setTimeout(() => {
-            noteSwitch(input[3]);
-        }, voicesTimer + 566.667);
-        voicesTimer = voicesTimer + 680;
+    setTimeout(() => {
+        noteSwitch(input[1]);
+    }, voicesTimer);
+    setTimeout(() => {
+        noteSwitch(input[2]);
+    }, voicesTimer + 113.333);
+    setTimeout(() => {
+        noteSwitch(input[3]);
+    }, voicesTimer + 226.667);
+    setTimeout(() => {
+        noteSwitch(input[1]);
+    }, voicesTimer + 340);
+    setTimeout(() => {
+        noteSwitch(input[2]);
+    }, voicesTimer + 453.333);
+    setTimeout(() => {
+        noteSwitch(input[3]);
+    }, voicesTimer + 566.667);
+    voicesTimer = voicesTimer + 680;
 
 }
 
