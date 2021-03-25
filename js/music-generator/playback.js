@@ -27,11 +27,13 @@ function getAllVoices() {
 let index = 0;
 
 function iterateThruHarmonies() {
-    let chance = Math.floor(Math.random() * 2);
+    let chance = Math.floor(Math.random() * 3);
     if ( chance === 0 ) {
         chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
-    } else {
+    } else if ( chance === 1 ) {
         chord(combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
+    } else if ( chance === 2 ) {
+        chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
     }
     index++;
 }
