@@ -77,7 +77,7 @@ function iterateThruHarmonies() {
 }
 
 function chord(a, b, c, d, e, f, g) {
-    stopChord();
+    // stopChord();
     let args = Array.from(arguments);
     args.forEach((item, i) => {
         let noteIndex = sourceNoteIndex.indexOf(item);
@@ -92,7 +92,7 @@ function chord(a, b, c, d, e, f, g) {
     });
 
     // THIS is where I can engage textures
-    let chance = Math.floor(Math.random() * 3);
+    let chance = Math.floor(Math.random() * 4);
     if (chance === 0) {
         args.forEach((item) => {
             noteSwitch(item);
@@ -107,7 +107,7 @@ function chord(a, b, c, d, e, f, g) {
 function stopChord() {
     currentChord.forEach(item => {
         let tempNode = gainNodes[item];
-        console.log(tempNode);
+        // console.log(tempNode);
         tempNode.gain.setValueAtTime(1, audioCont.currentTime);
         tempNode.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.01);
         pianoExtendedC[item].pause();

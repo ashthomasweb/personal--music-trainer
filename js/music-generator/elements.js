@@ -21,10 +21,10 @@ slider.oninput = function () {
 // start progression on given harmony
 var startx = document.getElementById("myStart");
 var outputStart = document.getElementById("chord-start");
-outputStart.innerHTML = majorHarmony[startx.value - 1];
+outputStart.innerHTML = currentHarmony[startx.value - 1];
 
 startx.oninput = function () {
-    outputStart.innerHTML = majorHarmony[this.value - 1];
+    outputStart.innerHTML = currentHarmony[this.value - 1];
     return majorHarmony[this.value - 1]
 }
 

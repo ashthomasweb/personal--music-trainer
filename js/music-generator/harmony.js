@@ -2,8 +2,37 @@
 
 let progLength;
 
-// let majorHarmony = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii'];
-let majorHarmony = ['i', 'iidim', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
+let major = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'viiHalfDim'];
+let minor = ['i', 'iiHalfDim', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
+let minorRaised = ['iMM7', 'ii', 'bIII+', 'IVMm7', 'V', 'viHalfDim', 'viiFullDim'];
+let currentHarmony = major;
+let numeralOne = 'I';
+let numeralFour = 'IV';
+let numeralSix = 'vi';
+
+function harmonyPicker() {
+    let chance = Math.floor(Math.random() * 3);
+
+    if ( chance === 0 ) {
+        currentHarmony = major;
+        numeralOne = 'I';
+        numeralFour = 'IV';
+        numeralSix = 'vi';
+    } else if ( chance === 1 ) {
+        currentHarmony = minor;
+        numeralOne = 'i';
+        numeralFour = 'iv';
+        numeralSix = 'bVI';
+    } else {
+        currentHarmony = minorRaised;
+        numeralOne = 'iMM7';
+        numeralFour = 'IVMm7';
+        numeralSix = 'viHalfDim';
+    }
+
+    console.log(currentHarmony);
+}
+
 
 let cadenceType = ['Authentic', 'Plagal', 'Deceptive', 'Half'];
 
@@ -16,6 +45,7 @@ let phraseContainer = [];
 function buildForm(input) {
     for (let i = 0; i < input; i++) {
         // THIS is where I can change options on a 16 measure basis
+        harmonyPicker();
         for (let ii = 0; ii < 4; ii++) {
             if (ii === 0) {
                 buildUnit(0, i + 1); // builds phrasing array, harmonic progression, and harmonic rhythm
@@ -104,7 +134,7 @@ function harmonicUnit(section, formNum) {
     if (section === 0) {
         let chance = Math.ceil(Math.random() * 6)
 
-        getProgression(majorHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
+        getProgression(currentHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
         harmonicRhythm();
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][0] = formNum + ':A';
@@ -113,7 +143,7 @@ function harmonicUnit(section, formNum) {
         let chance = Math.ceil(Math.random() * 2);
 
         if (chance === 1) {
-            progression[progression.length - 1] = 'bVI';
+            progression[progression.length - 1] = numeralSix;
             progression[progression.length - 2] = 'V';
         }
         if (chance === 2) {
@@ -141,7 +171,7 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][1] = [...progression];
     } else if (section === 3) {
         progression = [...phraseContainer[formNum - 1][0][1]];
-        progression[progression.length - 1] = 'i';
+        progression[progression.length - 1] = numeralOne;
         progression[progression.length - 2] = 'V';
         harmonicRhythm();
         builtPhrase[0][0] = formNum + ':A';
@@ -165,15 +195,15 @@ function getProgression(start, cadence) {
     startGeneration();
 
     if (cadence === cadenceType[0]) {
-        progression[i] = 'i';
+        progression[i] = numeralOne;
         progression[i - 1] = 'V';
     }
     if (cadence === cadenceType[1]) {
-        progression[i] = 'i';
-        progression[i - 1] = 'iv';
+        progression[i] = numeralOne;
+        progression[i - 1] = numeralFour;
     }
     if (cadence === cadenceType[2]) {
-        progression[i] = 'bVI';
+        progression[i] = numeralSix;
         progression[i - 1] = 'V';
     }
     if (cadence === cadenceType[3]) {
@@ -201,10 +231,10 @@ function getProgression(start, cadence) {
 function sequenceHarmony(input) {
     for (let ii = 1; ii < input; ii++) {
         progression.forEach((item, i, progression) => {
-            if (majorHarmony.indexOf(item) === majorHarmony.length - 1) {
-                progression[i] = majorHarmony[0];
+            if (currentHarmony.indexOf(item) === currentHarmony.length - 1) {
+                progression[i] = currentHarmony[0];
             } else {
-                progression[i] = majorHarmony[majorHarmony.indexOf(item) + 1];
+                progression[i] = currentHarmony[currentHarmony.indexOf(item) + 1];
             }
         });
     }
@@ -232,7 +262,7 @@ function strongMotion(x) {
 
 
 function upSecond(x) {
-    let startPosition = majorHarmony.indexOf(x);
+    let startPosition = currentHarmony.indexOf(x);
     let finishPosition;
     if (startPosition === 6) {
         finishPosition = 0;
@@ -240,11 +270,11 @@ function upSecond(x) {
         startPosition++;
         finishPosition = startPosition;
     }
-    return majorHarmony[finishPosition];
+    return currentHarmony[finishPosition];
 }
 
 function downThird(x) {
-    let startPosition = majorHarmony.indexOf(x);
+    let startPosition = currentHarmony.indexOf(x);
     let finishPosition;
     if (startPosition === 0) {
         finishPosition = 5;
@@ -260,11 +290,11 @@ function downThird(x) {
         startPosition = startPosition - 2;
         finishPosition = startPosition;
     }
-    return majorHarmony[finishPosition];
+    return currentHarmony[finishPosition];
 }
 
 function upFourth(x) {
-    let startPosition = majorHarmony.indexOf(x);
+    let startPosition = currentHarmony.indexOf(x);
     let finishPosition;
     if (startPosition === 6) {
         finishPosition = 2;
@@ -276,18 +306,18 @@ function upFourth(x) {
         startPosition = startPosition + 3;
         finishPosition = startPosition;
     }
-    return majorHarmony[finishPosition];
+    return currentHarmony[finishPosition];
 }
 
 function staticMotion(x) {
-    return majorHarmony[majorHarmony.indexOf(x)];
+    return currentHarmony[currentHarmony.indexOf(x)];
 }
 
 function anyToHome(x) {
     if (x === 'i') {
-        return majorHarmony[Math.ceil(Math.random() * 6)];
+        return currentHarmony[Math.ceil(Math.random() * 6)];
     } else {
-        return majorHarmony[0];
+        return currentHarmony[0];
     }
 }
 

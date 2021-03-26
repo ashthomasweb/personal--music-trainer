@@ -1,58 +1,57 @@
 let noteIndex = ['B1', 'C2', 'Db2', 'D2', 'Eb2', 'E2', 'F2', 'Gb2', 'G2', 'Ab2', 'A2', 'Bb2', 'B2', 'C3', 'Db3', 'D3', 'Eb3', 'E3', 'F3', 'Gb3', 'G3', 'Ab3', 'A3', 'Bb3', 'B3', 'C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4', 'C5', 'Db5', 'D5', 'Eb5', 'E5', 'F5', 'Gb5', 'G5', 'Ab5', 'A5', 'Bb5', 'B5', 'C6', 'Db6', 'D6'];
 
-let romanNumerals = [
-    // ['I',
-    //     ['root', ['C2', 'C3', 'C4', 'C5', 'C6']],
-    //     ['third', ['E2', 'E3', 'E4', 'E5']],
-    //     ['fifth', ['G2', 'G3', 'G4', 'G5']],
-    //     ['seventh', ['B1', 'B2', 'B3', 'B4', 'B5']]
-    // ],
+let = romanNumerals = [
+    ['I',
+        ['root', ['C2', 'C3', 'C4', 'C5', 'C6']],
+        ['third', ['E2', 'E3', 'E4', 'E5']],
+        ['fifth', ['G2', 'G3', 'G4', 'G5']],
+        ['seventh', ['B1', 'B2', 'B3', 'B4', 'B5']]
+    ],
 
-    // ['ii',
-    //     ['root', ['D2', 'D3', 'D4', 'D5', 'D6']],
-    //     ['third', ['F2', 'F3', 'F4', 'F5']],
-    //     ['fifth', ['A2', 'A3', 'A4', 'A5']],
-    //     ['seventh', ['C2', 'C3', 'C4', 'C5', 'C6']]
-    // ],
-
-
-    // ['iii',
-    //     ['root', ['E2', 'E3', 'E4', 'E5']],
-    //     ['third', ['G2', 'G3', 'G4', 'G5']],
-    //     ['fifth', ['B1', 'B2', 'B3', 'B4', 'B5']],
-    //     ['seventh', ['D2', 'D3', 'D4', 'D5', 'D6']]
-    // ],
+    ['ii',
+        ['root', ['D2', 'D3', 'D4', 'D5', 'D6']],
+        ['third', ['F2', 'F3', 'F4', 'F5']],
+        ['fifth', ['A2', 'A3', 'A4', 'A5']],
+        ['seventh', ['C2', 'C3', 'C4', 'C5', 'C6']]
+    ],
 
 
-    // ['IV',
-    //     ['root', ['F2', 'F3', 'F4', 'F5']],
-    //     ['third', ['A2', 'A3', 'A4', 'A5']],
-    //     ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
-    //     ['seventh', ['E2', 'E3', 'E4', 'E5']]
-    // ],
+    ['iii',
+        ['root', ['E2', 'E3', 'E4', 'E5']],
+        ['third', ['G2', 'G3', 'G4', 'G5']],
+        ['fifth', ['B1', 'B2', 'B3', 'B4', 'B5']],
+        ['seventh', ['D2', 'D3', 'D4', 'D5', 'D6']]
+    ],
 
-    // ['V',
-    //     ['root', ['G2', 'G3', 'G4', 'G5']],
-    //     ['third', ['B1', 'B2', 'B3', 'B4', 'B5']],
-    //     ['fifth', ['D2', 'D3', 'D4', 'D5', 'D6']],
-    //     ['seventh', ['F2', 'F3', 'F4', 'F5']]
-    // ],
 
-    // ['vi',
-    //     ['root', ['A2', 'A3', 'A4', 'A5']],
-    //     ['third', ['C2', 'C3', 'C4', 'C5', 'C6']],
-    //     ['fifth', ['E2', 'E3', 'E4', 'E5']],
-    //     ['seventh', ['G2', 'G3', 'G4', 'G5']]
-    // ],
+    ['IV',
+        ['root', ['F2', 'F3', 'F4', 'F5']],
+        ['third', ['A2', 'A3', 'A4', 'A5']],
+        ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
+        ['seventh', ['E2', 'E3', 'E4', 'E5']]
+    ],
 
-    // ['vii',
-    //     ['root', ['B1', 'B2', 'B3', 'B4', 'B5']],
-    //     ['third', ['D2', 'D3', 'D4', 'D5', 'D6']],
-    //     ['fifth', ['F2', 'F3', 'F4', 'F5']],
-    //     ['seventh', ['A2', 'A3', 'A4', 'A5']]
-    // ]
+    ['V',
+        ['root', ['G2', 'G3', 'G4', 'G5']],
+        ['third', ['B1', 'B2', 'B3', 'B4', 'B5']],
+        ['fifth', ['D2', 'D3', 'D4', 'D5', 'D6']],
+        ['seventh', ['F2', 'F3', 'F4', 'F5']]
+    ],
 
-    // Minor 
+    ['vi',
+        ['root', ['A2', 'A3', 'A4', 'A5']],
+        ['third', ['C2', 'C3', 'C4', 'C5', 'C6']],
+        ['fifth', ['E2', 'E3', 'E4', 'E5']],
+        ['seventh', ['G2', 'G3', 'G4', 'G5']]
+    ],
+
+    ['viiHalfDim',
+        ['root', ['B1', 'B2', 'B3', 'B4', 'B5']],
+        ['third', ['D2', 'D3', 'D4', 'D5', 'D6']],
+        ['fifth', ['F2', 'F3', 'F4', 'F5']],
+        ['seventh', ['A2', 'A3', 'A4', 'A5']]
+    ],
+
 
     ['i',
         ['root', ['C2', 'C3', 'C4', 'C5', 'C6']],
@@ -61,7 +60,7 @@ let romanNumerals = [
         ['seventh', ['Bb2', 'Bb3', 'Bb4', 'Bb5']]
     ],
 
-    ['iidim',
+    ['iiHalfDim',
         ['root', ['D2', 'D3', 'D4', 'D5', 'D6']],
         ['third', ['F2', 'F3', 'F4', 'F5']],
         ['fifth', ['Ab2', 'Ab3', 'Ab4', 'Ab5']],
@@ -76,19 +75,11 @@ let romanNumerals = [
         ['seventh', ['D2', 'D3', 'D4', 'D5', 'D6']]
     ],
 
-
     ['iv',
         ['root', ['F2', 'F3', 'F4', 'F5']],
         ['third', ['Ab2', 'Ab3', 'Ab4', 'Ab5']],
         ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
         ['seventh', ['Eb2', 'Eb3', 'Eb4', 'Eb5']]
-    ],
-
-    ['V',
-        ['root', ['G2', 'G3', 'G4', 'G5']],
-        ['third', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['fifth', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['seventh', ['F2', 'F3', 'F4', 'F5']]
     ],
 
     ['bVI',
@@ -103,8 +94,45 @@ let romanNumerals = [
         ['third', ['D2', 'D3', 'D4', 'D5', 'D6']],
         ['fifth', ['F2', 'F3', 'F4', 'F5']],
         ['seventh', ['Ab2', 'Ab3', 'Ab4', 'Ab5']]
+    ],
+
+    ['iMM7',
+        ['root', ['C2', 'C3', 'C4', 'C5', 'C6']],
+        ['third', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
+        ['fifth', ['G2', 'G3', 'G4', 'G5']],
+        ['seventh', ['B2', 'B3', 'B4', 'B5']]
+    ],
+
+
+    ['bIII+',
+        ['root', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
+        ['third', ['G2', 'G3', 'G4', 'G5']],
+        ['fifth', ['B2', 'B3', 'B4', 'B5']],
+        ['seventh', ['D2', 'D3', 'D4', 'D5', 'D6']]
+    ],
+
+    ['IVMm7',
+        ['root', ['F2', 'F3', 'F4', 'F5']],
+        ['third', ['A2', 'A3', 'A4', 'A5']],
+        ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
+        ['seventh', ['Eb2', 'Eb3', 'Eb4', 'Eb5']]
+    ],
+
+    ['viHalfDim',
+        ['root', ['A2', 'A3', 'A4', 'A5']],
+        ['third', ['C2', 'C3', 'C4', 'C5', 'C6']],
+        ['fifth', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
+        ['seventh', ['G2', 'G3', 'G4', 'G5']]
+    ],
+
+    ['viiFullDim',
+        ['root', ['B2', 'B3', 'B4', 'B5']],
+        ['third', ['D2', 'D3', 'D4', 'D5', 'D6']],
+        ['fifth', ['F2', 'F3', 'F4', 'F5']],
+        ['seventh', ['Ab2', 'Ab3', 'Ab4', 'Ab5']]
     ]
 ];
+
 
 let startingNote;
 
@@ -244,33 +272,33 @@ function checkforRoot() {
         });
         // console.log(roots);
         // run .includes()
-        if ( roots.includes(bassVoiceArray[i]) ) {
+        if (roots.includes(bassVoiceArray[i])) {
             rootBool = true;
         }
-        if ( roots.includes(tenorVoiceArray[i]) ) {
+        if (roots.includes(tenorVoiceArray[i])) {
             rootBool = true;
         }
-        if ( roots.includes(altoVoiceArray[i]) ) {
+        if (roots.includes(altoVoiceArray[i])) {
             rootBool = true;
         }
-        if ( roots.includes(sopranoVoiceArray[i]) ) {
+        if (roots.includes(sopranoVoiceArray[i])) {
             rootBool = true;
         }
         // console.log(rootBool);
-        
+
         noteIndex.indexOf(bassVoiceArray[i])
         noteIndex.indexOf(roots[0]);
         noteIndex.indexOf(roots[1]);
 
         let nearestRoot;
-        if (noteIndex.indexOf(bassVoiceArray[i]) < 7 ) {
+        if (noteIndex.indexOf(bassVoiceArray[i]) < 7) {
             nearestRoot = roots[0];
         } else {
             nearestRoot = roots[1];
         }
 
         // if false then move bass to nearest root
-        if ( rootBool === false ) {
+        if (rootBool === false) {
             bassVoiceArray[i] = nearestRoot;
         }
 
@@ -355,25 +383,25 @@ function getVoiceLeading(extensions, counterpoint) {
                 }
             }
 
-            
+
             // categorization of voice leading options
             function voiceLeadDirectionOptions() {
                 let directionUp;
                 let directionDown;
-                
+
                 resolutionOptions.forEach((item) => {
-                    
+
                     if (noteIndex.indexOf(item) < noteIndex.indexOf(currentNote)) {
                         directionDown = item;
                     } else if (noteIndex.indexOf(item) > noteIndex.indexOf(currentNote)) {
                         directionUp = item;
                     }
-                    
+
                 });
-                
+
                 // THIS is where I can control basic counterpoint
 
-                if ( counterpoint === true ) {
+                if (counterpoint === true) {
                     if (directionArray[i] === 'up') {
                         if (directionUp) {
                             resolution = directionDown;
