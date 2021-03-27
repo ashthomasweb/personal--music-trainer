@@ -1,38 +1,89 @@
 // Harmonic Generator for "Music Trainer"
 
+
 let progLength;
 
 let major = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'viiHalfDim'];
 let minor = ['i', 'iiHalfDim', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
-let minorRaised = ['iMM7', 'ii', 'bIII+', 'IVMm7', 'V', 'viHalfDim', 'viiFullDim'];
+let minorRaised = ['iMM6', 'ii', 'bIII', 'IVMm7', 'V', 'viHalfDim', 'viiFullDim'];
 let currentHarmony = major;
 let numeralOne = 'I';
 let numeralFour = 'IV';
 let numeralSix = 'vi';
 
-function harmonyPicker() {
-    let chance = Math.floor(Math.random() * 3);
 
-    if ( chance === 0 ) {
-        currentHarmony = major;
-        numeralOne = 'I';
-        numeralFour = 'IV';
-        numeralSix = 'vi';
-    } else if ( chance === 1 ) {
+function harmonyPicker() {
+    let chance = Math.floor(Math.random() * 4);
+    if (chance === 0) {
+        currentHarmony = minorRaised;
+        numeralOne = 'iMM6';
+        numeralFour = 'IVMm7';
+        numeralSix = 'viHalfDim';
+    } else if (chance === 1) {
         currentHarmony = minor;
         numeralOne = 'i';
         numeralFour = 'iv';
         numeralSix = 'bVI';
     } else {
-        currentHarmony = minorRaised;
-        numeralOne = 'iMM7';
-        numeralFour = 'IVMm7';
-        numeralSix = 'viHalfDim';
+        currentHarmony = major;
+        numeralOne = 'I';
+        numeralFour = 'IV';
+        numeralSix = 'vi';
     }
-
-    console.log(currentHarmony);
+    
+    
+    // console.log(currentHarmony);
 }
 
+function harmonySwitcher() {
+    if ( currentHarmony === major ) {
+        console.log('major');        
+        let chance = Math.floor(Math.random() * 2);
+        if (chance === 0) {
+            currentHarmony = minorRaised;
+            numeralOne = 'iMM6';
+            numeralFour = 'IVMm7';
+            numeralSix = 'viHalfDim';
+        } else if (chance === 1) {
+            currentHarmony = minor;
+            numeralOne = 'i';
+            numeralFour = 'iv';
+            numeralSix = 'bVI';
+        }
+
+    } else {
+        console.log('minor');
+        currentHarmony = major;
+        numeralOne = 'I';
+        numeralFour = 'IV';
+        numeralSix = 'vi';
+    }
+      
+    // console.log(currentHarmony);
+}
+
+function bSection(input) {
+    if (input === 'B section') {
+        if (currentHarmony === major) {
+            currentHarmony = minorPick();
+            numeralOne = 'i';
+            numeralFour = 'iv';
+            numeralSix = 'bVI';
+        } else {
+            currentHarmony = major;
+        }
+    }
+}
+
+function minorPick() {
+    let chance = Math.floor(Math.random() * 2);
+    if (chance === 0) {
+        currentHarmony = minor;
+    } else if (chance === 1) {
+        currentHarmony = minorRaised;
+    }
+    return currentHarmony;
+}
 
 let cadenceType = ['Authentic', 'Plagal', 'Deceptive', 'Half'];
 
@@ -40,6 +91,7 @@ let cadenceType = ['Authentic', 'Plagal', 'Deceptive', 'Half'];
 let phraseUnit = [];
 let builtPhrase = [];
 let phraseContainer = [];
+let firstHarmonicArea;
 
 // form construction
 function buildForm(input) {
@@ -50,18 +102,38 @@ function buildForm(input) {
             if (ii === 0) {
                 buildUnit(0, i + 1); // builds phrasing array, harmonic progression, and harmonic rhythm
                 getStartTones(); // voice-leads progression
+                // firstHarmonicArea = currentHarmony;
+                // console.log(currentHarmony);
+                // console.log(progression);
             }
             if (ii === 1) {
                 buildUnit(1, i + 1);
                 getStartTones();
+                // console.log(currentHarmony);
+                // console.log(progression);
+
             }
             if (ii === 2) {
+
+                harmonySwitcher();
+                // if (currentHarmony === minor) {
+                //     currentHarmony = major;
+                // } else if (currentHarmony === major) {
+                //     minorPick();
+                // }
                 buildUnit(2, i + 1);
                 getStartTones();
+                // console.log(currentHarmony);
+                // console.log(progression);
+
             }
             if (ii === 3) {
+                // currentHarmony = firstHarmonicArea;
                 buildUnit(3, i + 1);
                 getStartTones();
+                // console.log(currentHarmony);
+                // console.log(progression);
+                console.log('end');
             }
         }
 
@@ -138,7 +210,7 @@ function harmonicUnit(section, formNum) {
         harmonicRhythm();
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][0] = formNum + ':A';
-
+        console.log(progression);
     } else if (section === 1) {
         let chance = Math.ceil(Math.random() * 2);
 
@@ -152,15 +224,16 @@ function harmonicUnit(section, formNum) {
 
         // sequence by stongest motion most often
         chance = Math.ceil(Math.random() * 15);
-        if ( chance <= 8 ) {
+        if (chance <= 8) {
             sequenceHarmony(chance);
-        } else if ( chance > 8 ) {
+        } else if (chance > 8) {
             sequenceHarmony(4)
         }
-        
+
         harmonicRhythm();
         builtPhrase[0][0] = formNum + ':A1';
         builtPhrase[0][1] = [...progression];
+        console.log(progression);
 
     } else if (section === 2) {
         let chance = Math.ceil(Math.random() * 6)
@@ -169,13 +242,18 @@ function harmonicUnit(section, formNum) {
 
         builtPhrase[0][0] = formNum + ':B';
         builtPhrase[0][1] = [...progression];
+        console.log(progression);
+
     } else if (section === 3) {
-        progression = [...phraseContainer[formNum - 1][0][1]];
+        progression = [];
+        progression = [...phraseContainer[(formNum - 1) * 4 ][0][1]];
         progression[progression.length - 1] = numeralOne;
         progression[progression.length - 2] = 'V';
         harmonicRhythm();
         builtPhrase[0][0] = formNum + ':A';
         builtPhrase[0][1] = [...progression];
+        console.log(progression);
+
     }
 }
 
@@ -187,6 +265,7 @@ function getProgression(start, cadence) {
 
     function startGeneration() {
         for (let i = 1; i <= progLength - 1; i++) {
+            // harmonyPicker();
             progression[i] = strongMotion(progression[i - 1]);
         }
     }

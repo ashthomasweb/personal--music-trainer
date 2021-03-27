@@ -67,7 +67,6 @@ let = romanNumerals = [
         ['seventh', ['C2', 'C3', 'C4', 'C5', 'C6']]
     ],
 
-
     ['bIII',
         ['root', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
         ['third', ['G2', 'G3', 'G4', 'G5']],
@@ -96,19 +95,11 @@ let = romanNumerals = [
         ['seventh', ['Ab2', 'Ab3', 'Ab4', 'Ab5']]
     ],
 
-    ['iMM7',
+    ['iMM6',
         ['root', ['C2', 'C3', 'C4', 'C5', 'C6']],
         ['third', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
         ['fifth', ['G2', 'G3', 'G4', 'G5']],
-        ['seventh', ['B2', 'B3', 'B4', 'B5']]
-    ],
-
-
-    ['bIII+',
-        ['root', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
-        ['third', ['G2', 'G3', 'G4', 'G5']],
-        ['fifth', ['B2', 'B3', 'B4', 'B5']],
-        ['seventh', ['D2', 'D3', 'D4', 'D5', 'D6']]
+        ['seventh', ['A2', 'A3', 'A4', 'A5']]
     ],
 
     ['IVMm7',
@@ -218,13 +209,13 @@ function getStartTones() {
         if (item < 18) {
             bassTones.push(item);
         }
-        if (item >= 18 && item < 30) {
+        if (item >= 18 && item < 28) {
             tenorTones.push(item);
         }
-        if (item >= 30 && item < 40) {
+        if (item >= 28 && item <= 37) {
             altoTones.push(item);
         }
-        if (item >= 40) {
+        if (item >= 37) {
             sopranoTones.push(item);
         }
     })
