@@ -9,13 +9,22 @@ function playFromArray() {
 
     index = 0;
     voicesTimer = 0;
+    displayTimer = 0;
     getAllVoices();
     phraseContainer.forEach((phrase) => {
+
+        // Display function - can only display data that has been included in phraseContainer
+        setTimeout(() => {
+            console.log(phrase[0][1]);
+            document.getElementById('chord-prog').innerHTML = phrase[0][1];
+        }, displayTimer);
+        displayTimer = displayTimer + 10880;
 
         phrase.forEach((item, i) => {
             if (i !== 0) {
                 phrase[i].forEach((item) => {
-                    // console.log(item);
+                // document.getElementById('chord-prog').innerHTML = item;
+
                     if (item.length !== 0) {
 
                         // THIS is where i can control tempo
@@ -27,7 +36,6 @@ function playFromArray() {
                         voicesTimer = voicesTimer + 680;
 
                         // THIS is where i can control tempo
-
 
                     } else {
                         voicesTimer = voicesTimer + 680;
