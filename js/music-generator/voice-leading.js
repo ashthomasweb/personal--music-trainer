@@ -1,397 +1,6 @@
 let noteIndex = ['B1', 'C2', 'Db2', 'D2', 'Eb2', 'E2', 'F2', 'Gb2', 'G2', 'Ab2', 'A2', 'Bb2', 'B2', 'C3', 'Db3', 'D3', 'Eb3', 'E3', 'F3', 'Gb3', 'G3', 'Ab3', 'A3', 'Bb3', 'B3', 'C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4', 'C5', 'Db5', 'D5', 'Eb5', 'E5', 'F5', 'Gb5', 'G5', 'Ab5', 'A5', 'Bb5', 'B5', 'C6', 'Db6', 'D6'];
 
-
-let = keyOfC = [
-    ['I',
-        ['root', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['third', ['E2', 'E3', 'E4', 'E5']],
-        ['fifth', ['G2', 'G3', 'G4', 'G5']],
-        ['seventh', ['B1', 'B2', 'B3', 'B4', 'B5']]
-    ],
-
-    ['ii',
-        ['root', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['third', ['F2', 'F3', 'F4', 'F5']],
-        ['fifth', ['A2', 'A3', 'A4', 'A5']],
-        ['seventh', ['C2', 'C3', 'C4', 'C5', 'C6']]
-    ],
-
-
-    ['iii',
-        ['root', ['E2', 'E3', 'E4', 'E5']],
-        ['third', ['G2', 'G3', 'G4', 'G5']],
-        ['fifth', ['B1', 'B2', 'B3', 'B4', 'B5']],
-        ['seventh', ['D2', 'D3', 'D4', 'D5', 'D6']]
-    ],
-
-
-    ['IV',
-        ['root', ['F2', 'F3', 'F4', 'F5']],
-        ['third', ['A2', 'A3', 'A4', 'A5']],
-        ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['seventh', ['E2', 'E3', 'E4', 'E5']]
-    ],
-
-    ['V',
-        ['root', ['G2', 'G3', 'G4', 'G5']],
-        ['third', ['B1', 'B2', 'B3', 'B4', 'B5']],
-        ['fifth', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['seventh', ['F2', 'F3', 'F4', 'F5']]
-    ],
-
-    ['vi',
-        ['root', ['A2', 'A3', 'A4', 'A5']],
-        ['third', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['fifth', ['E2', 'E3', 'E4', 'E5']],
-        ['seventh', ['G2', 'G3', 'G4', 'G5']]
-    ],
-
-    ['viiHalfDim',
-        ['root', ['B1', 'B2', 'B3', 'B4', 'B5']],
-        ['third', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['fifth', ['F2', 'F3', 'F4', 'F5']],
-        ['seventh', ['A2', 'A3', 'A4', 'A5']]
-    ],
-
-
-    ['i',
-        ['root', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['third', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
-        ['fifth', ['G2', 'G3', 'G4', 'G5']],
-        ['seventh', ['Bb2', 'Bb3', 'Bb4', 'Bb5']]
-    ],
-
-    ['iiHalfDim',
-        ['root', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['third', ['F2', 'F3', 'F4', 'F5']],
-        ['fifth', ['Ab2', 'Ab3', 'Ab4', 'Ab5']],
-        ['seventh', ['C2', 'C3', 'C4', 'C5', 'C6']]
-    ],
-
-    ['bIII',
-        ['root', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
-        ['third', ['G2', 'G3', 'G4', 'G5']],
-        ['fifth', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['seventh', ['D2', 'D3', 'D4', 'D5', 'D6']]
-    ],
-
-    ['iv',
-        ['root', ['F2', 'F3', 'F4', 'F5']],
-        ['third', ['Ab2', 'Ab3', 'Ab4', 'Ab5']],
-        ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['seventh', ['Eb2', 'Eb3', 'Eb4', 'Eb5']]
-    ],
-
-    ['bVI',
-        ['root', ['Ab2', 'Ab3', 'Ab4', 'Ab5']],
-        ['third', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['fifth', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
-        ['seventh', ['G2', 'G3', 'G4', 'G5']]
-    ],
-
-    ['bVII',
-        ['root', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['third', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['fifth', ['F2', 'F3', 'F4', 'F5']],
-        ['seventh', ['Ab2', 'Ab3', 'Ab4', 'Ab5']]
-    ],
-
-    ['imM6',
-        ['root', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['third', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
-        ['fifth', ['G2', 'G3', 'G4', 'G5']],
-        ['seventh', ['A2', 'A3', 'A4', 'A5']]
-    ],
-
-    ['IVMm7',
-        ['root', ['F2', 'F3', 'F4', 'F5']],
-        ['third', ['A2', 'A3', 'A4', 'A5']],
-        ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['seventh', ['Eb2', 'Eb3', 'Eb4', 'Eb5']]
-    ],
-
-    ['viHalfDim',
-        ['root', ['A2', 'A3', 'A4', 'A5']],
-        ['third', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['fifth', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
-        ['seventh', ['G2', 'G3', 'G4', 'G5']]
-    ],
-
-    ['viiFullDim',
-        ['root', ['B2', 'B3', 'B4', 'B5']],
-        ['third', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['fifth', ['F2', 'F3', 'F4', 'F5']],
-        ['seventh', ['Ab2', 'Ab3', 'Ab4', 'Ab5']]
-    ]
-];
-
-
-
-let = keyOfF = [
-
-    ['I',
-        ['root', ['F2', 'F3', 'F4', 'F5']],
-        ['third', ['A2', 'A3', 'A4', 'A5']],
-        ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['seventh', ['E2', 'E3', 'E4', 'E5']]
-    ],
-
-    ['ii',
-        ['root', ['G2', 'G3', 'G4', 'G5']],
-        ['third', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['fifth', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['seventh', ['F2', 'F3', 'F4', 'F5']]
-    ],
-
-    ['iii',
-        ['root', ['A2', 'A3', 'A4', 'A5']],
-        ['third', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['fifth', ['E2', 'E3', 'E4', 'E5']],
-        ['seventh', ['G2', 'G3', 'G4', 'G5']]
-    ],
-
-    ['IV',
-        ['root', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['third', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['fifth', ['F2', 'F3', 'F4', 'F5']],
-        ['seventh', ['A2', 'A3', 'A4', 'A5']]
-    ],
-
-    ['V',
-        ['root', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['third', ['E2', 'E3', 'E4', 'E5']],
-        ['fifth', ['G2', 'G3', 'G4', 'G5']],
-        ['seventh', ['Bb2', 'Bb3', 'Bb4', 'Bb5']]
-    ],
-
-    ['vi',
-        ['root', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['third', ['F2', 'F3', 'F4', 'F5']],
-        ['fifth', ['A2', 'A3', 'A4', 'A5']],
-        ['seventh', ['C2', 'C3', 'C4', 'C5', 'C6']]
-    ],
-
-
-    ['viiHalfDim',
-        ['root', ['E2', 'E3', 'E4', 'E5']],
-        ['third', ['G2', 'G3', 'G4', 'G5']],
-        ['fifth', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['seventh', ['D2', 'D3', 'D4', 'D5', 'D6']]
-    ],
-
-
-
-    ['i',
-        ['root', ['F2', 'F3', 'F4', 'F5']],
-        ['third', ['Ab2', 'Ab3', 'Ab4', 'Ab5']],
-        ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['seventh', ['Eb2', 'Eb3', 'Eb4', 'Eb5']]
-    ],
-
-    ['imM6',
-        ['root', ['F2', 'F3', 'F4', 'F5']],
-        ['third', ['Ab2', 'Ab3', 'Ab4', 'Ab5']],
-        ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['seventh', ['D2', 'D3', 'D4', 'D5']]
-    ],
-
-    ['iiHalfDim',
-        ['root', ['G2', 'G3', 'G4', 'G5']],
-        ['third', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['fifth', ['Db2', 'Db3', 'Db4', 'Db5', 'Db6']],
-        ['seventh', ['F2', 'F3', 'F4', 'F5']]
-    ],
-
-    ['bIII',
-        ['root', ['Ab2', 'Ab3', 'Ab4', 'Ab5']],
-        ['third', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['fifth', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
-        ['seventh', ['G2', 'G3', 'G4', 'G5']]
-    ],
-
-    ['iv',
-        ['root', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['third', ['Db2', 'Db3', 'Db4', 'Db5', 'Db6']],
-        ['fifth', ['F2', 'F3', 'F4', 'F5']],
-        ['seventh', ['Ab2', 'Ab3', 'Ab4', 'Ab5']]
-    ],
-
-    ['IVMm7',
-        ['root', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['third', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['fifth', ['F2', 'F3', 'F4', 'F5']],
-        ['seventh', ['Ab2', 'Ab3', 'Ab4', 'Ab5']]
-    ],
-
-    ['bVI',
-        ['root', ['Db2', 'Db3', 'Db4', 'Db5', 'Db6']],
-        ['third', ['F2', 'F3', 'F4', 'F5']],
-        ['fifth', ['Ab2', 'Ab3', 'Ab4', 'Ab5']],
-        ['seventh', ['C2', 'C3', 'C4', 'C5', 'C6']]
-    ],
-
-    ['viHalfDim',
-        ['root', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['third', ['F2', 'F3', 'F4', 'F5']],
-        ['fifth', ['Ab2', 'Ab3', 'Ab4', 'Ab5']],
-        ['seventh', ['C2', 'C3', 'C4', 'C5', 'C6']]
-    ],
-
-    ['bVII',
-        ['root', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
-        ['third', ['G2', 'G3', 'G4', 'G5']],
-        ['fifth', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['seventh', ['Db2', 'Db3', 'Db4', 'Db5', 'Db6']]
-    ],
-
-    ['viiFullDim',
-        ['root', ['E2', 'E3', 'E4', 'E5']],
-        ['third', ['G2', 'G3', 'G4', 'G5']],
-        ['fifth', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['seventh', ['Db2', 'Db3', 'Db4', 'Db5', 'Db6']]
-    ],
-
-];
-
-let = keyOfG = [
-
-    ['I',
-        ['root', ['G2', 'G3', 'G4', 'G5']],
-        ['third', ['B1', 'B2', 'B3', 'B4', 'B5']],
-        ['fifth', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['seventh', ['F2', 'F3', 'F4', 'F5']]
-    ],
-
-    ['ii',
-        ['root', ['A2', 'A3', 'A4', 'A5']],
-        ['third', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['fifth', ['E2', 'E3', 'E4', 'E5']],
-        ['seventh', ['G2', 'G3', 'G4', 'G5']]
-    ],
-
-    ['iii',
-        ['root', ['B1', 'B2', 'B3', 'B4', 'B5']],
-        ['third', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['fifth', ['F2', 'F3', 'F4', 'F5']],
-        ['seventh', ['A2', 'A3', 'A4', 'A5']]
-    ],
-
-    ['IV',
-        ['root', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['third', ['E2', 'E3', 'E4', 'E5']],
-        ['fifth', ['G2', 'G3', 'G4', 'G5']],
-        ['seventh', ['B1', 'B2', 'B3', 'B4', 'B5']]
-    ],
-
-    ['V',
-        ['root', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['third', ['F2', 'F3', 'F4', 'F5']],
-        ['fifth', ['A2', 'A3', 'A4', 'A5']],
-        ['seventh', ['C2', 'C3', 'C4', 'C5', 'C6']]
-    ],
-
-    ['vi',
-        ['root', ['E2', 'E3', 'E4', 'E5']],
-        ['third', ['G2', 'G3', 'G4', 'G5']],
-        ['fifth', ['B1', 'B2', 'B3', 'B4', 'B5']],
-        ['seventh', ['D2', 'D3', 'D4', 'D5', 'D6']]
-    ],
-
-    ['viiHalfDim',
-        ['root', ['F2', 'F3', 'F4', 'F5']],
-        ['third', ['A2', 'A3', 'A4', 'A5']],
-        ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['seventh', ['E2', 'E3', 'E4', 'E5']]
-    ],
-
-    ['i',
-        ['root', ['G2', 'G3', 'G4', 'G5']],
-        ['third', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['fifth', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['seventh', ['F2', 'F3', 'F4', 'F5']]
-    ],
-
-    ['imM6',
-        ['root', ['G2', 'G3', 'G4', 'G5']],
-        ['third', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['fifth', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['seventh', ['E2', 'E3', 'E4', 'E5']]
-    ],
-
-    ['iiHalfDim',
-        ['root', ['A2', 'A3', 'A4', 'A5']],
-        ['third', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['fifth', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
-        ['seventh', ['G2', 'G3', 'G4', 'G5']]
-    ],
-
-    ['bIII',
-        ['root', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['third', ['D2', 'D3', 'D4', 'D5', 'D6']],
-        ['fifth', ['F2', 'F3', 'F4', 'F5']],
-        ['seventh', ['A2', 'A3', 'A4', 'A5']]
-    ],
-
-    ['IVMm7',
-        ['root', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['third', ['E2', 'E3', 'E4', 'E5']],
-        ['fifth', ['G2', 'G3', 'G4', 'G5']],
-        ['seventh', ['Bb2', 'Bb3', 'Bb4', 'Bb5']]
-    ],
-
-    ['iv',
-        ['root', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['third', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
-        ['fifth', ['G2', 'G3', 'G4', 'G5']],
-        ['seventh', ['Bb2', 'Bb3', 'Bb4', 'Bb5']]
-    ],
-
-    ['bVI',
-        ['root', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
-        ['third', ['G2', 'G3', 'G4', 'G5']],
-        ['fifth', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['seventh', ['D2', 'D3', 'D4', 'D5', 'D6']]
-    ],
-
-    ['viHalfDim',
-        ['root', ['E2', 'E3', 'E4', 'E5']],
-        ['third', ['G2', 'G3', 'G4', 'G5']],
-        ['fifth', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
-        ['seventh', ['D2', 'D3', 'D4', 'D5', 'D6']]
-    ],
-
-    ['bVII',
-        ['root', ['F2', 'F3', 'F4', 'F5']],
-        ['third', ['A2', 'A3', 'A4', 'A5']],
-        ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['seventh', ['Eb2', 'Eb3', 'Eb4', 'Eb5']]
-    ],
-
-    ['viiFullDim',
-        ['root', ['Gb2', 'Gb3', 'Gb4', 'Gb5']],
-        ['third', ['A2', 'A3', 'A4', 'A5']],
-        ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
-        ['seventh', ['Eb2', 'Eb3', 'Eb4', 'Eb5']]
-    ]
-];
-
-function keyPicker() {
-    let chance = Math.floor(Math.random() * 3);
-
-    if ( chance === 0 ) {
-        keyNumerals = keyOfC;
-    } else if ( chance === 1 ) {
-        keyNumerals = keyOfF;
-    } else {
-        keyNumerals = keyOfG;
-    }
-
-}
-
-
 let startingNote;
-
-
 let bassVoiceArray = [];
 let tenorVoiceArray = [];
 let altoVoiceArray = [];
@@ -498,7 +107,6 @@ function getStartTones() {
     startingNote = firstChord[2][1][firstChord[2][1].length - 1];
     soprano();
 
-
     // THIS is where I can check for bass notes
     // console.log('test');
     checkforRoot();
@@ -508,7 +116,6 @@ function getStartTones() {
     satbArray.push(bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray);
     builtPhrase[0].push(satbArray);
     allVoicesPlayback.push(satbArray)
-
 }
 
 function checkforRoot() {
@@ -517,7 +124,6 @@ function checkforRoot() {
         let rootBool = false;
         let roots = [];
         // get current chord
-        // console.log(progression[i]);
         let currentChord = progression[i];
         // look in romanNumeral array for rootArray
         keyNumerals.forEach((item) => {
@@ -525,7 +131,6 @@ function checkforRoot() {
                 roots = [...item[1][1]];
             }
         });
-        // console.log(roots);
         // run .includes()
         if (roots.includes(bassVoiceArray[i])) {
             rootBool = true;
@@ -539,24 +144,19 @@ function checkforRoot() {
         if (roots.includes(sopranoVoiceArray[i])) {
             rootBool = true;
         }
-        // console.log(rootBool);
-
         noteIndex.indexOf(bassVoiceArray[i])
         noteIndex.indexOf(roots[0]);
         noteIndex.indexOf(roots[1]);
-
         let nearestRoot;
         if (noteIndex.indexOf(bassVoiceArray[i]) < 7) {
             nearestRoot = roots[0];
         } else {
             nearestRoot = roots[1];
         }
-
         // if false then move bass to nearest root
         if (rootBool === false) {
             bassVoiceArray[i] = nearestRoot;
         }
-
     }
 }
 
@@ -594,6 +194,12 @@ function getVoiceLeading(extensions, counterpoint) {
                 }
             }
 
+            function nextBest() {
+                differenceOfArray.splice(indexOfSmallestDistanceInDiff, 1);
+                chordMemberIndexArray.splice(indexOfSmallestDistanceInDiff, 1);
+                indexOfSmallestDistanceInDiff = differenceOfArray.indexOf(Math.min(...differenceOfArray));
+            }
+
             if (extensions === 'triad') {
                 // length of resolveChord loop determines how many color tones are included. (-2) is triad, (-1) includes sevenths.
                 for (let i = 1; i <= resolveChord.length - 2; i++) {
@@ -613,14 +219,10 @@ function getVoiceLeading(extensions, counterpoint) {
             let indexOfSmallestDistanceInDiff = differenceOfArray.indexOf(Math.min(...differenceOfArray));
             let smoothestTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistanceInDiff]];
             // repeat procedure after removing previous to find next best option
-            differenceOfArray.splice(indexOfSmallestDistanceInDiff, 1);
-            chordMemberIndexArray.splice(indexOfSmallestDistanceInDiff, 1);
-            indexOfSmallestDistanceInDiff = differenceOfArray.indexOf(Math.min(...differenceOfArray));
+            nextBest();
             let goodTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistanceInDiff]];
             // repeat procedure after removing previous to find next best option again
-            differenceOfArray.splice(indexOfSmallestDistanceInDiff, 1);
-            chordMemberIndexArray.splice(indexOfSmallestDistanceInDiff, 1);
-            indexOfSmallestDistanceInDiff = differenceOfArray.indexOf(Math.min(...differenceOfArray));
+            nextBest();
             let okayTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistanceInDiff]];
 
             let resolution;
@@ -637,7 +239,6 @@ function getVoiceLeading(extensions, counterpoint) {
                     resolution = resolutionOptions[0];
                 }
             }
-
 
             // categorization of voice leading options
             function voiceLeadDirectionOptions() {
