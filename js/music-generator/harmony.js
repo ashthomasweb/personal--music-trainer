@@ -5,7 +5,7 @@ let progLength;
 
 let major = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'viiHalfDim'];
 let minor = ['i', 'iiHalfDim', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
-let minorRaised = ['iMM6', 'ii', 'bIII', 'IVMm7', 'V', 'viHalfDim', 'viiFullDim'];
+let minorRaised = ['imM6', 'ii', 'bIII', 'IVMm7', 'V', 'viHalfDim', 'viiFullDim'];
 let currentHarmony = major;
 let numeralOne = 'I';
 let numeralFour = 'IV';
@@ -16,7 +16,7 @@ function harmonyPicker() {
     let chance = Math.floor(Math.random() * 4);
     if (chance === 0) {
         currentHarmony = minorRaised;
-        numeralOne = 'iMM6';
+        numeralOne = 'imM6';
         numeralFour = 'IVMm7';
         numeralSix = 'viHalfDim';
     } else if (chance === 1) {
@@ -41,7 +41,7 @@ function harmonySwitcher() {
         let chance = Math.floor(Math.random() * 2);
         if (chance === 0) {
             currentHarmony = minorRaised;
-            numeralOne = 'iMM6';
+            numeralOne = 'imM6';
             numeralFour = 'IVMm7';
             numeralSix = 'viHalfDim';
         } else if (chance === 1) {
@@ -98,6 +98,7 @@ function buildForm(input) {
     for (let i = 0; i < input; i++) {
         // THIS is where I can change options on a 16 measure basis
         harmonyPicker();
+        keyPicker();
         for (let ii = 0; ii < 4; ii++) {
             if (ii === 0) {
                 buildUnit(0, i + 1); // builds phrasing array, harmonic progression, and harmonic rhythm
