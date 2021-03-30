@@ -92,6 +92,7 @@ function getStartTones() {
             sopranoTones.push(item);
         }
     })
+    
 
     // lowest root
     startingNote = firstChord[1][1][0];

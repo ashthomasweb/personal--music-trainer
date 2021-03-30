@@ -17,6 +17,8 @@ let gainNodes = [gainNode0, gainNode1, gainNode2, gainNode3, gainNode4, gainNode
     gainNode50, gainNode51  
 ];
 
+let gainNodeX = audioCont.createGain();
+
 const pianoTrackArray = [];
 const pianoExtendedC = [
     new Audio("sounds/gen-piano/gen-piano-D6.mp3"),
@@ -81,6 +83,8 @@ function soundLoader() {
         // webAudio track connect to destination
         pianoTrackArray[i].connect(gainNodes[i]);
         gainNodes[i].connect(audioCont.destination);
+
+        // pianoTrackArray[i].connect(audioCont.destination);
     }
 }
 

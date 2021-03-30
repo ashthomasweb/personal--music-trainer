@@ -32,13 +32,13 @@ function playFromArray() {
                         // PRIMARY PLAY - TEMPO AND FUNCTION CALL
                         setTimeout(() => {
                             iterateThruHarmonies();
-                        }, voicesTimer + 680);
-                        voicesTimer = voicesTimer + 680;
+                        }, voicesTimer + 540);
+                        voicesTimer = voicesTimer + 540;
 
                         // THIS is where i can control tempo
 
                     } else {
-                        voicesTimer = voicesTimer + 680;
+                        voicesTimer = voicesTimer + 540;
 
                     }
                 })
@@ -62,6 +62,8 @@ function getAllVoices() {
         combinedVoicesPlayback[1] = combinedVoicesPlayback[1].concat(allVoicesPlayback[i][1]);
         combinedVoicesPlayback[2] = combinedVoicesPlayback[2].concat(allVoicesPlayback[i][2]);
         combinedVoicesPlayback[3] = combinedVoicesPlayback[3].concat(allVoicesPlayback[i][3]);
+        // combinedVoicesPlayback[3].connect(gainNodeX);
+        // gainNodeX.connect(audioCont.destination);
     }
 }
 
@@ -111,6 +113,12 @@ function chord(a, b, c, d, e, f, g) {
         arpeggiateVoicesCompound(args);
     }
 }
+
+// function testGain() {
+//     gainNodeX.gain.setValueAtTime(1, audioCont.currentTime);
+//     gainNodeX.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.01);
+// }
+
 
 function stopChord() {
     currentChord.forEach(item => {
