@@ -79,16 +79,16 @@ function getStartTones() {
     })
 
     allChordToneIndex.forEach((item) => {
-        if (item < 18) {
+        if (item < 19) { // F3 and below
             bassTones.push(item);
         }
-        if (item >= 18 && item < 28) {
+        if (item >= 19 && item < 28) { // Gb3 to D4
             tenorTones.push(item);
         }
-        if (item >= 28 && item <= 37) {
+        if (item >= 28 && item <= 37) { // Eb4 to C5
             altoTones.push(item);
         }
-        if (item >= 37) {
+        if (item >= 37) { // C5 and above
             sopranoTones.push(item);
         }
     })

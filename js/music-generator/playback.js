@@ -23,7 +23,7 @@ function playFromArray() {
         phrase.forEach((item, i) => {
             if (i !== 0) {
                 phrase[i].forEach((item) => {
-                // document.getElementById('chord-prog').innerHTML = item;
+                    // document.getElementById('chord-prog').innerHTML = item;
 
                     if (item.length !== 0) {
 
@@ -62,8 +62,7 @@ function getAllVoices() {
         combinedVoicesPlayback[1] = combinedVoicesPlayback[1].concat(allVoicesPlayback[i][1]);
         combinedVoicesPlayback[2] = combinedVoicesPlayback[2].concat(allVoicesPlayback[i][2]);
         combinedVoicesPlayback[3] = combinedVoicesPlayback[3].concat(allVoicesPlayback[i][3]);
-        // combinedVoicesPlayback[3].connect(gainNodeX);
-        // gainNodeX.connect(audioCont.destination);
+
     }
 }
 
@@ -87,16 +86,16 @@ function iterateThruHarmonies() {
 }
 
 function chord(a, b, c, d, e, f, g) {
-    stopChord();
+    // stopChord();
     let args = Array.from(arguments);
     args.forEach((item, i) => {
         let noteIndex = sourceNoteIndex.indexOf(item);
 
         // THIS is where I can control which notes sustain
         // prevent soprano and bass from being stopped
-        if ( i > 0) {
+        // if ( i > 0) {
         currentChord.push(noteIndex);
-        }
+        // }
         // THIS is where I can control which notes sustain
 
     });
@@ -114,10 +113,15 @@ function chord(a, b, c, d, e, f, g) {
     }
 }
 
-// function testGain() {
-//     gainNodeX.gain.setValueAtTime(1, audioCont.currentTime);
-//     gainNodeX.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.01);
-// }
+function testStop() {
+
+    bassGain.gain.setValueAtTime(1, audioCont.currentTime);
+    bassGain.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.01);
+}
+
+function testStart() {
+    bassGain.gain.setValueAtTime(1, audioCont.currentTime);
+}
 
 
 function stopChord() {

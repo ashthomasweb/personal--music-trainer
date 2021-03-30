@@ -17,7 +17,10 @@ let gainNodes = [gainNode0, gainNode1, gainNode2, gainNode3, gainNode4, gainNode
     gainNode50, gainNode51  
 ];
 
-let gainNodeX = audioCont.createGain();
+let bassGain = audioCont.createGain();
+let tenorGain = audioCont.createGain();
+let altoGain = audioCont.createGain();
+let sopranoGain = audioCont.createGain();
 
 const pianoTrackArray = [];
 const pianoExtendedC = [
@@ -79,12 +82,25 @@ for (let i = 0; i < pianoExtendedC.length; i++) {
 };
 
 function soundLoader() {
-    for (let i = 0; i <= pianoExtendedC.length - 2; i++) {
-        // webAudio track connect to destination
-        pianoTrackArray[i].connect(gainNodes[i]);
-        gainNodes[i].connect(audioCont.destination);
+    for (let i = 0; i <= pianoExtendedC.length - 1; i++) {
 
-        // pianoTrackArray[i].connect(audioCont.destination);
+        if ( i > 32 ) { // F3 and below
+            pianoTrackArray[i].connect(bassGain);
+            bassGain.connect(audioCont.destination);
+        } else if ( i <= 32 && i > 23 ) { // Gb3 to D4
+            pianoTrackArray[i].connect(tenorGain);
+            tenorGain.connect(audioCont.destination);
+            
+        } else if ( i <= 23 && i > 13) { // Eb4 to C5
+            pianoTrackArray[i].connect(altoGain);
+            altoGain.connect(audioCont.destination);
+        } else if ( i <= 13 ) { // C5 and above
+            pianoTrackArray[i].connect(sopranoGain);
+            sopranoGain.connect(audioCont.destination);
+        }
+        // webAudio track connect to destination
+
+        
     }
 }
 
