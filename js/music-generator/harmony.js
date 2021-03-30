@@ -69,7 +69,7 @@ let numeralSix = 'vi';
 
 function harmonyPicker() {
     let chance = Math.ceil(Math.random() * 2);
-   
+
     if (chance === 0) {
         currentHarmony = minor;
         numeralOne = 'i';
@@ -85,12 +85,12 @@ function harmonyPicker() {
 
 function harmonySwitcher() {
     if (currentHarmony === major) {
-    
-            currentHarmony = minor;
-            numeralOne = 'i';
-            numeralFour = 'iv';
-            numeralSix = 'bVI';
-        
+
+        currentHarmony = minor;
+        numeralOne = 'i';
+        numeralFour = 'iv';
+        numeralSix = 'bVI';
+
     } else {
         // console.log('minor');
         currentHarmony = major;
@@ -261,7 +261,47 @@ function getProgression(start, cadence) {
         for (let i = 1; i <= progLength - 1; i++) {
             progression[i] = strongMotion(progression[i - 1]);
         }
-        // THIS isv where I can add raised harmonies
+        // THIS is where I can add raised harmonies
+        if (currentHarmony === minor) {
+
+            progression.forEach((item, i) => {
+                let chance = Math.ceil(Math.random() * 2);
+                if (item === 'ii') {
+                    if (chance === 0) {
+                        progression[i] = 'iiHalfDim';
+                    } else {
+                        progression[i] = 'ii';
+                    }
+                }
+
+                if (item === 'iv') {
+                    chance = Math.ceil(Math.random() * 2);
+                    if (chance === 0) {
+                        progression[i] = 'iv';
+                    } else {
+                        progression[i] = 'IVMm7';
+                    }
+                }
+
+                if (item === 'bVI') {
+                    chance = Math.ceil(Math.random() * 2);
+                    if (chance === 0) {
+                        progression[i] = 'bVI';
+                    } else {
+                        progression[i] = 'viHalfDim'
+                    }
+                }
+
+                if (item === 'bVII') {
+                    chance = Math.ceil(Math.random() * 2);
+                    if (chance === 0) {
+                        progression[i] = 'bVII';
+                    } else {
+                        progression[i] = 'viiFullDim'
+                    }
+                }
+            });
+        }
     }
 
     progression[0] = start;

@@ -15,7 +15,7 @@ function playFromArray() {
 
         // Display function - can only display data that has been included in phraseContainer
         setTimeout(() => {
-            console.log(phrase[0][1]);
+            // console.log(phrase[0][1]);
             document.getElementById('chord-prog').innerHTML = phrase[0][1];
         }, displayTimer);
         displayTimer = displayTimer + 10880;
