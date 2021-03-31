@@ -91,7 +91,8 @@ function chord(a, b, c, d, e, f, g) {
     let args = Array.from(arguments);
     
     // THIS is where I can engage textures
-    let chance = Math.floor(Math.random() * 3);
+    let chance = Math.floor(Math.random() * 0);
+    chance = 10;
     if (chance === 0) {
         args.forEach((item) => {
             noteSwitch(item);
@@ -99,7 +100,8 @@ function chord(a, b, c, d, e, f, g) {
     } else if (chance === 1) {
         arpeggiateVoices(args);
     } else {
-        arpeggiateVoicesCompound(args);
+        // arpeggiateVoicesCompound(args);
+    
     }
 
     args.forEach((item, i) => {
@@ -115,8 +117,115 @@ function chord(a, b, c, d, e, f, g) {
     });
 }
 
+let tempCount = 0; 
+function testRepeat() {
+    setTimeout(() => {
+        noteSwitch('C3');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('D3');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('E3');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('Eb3');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('Ab2');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('A2');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('C3');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('B2');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('C3');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('G2');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('Gb2');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('C3');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('Gb2');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('C3');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('Gb2');
+    }, tempCount + 200);
+    tempCount = tempCount + 200;
+
+    setTimeout(() => {
+        noteSwitch('C3');
+        
+    }, tempCount + 200);
+}
 
 
+function stopVoice(voiceGain) {
+    if ( currentNote === [] ) {
+        // do nothing 
+    } else {
+
+        currentNote.forEach(item => {
+            // let tempNode = gainNodes[item];
+            // console.log(tempNode);
+            new Promise(function (resolve, reject) {
+                
+                voiceGain.gain.setValueAtTime(1, audioCont.currentTime);
+                voiceGain.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.03);
+                setTimeout(() => {
+                    resolve();
+                }, 30)
+            }).then(() => {
+                
+                pianoExtendedC[item].pause();
+                pianoExtendedC[item].currentTime = 0;
+            });
+            // voiceGain.gain.setValueAtTime(1, audioCont.currentTime + .03);
+        });
+        currentNote = [];
+    }
+}
 
 function stopChord(voiceGain) {
     currentChord.forEach(item => {

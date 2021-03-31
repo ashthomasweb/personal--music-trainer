@@ -116,6 +116,8 @@ function testStart() {
     bassGain.gain.setValueAtTime(1, audioCont.currentTime);
 }
 
+let currentNote = [];
+
 // webAudio function for noteSwitch
 function playNote(i) {
     // check if context is in suspended state (autoplay policy)
@@ -123,14 +125,17 @@ function playNote(i) {
         audioCont.resume();
     }
 
+    let tempNum = 60; 
+
     if (i > 32) { // F3 and below
-        stopChord(bassGain);
+        stopVoice(bassGain);
+        currentNote.push(i);
         // bassGain.gain.setValueAtTime(1, audioCont.currentTime);
         // bassGain.gain.exponentialRampToValueAtTime(0.001, audioCont.currentTime + 0.005);
         setTimeout(() => {
             pianoExtendedC[i].play();
-            bassGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime + 0.04);
-        }, 40)
+            bassGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime);
+        }, tempNum)
 
         // bassGain.gain.setValueAtTime(1, audioCont.currentTime + 0.008);
 
@@ -141,8 +146,8 @@ function playNote(i) {
         // tenorGain.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.005);
         setTimeout(() => {
             pianoExtendedC[i].play();
-            tenorGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime + 0.04);
-        }, 40)
+            tenorGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime);
+        }, tempNum)
 
         // tenorGain.gain.setValueAtTime(1, audioCont.currentTime + 0.008);
     } else if (i <= 23 && i > 13) { // Eb4 to C5
@@ -152,8 +157,8 @@ function playNote(i) {
         // altoGain.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.005);
         setTimeout(() => {
             pianoExtendedC[i].play();
-            altoGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime + 0.04);
-        }, 40)
+            altoGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime);
+        }, tempNum)
 
         // altoGain.gain.setValueAtTime(1, audioCont.currentTime + 0.008);
     } else if (i <= 13) { // C5 and above
@@ -163,8 +168,8 @@ function playNote(i) {
         // sopranoGain.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.005);
         setTimeout(() => {
             pianoExtendedC[i].play();
-            sopranoGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime + 0.04);
-        }, 40)
+            sopranoGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime);
+        }, tempNum)
 
         // sopranoGain.gain.setValueAtTime(1, audioCont.currentTime + 0.008);
     }
