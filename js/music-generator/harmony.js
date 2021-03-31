@@ -250,7 +250,7 @@ function harmonicUnit(section, formNum) {
         }
     }
 
-    progLength = 5;
+    progLength = 7;
     if (section === 0) {
         let chance = Math.ceil(Math.random() * 6)
 
