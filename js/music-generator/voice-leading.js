@@ -93,7 +93,6 @@ function getStartTones() {
         }
     })
     
-
     // lowest root
     startingNote = firstChord[1][1][0];
     bass();
@@ -109,7 +108,6 @@ function getStartTones() {
     soprano();
 
     // THIS is where I can check for bass notes
-    // console.log('test');
     checkforRoot();
     // THIS is where I can check for bass notes
 
@@ -287,7 +285,6 @@ function getVoiceLeading(extensions, counterpoint) {
                         }
                     }
                 }
-
             }
 
             // smoothest or next best option

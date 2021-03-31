@@ -1,11 +1,8 @@
 //  Cadences and scale playback JS file for "Music Trainer"
 
-
 let sourceNoteIndex = ['D6', 'Db6', 'C6', 'B5', 'Bb5', 'A5', 'Ab5', 'G5', 'Gb5', 'F5', 'E5', 'Eb5', 'D5', 'Db5', 'C5', 'B4', 'Bb4', 'A4', 'Ab4', 'G4', 'Gb4', 'F4', 'E4', 'Eb4', 'D4', 'Db4', 'C4', 'B3', 'Bb3', 'A3', 'Ab3', 'G3', 'Gb3', 'F3', 'E3', 'Eb3', 'D3', 'Db3', 'C3', 'B2', 'Bb2', 'A2', 'Ab2', 'G2', 'Gb2', 'F2', 'E2', 'Eb2', 'D2', 'Db2', 'C2', 'B1']
 
-
 // Play from phrasing chart
-
 function playFromArray() {
 
     index = 0;
@@ -13,10 +10,8 @@ function playFromArray() {
     displayTimer = 0;
     getAllVoices();
     phraseContainer.forEach((phrase) => {
-
         // Display function - can only display data that has been included in phraseContainer
         setTimeout(() => {
-            // console.log(phrase[0][1]);
             document.getElementById('chord-prog').innerHTML = phrase[0][1];
         }, displayTimer);
         displayTimer = displayTimer + 10880;
@@ -24,10 +19,7 @@ function playFromArray() {
         phrase.forEach((item, i) => {
             if (i !== 0) {
                 phrase[i].forEach((item) => {
-                    // document.getElementById('chord-prog').innerHTML = item;
-
                     if (item.length !== 0) {
-
                         // THIS is where i can control tempo
 
                         // PRIMARY PLAY - TEMPO AND FUNCTION CALL
@@ -40,14 +32,12 @@ function playFromArray() {
 
                     } else {
                         voicesTimer = voicesTimer + 680;
-
                     }
                 })
             }
         });
     });
 }
-
 
 let allVoicesPlayback = [];
 let combinedVoicesPlayback = [
@@ -63,7 +53,6 @@ function getAllVoices() {
         combinedVoicesPlayback[1] = combinedVoicesPlayback[1].concat(allVoicesPlayback[i][1]);
         combinedVoicesPlayback[2] = combinedVoicesPlayback[2].concat(allVoicesPlayback[i][2]);
         combinedVoicesPlayback[3] = combinedVoicesPlayback[3].concat(allVoicesPlayback[i][3]);
-
     }
 }
 
@@ -87,7 +76,6 @@ function iterateThruHarmonies() {
 }
 
 function chord(a, b, c, d, e, f, g) {
-    // stopChord();
     let args = Array.from(arguments);
     
     // THIS is where I can engage textures
@@ -100,32 +88,15 @@ function chord(a, b, c, d, e, f, g) {
         arpeggiateVoices(args);
     } else {
         arpeggiateVoicesCompound(args);
-    
     }
-
-    // args.forEach((item, i) => {
-    //     let noteIndex = sourceNoteIndex.indexOf(item);
-
-    //     // THIS is where I can control which notes sustain
-    //     // prevent soprano and bass from being stopped
-    //     // if ( i > 0) {
-    //     currentChord.push(noteIndex);
-    //     // }
-    //     // THIS is where I can control which notes sustain
-
-    // });
 }
 
 function stopVoice(voiceGain, currentVoice) {
     if ( currentVoice === [] ) {
         // do nothing 
     } else {
-
         currentVoice.forEach(item => {
-            // let tempNode = gainNodes[item];
-            // console.log(tempNode);
             new Promise(function (resolve, reject) {
-                
                 voiceGain.gain.setValueAtTime(1, audioCont.currentTime);
                 voiceGain.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.01);
                 setTimeout(() => {
@@ -136,7 +107,6 @@ function stopVoice(voiceGain, currentVoice) {
                 pianoExtendedC[item].pause();
                 pianoExtendedC[item].currentTime = 0;
             });
-            // voiceGain.gain.setValueAtTime(1, audioCont.currentTime + .03);
         });
         if ( voiceGain === bassGain ) {
             currentBass = [];
@@ -152,27 +122,6 @@ function stopVoice(voiceGain, currentVoice) {
         }
     }
 }
-
-// function stopChord(voiceGain) {
-//     currentChord.forEach(item => {
-//         // let tempNode = gainNodes[item];
-//         // console.log(tempNode);
-//         new Promise(function (resolve, reject) {
-
-//             voiceGain.gain.setValueAtTime(1, audioCont.currentTime);
-//             voiceGain.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.03);
-//             setTimeout(() => {
-//                 resolve();
-//             }, 30)
-//         }).then(() => {
-
-//             pianoExtendedC[item].pause();
-//             pianoExtendedC[item].currentTime = 0;
-//         });
-//         // voiceGain.gain.setValueAtTime(1, audioCont.currentTime + .03);
-//     });
-//     currentChord = [];
-// }
 
 // || TEXTURES 
 
@@ -250,7 +199,6 @@ function arpeggiateVoicesCompound(input) {
 
 }
 
-
 function playVoicesBlock() {
     voicesTimer = 0;
 
@@ -261,7 +209,6 @@ function playVoicesBlock() {
         voicesTimer = voicesTimer + 800;
     }
 }
-
 
 // Play voices as blocks without stopping repeated notes
 function playVoices() {
@@ -277,7 +224,6 @@ function playVoices() {
         voicesTimer = voicesTimer + 700;
     }
 }
-
 
 // play progression in ugly blocks
 let progTimer = 0;
@@ -322,6 +268,5 @@ function playRoman(numeral) {
             console.log('Fin.')
     }
 }
-
 
 // END of document 

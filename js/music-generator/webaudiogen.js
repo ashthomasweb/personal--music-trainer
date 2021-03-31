@@ -2,21 +2,6 @@
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioCont = new AudioContext();
 
-function createGainArray() {
-    let array = [];
-    for (let i = 0; i < 51; i++) {
-        array.push(audioCont.createGain());
-    }
-    return array;
-}
-let [gainNode0, gainNode1, gainNode2, gainNode3, gainNode4, gainNode5, gainNode6, gainNode7, gainNode8, gainNode9, gainNode10, gainNode11, gainNode12, gainNode13, gainNode14, gainNode15, gainNode16, gainNode17, gainNode18, gainNode19, gainNode20, gainNode21, gainNode22, gainNode23, gainNode24, gainNode25, gainNode26, gainNode27, gainNode28, gainNode29, gainNode30, gainNode31, gainNode32, gainNode33, gainNode34, gainNode35, gainNode36, gainNode37, gainNode38, gainNode39, gainNode40, gainNode41, gainNode42, gainNode43, gainNode44, gainNode45, gainNode46, gainNode47, gainNode48, gainNode49, gainNode50,
-    gainNode51
-] = createGainArray();
-
-let gainNodes = [gainNode0, gainNode1, gainNode2, gainNode3, gainNode4, gainNode5, gainNode6, gainNode7, gainNode8, gainNode9, gainNode10, gainNode11, gainNode12, gainNode13, gainNode14, gainNode15, gainNode16, gainNode17, gainNode18, gainNode19, gainNode20, gainNode21, gainNode22, gainNode23, gainNode24, gainNode25, gainNode26, gainNode27, gainNode28, gainNode29, gainNode30, gainNode31, gainNode32, gainNode33, gainNode34, gainNode35, gainNode36, gainNode37, gainNode38, gainNode39, gainNode40, gainNode41, gainNode42, gainNode43, gainNode44, gainNode45, gainNode46, gainNode47, gainNode48, gainNode49,
-    gainNode50, gainNode51
-];
-
 let bassGain = audioCont.createGain();
 let tenorGain = audioCont.createGain();
 let altoGain = audioCont.createGain();
@@ -83,7 +68,6 @@ for (let i = 0; i < pianoExtendedC.length; i++) {
 
 function soundLoader() {
     for (let i = 0; i <= pianoExtendedC.length - 1; i++) {
-
         if (i > 32) { // F3 and below
             pianoTrackArray[i].connect(bassGain);
             bassGain.connect(audioCont.destination);
@@ -98,29 +82,15 @@ function soundLoader() {
             pianoTrackArray[i].connect(sopranoGain);
             sopranoGain.connect(audioCont.destination);
         }
-        // webAudio track connect to destination
-
-
     }
 }
 
 soundLoader();
 
-function testStop() {
-
-    bassGain.gain.setValueAtTime(1, audioCont.currentTime);
-    bassGain.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.01);
-}
-
-function testStart() {
-    bassGain.gain.setValueAtTime(1, audioCont.currentTime);
-}
-
 let currentBass = [];
 let currentTenor = [];
 let currentAlto = [];
 let currentSoprano = [];
-
 
 // webAudio function for noteSwitch
 function playNote(i) {
@@ -134,55 +104,32 @@ function playNote(i) {
     if (i > 32) { // F3 and below
         stopVoice(bassGain, currentBass);
         currentBass.push(i);
-        // bassGain.gain.setValueAtTime(1, audioCont.currentTime);
-        // bassGain.gain.exponentialRampToValueAtTime(0.001, audioCont.currentTime + 0.005);
         setTimeout(() => {
             pianoExtendedC[i].play();
             bassGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime + 0.02);
         }, tempNum)
-
-        // bassGain.gain.setValueAtTime(1, audioCont.currentTime + 0.008);
-
     } else if (i <= 32 && i > 23) { // Gb3 to D4
         stopVoice(tenorGain, currentTenor);
         currentTenor.push(i);
-
-        // tenorGain.gain.setValueAtTime(1, audioCont.currentTime);
-        // tenorGain.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.005);
         setTimeout(() => {
             pianoExtendedC[i].play();
             tenorGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime + 0.02);
         }, tempNum)
-
-        // tenorGain.gain.setValueAtTime(1, audioCont.currentTime + 0.008);
     } else if (i <= 23 && i > 13) { // Eb4 to C5
         stopVoice(altoGain, currentAlto);
         currentAlto.push(i);
-
-        // altoGain.gain.setValueAtTime(1, audioCont.currentTime);
-        // altoGain.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.005);
         setTimeout(() => {
             pianoExtendedC[i].play();
             altoGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime + 0.02);
         }, tempNum)
-
-        // altoGain.gain.setValueAtTime(1, audioCont.currentTime + 0.008);
     } else if (i <= 13) { // C5 and above
         stopVoice(sopranoGain, currentSoprano);
         currentSoprano.push(i);
-
-        // sopranoGain.gain.setValueAtTime(1, audioCont.currentTime);
-        // sopranoGain.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.005);
         setTimeout(() => {
             pianoExtendedC[i].play();
             sopranoGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime + 0.02);
         }, tempNum)
-
-        // sopranoGain.gain.setValueAtTime(1, audioCont.currentTime + 0.008);
     }
-
-
-    // pianoExtendedC[i].play();
 }
 
 function noteSwitch(noteId) {
@@ -346,7 +293,7 @@ function noteSwitch(noteId) {
             playNote(51, noteId);
             break;
         default:
-            // console.log('Fin.')
+            console.log('Fin.')
     }
 }
 
