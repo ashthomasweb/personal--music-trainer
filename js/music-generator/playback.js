@@ -103,7 +103,6 @@ function stopVoice(voiceGain, currentVoice) {
                     resolve();
                 }, 10)
             }).then(() => {
-                
                 pianoExtendedC[item].pause();
                 pianoExtendedC[item].currentTime = 0;
             });

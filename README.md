@@ -14,7 +14,7 @@
 * [Contact](#contact)
 
 ## General Info
-This is a music ear-training application. Requires audio enabled. Relative Pitch memory trainer.
+This is a music ear-training application. Requires audio enabled. Relative Pitch memory trainer. Includes a music generator with classically voiced SATB four part harmony.
 
 ## Technologies
 * HTML5
@@ -28,10 +28,10 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 * Create Melodic Dictation Trainer.
 
 * Create Key Center option with piano extended range.
-* Add 'Tonic Start' and 'Accidental Mode' to score history
+* Add 'Tonic Start' and 'Accidental Mode' to score history.
 
-* Add percussion bank
-
+* Add percussion bank.
+* Add Violin and Contrabass to generator.
 ## Known Issues
 * Windows 95 feel UI
 

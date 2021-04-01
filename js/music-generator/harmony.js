@@ -53,6 +53,7 @@ function buildForm(input) {
         // THIS is where I can change options on a 16 measure basis
         harmonyPicker();
         keyPicker();
+        harmonyNum();
         for (let ii = 0; ii < 4; ii++) {
             if (ii === 0) {
                 buildUnit(0, i + 1); // builds phrasing array, harmonic progression, and harmonic rhythm
@@ -121,13 +122,22 @@ function getPhraseUnit() {
     ];
     return phraseUnit;
 }
+function harmonyNum() {
+    let num = Math.ceil(Math.random() * 3) + 4;
+    progLength = num;
+    // console.log(progLength)
+    // num = 0;
+
+    return progLength;
+}
+
 
 // makes a base unit of chords
 function harmonicUnit(section, formNum) {
 
     // harmonic rhythm handler
     function harmonicRhythm() {
-        if ( progLength === 5 ) {
+        if ( progression.length === 5 ) {
             let chance = Math.ceil(Math.random() * 3);
             if (chance === 1 ) {
                 builtPhrase[1][0].push(progression[0]);
@@ -149,7 +159,7 @@ function harmonicUnit(section, formNum) {
                 builtPhrase[4][0].push(progression[4]);
             }
         }
-        if ( progLength === 6 ) {
+        if ( progression.length === 6 ) {
             let chance = Math.ceil(Math.random() * 3);
             if (chance === 1 ) {
                 builtPhrase[1][0].push(progression[0]);
@@ -174,7 +184,7 @@ function harmonicUnit(section, formNum) {
                 builtPhrase[4][0].push(progression[5]);
             }
         }
-        if ( progLength === 7 ) {
+        if ( progression.length === 7 ) {
             builtPhrase[1][0].push(progression[0]);
             builtPhrase[1][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
             builtPhrase[2][0].push(progression[2]);
@@ -185,10 +195,10 @@ function harmonicUnit(section, formNum) {
         }
     }
 
-    progLength = 7;
 
     if (section === 0) {
-        let chance = Math.ceil(Math.random() * 6)
+        // console.log(Math.ceil(Math.random() * 4) + 3);
+        let chance = Math.ceil(Math.random() * 6);
         getProgression(currentHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
         harmonicRhythm();
         builtPhrase[0][1] = [...progression];
@@ -217,6 +227,7 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][0] = formNum + ':A1';
         builtPhrase[0][1] = [...progression];
     } else if (section === 2) {
+    
         getProgression(upFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
         harmonicRhythm();
         builtPhrase[0][0] = formNum + ':B';
@@ -236,11 +247,13 @@ let progression = [];
 
 function getProgression(start, cadence) {
     progression = [...progression];
-    let i = progLength - 1;
+    // harmonyNum();
+    // console.log(progLength)
+
 
     function startGeneration() {
-        for (let i = 1; i <= progLength - 1; i++) {
-            progression[i] = strongMotion(progression[i - 1]);
+        for (let index = 1; index <= harmonyNum() - 1; index++) {
+            progression[index] = strongMotion(progression[index - 1]);
         }
         // THIS is where I can add raised harmonies
         if (currentHarmony === minor) {
@@ -287,6 +300,9 @@ function getProgression(start, cadence) {
 
     progression[0] = start;
     startGeneration();
+
+    let i = progLength - 1;
+
 
     if (cadence === cadenceType[0]) {
         progression[i] = numeralOne;
