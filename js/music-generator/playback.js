@@ -60,15 +60,15 @@ let index = 0;
 
 function iterateThruHarmonies() {
     // THIS is where I can control which voices play per beat
-    let chance = Math.floor(Math.random() * 0);
+    let chance = Math.floor(Math.random() * 7);
     if (chance === 0) {
-        chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
+        chord(combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
     } else if (chance === 1) {
         chord(combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
     } else if (chance === 2) {
         chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
-    } else if (chance === 3) {
-        chord(combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
+    } else {
+        chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
     }
     // THIS is where I can control which voices play per beat
 
@@ -79,15 +79,17 @@ function chord(a, b, c, d, e, f, g) {
     let args = Array.from(arguments);
     
     // THIS is where I can engage textures
-    let chance = Math.floor(Math.random() * 3);
+    let chance = Math.floor(Math.random() * 6);
     if (chance === 0) {
         args.forEach((item) => {
             noteSwitch(item);
         });
-    } else if (chance === 1) {
+    } else if (chance === 1 || chance === 2 ) {
         arpeggiateVoices(args);
+    // } else if (chance === 2) {
+    //     arpeggiateVoicesCompound(args);
     } else {
-        arpeggiateVoicesCompound(args);
+        boomChuck(args);
     }
 }
 
@@ -165,16 +167,33 @@ function arpeggiateVoices(input) {
             noteSwitch(input[0]);
         }, voicesTimer);
         setTimeout(() => {
-            noteSwitch(input[1]);
             noteSwitch(input[2]);
+        }, voicesTimer + 170);
+        setTimeout(() => {
             noteSwitch(input[3]);
         }, voicesTimer + 340);
+        setTimeout(() => {
+            noteSwitch(input[1]);
+        }, voicesTimer + 510);
+        voicesTimer = voicesTimer + 680;
     }
+}
+
+function boomChuck(input) {
+    voicesTimer = 0;
+
+    setTimeout(() => {
+        noteSwitch(input[0]);
+    }, voicesTimer);
+    setTimeout(() => {
+        noteSwitch(input[1]);
+        noteSwitch(input[2]);
+        noteSwitch(input[3]);
+    }, voicesTimer + 340);
 }
 
 function arpeggiateVoicesCompound(input) {
     voicesTimer = 0;
-    // let chance = Math.floor(Math.random() * 3);
 
     setTimeout(() => {
         noteSwitch(input[0]);
@@ -197,6 +216,8 @@ function arpeggiateVoicesCompound(input) {
     voicesTimer = voicesTimer + 680;
 
 }
+
+// Button Playback 
 
 function playVoicesBlock() {
     voicesTimer = 0;

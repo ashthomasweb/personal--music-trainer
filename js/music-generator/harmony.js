@@ -122,21 +122,62 @@ function getPhraseUnit() {
     ];
     return phraseUnit;
 }
+
 function harmonyNum() {
     let num = Math.ceil(Math.random() * 3) + 4;
     progLength = num;
-    // console.log(progLength)
-    // num = 0;
-
     return progLength;
 }
-
 
 // makes a base unit of chords
 function harmonicUnit(section, formNum) {
 
     // harmonic rhythm handler
     function harmonicRhythm() {
+        if ( progression.length === 3 ) {
+            let chance = Math.ceil(Math.random() * 3);
+            if (chance === 1 ) {
+                builtPhrase[1][0].push(progression[0]);
+                builtPhrase[3][0].push(progression[1]);
+                builtPhrase[4][0].push(progression[2]);
+            } else if ( chance === 2 ) {
+                builtPhrase[1][0].push(progression[0]);
+                builtPhrase[2][0].push(progression[1]);
+                builtPhrase[4][0].push(progression[2]);
+            } else if ( chance === 3 ) {
+                builtPhrase[1][0].push(progression[0]);
+                builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
+                builtPhrase[4][0].push(progression[3]);
+            } else if ( chance === 4 ) {
+                builtPhrase[1][0].push(progression[0]);
+                builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
+                builtPhrase[4][0].push(progression[2]);
+            } 
+        }
+        if ( progression.length === 4 ) {
+            let chance = Math.ceil(Math.random() * 3);
+            if (chance === 1 ) {
+                builtPhrase[1][0].push(progression[0]);
+                builtPhrase[2][0].push(progression[1]);
+                builtPhrase[3][0].push(progression[2]);
+                builtPhrase[4][0].push(progression[3]);
+            } else if ( chance === 2 ) {
+                builtPhrase[1][0].push(progression[0]);
+                builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
+                builtPhrase[3][0].push(progression[2]);
+                builtPhrase[4][0].push(progression[3]);
+            } else if ( chance === 3 ) {
+                builtPhrase[1][0].push(progression[0]);
+                builtPhrase[2][0].push(progression[1]);
+                builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[2]);
+                builtPhrase[4][0].push(progression[3]);
+            } else if ( chance === 4 ) {
+                builtPhrase[1][0].push(progression[0]);
+                builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
+                builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[2]);
+                builtPhrase[4][0].push(progression[3]);
+            } 
+        }
         if ( progression.length === 5 ) {
             let chance = Math.ceil(Math.random() * 3);
             if (chance === 1 ) {
@@ -157,7 +198,7 @@ function harmonicUnit(section, formNum) {
                 builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[2]);
                 builtPhrase[3][0].push(progression[3]);
                 builtPhrase[4][0].push(progression[4]);
-            }
+            } 
         }
         if ( progression.length === 6 ) {
             let chance = Math.ceil(Math.random() * 3);
@@ -197,7 +238,6 @@ function harmonicUnit(section, formNum) {
 
 
     if (section === 0) {
-        // console.log(Math.ceil(Math.random() * 4) + 3);
         let chance = Math.ceil(Math.random() * 6);
         getProgression(currentHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
         harmonicRhythm();
@@ -247,9 +287,6 @@ let progression = [];
 
 function getProgression(start, cadence) {
     progression = [...progression];
-    // harmonyNum();
-    // console.log(progLength)
-
 
     function startGeneration() {
         for (let index = 1; index <= harmonyNum() - 1; index++) {
