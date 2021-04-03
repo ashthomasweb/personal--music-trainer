@@ -79,7 +79,7 @@ function chord(a, b, c, d, e, f, g) {
     let args = Array.from(arguments);
     
     // THIS is where I can engage textures
-    let chance = Math.floor(Math.random() * 6);
+    let chance = Math.floor(Math.random() * 0);
     if (chance === 0) {
         args.forEach((item) => {
             noteSwitch(item);

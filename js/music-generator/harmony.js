@@ -1,6 +1,6 @@
 // Harmonic Generator for "Music Trainer"
 
-let progLength;
+// let progLength;
 
 let major = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'viiHalfDim'];
 let minor = ['i', 'iiHalfDim', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
@@ -53,7 +53,7 @@ function buildForm(input) {
         // THIS is where I can change options on a 16 measure basis
         harmonyPicker();
         keyPicker();
-        harmonyNum();
+        // harmonyNum();
         for (let ii = 0; ii < 4; ii++) {
             if (ii === 0) {
                 buildUnit(0, i + 1); // builds phrasing array, harmonic progression, and harmonic rhythm
@@ -93,7 +93,7 @@ function getPhraseUnit() {
     phraseUnit = [
         [
             ['section'],
-            ['progression']
+            ['progression'],
         ],
         [
             [],
@@ -123,125 +123,56 @@ function getPhraseUnit() {
     return phraseUnit;
 }
 
-function harmonyNum() {
-    let num = Math.ceil(Math.random() * 3) + 4;
-    progLength = num;
-    return progLength;
-}
+// phraseUnit = {
+//     info: [
+//         ['section'],
+//         ['progression'],
+//         ['voice-lead']
+//     ],
+//     measure1: [
+//         [],
+//         [],
+//         [],
+//         []
+//     ],
+//     measure2: [
+//         [],
+//         [],
+//         [],
+//         []
+//     ],
+//     measure3:[
+//         [],
+//         [],
+//         [],
+//         []
+//     ],
+//     measure4: [
+//         [],
+//         [],
+//         [],
+//         []
+//     ]
+// };
+//
+// const array = Object.values(phraseUnit)
+
+const harmonyNum = () => Math.ceil(Math.random() * 5) + 2;
+// const chance = (factor) =>  Math.ceil(Math.random() * factor);
 
 // makes a base unit of chords
 function harmonicUnit(section, formNum) {
 
-    // harmonic rhythm handler
-    function harmonicRhythm() {
-        if ( progression.length === 3 ) {
-            let chance = Math.ceil(Math.random() * 3);
-            if (chance === 1 ) {
-                builtPhrase[1][0].push(progression[0]);
-                builtPhrase[3][0].push(progression[1]);
-                builtPhrase[4][0].push(progression[2]);
-            } else if ( chance === 2 ) {
-                builtPhrase[1][0].push(progression[0]);
-                builtPhrase[2][0].push(progression[1]);
-                builtPhrase[4][0].push(progression[2]);
-            } else if ( chance === 3 ) {
-                builtPhrase[1][0].push(progression[0]);
-                builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
-                builtPhrase[4][0].push(progression[3]);
-            } else if ( chance === 4 ) {
-                builtPhrase[1][0].push(progression[0]);
-                builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
-                builtPhrase[4][0].push(progression[2]);
-            } 
-        }
-        if ( progression.length === 4 ) {
-            let chance = Math.ceil(Math.random() * 3);
-            if (chance === 1 ) {
-                builtPhrase[1][0].push(progression[0]);
-                builtPhrase[2][0].push(progression[1]);
-                builtPhrase[3][0].push(progression[2]);
-                builtPhrase[4][0].push(progression[3]);
-            } else if ( chance === 2 ) {
-                builtPhrase[1][0].push(progression[0]);
-                builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
-                builtPhrase[3][0].push(progression[2]);
-                builtPhrase[4][0].push(progression[3]);
-            } else if ( chance === 3 ) {
-                builtPhrase[1][0].push(progression[0]);
-                builtPhrase[2][0].push(progression[1]);
-                builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[2]);
-                builtPhrase[4][0].push(progression[3]);
-            } else if ( chance === 4 ) {
-                builtPhrase[1][0].push(progression[0]);
-                builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
-                builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[2]);
-                builtPhrase[4][0].push(progression[3]);
-            } 
-        }
-        if ( progression.length === 5 ) {
-            let chance = Math.ceil(Math.random() * 3);
-            if (chance === 1 ) {
-                builtPhrase[1][0].push(progression[0]);
-                builtPhrase[2][0].push(progression[1]);
-                builtPhrase[3][0].push(progression[2]);
-                builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[3]);
-                builtPhrase[4][0].push(progression[4]);
-            } else if ( chance === 2 ) {
-                builtPhrase[1][0].push(progression[0]);
-                builtPhrase[1][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
-                builtPhrase[2][0].push(progression[2]);
-                builtPhrase[3][0].push(progression[3]);
-                builtPhrase[4][0].push(progression[4]);
-            } else if ( chance === 3 ) {
-                builtPhrase[1][0].push(progression[0]);
-                builtPhrase[2][0].push(progression[1]);
-                builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[2]);
-                builtPhrase[3][0].push(progression[3]);
-                builtPhrase[4][0].push(progression[4]);
-            } 
-        }
-        if ( progression.length === 6 ) {
-            let chance = Math.ceil(Math.random() * 3);
-            if (chance === 1 ) {
-                builtPhrase[1][0].push(progression[0]);
-                builtPhrase[2][0].push(progression[1]);
-                builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[2]);
-                builtPhrase[3][0].push(progression[3]);
-                builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[4]);
-                builtPhrase[4][0].push(progression[5]);
-            } else if ( chance === 2 ) {
-                builtPhrase[1][0].push(progression[0]);
-                builtPhrase[1][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
-                builtPhrase[2][0].push(progression[2]);
-                builtPhrase[3][0].push(progression[3]);
-                builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[4]);
-                builtPhrase[4][0].push(progression[5]);
-            } else if ( chance === 3 ) {
-                builtPhrase[1][0].push(progression[0]);
-                builtPhrase[1][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
-                builtPhrase[2][0].push(progression[2]);
-                builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[3]);
-                builtPhrase[3][0].push(progression[4]);
-                builtPhrase[4][0].push(progression[5]);
-            }
-        }
-        if ( progression.length === 7 ) {
-            builtPhrase[1][0].push(progression[0]);
-            builtPhrase[1][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
-            builtPhrase[2][0].push(progression[2]);
-            builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[3]);
-            builtPhrase[3][0].push(progression[4]);
-            builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[5]);
-            builtPhrase[4][0].push(progression[6]);
-        }
-    }
-
-
     if (section === 0) {
         let chance = Math.ceil(Math.random() * 6);
         getProgression(currentHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
-        harmonicRhythm();
+        applyHarmonicRhythm();
         builtPhrase[0][1] = [...progression];
+
+        // refactor example
+        // builtPhrase.info[1] = [...progression];
+        // refactor example
+
         builtPhrase[0][0] = formNum + ':A';
     } else if (section === 1) {
         let chance = Math.ceil(Math.random() * 15);
@@ -263,13 +194,12 @@ function harmonicUnit(section, formNum) {
             progression[progression.length - 3] = numeralOne;
         }
 
-        harmonicRhythm();
+        applyHarmonicRhythm();
         builtPhrase[0][0] = formNum + ':A1';
         builtPhrase[0][1] = [...progression];
     } else if (section === 2) {
-    
         getProgression(upFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
-        harmonicRhythm();
+        applyHarmonicRhythm();
         builtPhrase[0][0] = formNum + ':B';
         builtPhrase[0][1] = [...progression];
     } else if (section === 3) {
@@ -277,7 +207,7 @@ function harmonicUnit(section, formNum) {
         progression = [...phraseContainer[(formNum - 1) * 4][0][1]];
         progression[progression.length - 1] = numeralOne;
         progression[progression.length - 2] = 'V';
-        harmonicRhythm();
+        applyHarmonicRhythm();
         builtPhrase[0][0] = formNum + ':A';
         builtPhrase[0][1] = [...progression];
     }
@@ -338,8 +268,7 @@ function getProgression(start, cadence) {
     progression[0] = start;
     startGeneration();
 
-    let i = progLength - 1;
-
+    let i = progression.length - 1;
 
     if (cadence === cadenceType[0]) {
         progression[i] = numeralOne;
@@ -470,7 +399,7 @@ function anyToHome(x) {
     }
 }
 
-// function to ensure progression moves into cadential figure with strong motion 
+// function to ensure progression moves into cadential figure with strong motion
 function checkIsStrong(chord, resolution) {
     if (upSecond(chord) === resolution) {
         return true;
@@ -487,4 +416,4 @@ function checkIsStrong(chord, resolution) {
     }
 }
 
-// END of document 
+// END of document
