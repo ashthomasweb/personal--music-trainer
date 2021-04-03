@@ -30,15 +30,15 @@
       <button type="button"
         onclick="document.location='https://rideoutweb.github.io/personal--music-trainer/'">Menu</button>
       <br>
-      <button id="power-switch" type="button" onclick="powerSwitch()">Power</button>
-      <div id="free-mode-switch" class="free-mode-display">Free Mode</div>
+      <!-- <button id="power-switch" type="button" onclick="powerSwitch()">Power</button> -->
+      <!-- <div id="free-mode-switch" class="free-mode-display">Free Mode</div> -->
     </div>
 
     <div class="messages">
       <h2>Messages</h2>
-      <p>The only thing that works is the 'Forever' button! It plays for a long time.</p>
+      <p>JavaScript plays the piano</p>
       <br>
-      <p id="msg-pane">Very much in-dev.</p>
+      <p id="msg-pane"</p>
     </div>
 
     <div class="instrument">
@@ -58,12 +58,13 @@
     </div>
 
     <div class="generate">
+      <p>Out Of Date</p>
+      <button onclick="getStartTones()" class="dropbtn">Get Start Tones</button>
       <button type="button" onclick="assignValues()">Get Progression</button>
       <button type="button" onmousedown="playProg()">Play</button>
       <button type="button" onmousedown="playVoices()">Voices</button>
       <button type="button" onmousedown="playVoicesBlock()">Block</button>
       <button type="button" onmousedown="arpeggiateVoices()">Arpeggiate</button>
-      <button onclick="buildForm(50)" class="dropbtn">Forever!</button>
     </div>
 
     <div class="mode">
@@ -73,8 +74,6 @@
         <div id="dropdown-mode">
           <p onclick="getMode()">Major</p>
           <p onclick="getMode()">Minor</p>
-          <p onclick="getMode()">Anhematonic Major</p>
-          <p onclick="getMode()">Anhematonic Minor</p>
         </div>
       </div>
       <p id="mode-type">Major</p>
@@ -82,32 +81,34 @@
 
     <div class="length">
       <p>Length Options</p>
+      <button onclick="buildForm(50)" class="dropbtn">Play a long time</button>
+      <br><br>
+      <button onclick="buildForm(1)" class="dropbtn">Play once</button>
+    </div>
+
+    <div class="start-point">
+      <p>Helper</p>
+      <button onclick="console.log(phraseContainer)">phraseContainer</button>
+      <button onclick="allStop()">All Stop!</button>
+      <button onclick="phraseContainer = []">Clear Container</button>
+    </div>
+
+    <div class="options">
+      <p>Form Options</p>
+    </div>
+
+    <div class="cadence">
+      <p>Out Of Date</p>
       <p>How many chords?</p>
       <div class="slidecontainer">
         <input type="range" min="3" max="32" value="9" class="slider" id="myRange">
         <p>Value: <span id="chord-num"></span></p>
       </div>
-    </div>
-
-    <div class="start-point">
       <p>Where to start?</p>
       <div class="slidecontainer">
         <input type="range" min="1" max="7" value="1" class="slider" id="myStart">
         <p>Value: <span id="chord-start">Authentic</span></p>
       </div>
-    </div>
-
-    <div class="options">
-      <p>Form Options</p>
-      <p>Other Options</p>
-      <br>
-      <br>
-      <button onclick="getStartTones()" class="dropbtn">Get Start Tones</button>
-      <button onclick="buildForm(1)" class="dropbtn">buildForm(1)</button>
-
-    </div>
-
-    <div class="cadence">
       <p>How to end?</p>
       <div class="slidecontainer">
         <input type="range" min="1" max="4" value="1" class="slider" id="myCadence">
