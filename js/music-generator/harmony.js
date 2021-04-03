@@ -156,8 +156,8 @@ function getPhraseUnit() {
 // };
 //
 // const array = Object.values(phraseUnit)
-
-const harmonyNum = () => Math.ceil(Math.random() * 5) + 2;
+// half dim glyph ∅  ♭
+const harmonyNum = () => Math.ceil(Math.random() * 3) + 4;
 // const chance = (factor) =>  Math.ceil(Math.random() * factor);
 
 // makes a base unit of chords

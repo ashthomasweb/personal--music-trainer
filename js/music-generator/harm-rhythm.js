@@ -37,12 +37,7 @@ function applyHarmonicRhythm() {
             builtPhrase[2][0].push(progression[1]);
             builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[2]);
             builtPhrase[4][0].push(progression[3]);
-        } else if (chance === 4) {
-            builtPhrase[1][0].push(progression[0]);
-            builtPhrase[2][Math.floor((Math.random() * 2) + 2)].push(progression[1]);
-            builtPhrase[3][Math.floor((Math.random() * 2) + 2)].push(progression[2]);
-            builtPhrase[4][0].push(progression[3]);
-        }
+        } 
     }
     if (progression.length === 5) {
         let chance = Math.ceil(Math.random() * 3);
