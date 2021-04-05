@@ -62,6 +62,7 @@ const pianoExtendedC = [
     new Audio("sounds/gen-piano/gen-piano-C2.mp3"),
     new Audio("sounds/gen-piano/gen-piano-B1.mp3"),
 ];
+
 for (let i = 0; i < pianoExtendedC.length; i++) {
     pianoTrackArray.push(audioCont.createMediaElementSource(pianoExtendedC[i]));
 };
@@ -75,10 +76,10 @@ function soundLoader() {
             pianoTrackArray[i].connect(tenorGain);
             tenorGain.connect(audioCont.destination);
 
-        } else if (i <= 23 && i > 13) { // Eb4 to C5
+        } else if (i <= 23 && i > 14) { // Eb4 to B4
             pianoTrackArray[i].connect(altoGain);
             altoGain.connect(audioCont.destination);
-        } else if (i <= 13) { // C5 and above
+        } else if (i <= 14) { // C5 and above
             pianoTrackArray[i].connect(sopranoGain);
             sopranoGain.connect(audioCont.destination);
         }
@@ -115,14 +116,14 @@ function playNote(i) {
             pianoExtendedC[i].play();
             tenorGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime + 0.02);
         }, tempNum)
-    } else if (i <= 23 && i > 13) { // Eb4 to C5
+    } else if (i <= 23 && i > 14) { // Eb4 to B4
         stopVoice(altoGain, currentAlto);
         currentAlto.push(i);
         setTimeout(() => {
             pianoExtendedC[i].play();
             altoGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime + 0.02);
         }, tempNum)
-    } else if (i <= 13) { // C5 and above
+    } else if (i <= 14) { // C5 and above
         stopVoice(sopranoGain, currentSoprano);
         currentSoprano.push(i);
         setTimeout(() => {

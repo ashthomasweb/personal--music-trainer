@@ -368,7 +368,6 @@ let = keyOfG = [
 
 function keyPicker() {
     let chance = Math.floor(Math.random() * 3);
-
     if ( chance === 0 ) {
         keyNumerals = keyOfC;
     } else if ( chance === 1 ) {
@@ -376,6 +375,7 @@ function keyPicker() {
     } else {
         keyNumerals = keyOfG;
     }
+    // console.log(keyNumerals);
 
 }
 

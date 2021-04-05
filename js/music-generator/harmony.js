@@ -13,7 +13,7 @@ let numeralSix = 'vi';
 function harmonyPicker() {
     let chance = Math.ceil(Math.random() * 2);
 
-    if (chance === 0) {
+    if (chance === 1) {
         currentHarmony = minor;
         numeralOne = 'i';
         numeralFour = 'iv';
@@ -51,11 +51,11 @@ let firstHarmonicArea;
 function buildForm(input) {
     for (let i = 0; i < input; i++) {
         // THIS is where I can change options on a 16 measure basis
-        harmonyPicker();
-        keyPicker();
         // harmonyNum();
         for (let ii = 0; ii < 4; ii++) {
             if (ii === 0) {
+                harmonyPicker();
+                keyPicker();
                 buildUnit(0, i + 1); // builds phrasing array, harmonic progression, and harmonic rhythm
                 getStartTones(); // voice-leads progression
             }
@@ -84,6 +84,7 @@ function buildUnit(section, formNum) {
     builtPhrase = getPhraseUnit();
     // gets progression and generates harmonic rhythm
     harmonicUnit(section, formNum);
+
     // push to container for play handling
     phraseContainer.push(builtPhrase);
 }
@@ -94,6 +95,9 @@ function getPhraseUnit() {
         [
             ['section'],
             ['progression'],
+            ['progression length'],
+            ['voice-leading'],
+            ['prev-final-voicing']
         ],
         [
             [],
@@ -163,17 +167,21 @@ const harmonyNum = () => Math.ceil(Math.random() * 3) + 4;
 // makes a base unit of chords
 function harmonicUnit(section, formNum) {
 
+
     if (section === 0) {
         let chance = Math.ceil(Math.random() * 6);
         getProgression(currentHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
         applyHarmonicRhythm();
-        builtPhrase[0][1] = [...progression];
-
         // refactor example
         // builtPhrase.info[1] = [...progression];
         // refactor example
 
         builtPhrase[0][0] = formNum + ':A';
+        builtPhrase[0][1] = [...progression];
+        builtPhrase[0][2] = [progression.length];
+        builtPhrase[0][5] = [keyNumerals + currentHarmony];
+        getFinalVoicing();
+
     } else if (section === 1) {
         let chance = Math.ceil(Math.random() * 15);
         // sequence by stongest motion most often
@@ -197,11 +205,21 @@ function harmonicUnit(section, formNum) {
         applyHarmonicRhythm();
         builtPhrase[0][0] = formNum + ':A1';
         builtPhrase[0][1] = [...progression];
+        builtPhrase[0][2] = [progression.length];
+        builtPhrase[0][5] = [keyNumerals + currentHarmony];
+
+        getFinalVoicing();
+
     } else if (section === 2) {
         getProgression(upFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
         applyHarmonicRhythm();
         builtPhrase[0][0] = formNum + ':B';
         builtPhrase[0][1] = [...progression];
+        builtPhrase[0][2] = [progression.length];
+        builtPhrase[0][5] = [keyNumerals + currentHarmony];
+
+        getFinalVoicing();
+
     } else if (section === 3) {
         progression = [];
         progression = [...phraseContainer[(formNum - 1) * 4][0][1]];
@@ -210,7 +228,13 @@ function harmonicUnit(section, formNum) {
         applyHarmonicRhythm();
         builtPhrase[0][0] = formNum + ':A';
         builtPhrase[0][1] = [...progression];
+        builtPhrase[0][2] = [progression.length];
+        builtPhrase[0][5] = [keyNumerals + currentHarmony];
+
+        getFinalVoicing();
+
     }
+
 }
 
 let progression = [];

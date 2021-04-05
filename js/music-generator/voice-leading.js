@@ -29,6 +29,7 @@ function soprano() {
 let directionArray = [];
 
 function getStartTones() {
+
     // get first chord as string
     let firstChord = progression[0];
     directionArray = [];
@@ -85,7 +86,7 @@ function getStartTones() {
         if (item >= 19 && item < 28) { // Gb3 to D4
             tenorTones.push(item);
         }
-        if (item >= 28 && item <= 37) { // Eb4 to C5
+        if (item >= 28 && item < 37) { // Eb4 to B4
             altoTones.push(item);
         }
         if (item >= 37) { // C5 and above
@@ -113,7 +114,7 @@ function getStartTones() {
 
     let satbArray = [];
     satbArray.push(bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray);
-    builtPhrase[0].push(satbArray);
+    builtPhrase[0][3] = [...satbArray];
     allVoicesPlayback.push(satbArray)
 }
 
@@ -301,6 +302,13 @@ function getVoiceLeading(extensions, counterpoint) {
 
     }
 
+}
+
+function getFinalVoicing() {
+    builtPhrase[0][4].push(bassVoiceArray[bassVoiceArray.length - 1]);
+    builtPhrase[0][4].push(tenorVoiceArray[bassVoiceArray.length - 1]);
+    builtPhrase[0][4].push(altoVoiceArray[bassVoiceArray.length - 1]);
+    builtPhrase[0][4].push(sopranoVoiceArray[bassVoiceArray.length - 1]);
 }
 
 // END of document 
