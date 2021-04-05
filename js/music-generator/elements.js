@@ -38,4 +38,17 @@ cadenceSlide.oninput = function () {
     return cadenceType[this.value - 1]
 }
 
+// On-screen diagnostic/helper functions 
+
+function clearContainers() {
+    phraseContainer = [];
+    combinedVoicesPlayback = [
+        [],
+        [],
+        [],
+        []
+    ];
+    allVoicesPlayback = [];
+}
+
 // END of document

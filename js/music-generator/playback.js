@@ -14,7 +14,7 @@ function playFromArray() {
         setTimeout(() => {
             document.getElementById('chord-prog').innerHTML = phrase[0][1];
         }, displayTimer);
-        displayTimer = displayTimer + 10880;
+        displayTimer = displayTimer + (beatLength * 16);
 
         phrase.forEach((item, i) => {
             if (i !== 0) {
@@ -25,13 +25,13 @@ function playFromArray() {
                         // PRIMARY PLAY - TEMPO AND FUNCTION CALL
                         setTimeout(() => {
                             iterateThruHarmonies();
-                        }, voicesTimer + 680);
-                        voicesTimer = voicesTimer + 680;
+                        }, voicesTimer + beatLength);
+                        voicesTimer = voicesTimer + beatLength;
 
                         // THIS is where i can control tempo
 
                     } else {
-                        voicesTimer = voicesTimer + 680;
+                        voicesTimer = voicesTimer + beatLength;
                     }
                 })
             }
@@ -60,14 +60,15 @@ let index = 0;
 
 function iterateThruHarmonies() {
     // THIS is where I can control which voices play per beat
-    let chance = Math.floor(Math.random() * 7);
+    let chance = Math.floor(Math.random() * 10);
+    chance = 3;
     if (chance === 0) {
         chord(combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
     } else if (chance === 1) {
         chord(combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
     } else if (chance === 2) {
         chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
-    } else {
+    } else if (chance === 3 ) {
         chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
     }
     // THIS is where I can control which voices play per beat
@@ -80,6 +81,7 @@ function chord(a, b, c, d, e, f, g) {
 
     // THIS is where I can engage textures
     let chance = Math.floor(Math.random() * 5);
+    // chance = 10;
     if (chance === 0) {
         args.forEach((item) => {
             noteSwitch(item);
@@ -128,12 +130,13 @@ function stopVoice(voiceGain, currentVoice) {
 
 // global timing variable
 let voicesTimer = 0;
-let beatLength = 680;
+let beatLength = 630;
 
 // Arpeggiate voices without stopping repeated notes
 function arpeggiateVoices(input) {
     voicesTimer = 0;
     let chance = Math.floor(Math.random() * 3);
+    // chance = 2;
     if (chance === 0) {
 
         setTimeout(() => {
