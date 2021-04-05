@@ -179,7 +179,7 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][0] = formNum + ':A';
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
-        builtPhrase[0][5] = [keyNumerals + currentHarmony];
+        builtPhrase[0][5] = [displayKeyInArray()];
         getFinalVoicing();
 
     } else if (section === 1) {
@@ -206,7 +206,7 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][0] = formNum + ':A1';
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
-        builtPhrase[0][5] = [keyNumerals + currentHarmony];
+        builtPhrase[0][5] = [displayKeyInArray()];
 
         getFinalVoicing();
 
@@ -216,7 +216,7 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][0] = formNum + ':B';
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
-        builtPhrase[0][5] = [keyNumerals + currentHarmony];
+        builtPhrase[0][5] = [displayKeyInArray()];
 
         getFinalVoicing();
 
@@ -229,7 +229,7 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][0] = formNum + ':A';
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
-        builtPhrase[0][5] = [keyNumerals + currentHarmony];
+        builtPhrase[0][5] = [displayKeyInArray()];
 
         getFinalVoicing();
 
@@ -237,6 +237,25 @@ function harmonicUnit(section, formNum) {
 
 }
 
+function displayKeyInArray() {
+    let center;
+    if (keyNumerals === keyOfC ) {
+        center = 'C';
+    } else if ( keyNumerals === keyOfF ) {
+        center = 'F';
+    } else {
+        center = 'G';
+    }
+
+    let quality;
+    if (currentHarmony === major ) {
+        quality = ' major';
+    } else {
+        quality = ' minor';
+    }
+
+    return center + quality;
+}
 let progression = [];
 
 function getProgression(start, cadence) {
