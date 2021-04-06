@@ -135,9 +135,9 @@ let voicesTimer = 0;
 // THIS is where i can control tempo
 let beatLength = 550;
 // THIS is where i can control tempo
-// function getTempo() {
-//     return (Math.ceil(Math.random() * 100) + 600)
-// }
+function getTempo() {
+    return (Math.ceil(Math.random() * 100) + 600)
+}
 // Arpeggiate voices without stopping repeated notes
 function arpeggiateVoices(input) {
     voicesTimer = 0;

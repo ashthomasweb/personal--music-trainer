@@ -181,9 +181,8 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
         builtPhrase[0][5] = [displayKeyInArray()];
-        // builtPhrase[0][6] = [getTempo()]
+        builtPhrase[0][6] = [getTempo()];
         getFinalVoicing();
-        // getTempo();
     } else if (section === 1) {
         let chance = Math.ceil(Math.random() * 15);
         // sequence by stongest motion most often
@@ -204,30 +203,35 @@ function harmonicUnit(section, formNum) {
             progression[progression.length - 3] = numeralOne;
         }
 
+        builtPhrase[0][6] = [...phraseContainer[(formNum - 1) * 4][0][6]];
+
         applyHarmonicRhythm();
         builtPhrase[0][0] = formNum + ':A1';
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
         builtPhrase[0][5] = [displayKeyInArray()];
-        // builtPhrase[0][6] = [beatLength]
+        // builtPhrase[0][6] = [getTempo()];
 
         getFinalVoicing();
         // beatLength = beatLength - 50; // does not work
 
     } else if (section === 2) {
+        // getTempo();
         getProgression(upFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
         applyHarmonicRhythm();
         builtPhrase[0][0] = formNum + ':B';
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
         builtPhrase[0][5] = [displayKeyInArray()];
-        // builtPhrase[0][6] = [beatLength]
+        builtPhrase[0][6] = [getTempo()];
 
         getFinalVoicing();
 
     } else if (section === 3) {
         progression = [];
         progression = [...phraseContainer[(formNum - 1) * 4][0][1]];
+        builtPhrase[0][6] = [...phraseContainer[(formNum - 1) * 4][0][6]];
+
         progression[progression.length - 1] = numeralOne;
         progression[progression.length - 2] = 'V';
         applyHarmonicRhythm();
@@ -235,7 +239,7 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
         builtPhrase[0][5] = [displayKeyInArray()];
-        // builtPhrase[0][6] = [beatLength]
+        // builtPhrase[0][6] = [getTempo()];
 
         getFinalVoicing();
 

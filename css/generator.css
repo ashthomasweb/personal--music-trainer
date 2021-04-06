@@ -70,13 +70,16 @@
 
 .cadence {
     grid-area: cadence;
-    
+    opacity: .1;
+    pointer-events: none;
 
     background-color: rgba(128, 125, 125, .3);
 }
 
 .generate {
+    opacity: .1;
     grid-area: generate;
+    pointer-events: none;
 
     background-color: rgba(128, 125, 125, .3);
 
