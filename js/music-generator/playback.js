@@ -13,6 +13,9 @@ function playFromArray() {
         // Display function - can only display data that has been included in phraseContainer
         setTimeout(() => {
             document.getElementById('chord-prog').innerHTML = phrase[0][1];
+            document.getElementById('key').innerHTML = phrase[0][5];
+            
+
         }, displayTimer);
         displayTimer = displayTimer + (beatLength * 16);
 
@@ -68,7 +71,7 @@ function iterateThruHarmonies() {
         chord(combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
     } else if (chance === 2) {
         chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
-    } else if (chance === 3 ) {
+    } else if (chance === 3) {
         chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
     }
     // THIS is where I can control which voices play per beat
@@ -130,7 +133,7 @@ function stopVoice(voiceGain, currentVoice) {
 
 // global timing variable
 let voicesTimer = 0;
-let beatLength = 630;
+let beatLength = 840;
 
 // Arpeggiate voices without stopping repeated notes
 function arpeggiateVoices(input) {
@@ -299,7 +302,7 @@ function allStop() {
     var queuedNote = window.setTimeout(() => {}, 0);
     // while setTimeout's exist with positive integers, clear them
     while (queuedNote--) {
-        window.clearTimeout(queuedNote); 
+        window.clearTimeout(queuedNote);
     }
 }
 

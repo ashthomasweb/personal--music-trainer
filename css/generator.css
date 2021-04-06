@@ -2,7 +2,6 @@
     grid-template-areas:
         "header messages messages mode mode instrument"
         "length start options cadence cadence generate"
-        "....... ....... ....... ....... ....... ......."
         "....... prog prog prog prog ......."
         "piano piano piano piano piano piano"
         "piano piano piano piano piano piano";
@@ -13,17 +12,14 @@
 .your-progression {
     z-index: 100;
     grid-area: prog;
-    background-color: rgba(128, 125, 125, .3);
+    background-color: rgba(128, 125, 125, .8);
     position: relative;
-    top: 82px;
 }
 
 .your-progression p {
-    position: absolute;
+    /* position: absolute; */
 
 }
-
-
 
 .piano-container {
     grid-area: piano;

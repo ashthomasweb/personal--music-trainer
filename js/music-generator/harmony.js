@@ -180,6 +180,7 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
         builtPhrase[0][5] = [displayKeyInArray()];
+        // builtPhrase[0][6] = [beatLength]
         getFinalVoicing();
 
     } else if (section === 1) {
@@ -207,8 +208,10 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
         builtPhrase[0][5] = [displayKeyInArray()];
+        // builtPhrase[0][6] = [beatLength]
 
         getFinalVoicing();
+        // beatLength = beatLength - 50; // does not work
 
     } else if (section === 2) {
         getProgression(upFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
@@ -217,6 +220,7 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
         builtPhrase[0][5] = [displayKeyInArray()];
+        // builtPhrase[0][6] = [beatLength]
 
         getFinalVoicing();
 
@@ -230,11 +234,12 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
         builtPhrase[0][5] = [displayKeyInArray()];
+        // builtPhrase[0][6] = [beatLength]
 
         getFinalVoicing();
 
     }
-
+    // beatLength = beatLength - 50; // does not work
 }
 
 function displayKeyInArray() {
