@@ -14,16 +14,15 @@ function playFromArray() {
         setTimeout(() => {
             document.getElementById('chord-prog').innerHTML = phrase[0][1];
             document.getElementById('key').innerHTML = phrase[0][5];
-            
-
         }, displayTimer);
         displayTimer = displayTimer + (beatLength * 16);
 
+        // beatLength = phrase[0][6];
+        // console.log(beatLength);
         phrase.forEach((item, i) => {
             if (i !== 0) {
                 phrase[i].forEach((item) => {
                     if (item.length !== 0) {
-                        // THIS is where i can control tempo
 
                         // PRIMARY PLAY - TEMPO AND FUNCTION CALL
                         setTimeout(() => {
@@ -31,7 +30,6 @@ function playFromArray() {
                         }, voicesTimer + beatLength);
                         voicesTimer = voicesTimer + beatLength;
 
-                        // THIS is where i can control tempo
 
                     } else {
                         voicesTimer = voicesTimer + beatLength;
@@ -133,8 +131,13 @@ function stopVoice(voiceGain, currentVoice) {
 
 // global timing variable
 let voicesTimer = 0;
-let beatLength = 840;
 
+// THIS is where i can control tempo
+let beatLength = 550;
+// THIS is where i can control tempo
+// function getTempo() {
+//     return (Math.ceil(Math.random() * 100) + 600)
+// }
 // Arpeggiate voices without stopping repeated notes
 function arpeggiateVoices(input) {
     voicesTimer = 0;

@@ -161,7 +161,8 @@ function getPhraseUnit() {
 //
 // const array = Object.values(phraseUnit)
 // half dim glyph ∅  ♭
-const harmonyNum = () => Math.ceil(Math.random() * 3) + 4;
+
+const harmonyNum = () => Math.ceil(Math.random() * 5) + 2;
 // const chance = (factor) =>  Math.ceil(Math.random() * factor);
 
 // makes a base unit of chords
@@ -180,9 +181,9 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
         builtPhrase[0][5] = [displayKeyInArray()];
-        // builtPhrase[0][6] = [beatLength]
+        // builtPhrase[0][6] = [getTempo()]
         getFinalVoicing();
-
+        // getTempo();
     } else if (section === 1) {
         let chance = Math.ceil(Math.random() * 15);
         // sequence by stongest motion most often
@@ -267,8 +268,7 @@ function displayKeyInArray() {
 let progression = [];
 
 function getProgression(start, cadence) {
-    progression = [...progression];
-
+    // progression = [...progression];
     function startGeneration() {
         for (let index = 1; index <= harmonyNum() - 1; index++) {
             progression[index] = strongMotion(progression[index - 1]);
@@ -315,7 +315,7 @@ function getProgression(start, cadence) {
             });
         }
     }
-
+    progression = [];
     progression[0] = start;
     startGeneration();
 
