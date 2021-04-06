@@ -254,8 +254,11 @@ function displayKeyInArray() {
         quality = ' minor';
     }
 
+    // document.getElementById('key').innerHTML = center + quality;
+
     return center + quality;
 }
+
 let progression = [];
 
 function getProgression(start, cadence) {
