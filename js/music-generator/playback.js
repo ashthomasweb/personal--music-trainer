@@ -9,16 +9,20 @@ function playFromArray() {
     voicesTimer = 0;
     displayTimer = 0;
     getAllVoices();
-    phraseContainer.forEach((phrase) => {
+    phraseContainer.forEach((phrase, i) => {
         // Display function - can only display data that has been included in phraseContainer
+        beatLength = phrase[0][6][0];
         setTimeout(() => {
             document.getElementById('chord-prog').innerHTML = phrase[0][1];
             document.getElementById('key').innerHTML = phrase[0][5];
         }, displayTimer);
         displayTimer = displayTimer + (beatLength * 16);
 
-        // beatLength = phrase[0][6];
-        // console.log(beatLength);
+        // beatLength = phraseContainer[(formNum - 1) * 4][0][6];
+
+        console.log(phrase[0]);
+        // console.log();
+
         phrase.forEach((item, i) => {
             if (i !== 0) {
                 phrase[i].forEach((item) => {
@@ -82,7 +86,7 @@ function chord(a, b, c, d, e, f, g) {
 
     // THIS is where I can engage textures
     let chance = Math.floor(Math.random() * 5);
-    // chance = 10;
+    chance = 10;
     if (chance === 0) {
         args.forEach((item) => {
             noteSwitch(item);
@@ -133,16 +137,31 @@ function stopVoice(voiceGain, currentVoice) {
 let voicesTimer = 0;
 
 // THIS is where i can control tempo
-let beatLength = 550;
+let beatLength;
 // THIS is where i can control tempo
 function getTempo() {
-    return (Math.ceil(Math.random() * 100) + 600)
+    return (Math.ceil(Math.random() * 700) + 400);
 }
+
+function getBSectionTempo(input) {
+    let amountChange = Math.ceil(Math.random() * 70 + 80);
+    let chance = Math.ceil(Math.random() * 2);
+    if (chance === 1) {
+        // console.log(input + amountChange)
+        return input + amountChange;
+    } else if (chance === 2) {
+        // console.log(input + amountChange)
+        return input - amountChange;
+    }
+}
+
 // Arpeggiate voices without stopping repeated notes
 function arpeggiateVoices(input) {
     voicesTimer = 0;
     let chance = Math.floor(Math.random() * 3);
     // chance = 2;
+
+    // console.log()
     if (chance === 0) {
 
         setTimeout(() => {

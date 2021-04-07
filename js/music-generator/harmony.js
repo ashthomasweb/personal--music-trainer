@@ -204,12 +204,13 @@ function harmonicUnit(section, formNum) {
         }
 
         builtPhrase[0][6] = [...phraseContainer[(formNum - 1) * 4][0][6]];
-
+        
         applyHarmonicRhythm();
         builtPhrase[0][0] = formNum + ':A1';
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
         builtPhrase[0][5] = [displayKeyInArray()];
+
         // builtPhrase[0][6] = [getTempo()];
 
         getFinalVoicing();
@@ -223,8 +224,12 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
         builtPhrase[0][5] = [displayKeyInArray()];
-        builtPhrase[0][6] = [getTempo()];
+        // let temp = phraseContainer[(formNum - 1) * 4][0][6][0];
+        // console.log(temp);
+        // builtPhrase[0][6] = [getBSectionTempo(phraseContainer[(formNum - 1) * 4][0][6][0])];
+        builtPhrase[0][6] = [getBSectionTempo(phraseContainer[(formNum - 1) * 4][0][6][0])];
 
+        
         getFinalVoicing();
 
     } else if (section === 3) {
