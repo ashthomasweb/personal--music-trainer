@@ -1,6 +1,5 @@
 // Harmonic Generator for "Music Trainer"
 
-
 let major = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii∅'];
 let minor = ['i', 'ii∅', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
 

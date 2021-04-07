@@ -49,9 +49,6 @@ function playFromArray() {
             sopranoOutput = sopranoOutput + item + '     ';
         });
         let sopranoDisplay = 'S: ' + sopranoOutput;
-
-
-        console.log(output);
         
         setTimeout(() => {
             document.getElementById('form-id').innerText = formId;
@@ -65,7 +62,6 @@ function playFromArray() {
             document.getElementById('prog-length').innerText = progLength;
         }, displayTimer);
         displayTimer = displayTimer + (beatLength * 16);
-
 
         phrase.forEach((item, i) => {
             if (i !== 0) {

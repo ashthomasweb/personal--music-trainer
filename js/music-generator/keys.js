@@ -375,7 +375,6 @@ function keyPicker() {
     } else {
         keyNumerals = keyOfG;
     }
-
 }
 
 // END of document
