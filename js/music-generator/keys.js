@@ -43,7 +43,7 @@ let = keyOfC = [
         ['seventh', ['G2', 'G3', 'G4', 'G5']]
     ],
 
-    ['viiHalfDim',
+    ['vii∅',
         ['root', ['B1', 'B2', 'B3', 'B4', 'B5']],
         ['third', ['D2', 'D3', 'D4', 'D5', 'D6']],
         ['fifth', ['F2', 'F3', 'F4', 'F5']],
@@ -57,7 +57,7 @@ let = keyOfC = [
         ['seventh', ['Bb2', 'Bb3', 'Bb4', 'Bb5']]
     ],
 
-    ['iiHalfDim',
+    ['ii∅',
         ['root', ['D2', 'D3', 'D4', 'D5', 'D6']],
         ['third', ['F2', 'F3', 'F4', 'F5']],
         ['fifth', ['Ab2', 'Ab3', 'Ab4', 'Ab5']],
@@ -99,21 +99,21 @@ let = keyOfC = [
         ['seventh', ['A2', 'A3', 'A4', 'A5']]
     ],
 
-    ['IVMm7',
+    ['IV7',
         ['root', ['F2', 'F3', 'F4', 'F5']],
         ['third', ['A2', 'A3', 'A4', 'A5']],
         ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
         ['seventh', ['Eb2', 'Eb3', 'Eb4', 'Eb5']]
     ],
 
-    ['viHalfDim',
+    ['vi∅',
         ['root', ['A2', 'A3', 'A4', 'A5']],
         ['third', ['C2', 'C3', 'C4', 'C5', 'C6']],
         ['fifth', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
         ['seventh', ['G2', 'G3', 'G4', 'G5']]
     ],
 
-    ['viiFullDim',
+    ['vii°',
         ['root', ['B2', 'B3', 'B4', 'B5']],
         ['third', ['D2', 'D3', 'D4', 'D5', 'D6']],
         ['fifth', ['F2', 'F3', 'F4', 'F5']],
@@ -165,7 +165,7 @@ let = keyOfF = [
         ['seventh', ['C2', 'C3', 'C4', 'C5', 'C6']]
     ],
 
-    ['viiHalfDim',
+    ['vii∅',
         ['root', ['E2', 'E3', 'E4', 'E5']],
         ['third', ['G2', 'G3', 'G4', 'G5']],
         ['fifth', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
@@ -186,7 +186,7 @@ let = keyOfF = [
         ['seventh', ['D2', 'D3', 'D4', 'D5']]
     ],
 
-    ['iiHalfDim',
+    ['ii∅',
         ['root', ['G2', 'G3', 'G4', 'G5']],
         ['third', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
         ['fifth', ['Db2', 'Db3', 'Db4', 'Db5', 'Db6']],
@@ -207,7 +207,7 @@ let = keyOfF = [
         ['seventh', ['Ab2', 'Ab3', 'Ab4', 'Ab5']]
     ],
 
-    ['IVMm7',
+    ['IV7',
         ['root', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
         ['third', ['D2', 'D3', 'D4', 'D5', 'D6']],
         ['fifth', ['F2', 'F3', 'F4', 'F5']],
@@ -221,7 +221,7 @@ let = keyOfF = [
         ['seventh', ['C2', 'C3', 'C4', 'C5', 'C6']]
     ],
 
-    ['viHalfDim',
+    ['vi∅',
         ['root', ['D2', 'D3', 'D4', 'D5', 'D6']],
         ['third', ['F2', 'F3', 'F4', 'F5']],
         ['fifth', ['Ab2', 'Ab3', 'Ab4', 'Ab5']],
@@ -235,7 +235,7 @@ let = keyOfF = [
         ['seventh', ['Db2', 'Db3', 'Db4', 'Db5', 'Db6']]
     ],
 
-    ['viiFullDim',
+    ['vii°',
         ['root', ['E2', 'E3', 'E4', 'E5']],
         ['third', ['G2', 'G3', 'G4', 'G5']],
         ['fifth', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
@@ -288,7 +288,7 @@ let = keyOfG = [
         ['seventh', ['D2', 'D3', 'D4', 'D5', 'D6']]
     ],
 
-    ['viiHalfDim',
+    ['vii∅',
         ['root', ['Gb2', 'Gb3', 'Gb4', 'Gb5']],
         ['third', ['A2', 'A3', 'A4', 'A5']],
         ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],
@@ -309,7 +309,7 @@ let = keyOfG = [
         ['seventh', ['E2', 'E3', 'E4', 'E5']]
     ],
 
-    ['iiHalfDim',
+    ['ii∅',
         ['root', ['A2', 'A3', 'A4', 'A5']],
         ['third', ['C2', 'C3', 'C4', 'C5', 'C6']],
         ['fifth', ['Eb2', 'Eb3', 'Eb4', 'Eb5']],
@@ -323,7 +323,7 @@ let = keyOfG = [
         ['seventh', ['A2', 'A3', 'A4', 'A5']]
     ],
 
-    ['IVMm7',
+    ['IV7',
         ['root', ['C2', 'C3', 'C4', 'C5', 'C6']],
         ['third', ['E2', 'E3', 'E4', 'E5']],
         ['fifth', ['G2', 'G3', 'G4', 'G5']],
@@ -344,7 +344,7 @@ let = keyOfG = [
         ['seventh', ['D2', 'D3', 'D4', 'D5', 'D6']]
     ],
 
-    ['viHalfDim',
+    ['vi∅',
         ['root', ['E2', 'E3', 'E4', 'E5']],
         ['third', ['G2', 'G3', 'G4', 'G5']],
         ['fifth', ['Bb2', 'Bb3', 'Bb4', 'Bb5']],
@@ -358,7 +358,7 @@ let = keyOfG = [
         ['seventh', ['Eb2', 'Eb3', 'Eb4', 'Eb5']]
     ],
 
-    ['viiFullDim',
+    ['vii°',
         ['root', ['Gb2', 'Gb3', 'Gb4', 'Gb5']],
         ['third', ['A2', 'A3', 'A4', 'A5']],
         ['fifth', ['C2', 'C3', 'C4', 'C5', 'C6']],

@@ -1,8 +1,8 @@
 // Harmonic Generator for "Music Trainer"
 
 
-let major = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'viiHalfDim'];
-let minor = ['i', 'iiHalfDim', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
+let major = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii∅'];
+let minor = ['i', 'ii∅', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
 
 let currentHarmony = major;
 let numeralOne = 'I';
@@ -158,7 +158,7 @@ function getPhraseUnit() {
 // };
 //
 // const array = Object.values(phraseUnit)
-// half dim glyph ∅  ♭
+// half dim glyph ∅  ♭  °
 
 const harmonyNum = () => Math.ceil(Math.random() * 5) + 2;
 // const chance = (factor) =>  Math.ceil(Math.random() * factor);
@@ -267,7 +267,7 @@ function getProgression(start, cadence) {
                 let chance = Math.ceil(Math.random() * 2);
                 if (item === 'ii') {
                     if (chance === 0) {
-                        progression[i] = 'iiHalfDim';
+                        progression[i] = 'ii∅';
                     } else {
                         progression[i] = 'ii';
                     }
@@ -278,7 +278,7 @@ function getProgression(start, cadence) {
                     if (chance === 0) {
                         progression[i] = 'iv';
                     } else {
-                        progression[i] = 'IVMm7';
+                        progression[i] = 'IV7';
                     }
                 }
 
@@ -287,7 +287,7 @@ function getProgression(start, cadence) {
                     if (chance === 0) {
                         progression[i] = 'bVI';
                     } else {
-                        progression[i] = 'viHalfDim'
+                        progression[i] = 'vi∅'
                     }
                 }
 
@@ -296,7 +296,7 @@ function getProgression(start, cadence) {
                     if (chance === 0) {
                         progression[i] = 'bVII';
                     } else {
-                        progression[i] = 'viiFullDim'
+                        progression[i] = 'vii°'
                     }
                 }
             });

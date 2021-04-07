@@ -12,9 +12,57 @@ function playFromArray() {
     phraseContainer.forEach((phrase, i) => {
         // Display function - can only display data that has been included in phraseContainer
         beatLength = phrase[0][6][0];
+
+        // NEED to convert phrase info into readable text
+
+        let formId = 'Form/Section: ' + phrase[0][0];
+        let key = 'Current key: ' + phrase[0][5];
+        let tempo = 'Tempo in ms: ' + phrase[0][6];
+        let progLength = 'Number of chords: ' + phrase[0][2];
+
+        let output = '';
+        phrase[0][1].forEach((item) => {
+            output = output + item + '     ';
+        });
+        let chordProg = 'P: ' + output;
+
+        let bassOutput = '';
+        phrase[0][3][0].forEach((item) => {
+            bassOutput = bassOutput + item + '     ';
+        });
+        let bassDisplay = 'B: ' + bassOutput;
+
+        let tenorOutput = '';
+        phrase[0][3][1].forEach((item) => {
+            tenorOutput = tenorOutput + item + '     ';
+        });
+        let tenorDisplay = 'T: ' + tenorOutput;
+
+        let altoOutput = '';
+        phrase[0][3][2].forEach((item) => {
+            altoOutput = altoOutput + item + '     ';
+        });
+        let altoDisplay = 'A: ' + altoOutput;
+
+        let sopranoOutput = '';
+        phrase[0][3][3].forEach((item) => {
+            sopranoOutput = sopranoOutput + item + '     ';
+        });
+        let sopranoDisplay = 'S: ' + sopranoOutput;
+
+
+        console.log(output);
+        
         setTimeout(() => {
-            document.getElementById('chord-prog').innerHTML = phrase[0][1];
-            document.getElementById('key').innerHTML = phrase[0][5];
+            document.getElementById('form-id').innerText = formId;
+            document.getElementById('key').innerText = key;
+            document.getElementById('tempo').innerText = tempo;
+            document.getElementById('soprano').innerText = sopranoDisplay;
+            document.getElementById('alto').innerText = altoDisplay;
+            document.getElementById('tenor').innerText = tenorDisplay;
+            document.getElementById('bass').innerText = bassDisplay;
+            document.getElementById('chord-prog').innerText = chordProg;
+            document.getElementById('prog-length').innerText = progLength;
         }, displayTimer);
         displayTimer = displayTimer + (beatLength * 16);
 
