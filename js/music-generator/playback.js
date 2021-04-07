@@ -18,10 +18,7 @@ function playFromArray() {
         }, displayTimer);
         displayTimer = displayTimer + (beatLength * 16);
 
-        // beatLength = phraseContainer[(formNum - 1) * 4][0][6];
-
         console.log(phrase[0]);
-        // console.log();
 
         phrase.forEach((item, i) => {
             if (i !== 0) {
@@ -138,7 +135,6 @@ let voicesTimer = 0;
 
 // THIS is where i can control tempo
 let beatLength;
-// THIS is where i can control tempo
 function getTempo() {
     return (Math.ceil(Math.random() * 700) + 400);
 }
@@ -154,6 +150,7 @@ function getBSectionTempo(input) {
         return input - amountChange;
     }
 }
+// THIS is where i can control tempo
 
 // Arpeggiate voices without stopping repeated notes
 function arpeggiateVoices(input) {
@@ -161,9 +158,7 @@ function arpeggiateVoices(input) {
     let chance = Math.floor(Math.random() * 3);
     // chance = 2;
 
-    // console.log()
     if (chance === 0) {
-
         setTimeout(() => {
             noteSwitch(input[0]);
         }, voicesTimer);
@@ -244,7 +239,24 @@ function arpeggiateVoicesCompound(input) {
     voicesTimer = voicesTimer + beatLength;
 }
 
-// OLD DEV
+// Stop all playback
+
+function allStop() {
+    // empty setTimeout to establish variable name
+    var queuedNote = window.setTimeout(() => {}, 0);
+    // while setTimeout's exist with positive integers, clear them
+    while (queuedNote--) {
+        window.clearTimeout(queuedNote);
+    }
+}
+
+
+
+
+
+
+
+// Out Of Date Development Functions
 // Button Playback 
 
 function playVoicesBlock() {
@@ -317,15 +329,6 @@ function playRoman(numeral) {
     }
 }
 
-// Stop all playback
 
-function allStop() {
-    // empty setTimeout to establish variable name
-    var queuedNote = window.setTimeout(() => {}, 0);
-    // while setTimeout's exist with positive integers, clear them
-    while (queuedNote--) {
-        window.clearTimeout(queuedNote);
-    }
-}
 
 // END of document 

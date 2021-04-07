@@ -1,6 +1,5 @@
 // Harmonic Generator for "Music Trainer"
 
-// let progLength;
 
 let major = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'viiHalfDim'];
 let minor = ['i', 'iiHalfDim', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
@@ -51,7 +50,6 @@ let firstHarmonicArea;
 function buildForm(input) {
     for (let i = 0; i < input; i++) {
         // THIS is where I can change options on a 16 measure basis
-        // harmonyNum();
         for (let ii = 0; ii < 4; ii++) {
             if (ii === 0) {
                 harmonyPicker();
@@ -168,11 +166,11 @@ const harmonyNum = () => Math.ceil(Math.random() * 5) + 2;
 // makes a base unit of chords
 function harmonicUnit(section, formNum) {
 
-
     if (section === 0) {
         let chance = Math.ceil(Math.random() * 6);
         getProgression(currentHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
         applyHarmonicRhythm();
+
         // refactor example
         // builtPhrase.info[1] = [...progression];
         // refactor example
@@ -210,33 +208,20 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
         builtPhrase[0][5] = [displayKeyInArray()];
-
-        // builtPhrase[0][6] = [getTempo()];
-
         getFinalVoicing();
-        // beatLength = beatLength - 50; // does not work
-
     } else if (section === 2) {
-        // getTempo();
         getProgression(upFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
         applyHarmonicRhythm();
         builtPhrase[0][0] = formNum + ':B';
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
         builtPhrase[0][5] = [displayKeyInArray()];
-        // let temp = phraseContainer[(formNum - 1) * 4][0][6][0];
-        // console.log(temp);
-        // builtPhrase[0][6] = [getBSectionTempo(phraseContainer[(formNum - 1) * 4][0][6][0])];
         builtPhrase[0][6] = [getBSectionTempo(phraseContainer[(formNum - 1) * 4][0][6][0])];
-
-        
         getFinalVoicing();
-
     } else if (section === 3) {
         progression = [];
         progression = [...phraseContainer[(formNum - 1) * 4][0][1]];
         builtPhrase[0][6] = [...phraseContainer[(formNum - 1) * 4][0][6]];
-
         progression[progression.length - 1] = numeralOne;
         progression[progression.length - 2] = 'V';
         applyHarmonicRhythm();
@@ -244,12 +229,8 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
         builtPhrase[0][5] = [displayKeyInArray()];
-        // builtPhrase[0][6] = [getTempo()];
-
         getFinalVoicing();
-
     }
-    // beatLength = beatLength - 50; // does not work
 }
 
 function displayKeyInArray() {
@@ -269,15 +250,12 @@ function displayKeyInArray() {
         quality = ' minor';
     }
 
-    // document.getElementById('key').innerHTML = center + quality;
-
     return center + quality;
 }
 
 let progression = [];
 
 function getProgression(start, cadence) {
-    // progression = [...progression];
     function startGeneration() {
         for (let index = 1; index <= harmonyNum() - 1; index++) {
             progression[index] = strongMotion(progression[index - 1]);
