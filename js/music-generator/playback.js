@@ -18,7 +18,6 @@ function playFromArray() {
         }, displayTimer);
         displayTimer = displayTimer + (beatLength * 16);
 
-        console.log(phrase[0]);
 
         phrase.forEach((item, i) => {
             if (i !== 0) {
@@ -27,10 +26,9 @@ function playFromArray() {
 
                         // PRIMARY PLAY - TEMPO AND FUNCTION CALL
                         setTimeout(() => {
-                            iterateThruHarmonies();
+                            iterateThruHarmonies(phrase[0]);
                         }, voicesTimer + beatLength);
                         voicesTimer = voicesTimer + beatLength;
-
 
                     } else {
                         voicesTimer = voicesTimer + beatLength;
@@ -60,40 +58,39 @@ function getAllVoices() {
 
 let index = 0;
 
-function iterateThruHarmonies() {
+function iterateThruHarmonies(infoArray) {
     // THIS is where I can control which voices play per beat
     let chance = Math.floor(Math.random() * 10);
     chance = 3;
     if (chance === 0) {
-        chord(combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
+        fullVoiceBlock([combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]], infoArray);
     } else if (chance === 1) {
-        chord(combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
+        fullVoiceBlock([combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]], infoArray);
     } else if (chance === 2) {
-        chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
+        fullVoiceBlock([combinedVoicesPlayback[0][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]], infoArray);
     } else if (chance === 3) {
-        chord(combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]);
+        fullVoiceBlock([combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]], infoArray);
     }
     // THIS is where I can control which voices play per beat
 
     index++;
 }
 
-function chord(a, b, c, d, e, f, g) {
-    let args = Array.from(arguments);
+// THIS is where I can engage textures
+function fullVoiceBlock(voices, infoArray) {
 
-    // THIS is where I can engage textures
     let chance = Math.floor(Math.random() * 5);
-    chance = 10;
+    chance = 3;
     if (chance === 0) {
-        args.forEach((item) => {
+        voices.forEach((item) => {
             noteSwitch(item);
         });
     } else if (chance === 1 || chance === 2) {
-        arpeggiateVoices(args);
-        // } else if (chance === 2) {
-        //     arpeggiateVoicesCompound(args);
+        arpeggiateVoices(voices, infoArray);
+        } else if (chance === 3) {
+            arpeggiateVoicesCompound(voices, infoArray);
     } else {
-        boomChuck(args);
+        boomChuck(voices, infoArray);
     }
 }
 
@@ -135,6 +132,7 @@ let voicesTimer = 0;
 
 // THIS is where i can control tempo
 let beatLength;
+
 function getTempo() {
     return (Math.ceil(Math.random() * 700) + 400);
 }
@@ -153,88 +151,94 @@ function getBSectionTempo(input) {
 // THIS is where i can control tempo
 
 // Arpeggiate voices without stopping repeated notes
-function arpeggiateVoices(input) {
+function arpeggiateVoices(voices, infoArray) {
     voicesTimer = 0;
     let chance = Math.floor(Math.random() * 3);
     // chance = 2;
+   
+    beatLength = infoArray[6][0];
 
     if (chance === 0) {
         setTimeout(() => {
-            noteSwitch(input[0]);
+            noteSwitch(voices[0]);
         }, voicesTimer);
         setTimeout(() => {
-            noteSwitch(input[1]);
+            noteSwitch(voices[1]);
         }, voicesTimer + (beatLength * .25));
         setTimeout(() => {
-            noteSwitch(input[2]);
+            noteSwitch(voices[2]);
         }, voicesTimer + (beatLength * .5));
         setTimeout(() => {
-            noteSwitch(input[3]);
+            noteSwitch(voices[3]);
         }, voicesTimer + (beatLength * .75));
         voicesTimer = voicesTimer + beatLength;
     } else if (chance === 1) {
         setTimeout(() => {
-            noteSwitch(input[3]);
+            noteSwitch(voices[3]);
         }, voicesTimer);
         setTimeout(() => {
-            noteSwitch(input[2]);
+            noteSwitch(voices[2]);
         }, voicesTimer + (beatLength * .25));
         setTimeout(() => {
-            noteSwitch(input[1]);
+            noteSwitch(voices[1]);
         }, voicesTimer + (beatLength * .5));
         setTimeout(() => {
-            noteSwitch(input[0]);
+            noteSwitch(voices[0]);
         }, voicesTimer + (beatLength * .75));
         voicesTimer = voicesTimer + beatLength;
     } else {
         setTimeout(() => {
-            noteSwitch(input[0]);
+            noteSwitch(voices[0]);
         }, voicesTimer);
         setTimeout(() => {
-            noteSwitch(input[2]);
+            noteSwitch(voices[2]);
         }, voicesTimer + (beatLength * .25));
         setTimeout(() => {
-            noteSwitch(input[3]);
+            noteSwitch(voices[3]);
         }, voicesTimer + (beatLength * .5));
         setTimeout(() => {
-            noteSwitch(input[1]);
+            noteSwitch(voices[1]);
         }, voicesTimer + (beatLength * .75));
         voicesTimer = voicesTimer + beatLength;
     }
 }
 
-function boomChuck(input) {
+function boomChuck(voices, infoArray) {
     voicesTimer = 0;
+    beatLength = infoArray[6][0];
+
     setTimeout(() => {
-        noteSwitch(input[0]);
+        noteSwitch(voices[0]);
     }, voicesTimer);
     setTimeout(() => {
-        noteSwitch(input[1]);
-        noteSwitch(input[2]);
-        noteSwitch(input[3]);
+        noteSwitch(voices[1]);
+        noteSwitch(voices[2]);
+        noteSwitch(voices[3]);
     }, voicesTimer + (beatLength * .5));
 }
 
-function arpeggiateVoicesCompound(input) {
+function arpeggiateVoicesCompound(voices, infoArray) {
     voicesTimer = 0;
+    beatLength = infoArray[6][0];
+
 
     setTimeout(() => {
-        noteSwitch(input[0]);
+        noteSwitch(voices[0]);
     }, voicesTimer);
     setTimeout(() => {
-        noteSwitch(input[2]);
+        noteSwitch(voices[2]);
     }, voicesTimer + (beatLength * .1667));
     setTimeout(() => {
-        noteSwitch(input[3]);
+        noteSwitch(voices[3]);
     }, voicesTimer + (beatLength * .333));
     setTimeout(() => {
-        noteSwitch(input[1]);
+        noteSwitch(voices[1]);
     }, voicesTimer + (beatLength * .5));
     setTimeout(() => {
-        noteSwitch(input[2]);
+        noteSwitch(voices[2]);
     }, voicesTimer + (beatLength * .666));
     setTimeout(() => {
-        noteSwitch(input[3]);
+        noteSwitch(voices[3]);
     }, voicesTimer + (beatLength * .8367));
     voicesTimer = voicesTimer + beatLength;
 }
