@@ -13,8 +13,6 @@ function playFromArray() {
         // Display function - can only display data that has been included in phraseContainer
         beatLength = phrase[0][6][0];
 
-        // NEED to convert phrase info into readable text
-
         let formId = 'Form/Section: ' + phrase[0][0];
         let key = 'Current key: ' + phrase[0][5];
         let tempo = 'Tempo in ms: ' + phrase[0][6];
