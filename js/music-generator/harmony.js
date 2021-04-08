@@ -50,7 +50,7 @@ let numeralOne = 'I';
 let numeralFour = 'IV';
 let numeralSix = 'vi';
 
-function harmonyPicker() {
+function getKeyMode() {
     let chance = Math.ceil(Math.random() * 2);
 
     if (chance === 1) {
@@ -66,7 +66,19 @@ function harmonyPicker() {
     }
 }
 
-function harmonySwitcher() {
+function getKeyCenter() {
+    let chance = Math.floor(Math.random() * 3);
+    if ( chance === 0 ) {
+        keyNumerals = keyOfC;
+    } else if ( chance === 1 ) {
+        keyNumerals = keyOfF;
+    } else {
+        keyNumerals = keyOfG;
+    }
+}
+
+
+function switchHarmonicMode() {
     if (currentHarmony === major) {
         currentHarmony = minor;
         numeralOne = 'i';
@@ -83,33 +95,32 @@ function harmonySwitcher() {
 let cadenceType = ['Authentic', 'Plagal', 'Deceptive', 'Half'];
 
 let phraseUnit = [];
-let builtPhrase = [];
 let phraseContainer = [];
 let firstHarmonicArea;
 
 // form construction
-function buildForm(input) {
-    for (let i = 0; i < input; i++) {
+function buildForm(numberOfRepeats) {
+    for (let i = 0; i < numberOfRepeats; i++) {
         // THIS is where I can change options on a 16 measure basis
         for (let ii = 0; ii < 4; ii++) {
             if (ii === 0) {
-                harmonyPicker();
-                keyPicker();
-                buildUnit(0, i + 1); // builds phrasing array, harmonic progression, and harmonic rhythm
+                getKeyMode();
+                getKeyCenter();
+                createPhraseInfo(0, i + 1); // builds phrasing array, harmonic progression, and harmonic rhythm
                 getStartTones(); // voice-leads progression
             }
             if (ii === 1) {
-                buildUnit(1, i + 1);
+                createPhraseInfo(1, i + 1);
                 getStartTones();
             }
             if (ii === 2) {
-                harmonySwitcher();
-                buildUnit(2, i + 1);
+                switchHarmonicMode();
+                createPhraseInfo(2, i + 1);
                 getStartTones();
             }
             if (ii === 3) {
-                harmonySwitcher();
-                buildUnit(3, i + 1);
+                switchHarmonicMode();
+                createPhraseInfo(3, i + 1);
                 getStartTones();
             }
         }
@@ -118,15 +129,15 @@ function buildForm(input) {
 }
 
 // calls all builder helper functions and provides data for playback via phraseContainer
-function buildUnit(section, formNum) {
+function createPhraseInfo(section, formNum) {
     // gets empty phrase
-    builtPhrase = getPhraseUnit();
+    phraseUnit = getPhraseUnit();
     // gets progression and generates harmonic rhythm
     harmonicUnit(section, formNum);
 
     // convert and push to container for play handling
-    let builtPhraseArray = Object.values(builtPhrase);
-    phraseContainer.push(builtPhraseArray);
+    let phraseUnitArray = Object.values(phraseUnit);
+    phraseContainer.push(phraseUnitArray);
 }
 
 // makes a base unit of chords
@@ -136,11 +147,11 @@ function harmonicUnit(section, formNum) {
         let chance = Math.ceil(Math.random() * 6);
         getProgression(currentHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
         applyHarmonicRhythm(); // reference /harm-rhythm.js
-        builtPhrase.info.formId = formNum + ':A';
-        builtPhrase.info.progression = [...progression];
-        builtPhrase.info.progressionLength = progression.length;
-        builtPhrase.info.key = displayKeyInArray();
-        builtPhrase.info.tempo = getTempo();
+        phraseUnit.info.formId = formNum + ':A';
+        phraseUnit.info.progression = [...progression];
+        phraseUnit.info.progressionLength = progression.length;
+        phraseUnit.info.key = displayKeyInArray();
+        phraseUnit.info.tempo = getTempo();
         getFinalVoicing();
     } else if (section === 1) {
         let chance = Math.ceil(Math.random() * 15);
@@ -163,31 +174,31 @@ function harmonicUnit(section, formNum) {
         }
 
         applyHarmonicRhythm(); // reference /harm-rhythm.js
-        builtPhrase.info.formId = formNum + ':A1';
-        builtPhrase.info.progression = [...progression];
-        builtPhrase.info.progressionLength = progression.length;
-        builtPhrase.info.key = displayKeyInArray();
-        builtPhrase.info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
+        phraseUnit.info.formId = formNum + ':A1';
+        phraseUnit.info.progression = [...progression];
+        phraseUnit.info.progressionLength = progression.length;
+        phraseUnit.info.key = displayKeyInArray();
+        phraseUnit.info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
         getFinalVoicing();
     } else if (section === 2) {
         getProgression(upFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
         applyHarmonicRhythm(); // reference /harm-rhythm.js
-        builtPhrase.info.formId = formNum + ':B';
-        builtPhrase.info.progression = [...progression];
-        builtPhrase.info.progressionLength = progression.length;
-        builtPhrase.info.key = displayKeyInArray();
-        builtPhrase.info.tempo = getBSectionTempo(phraseContainer[(formNum - 1) * 4][0].tempo);
+        phraseUnit.info.formId = formNum + ':B';
+        phraseUnit.info.progression = [...progression];
+        phraseUnit.info.progressionLength = progression.length;
+        phraseUnit.info.key = displayKeyInArray();
+        phraseUnit.info.tempo = getBSectionTempo(phraseContainer[(formNum - 1) * 4][0].tempo);
         getFinalVoicing();
     } else if (section === 3) {
         progression = [...phraseContainer[(formNum - 1) * 4][0].progression];
         progression[progression.length - 1] = numeralOne;
         progression[progression.length - 2] = 'V';
         applyHarmonicRhythm(); // reference /harm-rhythm.js
-        builtPhrase.info.formId = formNum + ':A';
-        builtPhrase.info.progression = [...progression];
-        builtPhrase.info.progressionLength = progression.length;
-        builtPhrase.info.key = displayKeyInArray();
-        builtPhrase.info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
+        phraseUnit.info.formId = formNum + ':A';
+        phraseUnit.info.progression = [...progression];
+        phraseUnit.info.progressionLength = progression.length;
+        phraseUnit.info.key = displayKeyInArray();
+        phraseUnit.info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
         getFinalVoicing();
     }
 }
