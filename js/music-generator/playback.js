@@ -3,9 +3,30 @@ let index = 0;
 
 let sourceNoteIndex = ['D6', 'Db6', 'C6', 'B5', 'Bb5', 'A5', 'Ab5', 'G5', 'Gb5', 'F5', 'E5', 'Eb5', 'D5', 'Db5', 'C5', 'B4', 'Bb4', 'A4', 'Ab4', 'G4', 'Gb4', 'F4', 'E4', 'Eb4', 'D4', 'Db4', 'C4', 'B3', 'Bb3', 'A3', 'Ab3', 'G3', 'Gb3', 'F3', 'E3', 'Eb3', 'D3', 'Db3', 'C3', 'B2', 'Bb2', 'A2', 'Ab2', 'G2', 'Gb2', 'F2', 'E2', 'Eb2', 'D2', 'Db2', 'C2', 'B1']
 
+
+
+let allVoicesPlayback = [];
+let combinedVoicesPlayback = [
+    [],
+    [],
+    [],
+    []
+];
+
+function getAllVoices() {
+    for (let i = 0; i <= allVoicesPlayback.length - 1; i++) {
+        combinedVoicesPlayback[0] = combinedVoicesPlayback[0].concat(allVoicesPlayback[i][0]);
+        combinedVoicesPlayback[1] = combinedVoicesPlayback[1].concat(allVoicesPlayback[i][1]);
+        combinedVoicesPlayback[2] = combinedVoicesPlayback[2].concat(allVoicesPlayback[i][2]);
+        combinedVoicesPlayback[3] = combinedVoicesPlayback[3].concat(allVoicesPlayback[i][3]);
+    }
+}
+
+
+
+
 // Play from phrasing chart
 function playFromArray() {
-
     index = 0;
     voicesTimer = 0;
     displayTimer = 0;
@@ -19,45 +40,59 @@ function playFromArray() {
         let tempo = 'Tempo in ms: ' + phrase[0].tempo;
         let progLength = 'Number of chords: ' + phrase[0].progressionLength;
 
-        let output = '';
+        let progOutput = [];
         phrase[0].progression.forEach((item) => {
-            output = output + item + '     ';
-        });
-        let chordProg = 'P: ' + output;
+            temp = item + '...............';
+            progOutput.push(temp.slice(0, 7));
 
-        let bassOutput = '';
+        });
+        let progDisplay = 'P: ' + progOutput;
+        let pOutput = progDisplay.replace(/\,/g, ".");
+
+        let bassOutput = [];
         phrase[0].voiceLeading[0].forEach((item) => {
-            bassOutput = bassOutput + item + '     ';
+            temp = item + '...............';
+            bassOutput.push(temp.slice(0, 7));
+
         });
         let bassDisplay = 'B: ' + bassOutput;
+        let bOutput = bassDisplay.replace(/\,/g, ".");
 
-        let tenorOutput = '';
+        let tenorOutput = [];
         phrase[0].voiceLeading[1].forEach((item) => {
-            tenorOutput = tenorOutput + item + '     ';
+            temp = item + '...............';
+            tenorOutput.push(temp.slice(0, 7));
+
         });
         let tenorDisplay = 'T: ' + tenorOutput;
+        let tOutput = tenorDisplay.replace(/\,/g, ".");
 
-        let altoOutput = '';
+        let altoOutput = [];
         phrase[0].voiceLeading[2].forEach((item) => {
-            altoOutput = altoOutput + item + '     ';
+            temp = item + '...............';
+            altoOutput.push(temp.slice(0, 7));
+
         });
         let altoDisplay = 'A: ' + altoOutput;
+        let aOutput = altoDisplay.replace(/\,/g, ".");
 
-        let sopranoOutput = '';
+        let sopranoOutput = [];
         phrase[0].voiceLeading[3].forEach((item) => {
-            sopranoOutput = sopranoOutput + item + '     ';
+            temp = item + '...............';
+            sopranoOutput.push(temp.slice(0, 7));
         });
         let sopranoDisplay = 'S: ' + sopranoOutput;
+        let sOutput = sopranoDisplay.replace(/\,/g, ".");
         
         setTimeout(() => {
             document.getElementById('form-id').innerText = formId;
             document.getElementById('key').innerText = key;
             document.getElementById('tempo').innerText = tempo;
-            document.getElementById('soprano').innerText = sopranoDisplay;
-            document.getElementById('alto').innerText = altoDisplay;
-            document.getElementById('tenor').innerText = tenorDisplay;
-            document.getElementById('bass').innerText = bassDisplay;
-            document.getElementById('chord-prog').innerText = chordProg;
+            document.getElementById('soprano').innerText = sOutput;
+            document.getElementById('alto').innerText = aOutput;
+            document.getElementById('tenor').innerText = tOutput;
+            document.getElementById('bass').innerText = bOutput;
+            document.getElementById('chord-prog').innerText = pOutput;
             document.getElementById('prog-length').innerText = progLength;
         }, displayTimer);
         displayTimer = displayTimer + (beatLength * 16);
@@ -82,22 +117,6 @@ function playFromArray() {
     });
 }
 
-let allVoicesPlayback = [];
-let combinedVoicesPlayback = [
-    [],
-    [],
-    [],
-    []
-];
-
-function getAllVoices() {
-    for (let i = 0; i <= allVoicesPlayback.length - 1; i++) {
-        combinedVoicesPlayback[0] = combinedVoicesPlayback[0].concat(allVoicesPlayback[i][0]);
-        combinedVoicesPlayback[1] = combinedVoicesPlayback[1].concat(allVoicesPlayback[i][1]);
-        combinedVoicesPlayback[2] = combinedVoicesPlayback[2].concat(allVoicesPlayback[i][2]);
-        combinedVoicesPlayback[3] = combinedVoicesPlayback[3].concat(allVoicesPlayback[i][3]);
-    }
-}
 
 
 function iterateThruHarmonies(infoArray) {
