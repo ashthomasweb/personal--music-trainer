@@ -11,39 +11,39 @@ function playFromArray() {
     getAllVoices();
     phraseContainer.forEach((phrase, i) => {
         // Display function - can only display data that has been included in phraseContainer
-        beatLength = phrase[0][6][0];
+        beatLength = phrase[0].tempo;
 
-        let formId = 'Form/Section: ' + phrase[0][0];
-        let key = 'Current key: ' + phrase[0][5];
-        let tempo = 'Tempo in ms: ' + phrase[0][6];
-        let progLength = 'Number of chords: ' + phrase[0][2];
+        let formId = 'Form/Section: ' + phrase[0].formId;
+        let key = 'Current key: ' + phrase[0].key;
+        let tempo = 'Tempo in ms: ' + phrase[0].tempo;
+        let progLength = 'Number of chords: ' + phrase[0].progressionLength;
 
         let output = '';
-        phrase[0][1].forEach((item) => {
+        phrase[0].progression.forEach((item) => {
             output = output + item + '     ';
         });
         let chordProg = 'P: ' + output;
 
         let bassOutput = '';
-        phrase[0][3][0].forEach((item) => {
+        phrase[0].voiceLeading[0].forEach((item) => {
             bassOutput = bassOutput + item + '     ';
         });
         let bassDisplay = 'B: ' + bassOutput;
 
         let tenorOutput = '';
-        phrase[0][3][1].forEach((item) => {
+        phrase[0].voiceLeading[1].forEach((item) => {
             tenorOutput = tenorOutput + item + '     ';
         });
         let tenorDisplay = 'T: ' + tenorOutput;
 
         let altoOutput = '';
-        phrase[0][3][2].forEach((item) => {
+        phrase[0].voiceLeading[2].forEach((item) => {
             altoOutput = altoOutput + item + '     ';
         });
         let altoDisplay = 'A: ' + altoOutput;
 
         let sopranoOutput = '';
-        phrase[0][3][3].forEach((item) => {
+        phrase[0].voiceLeading[3].forEach((item) => {
             sopranoOutput = sopranoOutput + item + '     ';
         });
         let sopranoDisplay = 'S: ' + sopranoOutput;
@@ -198,7 +198,7 @@ function arpeggiateVoices(voices, infoArray) {
     let chance = Math.floor(Math.random() * 3);
     // chance = 2;
    
-    beatLength = infoArray[6][0];
+    beatLength = infoArray.tempo;
 
     if (chance === 0) {
         setTimeout(() => {
@@ -261,8 +261,7 @@ function boomChuck(voices, infoArray) {
 
 function arpeggiateVoicesCompound(voices, infoArray) {
     voicesTimer = 0;
-    beatLength = infoArray[6][0];
-
+    beatLength = infoArray.tempo;
 
     setTimeout(() => {
         noteSwitch(voices[0]);

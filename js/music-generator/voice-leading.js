@@ -114,8 +114,10 @@ function getStartTones() {
 
     let satbArray = [];
     satbArray.push(bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray);
-    builtPhrase.info[3] = [...satbArray];
-    allVoicesPlayback.push(satbArray)
+    satbArray.forEach((item) => {
+        builtPhrase.info.voiceLeading.push(item);
+    });
+    allVoicesPlayback.push(satbArray);
 }
 
 function checkforRoot() {
@@ -305,10 +307,10 @@ function getVoiceLeading(extensions, counterpoint) {
 }
 
 function getFinalVoicing() {
-    builtPhrase.info[4].push(bassVoiceArray[bassVoiceArray.length - 1]);
-    builtPhrase.info[4].push(tenorVoiceArray[bassVoiceArray.length - 1]);
-    builtPhrase.info[4].push(altoVoiceArray[bassVoiceArray.length - 1]);
-    builtPhrase.info[4].push(sopranoVoiceArray[bassVoiceArray.length - 1]);
+    builtPhrase.info.prevFinalVoicing.push(bassVoiceArray[bassVoiceArray.length - 1]);
+    builtPhrase.info.prevFinalVoicing.push(tenorVoiceArray[bassVoiceArray.length - 1]);
+    builtPhrase.info.prevFinalVoicing.push(altoVoiceArray[bassVoiceArray.length - 1]);
+    builtPhrase.info.prevFinalVoicing.push(sopranoVoiceArray[bassVoiceArray.length - 1]);
 }
 
 // END of document 
