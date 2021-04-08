@@ -82,6 +82,9 @@ function buildUnit(section, formNum) {
     // gets progression and generates harmonic rhythm
     harmonicUnit(section, formNum);
 
+
+    // HERE is where I need to convert object to array for playback
+
     // push to container for play handling
     phraseContainer.push(builtPhrase);
 }
@@ -90,11 +93,13 @@ function buildUnit(section, formNum) {
 function getPhraseUnit() {
     phraseUnit = [
         [
-            ['section'],
+            ['form id'],
             ['progression'],
             ['progression length'],
             ['voice-leading'],
-            ['prev-final-voicing']
+            ['prev-final-voicing'],
+            ['key'],
+            ['tempo']
         ],
         [
             [],
@@ -168,7 +173,7 @@ function harmonicUnit(section, formNum) {
     if (section === 0) {
         let chance = Math.ceil(Math.random() * 6);
         getProgression(currentHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
-        applyHarmonicRhythm();
+        applyHarmonicRhythm(); // reference /harm-rhythm.js
 
         // refactor example
         // builtPhrase.info[1] = [...progression];
@@ -202,7 +207,7 @@ function harmonicUnit(section, formNum) {
 
         builtPhrase[0][6] = [...phraseContainer[(formNum - 1) * 4][0][6]];
         
-        applyHarmonicRhythm();
+        applyHarmonicRhythm(); // reference /harm-rhythm.js
         builtPhrase[0][0] = formNum + ':A1';
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
@@ -210,7 +215,7 @@ function harmonicUnit(section, formNum) {
         getFinalVoicing();
     } else if (section === 2) {
         getProgression(upFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
-        applyHarmonicRhythm();
+        applyHarmonicRhythm(); // reference /harm-rhythm.js
         builtPhrase[0][0] = formNum + ':B';
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
@@ -223,7 +228,7 @@ function harmonicUnit(section, formNum) {
         builtPhrase[0][6] = [...phraseContainer[(formNum - 1) * 4][0][6]];
         progression[progression.length - 1] = numeralOne;
         progression[progression.length - 2] = 'V';
-        applyHarmonicRhythm();
+        applyHarmonicRhythm(); // reference /harm-rhythm.js
         builtPhrase[0][0] = formNum + ':A';
         builtPhrase[0][1] = [...progression];
         builtPhrase[0][2] = [progression.length];
