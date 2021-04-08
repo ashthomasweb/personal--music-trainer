@@ -1,4 +1,5 @@
 //  Cadences and scale playback JS file for "Music Trainer"
+let index = 0;
 
 let sourceNoteIndex = ['D6', 'Db6', 'C6', 'B5', 'Bb5', 'A5', 'Ab5', 'G5', 'Gb5', 'F5', 'E5', 'Eb5', 'D5', 'Db5', 'C5', 'B4', 'Bb4', 'A4', 'Ab4', 'G4', 'Gb4', 'F4', 'E4', 'Eb4', 'D4', 'Db4', 'C4', 'B3', 'Bb3', 'A3', 'Ab3', 'G3', 'Gb3', 'F3', 'E3', 'Eb3', 'D3', 'Db3', 'C3', 'B2', 'Bb2', 'A2', 'Ab2', 'G2', 'Gb2', 'F2', 'E2', 'Eb2', 'D2', 'Db2', 'C2', 'B1']
 
@@ -98,7 +99,6 @@ function getAllVoices() {
     }
 }
 
-let index = 0;
 
 function iterateThruHarmonies(infoArray) {
     // THIS is where I can control which voices play per beat
@@ -122,7 +122,7 @@ function iterateThruHarmonies(infoArray) {
 function fullVoiceBlock(voices, infoArray) {
 
     let chance = Math.floor(Math.random() * 5);
-    chance = 3;
+    // chance = 6;
     if (chance === 0) {
         voices.forEach((item) => {
             noteSwitch(item);
@@ -247,7 +247,7 @@ function arpeggiateVoices(voices, infoArray) {
 
 function boomChuck(voices, infoArray) {
     voicesTimer = 0;
-    beatLength = infoArray[6][0];
+    beatLength = infoArray.tempo;
 
     setTimeout(() => {
         noteSwitch(voices[0]);
