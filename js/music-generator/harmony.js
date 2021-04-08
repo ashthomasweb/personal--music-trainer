@@ -84,15 +84,55 @@ function buildUnit(section, formNum) {
 
 
     // HERE is where I need to convert object to array for playback
+    let builtPhraseArray = Object.values(phraseUnit)
+
+
 
     // push to container for play handling
-    phraseContainer.push(builtPhrase);
+    phraseContainer.push(builtPhraseArray);
 }
 
 // gets phrase length
 function getPhraseUnit() {
-    phraseUnit = [
-        [
+    // phraseUnit = [
+    //     [
+    //         ['form id'],
+    //         ['progression'],
+    //         ['progression length'],
+    //         ['voice-leading'],
+    //         ['prev-final-voicing'],
+    //         ['key'],
+    //         ['tempo']
+    //     ],
+    //     [
+    //         [],
+    //         [],
+    //         [],
+    //         []
+    //     ],
+    //     [
+    //         [],
+    //         [],
+    //         [],
+    //         []
+    //     ],
+    //     [
+    //         [],
+    //         [],
+    //         [],
+    //         []
+    //     ],
+    //     [
+    //         [],
+    //         [],
+    //         [],
+    //         []
+    //     ]
+    // ];
+
+
+    phraseUnit = {
+        info: [
             ['form id'],
             ['progression'],
             ['progression length'],
@@ -101,65 +141,36 @@ function getPhraseUnit() {
             ['key'],
             ['tempo']
         ],
-        [
+        measure1: [
             [],
             [],
             [],
             []
         ],
-        [
+        measure2: [
             [],
             [],
             [],
             []
         ],
-        [
+        measure3: [
             [],
             [],
             [],
             []
         ],
-        [
+        measure4: [
             [],
             [],
             [],
             []
         ]
-    ];
+    };
+
+
     return phraseUnit;
 }
 
-// phraseUnit = {
-//     info: [
-//         ['section'],
-//         ['progression'],
-//         ['voice-lead']
-//     ],
-//     measure1: [
-//         [],
-//         [],
-//         [],
-//         []
-//     ],
-//     measure2: [
-//         [],
-//         [],
-//         [],
-//         []
-//     ],
-//     measure3:[
-//         [],
-//         [],
-//         [],
-//         []
-//     ],
-//     measure4: [
-//         [],
-//         [],
-//         [],
-//         []
-//     ]
-// };
 //
 // const array = Object.values(phraseUnit)
 // half dim glyph ∅  ♭  °
@@ -179,11 +190,11 @@ function harmonicUnit(section, formNum) {
         // builtPhrase.info[1] = [...progression];
         // refactor example
 
-        builtPhrase[0][0] = formNum + ':A';
-        builtPhrase[0][1] = [...progression];
-        builtPhrase[0][2] = [progression.length];
-        builtPhrase[0][5] = [displayKeyInArray()];
-        builtPhrase[0][6] = [getTempo()];
+        builtPhrase.info[0] = formNum + ':A';
+        builtPhrase.info[1] = [...progression];
+        builtPhrase.info[2] = [progression.length];
+        builtPhrase.info[5] = [displayKeyInArray()];
+        builtPhrase.info[6] = [getTempo()];
         getFinalVoicing();
     } else if (section === 1) {
         let chance = Math.ceil(Math.random() * 15);
@@ -205,50 +216,50 @@ function harmonicUnit(section, formNum) {
             progression[progression.length - 3] = numeralOne;
         }
 
-        builtPhrase[0][6] = [...phraseContainer[(formNum - 1) * 4][0][6]];
-        
+        builtPhrase.info[6] = [...phraseContainer[(formNum - 1) * 4][0][6]];
+
         applyHarmonicRhythm(); // reference /harm-rhythm.js
-        builtPhrase[0][0] = formNum + ':A1';
-        builtPhrase[0][1] = [...progression];
-        builtPhrase[0][2] = [progression.length];
-        builtPhrase[0][5] = [displayKeyInArray()];
+        builtPhrase.info[0] = formNum + ':A1';
+        builtPhrase.info[1] = [...progression];
+        builtPhrase.info[2] = [progression.length];
+        builtPhrase.info[5] = [displayKeyInArray()];
         getFinalVoicing();
     } else if (section === 2) {
         getProgression(upFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
         applyHarmonicRhythm(); // reference /harm-rhythm.js
-        builtPhrase[0][0] = formNum + ':B';
-        builtPhrase[0][1] = [...progression];
-        builtPhrase[0][2] = [progression.length];
-        builtPhrase[0][5] = [displayKeyInArray()];
-        builtPhrase[0][6] = [getBSectionTempo(phraseContainer[(formNum - 1) * 4][0][6][0])];
+        builtPhrase.info[0] = formNum + ':B';
+        builtPhrase.info[1] = [...progression];
+        builtPhrase.info[2] = [progression.length];
+        builtPhrase.info[5] = [displayKeyInArray()];
+        builtPhrase.info[6] = [getBSectionTempo(phraseContainer[(formNum - 1) * 4][0][6][0])];
         getFinalVoicing();
     } else if (section === 3) {
         progression = [];
         progression = [...phraseContainer[(formNum - 1) * 4][0][1]];
-        builtPhrase[0][6] = [...phraseContainer[(formNum - 1) * 4][0][6]];
+        builtPhrase.info[6] = [...phraseContainer[(formNum - 1) * 4][0][6]];
         progression[progression.length - 1] = numeralOne;
         progression[progression.length - 2] = 'V';
         applyHarmonicRhythm(); // reference /harm-rhythm.js
-        builtPhrase[0][0] = formNum + ':A';
-        builtPhrase[0][1] = [...progression];
-        builtPhrase[0][2] = [progression.length];
-        builtPhrase[0][5] = [displayKeyInArray()];
+        builtPhrase.info[0] = formNum + ':A';
+        builtPhrase.info[1] = [...progression];
+        builtPhrase.info[2] = [progression.length];
+        builtPhrase.info[5] = [displayKeyInArray()];
         getFinalVoicing();
     }
 }
 
 function displayKeyInArray() {
     let center;
-    if (keyNumerals === keyOfC ) {
+    if (keyNumerals === keyOfC) {
         center = 'C';
-    } else if ( keyNumerals === keyOfF ) {
+    } else if (keyNumerals === keyOfF) {
         center = 'F';
     } else {
         center = 'G';
     }
 
     let quality;
-    if (currentHarmony === major ) {
+    if (currentHarmony === major) {
         quality = ' major';
     } else {
         quality = ' minor';
