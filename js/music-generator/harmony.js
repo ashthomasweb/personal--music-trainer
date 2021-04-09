@@ -104,30 +104,30 @@ function buildForm(numberOfRepeats) {
             if (ii === 0) {
                 getKeyMode();
                 getKeyCenter();
-                createPhraseInfo(0, i + 1); // builds phrasing array, harmonic progression, and harmonic rhythm
+                createPhraseChart(0, i + 1); // builds phrasing array, harmonic progression, and harmonic rhythm
                 getStartTones(); // voice-leads progression
             }
             if (ii === 1) {
-                createPhraseInfo(1, i + 1);
+                createPhraseChart(1, i + 1);
                 getStartTones();
             }
             if (ii === 2) {
                 switchHarmonicMode();
-                createPhraseInfo(2, i + 1);
+                createPhraseChart(2, i + 1);
                 getStartTones();
             }
             if (ii === 3) {
                 switchHarmonicMode();
-                createPhraseInfo(3, i + 1);
+                createPhraseChart(3, i + 1);
                 getStartTones();
             }
         }
     }
-    playFromArray();
+    playPhraseChart();
 }
 
 // calls all builder helper functions and provides data for playback via phraseContainer
-function createPhraseInfo(section, formNum) {
+function createPhraseChart(section, formNum) {
     // gets empty phrase
     phraseUnit = getPhraseUnit();
     // gets progression and generates harmonic rhythm

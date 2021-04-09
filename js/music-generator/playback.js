@@ -5,20 +5,20 @@ let sourceNoteIndex = ['D6', 'Db6', 'C6', 'B5', 'Bb5', 'A5', 'Ab5', 'G5', 'Gb5',
 
 
 
-let allVoicesPlayback = [];
-let combinedVoicesPlayback = [
+let tempPlaybackArray = [];
+let allVoicesPlaybackArray = [
     [],
     [],
     [],
     []
 ];
 
-function getAllVoices() {
-    for (let i = 0; i <= allVoicesPlayback.length - 1; i++) {
-        combinedVoicesPlayback[0] = combinedVoicesPlayback[0].concat(allVoicesPlayback[i][0]);
-        combinedVoicesPlayback[1] = combinedVoicesPlayback[1].concat(allVoicesPlayback[i][1]);
-        combinedVoicesPlayback[2] = combinedVoicesPlayback[2].concat(allVoicesPlayback[i][2]);
-        combinedVoicesPlayback[3] = combinedVoicesPlayback[3].concat(allVoicesPlayback[i][3]);
+function arrangeAllVoices() {
+    for (let i = 0; i <= tempPlaybackArray.length - 1; i++) {
+        allVoicesPlaybackArray[0] = allVoicesPlaybackArray[0].concat(tempPlaybackArray[i][0]);
+        allVoicesPlaybackArray[1] = allVoicesPlaybackArray[1].concat(tempPlaybackArray[i][1]);
+        allVoicesPlaybackArray[2] = allVoicesPlaybackArray[2].concat(tempPlaybackArray[i][2]);
+        allVoicesPlaybackArray[3] = allVoicesPlaybackArray[3].concat(tempPlaybackArray[i][3]);
     }
 }
 
@@ -26,64 +26,59 @@ function getAllVoices() {
 
 
 // Play from phrasing chart
-function playFromArray() {
+function playPhraseChart() {
     index = 0;
     voicesTimer = 0;
     displayTimer = 0;
-    getAllVoices();
+    arrangeAllVoices();
     phraseContainer.forEach((phrase, i) => {
-        // Display function - can only display data that has been included in phraseContainer
         beatLength = phrase[0].tempo;
-
-        let formId = 'Form/Section: ' + phrase[0].formId;
-        let key = 'Current key: ' + phrase[0].key;
-        let tempo = 'Tempo in ms: ' + phrase[0].tempo;
-        let progLength = 'Number of chords: ' + phrase[0].progressionLength;
-
-        let progOutput = [];
-        phrase[0].progression.forEach((item) => {
-            temp = item + '...............';
-            progOutput.push(temp.slice(0, 7));
-
-        });
-        let progDisplay = 'P: ' + progOutput;
-        let pOutput = progDisplay.replace(/\,/g, ".");
-
-        let bassOutput = [];
-        phrase[0].voiceLeading[0].forEach((item) => {
-            temp = item + '...............';
-            bassOutput.push(temp.slice(0, 7));
-
-        });
-        let bassDisplay = 'B: ' + bassOutput;
-        let bOutput = bassDisplay.replace(/\,/g, ".");
-
-        let tenorOutput = [];
-        phrase[0].voiceLeading[1].forEach((item) => {
-            temp = item + '...............';
-            tenorOutput.push(temp.slice(0, 7));
-
-        });
-        let tenorDisplay = 'T: ' + tenorOutput;
-        let tOutput = tenorDisplay.replace(/\,/g, ".");
-
-        let altoOutput = [];
-        phrase[0].voiceLeading[2].forEach((item) => {
-            temp = item + '...............';
-            altoOutput.push(temp.slice(0, 7));
-
-        });
-        let altoDisplay = 'A: ' + altoOutput;
-        let aOutput = altoDisplay.replace(/\,/g, ".");
-
-        let sopranoOutput = [];
-        phrase[0].voiceLeading[3].forEach((item) => {
-            temp = item + '...............';
-            sopranoOutput.push(temp.slice(0, 7));
-        });
-        let sopranoDisplay = 'S: ' + sopranoOutput;
-        let sOutput = sopranoDisplay.replace(/\,/g, ".");
         
+        // Temporary
+        // Display function - can only display data that has been included in phraseContainer
+            let formId = 'Form/Section: ' + phrase[0].formId;
+            let key = 'Current key: ' + phrase[0].key;
+            let tempo = 'Tempo in ms: ' + phrase[0].tempo;
+            let progLength = 'Number of chords: ' + phrase[0].progressionLength;
+            let progOutput = [];
+            phrase[0].progression.forEach((item) => {
+                temp = item + '...............';
+                progOutput.push(temp.slice(0, 7));
+            });
+            let progDisplay = 'P: ' + progOutput;
+            let pOutput = progDisplay.replace(/\,/g, ".");
+            let bassOutput = [];
+            phrase[0].voiceLeading[0].forEach((item) => {
+                temp = item + '...............';
+                bassOutput.push(temp.slice(0, 7));
+            });
+            let bassDisplay = 'B: ' + bassOutput;
+            let bOutput = bassDisplay.replace(/\,/g, ".");
+            let tenorOutput = [];
+            phrase[0].voiceLeading[1].forEach((item) => {
+                temp = item + '...............';
+                tenorOutput.push(temp.slice(0, 7));
+            });
+            let tenorDisplay = 'T: ' + tenorOutput;
+            let tOutput = tenorDisplay.replace(/\,/g, ".");
+            let altoOutput = [];
+            phrase[0].voiceLeading[2].forEach((item) => {
+                temp = item + '...............';
+                altoOutput.push(temp.slice(0, 7));
+            });
+            let altoDisplay = 'A: ' + altoOutput;
+            let aOutput = altoDisplay.replace(/\,/g, ".");
+            let sopranoOutput = [];
+            phrase[0].voiceLeading[3].forEach((item) => {
+                temp = item + '...............';
+                sopranoOutput.push(temp.slice(0, 7));
+            });
+            let sopranoDisplay = 'S: ' + sopranoOutput;
+            let sOutput = sopranoDisplay.replace(/\,/g, ".");
+        // Display function - can only display data that has been included in phraseContainer
+        // Temporary
+
+        // Timed information display
         setTimeout(() => {
             document.getElementById('form-id').innerText = formId;
             document.getElementById('key').innerText = key;
@@ -97,17 +92,15 @@ function playFromArray() {
         }, displayTimer);
         displayTimer = displayTimer + (beatLength * 16);
 
+        // Playback
         phrase.forEach((item, i) => {
-            if (i !== 0) {
+            if (i !== 0) { // prevent iteration on info index
                 phrase[i].forEach((item) => {
                     if (item.length !== 0) {
-
-                        // PRIMARY PLAY - TEMPO AND FUNCTION CALL
                         setTimeout(() => {
-                            iterateThruHarmonies(phrase[0]);
+                            iteratePlaybackArray(phrase[0]);
                         }, voicesTimer + beatLength);
                         voicesTimer = voicesTimer + beatLength;
-
                     } else {
                         voicesTimer = voicesTimer + beatLength;
                     }
@@ -119,18 +112,18 @@ function playFromArray() {
 
 
 
-function iterateThruHarmonies(infoArray) {
+function iteratePlaybackArray(infoArray) {
     // THIS is where I can control which voices play per beat
     let chance = Math.floor(Math.random() * 10);
     chance = 3;
     if (chance === 0) {
-        fullVoiceBlock([combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]], infoArray);
+        playTextureSwitch([allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
     } else if (chance === 1) {
-        fullVoiceBlock([combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]], infoArray);
+        playTextureSwitch([allVoicesPlaybackArray[1][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
     } else if (chance === 2) {
-        fullVoiceBlock([combinedVoicesPlayback[0][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]], infoArray);
+        playTextureSwitch([allVoicesPlaybackArray[0][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
     } else if (chance === 3) {
-        fullVoiceBlock([combinedVoicesPlayback[0][index], combinedVoicesPlayback[1][index], combinedVoicesPlayback[2][index], combinedVoicesPlayback[3][index]], infoArray);
+        playTextureSwitch([allVoicesPlaybackArray[0][index], allVoicesPlaybackArray[1][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
     }
     // THIS is where I can control which voices play per beat
 
@@ -138,7 +131,7 @@ function iterateThruHarmonies(infoArray) {
 }
 
 // THIS is where I can engage textures
-function fullVoiceBlock(voices, infoArray) {
+function playTextureSwitch(voices, infoArray) {
 
     let chance = Math.floor(Math.random() * 5);
     // chance = 6;

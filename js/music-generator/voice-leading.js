@@ -117,7 +117,7 @@ function getStartTones() {
     satbArray.forEach((item) => {
         phraseUnit.info.voiceLeading.push(item);
     });
-    allVoicesPlayback.push(satbArray);
+    tempPlaybackArray.push(satbArray);
 }
 
 function checkforRoot() {
