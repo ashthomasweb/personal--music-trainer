@@ -12,22 +12,22 @@ let resolveDirectionArray = [];
 
 function getStartTones() {
 
-    function bass() {
+    function createBassArray() {
         getVoiceLeading('triad');
         bassVoiceArray = [...tempVoiceArray];
     }
     
-    function tenor() {
+    function createTenorArray() {
         getVoiceLeading('triad');
         tenorVoiceArray = [...tempVoiceArray];
     }
     
-    function alto() {
+    function createAltoArray() {
         getVoiceLeading('seventh');
         altoVoiceArray = [...tempVoiceArray];
     }
     
-    function soprano() {
+    function createSopranoArray() {
         getVoiceLeading('seventh', true);
         sopranoVoiceArray = [...tempVoiceArray];
     }
@@ -98,21 +98,21 @@ function getStartTones() {
     
     // lowest root
     startingNote = firstChord[1][1][0];
-    bass();
+    createBassArray();
 
     startingNote = noteIndex[tenorTones[Math.floor(Math.random() * tenorTones.length)]];
-    tenor();
+    createTenorArray();
 
     startingNote = noteIndex[altoTones[Math.floor(Math.random() * altoTones.length)]];
-    alto();
+    createAltoArray();
 
     // highest third
     startingNote = firstChord[2][1][firstChord[2][1].length - 1];
-    soprano();
+    createSopranoArray();
 
-    // THIS is where I can check for bass notes
-    checkforRoot();
-    // THIS is where I can check for bass notes
+    // THIS is where I can check for root
+    checkForRoot();
+    // THIS is where I can check for root
 
     let satbArray = [];
     satbArray.push(bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray);
@@ -122,7 +122,7 @@ function getStartTones() {
     tempPlaybackArray.push(satbArray);
 }
 
-function checkforRoot() {
+function checkForRoot() {
 
     for (let i = 0; i <= progression.length - 1; i++) {
         let rootBool = false;
