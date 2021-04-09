@@ -117,13 +117,13 @@ function iteratePlaybackArray(infoArray) {
     let chance = Math.floor(Math.random() * 10);
     chance = 3;
     if (chance === 0) {
-        playTextureSwitch([allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
+        playbackTextureSwitch([allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
     } else if (chance === 1) {
-        playTextureSwitch([allVoicesPlaybackArray[1][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
+        playbackTextureSwitch([allVoicesPlaybackArray[1][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
     } else if (chance === 2) {
-        playTextureSwitch([allVoicesPlaybackArray[0][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
+        playbackTextureSwitch([allVoicesPlaybackArray[0][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
     } else if (chance === 3) {
-        playTextureSwitch([allVoicesPlaybackArray[0][index], allVoicesPlaybackArray[1][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
+        playbackTextureSwitch([allVoicesPlaybackArray[0][index], allVoicesPlaybackArray[1][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
     }
     // THIS is where I can control which voices play per beat
 
@@ -131,7 +131,7 @@ function iteratePlaybackArray(infoArray) {
 }
 
 // THIS is where I can engage textures
-function playTextureSwitch(voices, infoArray) {
+function playbackTextureSwitch(voices, infoArray) {
 
     let chance = Math.floor(Math.random() * 5);
     // chance = 6;
@@ -187,11 +187,11 @@ let voicesTimer = 0;
 // THIS is where i can control tempo
 let beatLength;
 
-function getTempo() {
+function getNewTempo() {
     return (Math.ceil(Math.random() * 700) + 400);
 }
 
-function getBSectionTempo(input) {
+function getCloselyRelatedTempo(input) {
     let amountChange = Math.ceil(Math.random() * 70 + 80);
     let chance = Math.ceil(Math.random() * 2);
     if (chance === 1) {

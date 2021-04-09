@@ -149,7 +149,7 @@ function createHarmonicUnit(section, formNum) {
         phraseUnit.info.progression = [...progression];
         phraseUnit.info.progressionLength = progression.length;
         phraseUnit.info.key = concatKeyInfo();
-        phraseUnit.info.tempo = getTempo();
+        phraseUnit.info.tempo = getNewTempo();
         getFinalVoicing();
     } else if (section === 1) {
         let chance = Math.ceil(Math.random() * 15);
@@ -185,7 +185,7 @@ function createHarmonicUnit(section, formNum) {
         phraseUnit.info.progression = [...progression];
         phraseUnit.info.progressionLength = progression.length;
         phraseUnit.info.key = concatKeyInfo();
-        phraseUnit.info.tempo = getBSectionTempo(phraseContainer[(formNum - 1) * 4][0].tempo);
+        phraseUnit.info.tempo = getCloselyRelatedTempo(phraseContainer[(formNum - 1) * 4][0].tempo);
         getFinalVoicing();
     } else if (section === 3) {
         progression = [...phraseContainer[(formNum - 1) * 4][0].progression];

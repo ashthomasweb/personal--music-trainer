@@ -6,30 +6,32 @@ let tenorVoiceArray = [];
 let altoVoiceArray = [];
 let sopranoVoiceArray = [];
 
-function bass() {
-    getVoiceLeading('triad');
-    bassVoiceArray = [...tempVoiceArray];
-}
 
-function tenor() {
-    getVoiceLeading('triad');
-    tenorVoiceArray = [...tempVoiceArray];
-}
-
-function alto() {
-    getVoiceLeading('seventh');
-    altoVoiceArray = [...tempVoiceArray];
-}
-
-function soprano() {
-    getVoiceLeading('seventh', true);
-    sopranoVoiceArray = [...tempVoiceArray];
-}
 
 let resolveDirectionArray = [];
 
 function getStartTones() {
 
+    function bass() {
+        getVoiceLeading('triad');
+        bassVoiceArray = [...tempVoiceArray];
+    }
+    
+    function tenor() {
+        getVoiceLeading('triad');
+        tenorVoiceArray = [...tempVoiceArray];
+    }
+    
+    function alto() {
+        getVoiceLeading('seventh');
+        altoVoiceArray = [...tempVoiceArray];
+    }
+    
+    function soprano() {
+        getVoiceLeading('seventh', true);
+        sopranoVoiceArray = [...tempVoiceArray];
+    }
+    
     // get first chord as string
     let firstChord = progression[0];
     resolveDirectionArray = [];
