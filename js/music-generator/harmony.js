@@ -105,21 +105,21 @@ function buildForm(numberOfRepeats) {
                 getKeyMode();
                 getKeyCenter();
                 createPhraseChart(0, i + 1); // builds phrasing array, harmonic progression, and harmonic rhythm
-                getStartTones(); // voice-leads progression
+                getStartingTones(); // voice-leads progression
             }
             if (ii === 1) {
                 createPhraseChart(1, i + 1);
-                getStartTones();
+                getStartingTones();
             }
             if (ii === 2) {
                 switchHarmonicMode();
                 createPhraseChart(2, i + 1);
-                getStartTones();
+                getStartingTones();
             }
             if (ii === 3) {
                 switchHarmonicMode();
                 createPhraseChart(3, i + 1);
-                getStartTones();
+                getStartingTones();
             }
         }
     }

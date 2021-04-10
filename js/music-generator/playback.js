@@ -133,7 +133,7 @@ function iteratePlaybackArray(infoArray) {
 // THIS is where I can engage textures
 function playbackTextureSwitch(voices, infoArray) {
 
-    let chance = Math.floor(Math.random() * 5);
+    let chance = Math.floor(Math.random() * 4);
     // chance = 6;
     if (chance === 0) {
         voices.forEach((item) => {
@@ -141,8 +141,8 @@ function playbackTextureSwitch(voices, infoArray) {
         });
     } else if (chance === 1 || chance === 2) {
         arpeggiateVoices(voices, infoArray);
-        } else if (chance === 3) {
-            arpeggiateVoicesCompound(voices, infoArray);
+        // } else if (chance === 3) {
+        //     arpeggiateVoicesCompound(voices, infoArray);
     } else {
         boomChuck(voices, infoArray);
     }
@@ -188,7 +188,7 @@ let voicesTimer = 0;
 let beatLength;
 
 function getNewTempo() {
-    return (Math.ceil(Math.random() * 700) + 400);
+    return (Math.ceil(Math.random() * 500) + 500);
 }
 
 function getCloselyRelatedTempo(input) {
@@ -316,75 +316,75 @@ function allStop() {
 // Out Of Date Development Functions
 // Button Playback 
 
-function playVoicesBlock() {
-    voicesTimer = 0;
+// function playVoicesBlock() {
+//     voicesTimer = 0;
 
-    for (let i = 0; i <= progression.length - 1; i++) {
-        setTimeout(() => {
-            chord(bassVoiceArray[i], tenorVoiceArray[i], altoVoiceArray[i], sopranoVoiceArray[i]);
-        }, voicesTimer + 800);
-        voicesTimer = voicesTimer + 800;
-    }
-}
+//     for (let i = 0; i <= progression.length - 1; i++) {
+//         setTimeout(() => {
+//             chord(bassVoiceArray[i], tenorVoiceArray[i], altoVoiceArray[i], sopranoVoiceArray[i]);
+//         }, voicesTimer + 800);
+//         voicesTimer = voicesTimer + 800;
+//     }
+// }
 
-// Play voices as blocks without stopping repeated notes
-function playVoices() {
-    voicesTimer = 0;
+// // Play voices as blocks without stopping repeated notes
+// function playVoices() {
+//     voicesTimer = 0;
 
-    for (let i = 0; i <= progression.length - 1; i++) {
-        setTimeout(() => {
-            noteSwitch(bassVoiceArray[i]);
-            noteSwitch(tenorVoiceArray[i]);
-            noteSwitch(altoVoiceArray[i]);
-            noteSwitch(sopranoVoiceArray[i]);
-        }, voicesTimer + 700);
-        voicesTimer = voicesTimer + 700;
-    }
-}
+//     for (let i = 0; i <= progression.length - 1; i++) {
+//         setTimeout(() => {
+//             noteSwitch(bassVoiceArray[i]);
+//             noteSwitch(tenorVoiceArray[i]);
+//             noteSwitch(altoVoiceArray[i]);
+//             noteSwitch(sopranoVoiceArray[i]);
+//         }, voicesTimer + 700);
+//         voicesTimer = voicesTimer + 700;
+//     }
+// }
 
-// play progression in ugly blocks
-let progTimer = 0;
+// // play progression in ugly blocks
+// let progTimer = 0;
 
-function playProg() {
-    progTimer = 0;
-    console.log(progression);
-    for (let i = 0; i <= progression.length - 1; i++) {
-        setTimeout(() => {
-            playRoman(progression[i]);
-        }, progTimer + 500);
-        progTimer = progTimer + 500;
-    }
-}
+// function playProg() {
+//     progTimer = 0;
+//     console.log(progression);
+//     for (let i = 0; i <= progression.length - 1; i++) {
+//         setTimeout(() => {
+//             playRoman(progression[i]);
+//         }, progTimer + 500);
+//         progTimer = progTimer + 500;
+//     }
+// }
 
-function playRoman(numeral) {
+// function playRoman(numeral) {
 
-    switch (numeral) {
+//     switch (numeral) {
 
-        case "I":
-            chord('C4', 'E4', 'G4');
-            break;
-        case "ii":
-            chord('D4', 'F4', 'A4');
-            break;
-        case "iii":
-            chord('E4', 'G4', 'B4');
-            break;
-        case "IV":
-            chord('C4', 'F4', 'A4');
-            break;
-        case "V":
-            chord('G3', 'B3', 'D4');
-            break;
-        case "vi":
-            chord('A3', 'C4', 'E4');
-            break;
-        case "vii":
-            chord('B3', 'D4', 'F4');
-            break;
-        default:
-            console.log('Fin.')
-    }
-}
+//         case "I":
+//             chord('C4', 'E4', 'G4');
+//             break;
+//         case "ii":
+//             chord('D4', 'F4', 'A4');
+//             break;
+//         case "iii":
+//             chord('E4', 'G4', 'B4');
+//             break;
+//         case "IV":
+//             chord('C4', 'F4', 'A4');
+//             break;
+//         case "V":
+//             chord('G3', 'B3', 'D4');
+//             break;
+//         case "vi":
+//             chord('A3', 'C4', 'E4');
+//             break;
+//         case "vii":
+//             chord('B3', 'D4', 'F4');
+//             break;
+//         default:
+//             console.log('Fin.')
+//     }
+// }
 
 
 

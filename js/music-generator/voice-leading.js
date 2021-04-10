@@ -5,12 +5,21 @@ let bassVoiceArray = [];
 let tenorVoiceArray = [];
 let altoVoiceArray = [];
 let sopranoVoiceArray = [];
-
-
-
 let resolveDirectionArray = [];
 
-function getStartTones() {
+function getStartingTones() {
+
+    let allChordTones = [];
+    let allChordToneIndex = [];
+    let bassTones = [];
+    let tenorTones = [];
+    let altoTones = [];
+    let sopranoTones = [];
+    let direction;
+    let satbArray = [];
+    let firstChord;
+    let cadenceType;
+
 
     function createBassArray() {
         getVoiceLeading('triad');
@@ -33,22 +42,14 @@ function getStartTones() {
     }
     
     // get first chord as string
-    let firstChord = progression[0];
+    firstChord = progression[0];
     resolveDirectionArray = [];
-    // find first chord object
+    // assign first chord to object
     for (let i = 0; i <= keyNumerals.length - 1; i++) {
         if (keyNumerals[i][0] === firstChord) {
             firstChord = keyNumerals[i];
         }
     }
-
-    let allChordTones = [];
-    let allChordToneIndex = [];
-    let bassTones = [];
-    let tenorTones = [];
-    let altoTones = [];
-    let sopranoTones = [];
-    let direction;
 
     for (let i = 0; i <= progression.length - 2; i++) {
         let num = Math.floor(Math.random() * 6);
@@ -62,7 +63,7 @@ function getStartTones() {
         resolveDirectionArray.push(direction);
     }
 
-    let cadenceType = document.getElementById('chord-end').textContent;
+    cadenceType = document.getElementById('chord-end').textContent;
 
     if (cadenceType === 'Authentic' || cadenceType === 'Plagal') {
         resolveDirectionArray[resolveDirectionArray.length - 1] = 'down';
@@ -114,7 +115,6 @@ function getStartTones() {
     checkForRoot();
     // THIS is where I can check for root
 
-    let satbArray = [];
     satbArray.push(bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray);
     satbArray.forEach((item) => {
         phraseUnit.info.voiceLeading.push(item);
