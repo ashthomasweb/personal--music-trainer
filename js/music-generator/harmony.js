@@ -150,7 +150,7 @@ function createHarmonicUnit(section, formNum) {
         phraseUnit.info.progressionLength = progression.length;
         phraseUnit.info.key = concatKeyInfo();
         phraseUnit.info.tempo = getNewTempo();
-        getFinalVoicing();
+        savePrevFinalVoicing();
     } else if (section === 1) {
         let chance = Math.ceil(Math.random() * 15);
         // sequence by stongest motion most often
@@ -177,7 +177,7 @@ function createHarmonicUnit(section, formNum) {
         phraseUnit.info.progressionLength = progression.length;
         phraseUnit.info.key = concatKeyInfo();
         phraseUnit.info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
-        getFinalVoicing();
+        savePrevFinalVoicing();
     } else if (section === 2) {
         getNewProgression(motionUpFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
         applyHarmonicRhythm(); // reference /harm-rhythm.js
@@ -186,7 +186,7 @@ function createHarmonicUnit(section, formNum) {
         phraseUnit.info.progressionLength = progression.length;
         phraseUnit.info.key = concatKeyInfo();
         phraseUnit.info.tempo = getCloselyRelatedTempo(phraseContainer[(formNum - 1) * 4][0].tempo);
-        getFinalVoicing();
+        savePrevFinalVoicing();
     } else if (section === 3) {
         progression = [...phraseContainer[(formNum - 1) * 4][0].progression];
         progression[progression.length - 1] = numeralOne;
@@ -197,7 +197,7 @@ function createHarmonicUnit(section, formNum) {
         phraseUnit.info.progressionLength = progression.length;
         phraseUnit.info.key = concatKeyInfo();
         phraseUnit.info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
-        getFinalVoicing();
+        savePrevFinalVoicing();
     }
 }
 

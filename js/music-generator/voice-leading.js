@@ -20,7 +20,6 @@ function getStartingTones() {
     let firstChord;
     let cadenceType;
 
-
     function createBassArray() {
         getVoiceLeading('triad');
         bassVoiceArray = [...tempVoiceArray];
@@ -182,7 +181,7 @@ function getVoiceLeading(extensions, counterpoint) {
             }
         }
 
-        function voiceLead(startingNote, resolveChord, counterpoint) {
+        function leadSingleVoice(startingNote, resolveChord, counterpoint) {
             let chordMemberIndexArray = [];
             let differenceOfArray = [];
 
@@ -198,7 +197,7 @@ function getVoiceLeading(extensions, counterpoint) {
                 }
             }
 
-            function nextClosestResolve() {
+            function nextClosestResolution() {
                 differenceOfArray.splice(indexOfSmallestDistanceInDiff, 1);
                 chordMemberIndexArray.splice(indexOfSmallestDistanceInDiff, 1);
                 indexOfSmallestDistanceInDiff = differenceOfArray.indexOf(Math.min(...differenceOfArray));
@@ -223,10 +222,10 @@ function getVoiceLeading(extensions, counterpoint) {
             let indexOfSmallestDistanceInDiff = differenceOfArray.indexOf(Math.min(...differenceOfArray));
             let smoothestTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistanceInDiff]];
             // repeat procedure after removing previous to find next best option
-            nextClosestResolve();
+            nextClosestResolution();
             let goodTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistanceInDiff]];
             // repeat procedure after removing previous to find next best option again
-            nextClosestResolve();
+            nextClosestResolution();
             let okayTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistanceInDiff]];
 
             let resolution;
@@ -235,7 +234,7 @@ function getVoiceLeading(extensions, counterpoint) {
             let resolutionOptions = [smoothestTransition, goodTransition, okayTransition];
 
             // random chance of smoothest or next best voice-leading option
-            function smoothResolveChance() {
+            function smoothResolutionChance() {
                 let num = Math.floor(Math.random() * 3);
                 if (num === 0) {
                     resolution = resolutionOptions[1];
@@ -293,7 +292,7 @@ function getVoiceLeading(extensions, counterpoint) {
             }
 
             // smoothest or next best option
-            smoothResolveChance();
+            smoothResolutionChance();
             // check direction array for shift
             voiceLeadDirectionOptions();
 
@@ -302,13 +301,13 @@ function getVoiceLeading(extensions, counterpoint) {
             tempVoiceArray.push(resolution);
         }
 
-        voiceLead(startingNote, resolveChord)
+        leadSingleVoice(startingNote, resolveChord)
 
     }
 
 }
 
-function getFinalVoicing() {
+function savePrevFinalVoicing() {
     phraseUnit.info.prevFinalVoicing.push(bassVoiceArray[bassVoiceArray.length - 1]);
     phraseUnit.info.prevFinalVoicing.push(tenorVoiceArray[bassVoiceArray.length - 1]);
     phraseUnit.info.prevFinalVoicing.push(altoVoiceArray[bassVoiceArray.length - 1]);
