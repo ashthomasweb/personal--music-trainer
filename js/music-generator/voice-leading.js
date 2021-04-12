@@ -6,17 +6,9 @@ let bassVoiceArray = [];
 let tenorVoiceArray = [];
 let altoVoiceArray = [];
 let sopranoVoiceArray = [];
+let tempCadenceType;
 
 function voiceLeadHandler() {
-
-    let allChordTones = [];
-    let allChordToneIndex = [];
-    let bassTones = [];
-    let tenorTones = [];
-    let altoTones = [];
-    let sopranoTones = [];
-    let direction;
-    let satbArray = [];
 
     function createBassArray() {
         getVoiceLeading('triad');
@@ -47,6 +39,7 @@ function voiceLeadHandler() {
         }
     }
 
+    let direction;
     resolutionDirectionArray = [];
     for (let i = 0; i <= progression.length - 2; i++) {
         let num = Math.floor(Math.random() * 6);
@@ -60,17 +53,17 @@ function voiceLeadHandler() {
         resolutionDirectionArray.push(direction);
     }
 
-    let cadenceType = document.getElementById('chord-end').textContent;
-
-    if (cadenceType === 'Authentic' || cadenceType === 'Plagal') {
+    if (tempCadenceType === 'Authentic' || tempCadenceType === 'Plagal') {
         resolutionDirectionArray[resolutionDirectionArray.length - 1] = 'down';
         resolutionDirectionArray[resolutionDirectionArray.length - 2] = 'smoothest';
     }
-    if (cadenceType === 'Half' || cadenceType === 'Deceptive') {
+    if (tempCadenceType === 'Half' || tempCadenceType === 'Deceptive') {
         resolutionDirectionArray[resolutionDirectionArray.length - 1] = 'up';
         resolutionDirectionArray[resolutionDirectionArray.length - 2] = 'smoothest';
     }
 
+    let allChordTones = [];
+    let allChordToneIndex = [];
     allChordTones.push(...firstChord[1][1]);
     allChordTones.push(...firstChord[2][1]);
     allChordTones.push(...firstChord[3][1]);
@@ -78,6 +71,11 @@ function voiceLeadHandler() {
         allChordToneIndex.push(noteIndex.indexOf(item));
     })
 
+    // seperate allChordToneIndex into 
+    let bassTones = [];
+    let tenorTones = [];
+    let altoTones = [];
+    let sopranoTones = [];
     allChordToneIndex.forEach((item) => {
         if (item < 19) { // F3 and below
             bassTones.push(item);
@@ -107,10 +105,8 @@ function voiceLeadHandler() {
     startingNote = firstChord[2][1][firstChord[2][1].length - 1];
     createSopranoArray();
 
-    // THIS is where I can check for root
-
+    // NEEDS refactor for multiple keys
     function checkForRoot() {
-
         for (let i = 0; i <= progression.length - 1; i++) {
             let rootBool = false;
             let roots = [];
@@ -122,7 +118,6 @@ function voiceLeadHandler() {
                     roots = [...item[1][1]];
                 }
             });
-            // run .includes()
             if (roots.includes(bassVoiceArray[i])) {
                 rootBool = true;
             }
@@ -135,26 +130,23 @@ function voiceLeadHandler() {
             if (roots.includes(sopranoVoiceArray[i])) {
                 rootBool = true;
             }
-            noteIndex.indexOf(bassVoiceArray[i])
-            noteIndex.indexOf(roots[0]);
-            noteIndex.indexOf(roots[1]);
-            let nearestRoot;
-            if (noteIndex.indexOf(bassVoiceArray[i]) < 7) {
-                nearestRoot = roots[0];
-            } else {
-                nearestRoot = roots[1];
-            }
+
+            // let nearestRoot;
+            // if (noteIndex.indexOf(bassVoiceArray[i]) < 7) {
+            //     nearestRoot = roots[0];
+            // } else {
+            //     nearestRoot = roots[1];
+            // }
             // if false then move bass to nearest root
             if (rootBool === false) {
-                bassVoiceArray[i] = nearestRoot;
+                bassVoiceArray[i] = roots[0];
             }
         }
     }
-
     checkForRoot();
-    // THIS is where I can check for root
 
     // raw voice-lead info
+    let satbArray = [];
     satbArray.push(bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray);
     // iterate to info array
     satbArray.forEach((item) => {

@@ -68,9 +68,9 @@ function getKeyMode() {
 
 function getKeyCenter() {
     let chance = Math.floor(Math.random() * 3);
-    if ( chance === 0 ) {
+    if (chance === 0) {
         keyNumerals = keyOfC;
-    } else if ( chance === 1 ) {
+    } else if (chance === 1) {
         keyNumerals = keyOfF;
     } else {
         keyNumerals = keyOfG;
@@ -165,10 +165,14 @@ function createHarmonicUnit(section, formNum) {
             progression[progression.length - 1] = numeralSix;
             progression[progression.length - 2] = 'V';
             progression[progression.length - 3] = numeralOne;
+            tempCadenceType = 'Deceptive';
+
         }
         if (chance === 2) {
             progression[progression.length - 1] = 'V';
-            progression[progression.length - 3] = numeralOne;
+            progression[progression.length - 2] = numeralOne;
+            tempCadenceType = 'Half';
+
         }
 
         applyHarmonicRhythm(); // reference /harm-rhythm.js
@@ -191,6 +195,8 @@ function createHarmonicUnit(section, formNum) {
         progression = [...phraseContainer[(formNum - 1) * 4][0].progression];
         progression[progression.length - 1] = numeralOne;
         progression[progression.length - 2] = 'V';
+        tempCadenceType = 'Authentic';
+
         applyHarmonicRhythm(); // reference /harm-rhythm.js
         phraseUnit.info.formId = formNum + ':A';
         phraseUnit.info.progression = [...progression];
@@ -199,6 +205,7 @@ function createHarmonicUnit(section, formNum) {
         phraseUnit.info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
         savePrevFinalVoicing();
     }
+    console.log(tempCadenceType);
 }
 
 function concatKeyInfo() {
@@ -226,6 +233,8 @@ let progression = [];
 const generateProgressionLength = () => Math.ceil(Math.random() * 5) + 2;
 
 function getNewProgression(start, cadence) {
+    tempCadenceType = cadence;
+
     function getInitialProgression() {
         for (let index = 1; index <= generateProgressionLength() - 1; index++) {
             progression[index] = generateStrongMotion(progression[index - 1]);
@@ -432,5 +441,3 @@ function checkIfStrong(chord, resolution) {
 
 // half dim glyph ∅  ♭  °
 // const chance = (factor) =>  Math.ceil(Math.random() * factor);
-
-
