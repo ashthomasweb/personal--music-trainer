@@ -40,7 +40,7 @@ cadenceSlide.oninput = function () {
 
 // On-screen diagnostic/helper functions 
 
-function clearContainers() {
+function clearPlayContainers() {
     phraseContainer = [];
     combinedVoicesPlayback = [
         [],

@@ -105,21 +105,21 @@ function buildForm(numberOfRepeats) {
                 getKeyMode();
                 getKeyCenter();
                 createPhraseChart(0, i + 1); // builds phrasing array, harmonic progression, and harmonic rhythm
-                getStartingTones(); // voice-leads progression
+                voiceLeadHandler(); // voice-leads progression
             }
             if (ii === 1) {
                 createPhraseChart(1, i + 1);
-                getStartingTones();
+                voiceLeadHandler();
             }
             if (ii === 2) {
                 switchHarmonicMode();
                 createPhraseChart(2, i + 1);
-                getStartingTones();
+                voiceLeadHandler();
             }
             if (ii === 3) {
                 switchHarmonicMode();
                 createPhraseChart(3, i + 1);
-                getStartingTones();
+                voiceLeadHandler();
             }
         }
     }
@@ -155,9 +155,9 @@ function createHarmonicUnit(section, formNum) {
         let chance = Math.ceil(Math.random() * 15);
         // sequence by stongest motion most often
         if (chance <= 8) {
-            diatonicSequence(chance);
+            harmonicDiatonicSequencer(chance);
         } else if (chance > 8) {
-            diatonicSequence(4)
+            harmonicDiatonicSequencer(4)
         }
 
         chance = Math.ceil(Math.random() * 2);
@@ -293,15 +293,16 @@ function getNewProgression(start, cadence) {
     if (cadence === cadenceType[3]) {
         progression[i] = 'V';
     }
+
     if (cadence === 'Plagal') {
         for (let index = 1; index <= progression.length - 2; index++) {
-            if (checkIsStrong(progression[index - 1], progression[index]) === false) {
+            if (checkIfStrong(progression[index - 1], progression[index]) === false) {
                 return getNewProgression(start, cadence);
             }
         }
     } else {
         for (let index = 1; index <= progression.length - 1; index++) {
-            if (checkIsStrong(progression[index - 1], progression[index]) === false) {
+            if (checkIfStrong(progression[index - 1], progression[index]) === false) {
                 return getNewProgression(start, cadence);
             }
         }
@@ -309,7 +310,7 @@ function getNewProgression(start, cadence) {
     return progression;
 }
 
-function diatonicSequence(degreesUp) {
+function harmonicDiatonicSequencer(degreesUp) {
     for (let ii = 1; ii < degreesUp; ii++) {
         progression.forEach((item, i, progression) => {
             if (currentHarmony.indexOf(item) === currentHarmony.length - 1) {
@@ -408,7 +409,7 @@ function motionAnyToHome(x) {
 }
 
 // function to ensure progression moves into cadential figure with strong motion
-function checkIsStrong(chord, resolution) {
+function checkIfStrong(chord, resolution) {
     if (motionUpSecond(chord) === resolution) {
         return true;
     } else if (motionDownThird(chord) === resolution) {

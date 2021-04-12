@@ -1,13 +1,13 @@
 let noteIndex = ['B1', 'C2', 'Db2', 'D2', 'Eb2', 'E2', 'F2', 'Gb2', 'G2', 'Ab2', 'A2', 'Bb2', 'B2', 'C3', 'Db3', 'D3', 'Eb3', 'E3', 'F3', 'Gb3', 'G3', 'Ab3', 'A3', 'Bb3', 'B3', 'C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4', 'C5', 'Db5', 'D5', 'Eb5', 'E5', 'F5', 'Gb5', 'G5', 'Ab5', 'A5', 'Bb5', 'B5', 'C6', 'Db6', 'D6'];
 
+let resolutionDirectionArray = [];
 let startingNote;
 let bassVoiceArray = [];
 let tenorVoiceArray = [];
 let altoVoiceArray = [];
 let sopranoVoiceArray = [];
-let resolveDirectionArray = [];
 
-function getStartingTones() {
+function voiceLeadHandler() {
 
     let allChordTones = [];
     let allChordToneIndex = [];
@@ -17,39 +17,37 @@ function getStartingTones() {
     let sopranoTones = [];
     let direction;
     let satbArray = [];
-    let firstChord;
-    let cadenceType;
 
     function createBassArray() {
         getVoiceLeading('triad');
         bassVoiceArray = [...tempVoiceArray];
     }
-    
+
     function createTenorArray() {
         getVoiceLeading('triad');
         tenorVoiceArray = [...tempVoiceArray];
     }
-    
+
     function createAltoArray() {
         getVoiceLeading('seventh');
         altoVoiceArray = [...tempVoiceArray];
     }
-    
+
     function createSopranoArray() {
         getVoiceLeading('seventh', true);
         sopranoVoiceArray = [...tempVoiceArray];
     }
-    
+
     // get first chord as string
-    firstChord = progression[0];
-    resolveDirectionArray = [];
-    // assign first chord to object
+    let firstChord = progression[0];
+    // declare firstChord as object array
     for (let i = 0; i <= keyNumerals.length - 1; i++) {
         if (keyNumerals[i][0] === firstChord) {
             firstChord = keyNumerals[i];
         }
     }
 
+    resolutionDirectionArray = [];
     for (let i = 0; i <= progression.length - 2; i++) {
         let num = Math.floor(Math.random() * 6);
         if (num === 0) {
@@ -59,24 +57,23 @@ function getStartingTones() {
         } else {
             direction = 'smoothest';
         }
-        resolveDirectionArray.push(direction);
+        resolutionDirectionArray.push(direction);
     }
 
-    cadenceType = document.getElementById('chord-end').textContent;
+    let cadenceType = document.getElementById('chord-end').textContent;
 
     if (cadenceType === 'Authentic' || cadenceType === 'Plagal') {
-        resolveDirectionArray[resolveDirectionArray.length - 1] = 'down';
-        resolveDirectionArray[resolveDirectionArray.length - 2] = 'smoothest';
+        resolutionDirectionArray[resolutionDirectionArray.length - 1] = 'down';
+        resolutionDirectionArray[resolutionDirectionArray.length - 2] = 'smoothest';
     }
     if (cadenceType === 'Half' || cadenceType === 'Deceptive') {
-        resolveDirectionArray[resolveDirectionArray.length - 1] = 'up';
-        resolveDirectionArray[resolveDirectionArray.length - 2] = 'smoothest';
+        resolutionDirectionArray[resolutionDirectionArray.length - 1] = 'up';
+        resolutionDirectionArray[resolutionDirectionArray.length - 2] = 'smoothest';
     }
 
     allChordTones.push(...firstChord[1][1]);
     allChordTones.push(...firstChord[2][1]);
     allChordTones.push(...firstChord[3][1]);
-
     allChordTones.forEach((item) => {
         allChordToneIndex.push(noteIndex.indexOf(item));
     })
@@ -95,7 +92,7 @@ function getStartingTones() {
             sopranoTones.push(item);
         }
     })
-    
+
     // lowest root
     startingNote = firstChord[1][1][0];
     createBassArray();
@@ -111,56 +108,60 @@ function getStartingTones() {
     createSopranoArray();
 
     // THIS is where I can check for root
+
+    function checkForRoot() {
+
+        for (let i = 0; i <= progression.length - 1; i++) {
+            let rootBool = false;
+            let roots = [];
+            // get current chord
+            let currentChord = progression[i];
+            // look in romanNumeral array for rootArray
+            keyNumerals.forEach((item) => {
+                if (item[0] === currentChord) {
+                    roots = [...item[1][1]];
+                }
+            });
+            // run .includes()
+            if (roots.includes(bassVoiceArray[i])) {
+                rootBool = true;
+            }
+            if (roots.includes(tenorVoiceArray[i])) {
+                rootBool = true;
+            }
+            if (roots.includes(altoVoiceArray[i])) {
+                rootBool = true;
+            }
+            if (roots.includes(sopranoVoiceArray[i])) {
+                rootBool = true;
+            }
+            noteIndex.indexOf(bassVoiceArray[i])
+            noteIndex.indexOf(roots[0]);
+            noteIndex.indexOf(roots[1]);
+            let nearestRoot;
+            if (noteIndex.indexOf(bassVoiceArray[i]) < 7) {
+                nearestRoot = roots[0];
+            } else {
+                nearestRoot = roots[1];
+            }
+            // if false then move bass to nearest root
+            if (rootBool === false) {
+                bassVoiceArray[i] = nearestRoot;
+            }
+        }
+    }
+
     checkForRoot();
     // THIS is where I can check for root
 
+    // raw voice-lead info
     satbArray.push(bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray);
+    // iterate to info array
     satbArray.forEach((item) => {
         phraseUnit.info.voiceLeading.push(item);
     });
+    // push to playback handling
     tempPlaybackArray.push(satbArray);
-}
-
-function checkForRoot() {
-
-    for (let i = 0; i <= progression.length - 1; i++) {
-        let rootBool = false;
-        let roots = [];
-        // get current chord
-        let currentChord = progression[i];
-        // look in romanNumeral array for rootArray
-        keyNumerals.forEach((item) => {
-            if (item[0] === currentChord) {
-                roots = [...item[1][1]];
-            }
-        });
-        // run .includes()
-        if (roots.includes(bassVoiceArray[i])) {
-            rootBool = true;
-        }
-        if (roots.includes(tenorVoiceArray[i])) {
-            rootBool = true;
-        }
-        if (roots.includes(altoVoiceArray[i])) {
-            rootBool = true;
-        }
-        if (roots.includes(sopranoVoiceArray[i])) {
-            rootBool = true;
-        }
-        noteIndex.indexOf(bassVoiceArray[i])
-        noteIndex.indexOf(roots[0]);
-        noteIndex.indexOf(roots[1]);
-        let nearestRoot;
-        if (noteIndex.indexOf(bassVoiceArray[i]) < 7) {
-            nearestRoot = roots[0];
-        } else {
-            nearestRoot = roots[1];
-        }
-        // if false then move bass to nearest root
-        if (rootBool === false) {
-            bassVoiceArray[i] = nearestRoot;
-        }
-    }
 }
 
 function getVoiceLeading(extensions, counterpoint) {
@@ -261,13 +262,13 @@ function getVoiceLeading(extensions, counterpoint) {
                 // THIS is where I can control basic counterpoint
 
                 if (counterpoint === true) {
-                    if (resolveDirectionArray[i] === 'up') {
+                    if (resolutionDirectionArray[i] === 'up') {
                         if (directionUp) {
                             resolution = directionDown;
                         } else {
                             resolution = smoothestTransition;
                         }
-                    } else if (resolveDirectionArray[i] === 'down') {
+                    } else if (resolutionDirectionArray[i] === 'down') {
                         if (directionDown) {
                             resolution = directionUp;
                         } else {
@@ -275,13 +276,13 @@ function getVoiceLeading(extensions, counterpoint) {
                         }
                     }
                 } else {
-                    if (resolveDirectionArray[i] === 'up') {
+                    if (resolutionDirectionArray[i] === 'up') {
                         if (directionUp) {
                             resolution = directionUp;
                         } else {
                             resolution = smoothestTransition;
                         }
-                    } else if (resolveDirectionArray[i] === 'down') {
+                    } else if (resolutionDirectionArray[i] === 'down') {
                         if (directionDown) {
                             resolution = directionDown;
                         } else {

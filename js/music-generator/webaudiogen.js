@@ -1,13 +1,7 @@
 // for legacy browsers
 const AudioContext = window.AudioContext || window.webkitAudioContext;
-const audioCont = new AudioContext();
+const audioContext = new AudioContext();
 
-let bassGain = audioCont.createGain();
-let tenorGain = audioCont.createGain();
-let altoGain = audioCont.createGain();
-let sopranoGain = audioCont.createGain();
-
-const pianoTrackArray = [];
 const pianoExtendedC = [
     new Audio("sounds/gen-piano/gen-piano-D6.mp3"),
     new Audio("sounds/gen-piano/gen-piano-Db6.mp3"),
@@ -63,41 +57,78 @@ const pianoExtendedC = [
     new Audio("sounds/gen-piano/gen-piano-B1.mp3"),
 ];
 
+const pianoTrackArray = [];
 for (let i = 0; i < pianoExtendedC.length; i++) {
-    pianoTrackArray.push(audioCont.createMediaElementSource(pianoExtendedC[i]));
+    pianoTrackArray.push(audioContext.createMediaElementSource(pianoExtendedC[i]));
 };
 
-function soundLoader() {
+let bassGain = audioContext.createGain();
+let tenorGain = audioContext.createGain();
+let altoGain = audioContext.createGain();
+let sopranoGain = audioContext.createGain();
+
+function satbNodeConnector() {
     for (let i = 0; i <= pianoExtendedC.length - 1; i++) {
         if (i > 32) { // F3 and below
             pianoTrackArray[i].connect(bassGain);
-            bassGain.connect(audioCont.destination);
+            bassGain.connect(audioContext.destination);
         } else if (i <= 32 && i > 23) { // Gb3 to D4
             pianoTrackArray[i].connect(tenorGain);
-            tenorGain.connect(audioCont.destination);
+            tenorGain.connect(audioContext.destination);
 
         } else if (i <= 23 && i > 14) { // Eb4 to B4
             pianoTrackArray[i].connect(altoGain);
-            altoGain.connect(audioCont.destination);
+            altoGain.connect(audioContext.destination);
         } else if (i <= 14) { // C5 and above
             pianoTrackArray[i].connect(sopranoGain);
-            sopranoGain.connect(audioCont.destination);
+            sopranoGain.connect(audioContext.destination);
         }
     }
 }
+satbNodeConnector();
 
-soundLoader();
 
 let currentBass = [];
 let currentTenor = [];
 let currentAlto = [];
 let currentSoprano = [];
 
+function stopVoice(voiceGain, currentVoice) {
+    if (currentVoice === []) {
+        // do nothing 
+    } else {
+        currentVoice.forEach(item => {
+            new Promise(function (resolve, reject) {
+                voiceGain.gain.setValueAtTime(1, audioContext.currentTime);
+                voiceGain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.01);
+                setTimeout(() => {
+                    resolve();
+                }, 10)
+            }).then(() => {
+                pianoExtendedC[item].pause();
+                pianoExtendedC[item].currentTime = 0;
+            });
+        });
+        if (voiceGain === bassGain) {
+            currentBass = [];
+        }
+        if (voiceGain === tenorGain) {
+            currentTenor = [];
+        }
+        if (voiceGain === altoGain) {
+            currentAlto = [];
+        }
+        if (voiceGain === sopranoGain) {
+            currentSoprano = [];
+        }
+    }
+}
+
 // webAudio function for noteSwitch
-function playNote(i) {
+function playHandler(i) {
     // check if context is in suspended state (autoplay policy)
-    if (audioCont.state === 'suspended') {
-        audioCont.resume();
+    if (audioContext.state === 'suspended') {
+        audioContext.resume();
     }
 
     let tempNum = 20; 
@@ -107,28 +138,28 @@ function playNote(i) {
         currentBass.push(i);
         setTimeout(() => {
             pianoExtendedC[i].play();
-            bassGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime + 0.02);
+            bassGain.gain.exponentialRampToValueAtTime(1.3, audioContext.currentTime + 0.02);
         }, tempNum)
     } else if (i <= 32 && i > 23) { // Gb3 to D4
         stopVoice(tenorGain, currentTenor);
         currentTenor.push(i);
         setTimeout(() => {
             pianoExtendedC[i].play();
-            tenorGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime + 0.02);
+            tenorGain.gain.exponentialRampToValueAtTime(1, audioContext.currentTime + 0.02);
         }, tempNum)
     } else if (i <= 23 && i > 14) { // Eb4 to B4
         stopVoice(altoGain, currentAlto);
         currentAlto.push(i);
         setTimeout(() => {
             pianoExtendedC[i].play();
-            altoGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime + 0.02);
+            altoGain.gain.exponentialRampToValueAtTime(1, audioContext.currentTime + 0.02);
         }, tempNum)
     } else if (i <= 14) { // C5 and above
         stopVoice(sopranoGain, currentSoprano);
         currentSoprano.push(i);
         setTimeout(() => {
             pianoExtendedC[i].play();
-            sopranoGain.gain.exponentialRampToValueAtTime(1, audioCont.currentTime + 0.02);
+            sopranoGain.gain.exponentialRampToValueAtTime(1, audioContext.currentTime + 0.02);
         }, tempNum)
     }
 }
@@ -138,160 +169,160 @@ function noteSwitch(noteId) {
     switch (noteId) {
 
         case "D6":
-            playNote(0, noteId);
+            playHandler(0, noteId);
             break;
         case "Db6":
-            playNote(1, noteId);
+            playHandler(1, noteId);
             break;
         case "C6":
-            playNote(2, noteId);
+            playHandler(2, noteId);
             break;
         case "B5":
-            playNote(3, noteId);
+            playHandler(3, noteId);
             break;
         case "Bb5":
-            playNote(4, noteId);
+            playHandler(4, noteId);
             break;
         case "A5":
-            playNote(5, noteId);
+            playHandler(5, noteId);
             break;
         case "Ab5":
-            playNote(6, noteId);
+            playHandler(6, noteId);
             break;
         case "G5":
-            playNote(7, noteId);
+            playHandler(7, noteId);
             break;
         case "Gb5":
-            playNote(8, noteId);
+            playHandler(8, noteId);
             break;
         case "F5":
-            playNote(9, noteId);
+            playHandler(9, noteId);
             break;
         case "E5":
-            playNote(10, noteId);
+            playHandler(10, noteId);
             break;
         case "Eb5":
-            playNote(11, noteId);
+            playHandler(11, noteId);
             break;
         case "D5":
-            playNote(12, noteId);
+            playHandler(12, noteId);
             break;
         case "Db5":
-            playNote(13, noteId);
+            playHandler(13, noteId);
             break;
         case "C5":
-            playNote(14, noteId);
+            playHandler(14, noteId);
             break;
         case "B4":
-            playNote(15, noteId);
+            playHandler(15, noteId);
             break;
         case "Bb4":
-            playNote(16, noteId);
+            playHandler(16, noteId);
             break;
         case "A4":
-            playNote(17, noteId);
+            playHandler(17, noteId);
             break;
         case "Ab4":
-            playNote(18, noteId);
+            playHandler(18, noteId);
             break;
         case "G4":
-            playNote(19, noteId);
+            playHandler(19, noteId);
             break;
         case "Gb4":
-            playNote(20, noteId);
+            playHandler(20, noteId);
             break;
         case "F4":
-            playNote(21, noteId);
+            playHandler(21, noteId);
             break;
         case "E4":
-            playNote(22, noteId);
+            playHandler(22, noteId);
             break;
         case "Eb4":
-            playNote(23, noteId);
+            playHandler(23, noteId);
             break;
         case "D4":
-            playNote(24, noteId);
+            playHandler(24, noteId);
             break;
         case "Db4":
-            playNote(25, noteId);
+            playHandler(25, noteId);
             break;
         case "C4":
-            playNote(26, noteId);
+            playHandler(26, noteId);
             break;
         case "B3":
-            playNote(27, noteId);
+            playHandler(27, noteId);
             break;
         case "Bb3":
-            playNote(28, noteId);
+            playHandler(28, noteId);
             break;
         case "A3":
-            playNote(29, noteId);
+            playHandler(29, noteId);
             break;
         case "Ab3":
-            playNote(30, noteId);
+            playHandler(30, noteId);
             break;
         case "G3":
-            playNote(31, noteId);
+            playHandler(31, noteId);
             break;
         case "Gb3":
-            playNote(32, noteId);
+            playHandler(32, noteId);
             break;
         case "F3":
-            playNote(33, noteId);
+            playHandler(33, noteId);
             break;
         case "E3":
-            playNote(34, noteId);
+            playHandler(34, noteId);
             break;
         case "Eb3":
-            playNote(35, noteId);
+            playHandler(35, noteId);
             break;
         case "D3":
-            playNote(36, noteId);
+            playHandler(36, noteId);
             break;
         case "Db3":
-            playNote(37, noteId);
+            playHandler(37, noteId);
             break;
         case "C3":
-            playNote(38, noteId);
+            playHandler(38, noteId);
             break;
         case "B2":
-            playNote(39, noteId);
+            playHandler(39, noteId);
             break;
         case "Bb2":
-            playNote(40, noteId);
+            playHandler(40, noteId);
             break;
         case "A2":
-            playNote(41, noteId);
+            playHandler(41, noteId);
             break;
         case "Ab2":
-            playNote(42, noteId);
+            playHandler(42, noteId);
             break;
         case "G2":
-            playNote(43, noteId);
+            playHandler(43, noteId);
             break;
         case "Gb2":
-            playNote(44, noteId);
+            playHandler(44, noteId);
             break;
         case "F2":
-            playNote(45, noteId);
+            playHandler(45, noteId);
             break;
         case "E2":
-            playNote(46, noteId);
+            playHandler(46, noteId);
             break;
         case "Eb2":
-            playNote(47, noteId);
+            playHandler(47, noteId);
             break;
         case "D2":
-            playNote(48, noteId);
+            playHandler(48, noteId);
             break;
         case "Db2":
-            playNote(49, noteId);
+            playHandler(49, noteId);
             break;
         case "C2":
-            playNote(50, noteId);
+            playHandler(50, noteId);
             break;
         case "B1":
-            playNote(51, noteId);
+            playHandler(51, noteId);
             break;
         default:
             console.log('Fin.')

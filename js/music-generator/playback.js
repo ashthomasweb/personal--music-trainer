@@ -34,7 +34,7 @@ function playPhraseChart() {
     phraseContainer.forEach((phrase, i) => {
         beatLength = phrase[0].tempo;
         
-        // Temporary
+        // TEMP
         // Display function - can only display data that has been included in phraseContainer
             let formId = 'Form/Section: ' + phrase[0].formId;
             let key = 'Current key: ' + phrase[0].key;
@@ -76,7 +76,7 @@ function playPhraseChart() {
             let sopranoDisplay = 'S: ' + sopranoOutput;
             let sOutput = sopranoDisplay.replace(/\,/g, ".");
         // Display function - can only display data that has been included in phraseContainer
-        // Temporary
+        // TEMP
 
         // Timed information display
         setTimeout(() => {
@@ -148,36 +148,6 @@ function playbackTextureSwitch(voices, infoArray) {
     }
 }
 
-function stopVoice(voiceGain, currentVoice) {
-    if (currentVoice === []) {
-        // do nothing 
-    } else {
-        currentVoice.forEach(item => {
-            new Promise(function (resolve, reject) {
-                voiceGain.gain.setValueAtTime(1, audioCont.currentTime);
-                voiceGain.gain.exponentialRampToValueAtTime(0.0001, audioCont.currentTime + 0.01);
-                setTimeout(() => {
-                    resolve();
-                }, 10)
-            }).then(() => {
-                pianoExtendedC[item].pause();
-                pianoExtendedC[item].currentTime = 0;
-            });
-        });
-        if (voiceGain === bassGain) {
-            currentBass = [];
-        }
-        if (voiceGain === tenorGain) {
-            currentTenor = [];
-        }
-        if (voiceGain === altoGain) {
-            currentAlto = [];
-        }
-        if (voiceGain === sopranoGain) {
-            currentSoprano = [];
-        }
-    }
-}
 
 // || TEXTURES 
 
