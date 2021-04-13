@@ -2,7 +2,7 @@ let noteIndex = ['B1', 'C2', 'Db2', 'D2', 'Eb2', 'E2', 'F2', 'Gb2', 'G2', 'Ab2',
 
 let resolutionDirectionArray = [];
 let startingNote; // iterate for each voice
-let tempCadenceType; // iterate for each voice
+let cadenceValue; // iterate for each voice
 let bassVoiceArray = [];
 let tenorVoiceArray = [];
 let altoVoiceArray = [];
@@ -53,11 +53,11 @@ function voiceLeadHandler() {
         resolutionDirectionArray.push(direction);
     }
 
-    if (tempCadenceType === 'Authentic' || tempCadenceType === 'Plagal') {
+    if (cadenceValue === 'Authentic' || cadenceValue === 'Plagal') {
         resolutionDirectionArray[resolutionDirectionArray.length - 1] = 'down';
         resolutionDirectionArray[resolutionDirectionArray.length - 2] = 'smoothest';
     }
-    if (tempCadenceType === 'Half' || tempCadenceType === 'Deceptive') {
+    if (cadenceValue === 'Half' || cadenceValue === 'Deceptive') {
         resolutionDirectionArray[resolutionDirectionArray.length - 1] = 'up';
         resolutionDirectionArray[resolutionDirectionArray.length - 2] = 'smoothest';
     }

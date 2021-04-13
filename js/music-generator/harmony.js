@@ -48,56 +48,53 @@ function getPhraseUnit() {
 }
 
 let currentHarmony = major;
-let numeralOne = 'I';
-let numeralFour = 'IV';
-let numeralFive = 'V';
-let numeralSix = 'vi';
+let romanNumOne = 'I';
+let romanNumFour = 'IV';
+let romanNumFive = 'V';
+let romanNumSix = 'vi';
 
 function getKeyMode() {
-    let chance = Math.ceil(Math.random() * 2);
-
-    if (chance === 1) {
+    let modeChance = generateChance(2);
+    if (modeChance === 1) {
         currentHarmony = minor;
-        numeralOne = 'i';
-        numeralFour = 'iv';
-        numeralSix = 'bVI';
-    } else {
+        romanNumOne = 'i';
+        romanNumFour = 'iv';
+        romanNumSix = 'bVI';
+    } else if (modeChance === 2) {
         currentHarmony = major;
-        numeralOne = 'I';
-        numeralFour = 'IV';
-        numeralSix = 'vi';
+        romanNumOne = 'I';
+        romanNumFour = 'IV';
+        romanNumSix = 'vi';
     }
 }
 
 function getKeyCenter() {
-    // let chance = Math.floor(Math.random() * 3);
-    // if (chance === 0) {
-    //     keyNumerals = keyOfC;
-    // } else if (chance === 1) {
-    //     keyNumerals = keyOfF;
-    // } else {
-    //     keyNumerals = keyOfG;
-    // }
-    // let chance = genChance(3);
-    switch(generateChance(3)) {
-        case 1: keyNumerals = keyOfC; break;
-        case 2: keyNumerals = keyOfF; break;
-        case 3: keyNumerals = keyOfG;
-        default: break;
+
+    switch (generateChance(3)) {
+        case 1:
+            keyNumerals = keyOfC;
+            break;
+        case 2:
+            keyNumerals = keyOfF;
+            break;
+        case 3:
+            keyNumerals = keyOfG;
+        default:
+            break;
     }
 }
 
 function switchHarmonicMode() {
     if (currentHarmony === major) {
         currentHarmony = minor;
-        numeralOne = 'i';
-        numeralFour = 'iv';
-        numeralSix = 'bVI';
+        romanNumOne = 'i';
+        romanNumFour = 'iv';
+        romanNumSix = 'bVI';
     } else {
         currentHarmony = major;
-        numeralOne = 'I';
-        numeralFour = 'IV';
-        numeralSix = 'vi';
+        romanNumOne = 'I';
+        romanNumFour = 'IV';
+        romanNumSix = 'vi';
     }
 }
 
@@ -153,8 +150,41 @@ function createHarmonicUnit(section, formNum) {
     // parent array
     let info = phraseUnit.info;
 
-    // let primaryTempo;
+    function concatKeyInfo() {
+        if (keyNumerals === keyOfC) {
+            center = 'C'
+        } else if (keyNumerals === keyOfF) {
+            center = 'F'
+        } else {
+            center = 'G'
+        }
+        currentHarmony === major ? mode = 'major' : mode = 'minor';
+        return center + ' ' + mode;
+    }
 
+    function cadenceHandler(section, progression) {
+        if (section === 1) { // second 'A'
+            let cadenceChance = generateChance(2);
+            if (cadenceChance === 1) {
+                cadenceValue = 'Deceptive';
+                progression[progression.length - 1] = romanNumSix;
+                progression[progression.length - 2] = romanNumFive;
+                progression[progression.length - 3] = romanNumOne;
+            }
+            if (cadenceChance === 2) {
+                cadenceValue = 'Half';
+                progression[progression.length - 1] = romanNumFive;
+                progression[progression.length - 2] = romanNumOne;
+            }
+        }
+        if (section === 3) { // final 'A'
+            cadenceValue = 'Authentic';
+            progression[progression.length - 1] = romanNumOne;
+            progression[progression.length - 2] = romanNumFive;
+        }
+    }
+
+    // send musical data to phraseChart
     function storePlaybackData() {
         applyHarmonicRhythm(); // reference /harm-rhythm.js
         savePrevFinalVoicing();
@@ -170,7 +200,7 @@ function createHarmonicUnit(section, formNum) {
         // generate new progression, any starting point, never Authentic cadence
         getNewProgression(currentHarmony[generateChance(6, 1) - 1], cadenceType[generateChance(3, 1) - 1]);
         storePlaybackData();
-    // second 4 bar phrase
+        // second 4 bar phrase
     } else if (section === 1) {
         info.formId = formNum + ':A1';
         info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
@@ -181,69 +211,35 @@ function createHarmonicUnit(section, formNum) {
         } else if (sequenceChance > 8) {
             harmonicDiatonicSequencer(4);
         }
-        // apply cadence
-        let cadenceChance = generateChance(2);
-        if (cadenceChance === 1) {
-            progression[progression.length - 3] = numeralOne;
-            progression[progression.length - 2] = numeralFive;
-            progression[progression.length - 1] = numeralSix;
-            tempCadenceType = 'Deceptive';
-        }
-        if (cadenceChance === 2) {
-            progression[progression.length - 2] = numeralOne;
-            progression[progression.length - 1] = numeralFive;
-            tempCadenceType = 'Half';
-        }
+        cadenceHandler(section, progression);
         storePlaybackData();
-    // third 4 bar phrase
+        // third 4 bar phrase
     } else if (section === 2) {
         info.formId = formNum + ':B';
-        getNewProgression(motionUpFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
+        getNewProgression(motionUpFourth(progression[progression.length - 1]), cadenceType[generateChance(2, 2) - 1]);
         info.tempo = getCloselyRelatedTempo(phraseContainer[(formNum - 1) * 4][0].tempo);
         storePlaybackData();
-    // last 4 bar phrase
+        // last 4 bar phrase
     } else if (section === 3) {
         info.formId = formNum + ':A';
         info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
         // get 'A' section progression and apply cadence
         progression = [...phraseContainer[(formNum - 1) * 4][0].progression];
-        progression[progression.length - 1] = numeralOne;
-        progression[progression.length - 2] = numeralFive;
-        tempCadenceType = 'Authentic';
+        cadenceHandler(section, progression);
         storePlaybackData();
     }
 }
 
-function concatKeyInfo() {
-    let center;
-    if (keyNumerals === keyOfC) {
-        center = 'C';
-    } else if (keyNumerals === keyOfF) {
-        center = 'F';
-    } else {
-        center = 'G';
-    }
 
-    let quality;
-    if (currentHarmony === major) {
-        quality = ' major';
-    } else {
-        quality = ' minor';
-    }
-
-    return center + quality;
-}
 
 let progression = [];
 
-const generateProgressionLength = () => Math.ceil(Math.random() * 5) + 2;
-
-
+const generateProgressionLength = () => generateChance(5, 2);
 
 function getNewProgression(start, cadence) {
-    tempCadenceType = cadence;
+    cadenceValue = cadence;
 
-    function getInitialProgression() {
+    function generateInitialHarmonies() {
         for (let index = 1; index <= generateProgressionLength() - 1; index++) {
             progression[index] = generateStrongMotion(progression[index - 1]);
         }
@@ -251,40 +247,41 @@ function getNewProgression(start, cadence) {
         if (currentHarmony === minor) {
 
             progression.forEach((item, i) => {
-                switch(item) {
+                switch (item) {
 
-                  case "ii∅":
-                    if (generateChance(2) === 1) {
-                        progression[i] = 'ii∅';
-                    } else {
-                        progression[i] = 'ii';
-                    }
-                    break;
+                    case "ii∅":
+                        if (generateChance(2) === 1) {
+                            progression[i] = 'ii∅';
+                        } else {
+                            progression[i] = 'ii';
+                        }
+                        break;
 
-                  case "iv":
-                    if (generateChance(2) === 1) {
-                        progression[i] = 'iv';
-                    } else {
-                        progression[i] = 'IV7';
-                    }
-                    break;
+                    case "iv":
+                        if (generateChance(2) === 1) {
+                            progression[i] = 'iv';
+                        } else {
+                            progression[i] = 'IV7';
+                        }
+                        break;
 
-                  case "bVI":
-                    if (generateChance(2) === 1) {
-                        progression[i] = 'bVI';
-                    } else {
-                        progression[i] = 'vi∅'
-                    }
-                    break;
+                    case "bVI":
+                        if (generateChance(2) === 1) {
+                            progression[i] = 'bVI';
+                        } else {
+                            progression[i] = 'vi∅'
+                        }
+                        break;
 
-                  case "bVII":
-                    if (generateChance(2) === 1) {
-                        progression[i] = 'bVII';
-                    } else {
-                        progression[i] = 'vii°';
-                    }
+                    case "bVII":
+                        if (generateChance(2) === 1) {
+                            progression[i] = 'bVII';
+                        } else {
+                            progression[i] = 'vii°';
+                        }
 
-                  default: break;
+                        default:
+                            break;
 
                 }
 
@@ -292,42 +289,51 @@ function getNewProgression(start, cadence) {
         }
     }
 
+    function assignNewCadence() {
+
+        let i = progression.length - 1;
+
+        if (cadence === cadenceType[0]) {
+            progression[i] = romanNumOne;
+            progression[i - 1] = romanNumFive;
+        }
+        if (cadence === cadenceType[1]) {
+            progression[i] = romanNumOne;
+            progression[i - 1] = romanNumFour;
+        }
+        if (cadence === cadenceType[2]) {
+            progression[i] = romanNumSix;
+            progression[i - 1] = romanNumFive;
+        }
+        if (cadence === cadenceType[3]) {
+            progression[i] = romanNumFive;
+        }
+        
+
+    }
+
+
+    function cadenceCheck() {
+        if (cadence === 'Plagal') {
+            for (let index = 1; index <= progression.length - 2; index++) {
+                if (checkIfStrong(progression[index - 1], progression[index]) === false) {
+                    return getNewProgression(start, cadence);
+                }
+            }
+        } else {
+            for (let index = 1; index <= progression.length - 1; index++) {
+                if (checkIfStrong(progression[index - 1], progression[index]) === false) {
+                    return getNewProgression(start, cadence);
+                }
+            }
+        }
+    }
 
     progression = [];
     progression[0] = start;
-    getInitialProgression();
-
-    let i = progression.length - 1;
-
-    if (cadence === cadenceType[0]) {
-        progression[i] = numeralOne;
-        progression[i - 1] = 'V';
-    }
-    if (cadence === cadenceType[1]) {
-        progression[i] = numeralOne;
-        progression[i - 1] = numeralFour;
-    }
-    if (cadence === cadenceType[2]) {
-        progression[i] = numeralSix;
-        progression[i - 1] = 'V';
-    }
-    if (cadence === cadenceType[3]) {
-        progression[i] = 'V';
-    }
-
-    if (cadence === 'Plagal') {
-        for (let index = 1; index <= progression.length - 2; index++) {
-            if (checkIfStrong(progression[index - 1], progression[index]) === false) {
-                return getNewProgression(start, cadence);
-            }
-        }
-    } else {
-        for (let index = 1; index <= progression.length - 1; index++) {
-            if (checkIfStrong(progression[index - 1], progression[index]) === false) {
-                return getNewProgression(start, cadence);
-            }
-        }
-    }
+    generateInitialHarmonies();
+    assignNewCadence();
+    cadenceCheck();
     return progression;
 }
 
@@ -431,13 +437,19 @@ function motionAnyToHome(x) {
 
 // function to ensure progression moves into cadential figure with strong motion
 function checkIfStrong(chord, resolution) {
-    switch(resolution) {
-      case motionUpSecond(chord): return true;
-      case motionDownThird(chord): return true;
-      case motionUpFourth(chord): return true;
-      case motionStatic(chord): return true;
-      case motionAnyToHome(chord): return true;
-      default: return false;
+    switch (resolution) {
+        case motionUpSecond(chord):
+            return true;
+        case motionDownThird(chord):
+            return true;
+        case motionUpFourth(chord):
+            return true;
+        case motionStatic(chord):
+            return true;
+        case motionAnyToHome(chord):
+            return true;
+        default:
+            return false;
     }
 }
 
