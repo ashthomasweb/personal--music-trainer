@@ -308,4 +308,4 @@ function savePrevFinalVoicing() {
     phraseUnit.info.prevFinalVoicing.push(sopranoVoiceArray[bassVoiceArray.length - 1]);
 }
 
-// END of document 
+// END of document

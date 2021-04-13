@@ -3,8 +3,7 @@
 let major = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii∅'];
 let minor = ['i', 'ii∅', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
 const testChance = (factor, addend = 0) => Math.ceil(Math.random() * factor) + addend;
-const genChance = (factor, addend = 0) => Math.ceil(Math.random() * factor) + addend;
-
+const generateChance = (factor, addend = 0) => Math.ceil(Math.random() * factor) + addend;
 
 // gets phrase length
 function getPhraseUnit() {
@@ -79,10 +78,11 @@ function getKeyCenter() {
     //     keyNumerals = keyOfG;
     // }
     // let chance = genChance(3);
-    switch(genChance(3)) {
+    switch(generateChance(3)) {
         case 1: keyNumerals = keyOfC; break;
         case 2: keyNumerals = keyOfF; break;
-        default: keyNumerals = keyOfG;
+        case 3: keyNumerals = keyOfG;
+        default: break;
     }
 }
 
@@ -155,7 +155,8 @@ function createHarmonicUnit(section, formNum) {
     // first 4 bar phrase
     if (section === 0) {
         let chance = Math.ceil(Math.random() * 6);
-        getNewProgression(currentHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
+        // generate new progression, any starting point, never Authentic cadence
+        getNewProgression(currentHarmony[generateChance(6, 1) - 1], cadenceType[generateChance(3, 1) - 1]);
         applyHarmonicRhythm(); // reference /harm-rhythm.js
         info.formId = formNum + ':A';
         info.progression = [...progression];
