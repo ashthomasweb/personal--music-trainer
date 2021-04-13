@@ -148,7 +148,6 @@ function createPhraseChart(section, formNum) {
     phraseContainer.push(phraseUnitArray);
 }
 
-
 // makes a base unit of chords
 function createHarmonicUnit(section, formNum) {
     // parent array
@@ -156,7 +155,7 @@ function createHarmonicUnit(section, formNum) {
 
     // let primaryTempo;
 
-    function sendMusicData() {
+    function storePlaybackData() {
         applyHarmonicRhythm(); // reference /harm-rhythm.js
         savePrevFinalVoicing();
         info.progression = [...progression];
@@ -170,55 +169,48 @@ function createHarmonicUnit(section, formNum) {
         info.tempo = getNewTempo();
         // generate new progression, any starting point, never Authentic cadence
         getNewProgression(currentHarmony[generateChance(6, 1) - 1], cadenceType[generateChance(3, 1) - 1]);
-        sendMusicData();
+        storePlaybackData();
     // second 4 bar phrase
     } else if (section === 1) {
         info.formId = formNum + ':A1';
         info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
-
-        let sequenceChance = generateChance(20);
         // sequence by stongest motion most often
+        let sequenceChance = generateChance(20);
         if (sequenceChance <= 8) {
             harmonicDiatonicSequencer(generateChance(8));
         } else if (sequenceChance > 8) {
             harmonicDiatonicSequencer(4);
         }
-
-
-        chance = Math.ceil(Math.random() * 2);
-        if (chance === 1) {
+        // apply cadence
+        let cadenceChance = generateChance(2);
+        if (cadenceChance === 1) {
             progression[progression.length - 3] = numeralOne;
             progression[progression.length - 2] = numeralFive;
             progression[progression.length - 1] = numeralSix;
             tempCadenceType = 'Deceptive';
         }
-        if (chance === 2) {
+        if (cadenceChance === 2) {
             progression[progression.length - 2] = numeralOne;
             progression[progression.length - 1] = numeralFive;
             tempCadenceType = 'Half';
         }
-
-
-        sendMusicData();
+        storePlaybackData();
     // third 4 bar phrase
     } else if (section === 2) {
         info.formId = formNum + ':B';
         getNewProgression(motionUpFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
         info.tempo = getCloselyRelatedTempo(phraseContainer[(formNum - 1) * 4][0].tempo);
-        sendMusicData();
+        storePlaybackData();
     // last 4 bar phrase
     } else if (section === 3) {
         info.formId = formNum + ':A';
-        progression = [...phraseContainer[(formNum - 1) * 4][0].progression];
         info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
-
-        
+        // get 'A' section progression and apply cadence
+        progression = [...phraseContainer[(formNum - 1) * 4][0].progression];
         progression[progression.length - 1] = numeralOne;
         progression[progression.length - 2] = numeralFive;
         tempCadenceType = 'Authentic';
-
-
-        sendMusicData();
+        storePlaybackData();
     }
 }
 
@@ -259,14 +251,10 @@ function getNewProgression(start, cadence) {
         if (currentHarmony === minor) {
 
             progression.forEach((item, i) => {
-                // let chance =  Math.ceil(Math.random() * 2)
-                // const chance = (factor, additive) => Math.ceil(Math.random() * 2)
-                // progression.forEach((item, i) => {
                 switch(item) {
 
-                  case "ii":
-                    // chance = Math.ceil(Math.random() * 2);
-                    if (testChance(2, 0) === 0) {
+                  case "ii∅":
+                    if (generateChance(2) === 1) {
                         progression[i] = 'ii∅';
                     } else {
                         progression[i] = 'ii';
@@ -274,8 +262,7 @@ function getNewProgression(start, cadence) {
                     break;
 
                   case "iv":
-                    // chance = Math.ceil(Math.random() * 2);
-                    if (testChance(2, 0) === 0) {
+                    if (generateChance(2) === 1) {
                         progression[i] = 'iv';
                     } else {
                         progression[i] = 'IV7';
@@ -283,8 +270,7 @@ function getNewProgression(start, cadence) {
                     break;
 
                   case "bVI":
-                    // chance = Math.ceil(Math.random() * 2);
-                    if (testChance(2, 0) === 0) {
+                    if (generateChance(2) === 1) {
                         progression[i] = 'bVI';
                     } else {
                         progression[i] = 'vi∅'
@@ -292,11 +278,10 @@ function getNewProgression(start, cadence) {
                     break;
 
                   case "bVII":
-                    // chance = Math.ceil(Math.random() * 2);
-                    if (testChance(2, 0) === 0) {
+                    if (generateChance(2) === 1) {
                         progression[i] = 'bVII';
                     } else {
-                        progression[i] = 'vii°'
+                        progression[i] = 'vii°';
                     }
 
                   default: break;
