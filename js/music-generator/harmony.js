@@ -50,6 +50,7 @@ function getPhraseUnit() {
 let currentHarmony = major;
 let numeralOne = 'I';
 let numeralFour = 'IV';
+let numeralFive = 'V';
 let numeralSix = 'vi';
 
 function getKeyMode() {
@@ -147,82 +148,78 @@ function createPhraseChart(section, formNum) {
     phraseContainer.push(phraseUnitArray);
 }
 
+
 // makes a base unit of chords
 function createHarmonicUnit(section, formNum) {
     // parent array
     let info = phraseUnit.info;
 
-    // first 4 bar phrase
-    if (section === 0) {
-        let chance = Math.ceil(Math.random() * 6);
-        // generate new progression, any starting point, never Authentic cadence
-        getNewProgression(currentHarmony[generateChance(6, 1) - 1], cadenceType[generateChance(3, 1) - 1]);
+    // let primaryTempo;
+
+    function sendMusicData() {
         applyHarmonicRhythm(); // reference /harm-rhythm.js
-        info.formId = formNum + ':A';
+        savePrevFinalVoicing();
         info.progression = [...progression];
         info.progressionLength = progression.length;
         info.key = concatKeyInfo();
-        info.tempo = getNewTempo();
-        savePrevFinalVoicing();
+    }
 
+    // first 4 bar phrase
+    if (section === 0) {
+        info.formId = formNum + ':A';
+        info.tempo = getNewTempo();
+        // generate new progression, any starting point, never Authentic cadence
+        getNewProgression(currentHarmony[generateChance(6, 1) - 1], cadenceType[generateChance(3, 1) - 1]);
+        sendMusicData();
     // second 4 bar phrase
     } else if (section === 1) {
-        let chance = Math.ceil(Math.random() * 15);
+        info.formId = formNum + ':A1';
+        info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
+
+        let sequenceChance = generateChance(20);
         // sequence by stongest motion most often
-        if (chance <= 8) {
-            harmonicDiatonicSequencer(chance);
-        } else if (chance > 8) {
-            harmonicDiatonicSequencer(4)
+        if (sequenceChance <= 8) {
+            harmonicDiatonicSequencer(generateChance(8));
+        } else if (sequenceChance > 8) {
+            harmonicDiatonicSequencer(4);
         }
+
 
         chance = Math.ceil(Math.random() * 2);
         if (chance === 1) {
-            progression[progression.length - 1] = numeralSix;
-            progression[progression.length - 2] = 'V';
             progression[progression.length - 3] = numeralOne;
+            progression[progression.length - 2] = numeralFive;
+            progression[progression.length - 1] = numeralSix;
             tempCadenceType = 'Deceptive';
         }
         if (chance === 2) {
-            progression[progression.length - 1] = 'V';
             progression[progression.length - 2] = numeralOne;
+            progression[progression.length - 1] = numeralFive;
             tempCadenceType = 'Half';
         }
 
-        applyHarmonicRhythm(); // reference /harm-rhythm.js
-        info.formId = formNum + ':A1';
-        info.progression = [...progression];
-        info.progressionLength = progression.length;
-        info.key = concatKeyInfo();
-        info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
-        savePrevFinalVoicing();
 
+        sendMusicData();
     // third 4 bar phrase
     } else if (section === 2) {
-        getNewProgression(motionUpFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
-        applyHarmonicRhythm(); // reference /harm-rhythm.js
         info.formId = formNum + ':B';
-        info.progression = [...progression];
-        info.progressionLength = progression.length;
-        info.key = concatKeyInfo();
+        getNewProgression(motionUpFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
         info.tempo = getCloselyRelatedTempo(phraseContainer[(formNum - 1) * 4][0].tempo);
-        savePrevFinalVoicing();
-
+        sendMusicData();
     // last 4 bar phrase
     } else if (section === 3) {
-        progression = [...phraseContainer[(formNum - 1) * 4][0].progression];
-        progression[progression.length - 1] = numeralOne;
-        progression[progression.length - 2] = 'V';
-        tempCadenceType = 'Authentic';
-        applyHarmonicRhythm(); // reference /harm-rhythm.js
         info.formId = formNum + ':A';
-        info.progression = [...progression];
-        info.progressionLength = progression.length;
-        info.key = concatKeyInfo();
+        progression = [...phraseContainer[(formNum - 1) * 4][0].progression];
         info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
-        savePrevFinalVoicing();
-    }
 
-    console.log(tempCadenceType);
+        
+        progression[progression.length - 1] = numeralOne;
+        progression[progression.length - 2] = numeralFive;
+        tempCadenceType = 'Authentic';
+
+
+        sendMusicData();
+    }
 }
 
 function concatKeyInfo() {

@@ -136,21 +136,21 @@ function playHandler(i) {
         currentBass.push(i);
         setTimeout(() => {
             pianoExtendedC[i].play();
-            bassGain.gain.exponentialRampToValueAtTime(1.3, audioContext.currentTime + 0.02);
+            bassGain.gain.exponentialRampToValueAtTime(1.35, audioContext.currentTime + 0.02);
         }, 20)
     } else if (i <= 32 && i > 23) { // Gb3 to D4
         stopVoice(tenorGain, currentTenor);
         currentTenor.push(i);
         setTimeout(() => {
             pianoExtendedC[i].play();
-            tenorGain.gain.exponentialRampToValueAtTime(1, audioContext.currentTime + 0.02);
+            tenorGain.gain.exponentialRampToValueAtTime(.9, audioContext.currentTime + 0.02);
         }, 20)
     } else if (i <= 23 && i > 14) { // Eb4 to B4
         stopVoice(altoGain, currentAlto);
         currentAlto.push(i);
         setTimeout(() => {
             pianoExtendedC[i].play();
-            altoGain.gain.exponentialRampToValueAtTime(1, audioContext.currentTime + 0.02);
+            altoGain.gain.exponentialRampToValueAtTime(.9, audioContext.currentTime + 0.02);
         }, 20)
     } else if (i <= 14) { // C5 and above
         stopVoice(sopranoGain, currentSoprano);
