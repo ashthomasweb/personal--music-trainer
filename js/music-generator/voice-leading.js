@@ -1,12 +1,12 @@
 let noteIndex = ['B1', 'C2', 'Db2', 'D2', 'Eb2', 'E2', 'F2', 'Gb2', 'G2', 'Ab2', 'A2', 'Bb2', 'B2', 'C3', 'Db3', 'D3', 'Eb3', 'E3', 'F3', 'Gb3', 'G3', 'Ab3', 'A3', 'Bb3', 'B3', 'C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4', 'C5', 'Db5', 'D5', 'Eb5', 'E5', 'F5', 'Gb5', 'G5', 'Ab5', 'A5', 'Bb5', 'B5', 'C6', 'Db6', 'D6'];
 
 let resolutionDirectionArray = [];
-let startingNote;
+let startingNote; // iterate for each voice
+let tempCadenceType; // iterate for each voice
 let bassVoiceArray = [];
 let tenorVoiceArray = [];
 let altoVoiceArray = [];
 let sopranoVoiceArray = [];
-let tempCadenceType;
 
 function voiceLeadHandler() {
 
@@ -71,7 +71,7 @@ function voiceLeadHandler() {
         allChordToneIndex.push(noteIndex.indexOf(item));
     })
 
-    // seperate allChordToneIndex into 
+    // seperate allChordToneIndex into SATB
     let bassTones = [];
     let tenorTones = [];
     let altoTones = [];
@@ -91,6 +91,7 @@ function voiceLeadHandler() {
         }
     })
 
+    // set first note of voice and handle voice-leading for satb
     // lowest root
     startingNote = firstChord[1][1][0];
     createBassArray();

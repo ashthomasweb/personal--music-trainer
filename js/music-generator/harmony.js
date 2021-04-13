@@ -2,6 +2,9 @@
 
 let major = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii∅'];
 let minor = ['i', 'ii∅', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
+const testChance = (factor, addend = 0) => Math.ceil(Math.random() * factor) + addend;
+const genChance = (factor, addend = 0) => Math.ceil(Math.random() * factor) + addend;
+
 
 // gets phrase length
 function getPhraseUnit() {
@@ -67,13 +70,19 @@ function getKeyMode() {
 }
 
 function getKeyCenter() {
-    let chance = Math.floor(Math.random() * 3);
-    if (chance === 0) {
-        keyNumerals = keyOfC;
-    } else if (chance === 1) {
-        keyNumerals = keyOfF;
-    } else {
-        keyNumerals = keyOfG;
+    // let chance = Math.floor(Math.random() * 3);
+    // if (chance === 0) {
+    //     keyNumerals = keyOfC;
+    // } else if (chance === 1) {
+    //     keyNumerals = keyOfF;
+    // } else {
+    //     keyNumerals = keyOfG;
+    // }
+    // let chance = genChance(3);
+    switch(genChance(3)) {
+        case 1: keyNumerals = keyOfC; break;
+        case 2: keyNumerals = keyOfF; break;
+        default: keyNumerals = keyOfG;
     }
 }
 
@@ -140,17 +149,22 @@ function createPhraseChart(section, formNum) {
 
 // makes a base unit of chords
 function createHarmonicUnit(section, formNum) {
+    // parent array
+    let info = phraseUnit.info;
 
+    // first 4 bar phrase
     if (section === 0) {
         let chance = Math.ceil(Math.random() * 6);
         getNewProgression(currentHarmony[chance], cadenceType[(Math.floor(Math.random() * 3)) + 1]);
         applyHarmonicRhythm(); // reference /harm-rhythm.js
-        phraseUnit.info.formId = formNum + ':A';
-        phraseUnit.info.progression = [...progression];
-        phraseUnit.info.progressionLength = progression.length;
-        phraseUnit.info.key = concatKeyInfo();
-        phraseUnit.info.tempo = getNewTempo();
+        info.formId = formNum + ':A';
+        info.progression = [...progression];
+        info.progressionLength = progression.length;
+        info.key = concatKeyInfo();
+        info.tempo = getNewTempo();
         savePrevFinalVoicing();
+
+    // second 4 bar phrase
     } else if (section === 1) {
         let chance = Math.ceil(Math.random() * 15);
         // sequence by stongest motion most often
@@ -166,45 +180,47 @@ function createHarmonicUnit(section, formNum) {
             progression[progression.length - 2] = 'V';
             progression[progression.length - 3] = numeralOne;
             tempCadenceType = 'Deceptive';
-
         }
         if (chance === 2) {
             progression[progression.length - 1] = 'V';
             progression[progression.length - 2] = numeralOne;
             tempCadenceType = 'Half';
-
         }
 
         applyHarmonicRhythm(); // reference /harm-rhythm.js
-        phraseUnit.info.formId = formNum + ':A1';
-        phraseUnit.info.progression = [...progression];
-        phraseUnit.info.progressionLength = progression.length;
-        phraseUnit.info.key = concatKeyInfo();
-        phraseUnit.info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
+        info.formId = formNum + ':A1';
+        info.progression = [...progression];
+        info.progressionLength = progression.length;
+        info.key = concatKeyInfo();
+        info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
         savePrevFinalVoicing();
+
+    // third 4 bar phrase
     } else if (section === 2) {
         getNewProgression(motionUpFourth(progression[progression.length - 1]), cadenceType[(Math.floor(Math.random() * 2)) + 2]);
         applyHarmonicRhythm(); // reference /harm-rhythm.js
-        phraseUnit.info.formId = formNum + ':B';
-        phraseUnit.info.progression = [...progression];
-        phraseUnit.info.progressionLength = progression.length;
-        phraseUnit.info.key = concatKeyInfo();
-        phraseUnit.info.tempo = getCloselyRelatedTempo(phraseContainer[(formNum - 1) * 4][0].tempo);
+        info.formId = formNum + ':B';
+        info.progression = [...progression];
+        info.progressionLength = progression.length;
+        info.key = concatKeyInfo();
+        info.tempo = getCloselyRelatedTempo(phraseContainer[(formNum - 1) * 4][0].tempo);
         savePrevFinalVoicing();
+
+    // last 4 bar phrase
     } else if (section === 3) {
         progression = [...phraseContainer[(formNum - 1) * 4][0].progression];
         progression[progression.length - 1] = numeralOne;
         progression[progression.length - 2] = 'V';
         tempCadenceType = 'Authentic';
-
         applyHarmonicRhythm(); // reference /harm-rhythm.js
-        phraseUnit.info.formId = formNum + ':A';
-        phraseUnit.info.progression = [...progression];
-        phraseUnit.info.progressionLength = progression.length;
-        phraseUnit.info.key = concatKeyInfo();
-        phraseUnit.info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
+        info.formId = formNum + ':A';
+        info.progression = [...progression];
+        info.progressionLength = progression.length;
+        info.key = concatKeyInfo();
+        info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
         savePrevFinalVoicing();
     }
+
     console.log(tempCadenceType);
 }
 
@@ -232,6 +248,8 @@ let progression = [];
 
 const generateProgressionLength = () => Math.ceil(Math.random() * 5) + 2;
 
+
+
 function getNewProgression(start, cadence) {
     tempCadenceType = cadence;
 
@@ -243,44 +261,55 @@ function getNewProgression(start, cadence) {
         if (currentHarmony === minor) {
 
             progression.forEach((item, i) => {
-                let chance = Math.ceil(Math.random() * 2);
-                if (item === 'ii') {
-                    if (chance === 0) {
+                // let chance =  Math.ceil(Math.random() * 2)
+                // const chance = (factor, additive) => Math.ceil(Math.random() * 2)
+                // progression.forEach((item, i) => {
+                switch(item) {
+
+                  case "ii":
+                    // chance = Math.ceil(Math.random() * 2);
+                    if (testChance(2, 0) === 0) {
                         progression[i] = 'ii∅';
                     } else {
                         progression[i] = 'ii';
                     }
-                }
+                    break;
 
-                if (item === 'iv') {
-                    chance = Math.ceil(Math.random() * 2);
-                    if (chance === 0) {
+                  case "iv":
+                    // chance = Math.ceil(Math.random() * 2);
+                    if (testChance(2, 0) === 0) {
                         progression[i] = 'iv';
                     } else {
                         progression[i] = 'IV7';
                     }
-                }
+                    break;
 
-                if (item === 'bVI') {
-                    chance = Math.ceil(Math.random() * 2);
-                    if (chance === 0) {
+                  case "bVI":
+                    // chance = Math.ceil(Math.random() * 2);
+                    if (testChance(2, 0) === 0) {
                         progression[i] = 'bVI';
                     } else {
                         progression[i] = 'vi∅'
                     }
-                }
+                    break;
 
-                if (item === 'bVII') {
-                    chance = Math.ceil(Math.random() * 2);
-                    if (chance === 0) {
+                  case "bVII":
+                    // chance = Math.ceil(Math.random() * 2);
+                    if (testChance(2, 0) === 0) {
                         progression[i] = 'bVII';
                     } else {
                         progression[i] = 'vii°'
                     }
+
+                  default: break;
+
                 }
+
             });
         }
     }
+
+
     progression = [];
     progression[0] = start;
     getInitialProgression();
@@ -419,18 +448,13 @@ function motionAnyToHome(x) {
 
 // function to ensure progression moves into cadential figure with strong motion
 function checkIfStrong(chord, resolution) {
-    if (motionUpSecond(chord) === resolution) {
-        return true;
-    } else if (motionDownThird(chord) === resolution) {
-        return true;
-    } else if (motionUpFourth(chord) === resolution) {
-        return true;
-    } else if (motionStatic(chord) === resolution) {
-        return true;
-    } else if (motionAnyToHome(chord) === resolution) {
-        return true;
-    } else {
-        return false;
+    switch(resolution) {
+      case motionUpSecond(chord): return true;
+      case motionDownThird(chord): return true;
+      case motionUpFourth(chord): return true;
+      case motionStatic(chord): return true;
+      case motionAnyToHome(chord): return true;
+      default: return false;
     }
 }
 
