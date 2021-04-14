@@ -301,11 +301,5 @@ function getVoiceLeading(extensions, counterpoint) {
 
 }
 
-function savePrevFinalVoicing() {
-    phraseUnit.info.prevFinalVoicing.push(bassVoiceArray[bassVoiceArray.length - 1]);
-    phraseUnit.info.prevFinalVoicing.push(tenorVoiceArray[bassVoiceArray.length - 1]);
-    phraseUnit.info.prevFinalVoicing.push(altoVoiceArray[bassVoiceArray.length - 1]);
-    phraseUnit.info.prevFinalVoicing.push(sopranoVoiceArray[bassVoiceArray.length - 1]);
-}
 
 // END of document

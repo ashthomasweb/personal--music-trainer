@@ -2,7 +2,8 @@
 
 let major = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii∅'];
 let minor = ['i', 'ii∅', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
-const testChance = (factor, addend = 0) => Math.ceil(Math.random() * factor) + addend;
+let cadenceType = ['Authentic', 'Plagal', 'Deceptive', 'Half'];
+
 const generateChance = (factor, addend = 0) => Math.ceil(Math.random() * factor) + addend;
 
 // gets phrase length
@@ -47,27 +48,6 @@ function getPhraseUnit() {
     return phraseUnit;
 }
 
-let currentHarmony = major;
-let romanNumOne = 'I';
-let romanNumFour = 'IV';
-let romanNumFive = 'V';
-let romanNumSix = 'vi';
-
-function getKeyMode() {
-    let modeChance = generateChance(2);
-    if (modeChance === 1) {
-        currentHarmony = minor;
-        romanNumOne = 'i';
-        romanNumFour = 'iv';
-        romanNumSix = 'bVI';
-    } else if (modeChance === 2) {
-        currentHarmony = major;
-        romanNumOne = 'I';
-        romanNumFour = 'IV';
-        romanNumSix = 'vi';
-    }
-}
-
 function getKeyCenter() {
 
     switch (generateChance(3)) {
@@ -84,6 +64,27 @@ function getKeyCenter() {
     }
 }
 
+
+let currentHarmony = major;
+let romanNumOne;
+let romanNumFour;
+let romanNumFive = 'V';
+let romanNumSix;
+
+function getKeyMode() {
+    if (generateChance(2) === 1) {
+        currentHarmony = minor;
+        romanNumOne = 'i';
+        romanNumFour = 'iv';
+        romanNumSix = 'bVI';
+    } else {
+        currentHarmony = major;
+        romanNumOne = 'I';
+        romanNumFour = 'IV';
+        romanNumSix = 'vi';
+    }
+}
+
 function switchHarmonicMode() {
     if (currentHarmony === major) {
         currentHarmony = minor;
@@ -97,11 +98,6 @@ function switchHarmonicMode() {
         romanNumSix = 'vi';
     }
 }
-
-let cadenceType = ['Authentic', 'Plagal', 'Deceptive', 'Half'];
-let phraseUnit = [];
-let phraseContainer = [];
-let firstHarmonicArea;
 
 // form construction
 function buildForm(numberOfRepeats) {
@@ -133,6 +129,8 @@ function buildForm(numberOfRepeats) {
     playPhraseChart();
 }
 
+let phraseUnit = [];
+let phraseContainer = [];
 // calls all builder helper functions and provides data for playback via phraseContainer
 function createPhraseChart(section, formNum) {
     // gets empty phrase
@@ -151,12 +149,18 @@ function createHarmonicUnit(section, formNum) {
     let info = phraseUnit.info;
 
     function concatKeyInfo() {
-        if (keyNumerals === keyOfC) {
-            center = 'C'
-        } else if (keyNumerals === keyOfF) {
-            center = 'F'
-        } else {
-            center = 'G'
+        switch (keyNumerals) {
+            case keyOfC:
+                center = 'C'
+                break;
+            case keyOfG:
+                center = 'G'
+                break;
+            case keyOfF:
+                center = 'F'
+            default:
+                center = 'C';
+                break;
         }
         currentHarmony === major ? mode = 'major' : mode = 'minor';
         return center + ' ' + mode;
@@ -164,14 +168,12 @@ function createHarmonicUnit(section, formNum) {
 
     function cadenceHandler(section, progression) {
         if (section === 1) { // second 'A'
-            let cadenceChance = generateChance(2);
-            if (cadenceChance === 1) {
+            if (generateChance(2) === 1) {
                 cadenceValue = 'Deceptive';
                 progression[progression.length - 1] = romanNumSix;
                 progression[progression.length - 2] = romanNumFive;
                 progression[progression.length - 3] = romanNumOne;
-            }
-            if (cadenceChance === 2) {
+            } else {
                 cadenceValue = 'Half';
                 progression[progression.length - 1] = romanNumFive;
                 progression[progression.length - 2] = romanNumOne;
@@ -182,6 +184,13 @@ function createHarmonicUnit(section, formNum) {
             progression[progression.length - 1] = romanNumOne;
             progression[progression.length - 2] = romanNumFive;
         }
+    }
+
+    function savePrevFinalVoicing() {
+        let voiceArray = [bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray];
+        voiceArray.forEach( (item) => {
+            info.prevFinalVoicing.push(item[item.length - 1]);
+        });
     }
 
     // send musical data to phraseChart
@@ -232,13 +241,11 @@ function createHarmonicUnit(section, formNum) {
 
 let progression = [];
 
-const generateProgressionLength = () => generateChance(5, 2);
-
 function getNewProgression(start, cadence) {
     cadenceValue = cadence;
 
     function generateInitialHarmonies() {
-        for (let index = 1; index <= generateProgressionLength() - 1; index++) {
+        for (let index = 1; index <= generateChance(5, 2) - 1; index++) {
             progression[index] = generateStrongMotion(progression[index - 1]);
         }
         // THIS is where I can add raised harmonies
@@ -288,14 +295,14 @@ function getNewProgression(start, cadence) {
 
     function checkForStrongMotion() {
         if (cadence === 'Plagal') {
-            for (let index = 1; index <= progression.length - 2; index++) {
-                if (checkIfStrong(progression[index - 1], progression[index]) === false) {
+            for (let i = 1; i <= progression.length - 2; i++) {
+                if (checkIfStrong(progression[i - 1], progression[i]) === false) {
                     return getNewProgression(start, cadence);
                 }
             }
         } else {
-            for (let index = 1; index <= progression.length - 1; index++) {
-                if (checkIfStrong(progression[index - 1], progression[index]) === false) {
+            for (let i = 1; i <= progression.length - 1; i++) {
+                if (checkIfStrong(progression[i - 1], progression[i]) === false) {
                     return getNewProgression(start, cadence);
                 }
             }
@@ -335,12 +342,12 @@ function generateStrongMotion(x) {
                 case 3:
                     return motionDownThird(x);
             }
-        case 3:
-            return motionStatic(x);
-        case 4:
-            return motionAnyToHome(x);
-        default:
-            return motionUpFourth(x);
+            case 3:
+                return motionStatic(x);
+            case 4:
+                return motionAnyToHome(x);
+            default:
+                return motionUpFourth(x);
     }
 }
 
