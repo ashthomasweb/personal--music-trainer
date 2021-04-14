@@ -230,8 +230,6 @@ function createHarmonicUnit(section, formNum) {
     }
 }
 
-
-
 let progression = [];
 
 const generateProgressionLength = () => generateChance(5, 2);
@@ -248,72 +246,47 @@ function getNewProgression(start, cadence) {
 
             progression.forEach((item, i) => {
                 switch (item) {
-
                     case "ii∅":
-                        if (generateChance(2) === 1) {
-                            progression[i] = 'ii∅';
-                        } else {
-                            progression[i] = 'ii';
-                        }
+                        generateChance(2) === 1 ? progression[i] = 'ii∅' : progression[i] = 'ii';
                         break;
-
                     case "iv":
-                        if (generateChance(2) === 1) {
-                            progression[i] = 'iv';
-                        } else {
-                            progression[i] = 'IV7';
-                        }
+                        generateChance(2) === 1 ? progression[i] = 'iv' : progression[i] = 'IV7';
                         break;
-
                     case "bVI":
-                        if (generateChance(2) === 1) {
-                            progression[i] = 'bVI';
-                        } else {
-                            progression[i] = 'vi∅'
-                        }
+                        generateChance(2) === 1 ? progression[i] = 'bVI' : progression[i] = 'vi∅';
                         break;
-
                     case "bVII":
-                        if (generateChance(2) === 1) {
-                            progression[i] = 'bVII';
-                        } else {
-                            progression[i] = 'vii°';
-                        }
-
-                        default:
-                            break;
-
+                        generateChance(2) === 1 ? progression[i] = 'bVII' : progression[i] = 'vii°';
+                    default:
+                        break;
                 }
-
             });
         }
     }
 
     function assignNewCadence() {
-
         let i = progression.length - 1;
-
-        if (cadence === cadenceType[0]) {
-            progression[i] = romanNumOne;
-            progression[i - 1] = romanNumFive;
+        switch (cadence) {
+            case 'Authentic':
+                progression[i] = romanNumOne;
+                progression[i - 1] = romanNumFive;
+                break;
+            case 'Plagal':
+                progression[i] = romanNumOne;
+                progression[i - 1] = romanNumFour;
+                break;
+            case 'Deceptive':
+                progression[i] = romanNumSix;
+                progression[i - 1] = romanNumFive;
+                break;
+            case 'Half':
+                progression[i] = romanNumFive;
+            default:
+                break;
         }
-        if (cadence === cadenceType[1]) {
-            progression[i] = romanNumOne;
-            progression[i - 1] = romanNumFour;
-        }
-        if (cadence === cadenceType[2]) {
-            progression[i] = romanNumSix;
-            progression[i - 1] = romanNumFive;
-        }
-        if (cadence === cadenceType[3]) {
-            progression[i] = romanNumFive;
-        }
-        
-
     }
 
-
-    function cadenceCheck() {
+    function checkForStrongMotion() {
         if (cadence === 'Plagal') {
             for (let index = 1; index <= progression.length - 2; index++) {
                 if (checkIfStrong(progression[index - 1], progression[index]) === false) {
@@ -333,7 +306,7 @@ function getNewProgression(start, cadence) {
     progression[0] = start;
     generateInitialHarmonies();
     assignNewCadence();
-    cadenceCheck();
+    checkForStrongMotion();
     return progression;
 }
 
@@ -350,34 +323,31 @@ function harmonicDiatonicSequencer(degreesUp) {
 }
 
 function generateStrongMotion(x) {
-    let num = Math.floor(Math.random() * 6);
-    if (num === 0) {
-        return motionUpSecond(x);
-    }
-    if (num === 1) {
-        let chance = Math.floor(Math.random() * 3);
-        if (chance === 0) {
-            return motionStatic(x);
-        } else if (chance === 1) {
+    switch (generateChance(7)) {
+        case 1:
             return motionUpSecond(x);
-        } else if (chance === 2) {
-            return motionDownThird(x);
-        }
-    }
-    if (num === 2) {
-        return motionStatic(x);
-    }
-    if (num === 3) {
-        return motionAnyToHome(x);
-    }
-    if (num >= 4) {
-        return motionUpFourth(x);
+        case 2:
+            switch (generateChance(3)) {
+                case 1:
+                    return motionStatic(x);
+                case 2:
+                    return motionUpSecond(x);
+                case 3:
+                    return motionDownThird(x);
+            }
+        case 3:
+            return motionStatic(x);
+        case 4:
+            return motionAnyToHome(x);
+        default:
+            return motionUpFourth(x);
     }
 }
 
 function motionUpSecond(x) {
     let startPosition = currentHarmony.indexOf(x);
     let finishPosition;
+    // conditional statement converting array indexes to base7
     if (startPosition === 6) {
         finishPosition = 0;
     } else {
@@ -390,12 +360,13 @@ function motionUpSecond(x) {
 function motionDownThird(x) {
     let startPosition = currentHarmony.indexOf(x);
     let finishPosition;
+    // conditional statement converting array indexes to base7
     if (startPosition === 0) {
         finishPosition = 5;
     } else if (startPosition === 1) {
         finishPosition = 6;
-    } else if (startPosition === 4) {
-        if (Math.floor(Math.random * 2) === 0) {
+    } else if (startPosition === 4) { // prevents motion down a third from V
+        if (generateChance(2) === 1) {
             return motionUpSecond(x);
         } else {
             return motionUpFourth(x)
@@ -410,6 +381,7 @@ function motionDownThird(x) {
 function motionUpFourth(x) {
     let startPosition = currentHarmony.indexOf(x);
     let finishPosition;
+    // conditional statement converting array indexes to base7
     if (startPosition === 6) {
         finishPosition = 2;
     } else if (startPosition === 5) {
@@ -428,8 +400,8 @@ function motionStatic(x) {
 }
 
 function motionAnyToHome(x) {
-    if (x === 'i') {
-        return currentHarmony[Math.ceil(Math.random() * 6)];
+    if (x === 'i' || x === 'I') {
+        return currentHarmony[generateChance(6)];
     } else {
         return currentHarmony[0];
     }
