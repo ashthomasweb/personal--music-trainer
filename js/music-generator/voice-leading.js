@@ -34,7 +34,7 @@ function voiceLeadHandler() {
     let firstChord = progression[0];
     // declare firstChord as object array
     for (let i = 0; i <= keyNumerals.length - 1; i++) {
-        if (keyNumerals[i][0] === firstChord) {
+        if (keyNumerals[i].numeral === firstChord) {
             firstChord = keyNumerals[i];
         }
     }
@@ -54,7 +54,6 @@ function voiceLeadHandler() {
                 direction = 'smoothest';
                 break;
         }
-        console.log(direction);
         resolutionDirectionArray.push(direction);
     }
 
@@ -69,9 +68,9 @@ function voiceLeadHandler() {
 
     let allChordTones = [];
     let allChordToneIndex = [];
-    allChordTones.push(...firstChord[1][1]);
-    allChordTones.push(...firstChord[2][1]);
-    allChordTones.push(...firstChord[3][1]);
+    allChordTones.push(...firstChord.root);
+    allChordTones.push(...firstChord.third);
+    allChordTones.push(...firstChord.fifth);
     allChordTones.forEach((item) => {
         allChordToneIndex.push(noteIndex.indexOf(item));
     })
@@ -98,17 +97,17 @@ function voiceLeadHandler() {
 
     // set first note of voice and handle voice-leading for satb
     // lowest root
-    startingNote = firstChord[1][1][0];
+    startingNote = firstChord.root[0];
     createBassArray();
 
-    startingNote = noteIndex[tenorTones[Math.floor(Math.random() * tenorTones.length)]];
+    startingNote = noteIndex[tenorTones[generateChance(tenorTones.length) - 1]];
     createTenorArray();
 
-    startingNote = noteIndex[altoTones[Math.floor(Math.random() * altoTones.length)]];
+    startingNote = noteIndex[altoTones[generateChance(altoTones.length) - 1]];
     createAltoArray();
 
     // highest third
-    startingNote = firstChord[2][1][firstChord[2][1].length - 1];
+    startingNote = firstChord.third[firstChord.third.length - 1];
     createSopranoArray();
 
     // NEEDS refactor for multiple keys
@@ -120,8 +119,8 @@ function voiceLeadHandler() {
             let currentChord = progression[i];
             // look in romanNumeral array for rootArray
             keyNumerals.forEach((item) => {
-                if (item[0] === currentChord) {
-                    roots = [...item[1][1]];
+                if (item.numeral === currentChord) {
+                    roots = [...item.root];
                 }
             });
             if (roots.includes(bassVoiceArray[i])) {
@@ -175,7 +174,7 @@ function getVoiceLeading(extensions, counterpoint) {
         let resolveChord = progression[i + 1];
         // search for object based on string
         for (let i = 0; i <= keyNumerals.length - 1; i++) {
-            if (keyNumerals[i][0] === resolveChord) {
+            if (keyNumerals[i].numeral === resolveChord) {
                 resolveChord = keyNumerals[i];
             }
         }
@@ -204,14 +203,14 @@ function getVoiceLeading(extensions, counterpoint) {
 
             if (extensions === 'triad') {
                 // length of resolveChord loop determines how many color tones are included. (-2) is triad, (-1) includes sevenths.
-                for (let i = 1; i <= resolveChord.length - 2; i++) {
+                for (let i = 1; i <= Object.keys(resolveChord).length - 2; i++) {
                     // gets index of all chord members in resolution chord
-                    resolveChord[i][1].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
+                    Object.values(resolveChord)[i].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
                 }
             } else if (extensions === 'seventh') {
-                for (let i = 1; i <= resolveChord.length - seventhChance(); i++) {
+                for (let i = 1; i <= Object.keys(resolveChord).length - seventhChance(); i++) {
                     // gets index of all chord members in resolution chord
-                    resolveChord[i][1].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
+                    Object.values(resolveChord)[i].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
                 }
             }
             // get smoothest transition via difference of current note's index and nearest note's index

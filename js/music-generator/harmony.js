@@ -159,7 +159,6 @@ function createHarmonicUnit(section, formNum) {
             case keyOfF:
                 center = 'F'
             default:
-                center = 'C';
                 break;
         }
         currentHarmony === major ? mode = 'major' : mode = 'minor';
