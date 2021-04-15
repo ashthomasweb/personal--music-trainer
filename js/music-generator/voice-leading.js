@@ -39,17 +39,22 @@ function voiceLeadHandler() {
         }
     }
 
+    // create array indicating overall voice leading direction and apply cadential tendency
     let direction;
     resolutionDirectionArray = [];
     for (let i = 0; i <= progression.length - 2; i++) {
-        let num = Math.floor(Math.random() * 6);
-        if (num === 0) {
-            direction = 'up';
-        } else if (num === 1) {
-            direction = 'down';
-        } else {
-            direction = 'smoothest';
+        switch (generateChance(6)) {
+            case 1:
+                direction = 'up';
+                break;
+            case 2:
+                direction = 'down';
+                break;
+            default:
+                direction = 'smoothest';
+                break;
         }
+        console.log(direction);
         resolutionDirectionArray.push(direction);
     }
 
