@@ -68,12 +68,10 @@ function voiceLeadHandler() {
 
     let allChordTones = [];
     let allChordToneIndex = [];
-    allChordTones.push(...firstChord.root);
-    allChordTones.push(...firstChord.third);
-    allChordTones.push(...firstChord.fifth);
+    allChordTones.push(...firstChord.root, ...firstChord.third, ...firstChord.fifth);
     allChordTones.forEach((item) => {
         allChordToneIndex.push(noteIndex.indexOf(item));
-    })
+    });
 
     // seperate allChordToneIndex into SATB
     let bassTones = [];
@@ -187,7 +185,7 @@ function getVoiceLeading(extensions, counterpoint) {
                 if (i === progression.length - 2) {
                     return 2;
                 } else {
-                    if (Math.floor(Math.random() * 3) === 1) {
+                    if (generateChance(3) === 1) {
                         return 1;
                     } else {
                         return 2;
@@ -233,8 +231,7 @@ function getVoiceLeading(extensions, counterpoint) {
 
             // random chance of smoothest or next best voice-leading option
             function smoothResolutionChance() {
-                let num = Math.floor(Math.random() * 3);
-                if (num === 0) {
+                if (generateChance(3) === 1) {
                     resolution = resolutionOptions[1];
                 } else {
                     resolution = resolutionOptions[0];
