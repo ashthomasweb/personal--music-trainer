@@ -109,8 +109,8 @@ function playPhraseChart() {
 
 function iteratePlaybackArray(infoArray) {
     // THIS is where I can control which voices play per beat
-    let temp = 4
-    switch (temp) {
+    // let temp = 4
+    switch (generateChance(4)) {
         case 1:
             playbackTextureSwitch([allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
             break;
@@ -144,7 +144,7 @@ function playbackTextureSwitch(voices, infoArray) {
     }
 }
 
-// || TEXTURES 
+// || TEXTURES
 
 // Arpeggiate voices without stopping repeated notes
 function arpeggiateVoices(voices, infoArray) {
@@ -247,7 +247,7 @@ function arpeggiateVoicesCompound(voices, infoArray) {
 
 
 // Out Of Date Development Functions
-// Button Playback 
+// Button Playback
 
 // function playVoicesBlock() {
 //     voicesTimer = 0;
@@ -321,4 +321,4 @@ function arpeggiateVoicesCompound(voices, infoArray) {
 
 
 
-// END of document 
+// END of document
