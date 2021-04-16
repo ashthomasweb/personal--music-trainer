@@ -7,9 +7,9 @@ let cadenceType = ['Authentic', 'Plagal', 'Deceptive', 'Half'];
 const generateChance = (factor, addend = 0) => Math.ceil(Math.random() * factor) + addend;
 
 // gets phrase length
-function getPhraseUnit() {
+function getEmptyChart() {
 
-    phraseUnit = {
+    phraseChart = {
         info: {
             formId: "",
             progression: "",
@@ -45,7 +45,7 @@ function getPhraseUnit() {
         ]
     };
 
-    return phraseUnit;
+    return phraseChart;
 }
 
 function getKeyCenter() {
@@ -103,23 +103,23 @@ function switchHarmonicMode() {
 function buildForm(numberOfRepeats) {
     for (let i = 0; i < numberOfRepeats; i++) {
         // THIS is where I can change options on a 16 measure basis
-        for (let ii = 0; ii < 4; ii++) {
-            if (ii === 0) {
+        for (let j = 0; j <= 3; j++) {
+            if (j === 0) {
                 getKeyMode();
                 getKeyCenter();
                 createPhraseChart(0, i + 1); // builds phrasing array, harmonic progression, and harmonic rhythm
                 voiceLeadHandler(); // voice-leads progression
             }
-            if (ii === 1) {
+            if (j === 1) {
                 createPhraseChart(1, i + 1);
                 voiceLeadHandler();
             }
-            if (ii === 2) {
+            if (j === 2) {
                 switchHarmonicMode();
                 createPhraseChart(2, i + 1);
                 voiceLeadHandler();
             }
-            if (ii === 3) {
+            if (j === 3) {
                 switchHarmonicMode();
                 createPhraseChart(3, i + 1);
                 voiceLeadHandler();
@@ -129,25 +129,22 @@ function buildForm(numberOfRepeats) {
     playPhraseChart();
 }
 
-let phraseUnit = [];
-let phraseContainer = [];
 // calls all builder helper functions and provides data for playback via phraseContainer
+let phraseChart;
+let phraseContainer = [];
 function createPhraseChart(section, formNum) {
-    // gets empty phrase
-    phraseUnit = getPhraseUnit();
-    // gets progression and generates harmonic rhythm
-    createHarmonicUnit(section, formNum);
-
+    // gets progression, gets empty chart, generates harmonic rhythm
+    createHarmonicUnit(section, formNum, getEmptyChart());
     // convert and push to container for play handling
-    let phraseUnitArray = Object.values(phraseUnit);
-    phraseContainer.push(phraseUnitArray);
+    let phraseChartArray = Object.values(phraseChart);
+    phraseContainer.push(phraseChartArray);
 }
 
 // makes a base unit of chords
-function createHarmonicUnit(section, formNum) {
-    // parent array
-    let info = phraseUnit.info;
+function createHarmonicUnit(section, formNum, phraseChart) {
+    let {info} = phraseChart;
 
+    // data helper arrays
     function concatKeyInfo() {
         switch (keyNumerals) {
             case keyOfC:
@@ -166,28 +163,33 @@ function createHarmonicUnit(section, formNum) {
     }
 
     function cadenceHandler(section, progression) {
+      let length = progression.length;
+      let lastHarmony = progression[length - 1];
+      let secondLast = progression[length - 2];
+      let thirdLast = progression[length - 3];
+
         if (section === 1) { // second 'A'
             if (generateChance(2) === 1) {
                 cadenceValue = 'Deceptive';
-                progression[progression.length - 1] = romanNumSix;
-                progression[progression.length - 2] = romanNumFive;
-                progression[progression.length - 3] = romanNumOne;
+                lastHarmony = romanNumSix;
+                secondLast = romanNumFive;
+                thirdLast = romanNumOne;
             } else {
                 cadenceValue = 'Half';
-                progression[progression.length - 1] = romanNumFive;
-                progression[progression.length - 2] = romanNumOne;
+                lastHarmony = romanNumFive;
+                secondLast = romanNumOne;
             }
         }
         if (section === 3) { // final 'A'
             cadenceValue = 'Authentic';
-            progression[progression.length - 1] = romanNumOne;
-            progression[progression.length - 2] = romanNumFive;
+            lastHarmony = romanNumOne;
+            secondLast = romanNumFive;
         }
     }
 
     function savePrevFinalVoicing() {
         let voiceArray = [bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray];
-        voiceArray.forEach( (item) => {
+        voiceArray.forEach((item) => {
             info.prevFinalVoicing.push(item[item.length - 1]);
         });
     }
@@ -199,6 +201,19 @@ function createHarmonicUnit(section, formNum) {
         info.progression = [...progression];
         info.progressionLength = progression.length;
         info.key = concatKeyInfo();
+    }
+
+    function getNewTempo() {
+        return generateChance(500, 500);
+    }
+
+    function getCloselyRelatedTempo(input) {
+        let amountChange = generateChance(70, 80);
+        if (generateChance(2) === 1) {
+            return input + amountChange;
+        } else {
+            return input - amountChange;
+        }
     }
 
     // first 4 bar phrase
@@ -241,6 +256,7 @@ function createHarmonicUnit(section, formNum) {
 let progression = [];
 
 function getNewProgression(start, cadence) {
+    // 'cadenceValue' is a data store variable used in /voice-leading.js
     cadenceValue = cadence;
 
     function generateInitialHarmonies() {
@@ -317,41 +333,41 @@ function getNewProgression(start, cadence) {
 }
 
 function harmonicDiatonicSequencer(degreesUp) {
-    for (let ii = 1; ii < degreesUp; ii++) {
-        progression.forEach((item, i, progression) => {
+    for (let i = 1; i < degreesUp; i++) {
+        progression.forEach((item, j, progression) => {
             if (currentHarmony.indexOf(item) === currentHarmony.length - 1) {
-                progression[i] = currentHarmony[0];
+                progression[j] = currentHarmony[0];
             } else {
-                progression[i] = currentHarmony[currentHarmony.indexOf(item) + 1];
+                progression[j] = currentHarmony[currentHarmony.indexOf(item) + 1];
             }
         });
     }
 }
 
-function generateStrongMotion(x) {
+function generateStrongMotion(chord) {
     switch (generateChance(7)) {
         case 1:
-            return motionUpSecond(x);
+            return motionUpSecond(chord);
         case 2:
             switch (generateChance(3)) {
                 case 1:
-                    return motionStatic(x);
+                    return motionStatic(chord);
                 case 2:
-                    return motionUpSecond(x);
+                    return motionUpSecond(chord);
                 case 3:
-                    return motionDownThird(x);
+                    return motionDownThird(chord);
             }
             case 3:
-                return motionStatic(x);
+                return motionStatic(chord);
             case 4:
-                return motionAnyToHome(x);
+                return motionAnyToHome(chord);
             default:
-                return motionUpFourth(x);
+                return motionUpFourth(chord);
     }
 }
 
-function motionUpSecond(x) {
-    let startPosition = currentHarmony.indexOf(x);
+function motionUpSecond(chord) {
+    let startPosition = currentHarmony.indexOf(chord);
     let finishPosition;
     // conditional statement converting array indexes to base7
     if (startPosition === 6) {
@@ -363,8 +379,8 @@ function motionUpSecond(x) {
     return currentHarmony[finishPosition];
 }
 
-function motionDownThird(x) {
-    let startPosition = currentHarmony.indexOf(x);
+function motionDownThird(chord) {
+    let startPosition = currentHarmony.indexOf(chord);
     let finishPosition;
     // conditional statement converting array indexes to base7
     if (startPosition === 0) {
@@ -373,9 +389,9 @@ function motionDownThird(x) {
         finishPosition = 6;
     } else if (startPosition === 4) { // prevents motion down a third from V
         if (generateChance(2) === 1) {
-            return motionUpSecond(x);
+            return motionUpSecond(chord);
         } else {
-            return motionUpFourth(x)
+            return motionUpFourth(chord)
         }
     } else {
         startPosition = startPosition - 2;
@@ -384,8 +400,8 @@ function motionDownThird(x) {
     return currentHarmony[finishPosition];
 }
 
-function motionUpFourth(x) {
-    let startPosition = currentHarmony.indexOf(x);
+function motionUpFourth(chord) {
+    let startPosition = currentHarmony.indexOf(chord);
     let finishPosition;
     // conditional statement converting array indexes to base7
     if (startPosition === 6) {
@@ -401,12 +417,12 @@ function motionUpFourth(x) {
     return currentHarmony[finishPosition];
 }
 
-function motionStatic(x) {
-    return currentHarmony[currentHarmony.indexOf(x)];
+function motionStatic(chord) {
+    return currentHarmony[currentHarmony.indexOf(chord)];
 }
 
-function motionAnyToHome(x) {
-    if (x === 'i' || x === 'I') {
+function motionAnyToHome(chord) {
+    if (chord === 'i' || chord === 'I') {
         return currentHarmony[generateChance(6)];
     } else {
         return currentHarmony[0];
@@ -438,3 +454,5 @@ function checkIfStrong(chord, resolution) {
 
 // half dim glyph ∅  ♭  °
 // const chance = (factor) =>  Math.ceil(Math.random() * factor);
+// Roman numerals Ⅰ Ⅱ Ⅲ Ⅳ Ⅴ ⅰ ⅷ
+// https://unicode-table.com/en/sets/roman-numerals/

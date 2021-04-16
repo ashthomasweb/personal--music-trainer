@@ -51,4 +51,15 @@ function clearPlayContainers() {
     allVoicesPlayback = [];
 }
 
+function allStop() {
+    // empty setTimeout to establish variable name
+    var queuedNote = window.setTimeout(() => {}, 0);
+    // while setTimeout's exist with positive integers, clear them
+    while (queuedNote--) {
+        window.clearTimeout(queuedNote);
+    }
+}
+
+
+
 // END of document

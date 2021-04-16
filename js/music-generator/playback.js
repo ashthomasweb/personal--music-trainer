@@ -1,9 +1,6 @@
 //  Cadences and scale playback JS file for "Music Trainer"
-let index = 0;
 
 let sourceNoteIndex = ['D6', 'Db6', 'C6', 'B5', 'Bb5', 'A5', 'Ab5', 'G5', 'Gb5', 'F5', 'E5', 'Eb5', 'D5', 'Db5', 'C5', 'B4', 'Bb4', 'A4', 'Ab4', 'G4', 'Gb4', 'F4', 'E4', 'Eb4', 'D4', 'Db4', 'C4', 'B3', 'Bb3', 'A3', 'Ab3', 'G3', 'Gb3', 'F3', 'E3', 'Eb3', 'D3', 'Db3', 'C3', 'B2', 'Bb2', 'A2', 'Ab2', 'G2', 'Gb2', 'F2', 'E2', 'Eb2', 'D2', 'Db2', 'C2', 'B1']
-
-
 
 let tempPlaybackArray = [];
 let allVoicesPlaybackArray = [
@@ -15,15 +12,15 @@ let allVoicesPlaybackArray = [
 
 function arrangeAllVoices() {
     for (let i = 0; i <= tempPlaybackArray.length - 1; i++) {
-        allVoicesPlaybackArray[0] = allVoicesPlaybackArray[0].concat(tempPlaybackArray[i][0]);
-        allVoicesPlaybackArray[1] = allVoicesPlaybackArray[1].concat(tempPlaybackArray[i][1]);
-        allVoicesPlaybackArray[2] = allVoicesPlaybackArray[2].concat(tempPlaybackArray[i][2]);
-        allVoicesPlaybackArray[3] = allVoicesPlaybackArray[3].concat(tempPlaybackArray[i][3]);
+        for (let j = 0; j <= 3; j++) {
+            allVoicesPlaybackArray[j] = allVoicesPlaybackArray[j].concat(tempPlaybackArray[i][j]);
+        }
     }
 }
 
-
-
+let voicesTimer = 0;
+let beatLength;
+let index = 0;
 
 // Play from phrasing chart
 function playPhraseChart() {
@@ -33,48 +30,48 @@ function playPhraseChart() {
     arrangeAllVoices();
     phraseContainer.forEach((phrase, i) => {
         beatLength = phrase[0].tempo;
-        
+
         // TEMP
         // Display function - can only display data that has been included in phraseContainer
-            let formId = 'Form/Section: ' + phrase[0].formId;
-            let key = 'Current key: ' + phrase[0].key;
-            let tempo = 'Tempo in ms: ' + phrase[0].tempo;
-            let progLength = 'Number of chords: ' + phrase[0].progressionLength;
-            let progOutput = [];
-            phrase[0].progression.forEach((item) => {
-                temp = item + '...............';
-                progOutput.push(temp.slice(0, 7));
-            });
-            let progDisplay = 'P: ' + progOutput;
-            let pOutput = progDisplay.replace(/\,/g, ".");
-            let bassOutput = [];
-            phrase[0].voiceLeading[0].forEach((item) => {
-                temp = item + '...............';
-                bassOutput.push(temp.slice(0, 7));
-            });
-            let bassDisplay = 'B: ' + bassOutput;
-            let bOutput = bassDisplay.replace(/\,/g, ".");
-            let tenorOutput = [];
-            phrase[0].voiceLeading[1].forEach((item) => {
-                temp = item + '...............';
-                tenorOutput.push(temp.slice(0, 7));
-            });
-            let tenorDisplay = 'T: ' + tenorOutput;
-            let tOutput = tenorDisplay.replace(/\,/g, ".");
-            let altoOutput = [];
-            phrase[0].voiceLeading[2].forEach((item) => {
-                temp = item + '...............';
-                altoOutput.push(temp.slice(0, 7));
-            });
-            let altoDisplay = 'A: ' + altoOutput;
-            let aOutput = altoDisplay.replace(/\,/g, ".");
-            let sopranoOutput = [];
-            phrase[0].voiceLeading[3].forEach((item) => {
-                temp = item + '...............';
-                sopranoOutput.push(temp.slice(0, 7));
-            });
-            let sopranoDisplay = 'S: ' + sopranoOutput;
-            let sOutput = sopranoDisplay.replace(/\,/g, ".");
+        let formId = 'Form/Section: ' + phrase[0].formId;
+        let key = 'Current key: ' + phrase[0].key;
+        let tempo = 'Tempo in ms: ' + phrase[0].tempo;
+        let progLength = 'Number of chords: ' + phrase[0].progressionLength;
+        let progOutput = [];
+        phrase[0].progression.forEach((item) => {
+            temp = item + '...............';
+            progOutput.push(temp.slice(0, 7));
+        });
+        let progDisplay = 'P: ' + progOutput;
+        let pOutput = progDisplay.replace(/\,/g, ".");
+        let bassOutput = [];
+        phrase[0].voiceLeading[0].forEach((item) => {
+            temp = item + '...............';
+            bassOutput.push(temp.slice(0, 7));
+        });
+        let bassDisplay = 'B: ' + bassOutput;
+        let bOutput = bassDisplay.replace(/\,/g, ".");
+        let tenorOutput = [];
+        phrase[0].voiceLeading[1].forEach((item) => {
+            temp = item + '...............';
+            tenorOutput.push(temp.slice(0, 7));
+        });
+        let tenorDisplay = 'T: ' + tenorOutput;
+        let tOutput = tenorDisplay.replace(/\,/g, ".");
+        let altoOutput = [];
+        phrase[0].voiceLeading[2].forEach((item) => {
+            temp = item + '...............';
+            altoOutput.push(temp.slice(0, 7));
+        });
+        let altoDisplay = 'A: ' + altoOutput;
+        let aOutput = altoDisplay.replace(/\,/g, ".");
+        let sopranoOutput = [];
+        phrase[0].voiceLeading[3].forEach((item) => {
+            temp = item + '...............';
+            sopranoOutput.push(temp.slice(0, 7));
+        });
+        let sopranoDisplay = 'S: ' + sopranoOutput;
+        let sOutput = sopranoDisplay.replace(/\,/g, ".");
         // Display function - can only display data that has been included in phraseContainer
         // TEMP
 
@@ -110,76 +107,51 @@ function playPhraseChart() {
     });
 }
 
-
-
 function iteratePlaybackArray(infoArray) {
     // THIS is where I can control which voices play per beat
-    let chance = Math.floor(Math.random() * 10);
-    chance = 3;
-    if (chance === 0) {
-        playbackTextureSwitch([allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
-    } else if (chance === 1) {
-        playbackTextureSwitch([allVoicesPlaybackArray[1][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
-    } else if (chance === 2) {
-        playbackTextureSwitch([allVoicesPlaybackArray[0][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
-    } else if (chance === 3) {
-        playbackTextureSwitch([allVoicesPlaybackArray[0][index], allVoicesPlaybackArray[1][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
+    let temp = 4
+    switch (temp) {
+        case 1:
+            playbackTextureSwitch([allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
+            break;
+        case 2:
+            playbackTextureSwitch([allVoicesPlaybackArray[1][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
+            break;
+        case 3:
+            playbackTextureSwitch([allVoicesPlaybackArray[0][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
+            break;
+        case 4:
+            playbackTextureSwitch([allVoicesPlaybackArray[0][index], allVoicesPlaybackArray[1][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
+            break;
     }
-    // THIS is where I can control which voices play per beat
-
     index++;
 }
 
 // THIS is where I can engage textures
 function playbackTextureSwitch(voices, infoArray) {
-
-    let chance = Math.floor(Math.random() * 4);
-    // chance = 6;
-    if (chance === 0) {
-        voices.forEach((item) => {
-            noteSwitch(item);
-        });
-    } else if (chance === 1 || chance === 2) {
-        arpeggiateVoices(voices, infoArray);
-        // } else if (chance === 3) {
-        //     arpeggiateVoicesCompound(voices, infoArray);
-    } else {
-        boomChuck(voices, infoArray);
+    switch (generateChance(4)) {
+        case 1:
+            voices.forEach((item) => {
+                noteSwitch(item);
+            });
+            break;
+        case 2:
+            arpeggiateVoices(voices, infoArray);
+            break;
+        default:
+            boomChuck(voices, infoArray);
+            break;
     }
 }
-
 
 // || TEXTURES 
-
-// global timing variable
-let voicesTimer = 0;
-
-// THIS is where i can control tempo
-let beatLength;
-
-function getNewTempo() {
-    return (Math.ceil(Math.random() * 500) + 500);
-}
-
-function getCloselyRelatedTempo(input) {
-    let amountChange = Math.ceil(Math.random() * 70 + 80);
-    let chance = Math.ceil(Math.random() * 2);
-    if (chance === 1) {
-        // console.log(input + amountChange)
-        return input + amountChange;
-    } else if (chance === 2) {
-        // console.log(input + amountChange)
-        return input - amountChange;
-    }
-}
-// THIS is where i can control tempo
 
 // Arpeggiate voices without stopping repeated notes
 function arpeggiateVoices(voices, infoArray) {
     voicesTimer = 0;
     let chance = Math.floor(Math.random() * 3);
     // chance = 2;
-   
+
     beatLength = infoArray.tempo;
 
     if (chance === 0) {
@@ -266,16 +238,7 @@ function arpeggiateVoicesCompound(voices, infoArray) {
     voicesTimer = voicesTimer + beatLength;
 }
 
-// Stop all playback
 
-function allStop() {
-    // empty setTimeout to establish variable name
-    var queuedNote = window.setTimeout(() => {}, 0);
-    // while setTimeout's exist with positive integers, clear them
-    while (queuedNote--) {
-        window.clearTimeout(queuedNote);
-    }
-}
 
 
 

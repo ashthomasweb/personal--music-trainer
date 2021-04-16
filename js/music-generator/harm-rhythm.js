@@ -1,99 +1,110 @@
 // harmonic rhythm handler
 function applyHarmonicRhythm() {
     if (progression.length === 3) {
-        let chance = generateChance(3);
-        if (chance === 1) {
-            phraseUnit.measure1[0].push(progression[0]);
-            phraseUnit.measure3[0].push(progression[1]);
-            phraseUnit.measure4[0].push(progression[2]);
-        } else if (chance === 2) {
-            phraseUnit.measure1[0].push(progression[0]);
-            phraseUnit.measure2[0].push(progression[1]);
-            phraseUnit.measure4[0].push(progression[2]);
-        } else if (chance === 3) {
-            phraseUnit.measure1[0].push(progression[0]);
-            phraseUnit.measure2[generateChance(2, 2) - 1].push(progression[1]);
-            phraseUnit.measure4[0].push(progression[3]);
-        } else if (chance === 4) {
-            phraseUnit.measure1[0].push(progression[0]);
-            phraseUnit.measure3[generateChance(2, 2) - 1].push(progression[1]);
-            phraseUnit.measure4[0].push(progression[2]);
+        switch (generateChance(4)) {
+            case 1:
+                phraseChart.measure1[0].push(progression[0]);
+                phraseChart.measure3[0].push(progression[1]);
+                phraseChart.measure4[0].push(progression[2]);
+                break;
+            case 2:
+                phraseChart.measure1[0].push(progression[0]);
+                phraseChart.measure2[0].push(progression[1]);
+                phraseChart.measure4[0].push(progression[2]);
+                break;
+            case 3:
+                phraseChart.measure1[0].push(progression[0]);
+                phraseChart.measure2[generateChance(2, 2) - 1].push(progression[1]);
+                phraseChart.measure4[0].push(progression[3]);
+                break;
+            case 4:
+                phraseChart.measure1[0].push(progression[0]);
+                phraseChart.measure3[generateChance(2, 2) - 1].push(progression[1]);
+                phraseChart.measure4[0].push(progression[2]);
+                break;
         }
+
     }
     if (progression.length === 4) {
-        let chance = generateChance(3);
-        if (chance === 1) {
-            phraseUnit.measure1[0].push(progression[0]);
-            phraseUnit.measure2[0].push(progression[1]);
-            phraseUnit.measure3[0].push(progression[2]);
-            phraseUnit.measure4[0].push(progression[3]);
-        } else if (chance === 2) {
-            phraseUnit.measure1[0].push(progression[0]);
-            phraseUnit.measure2[generateChance(2, 2) - 1].push(progression[1]);
-            phraseUnit.measure3[0].push(progression[2]);
-            phraseUnit.measure4[0].push(progression[3]);
-        } else if (chance === 3) {
-            phraseUnit.measure1[0].push(progression[0]);
-            phraseUnit.measure2[0].push(progression[1]);
-            phraseUnit.measure3[generateChance(2, 2) - 1].push(progression[2]);
-            phraseUnit.measure4[0].push(progression[3]);
+        switch (generateChance(3)) {
+            case 1:
+                phraseChart.measure1[0].push(progression[0]);
+                phraseChart.measure2[0].push(progression[1]);
+                phraseChart.measure3[0].push(progression[2]);
+                phraseChart.measure4[0].push(progression[3]);
+                break;
+            case 2:
+                phraseChart.measure1[0].push(progression[0]);
+                phraseChart.measure2[generateChance(2, 2) - 1].push(progression[1]);
+                phraseChart.measure3[0].push(progression[2]);
+                phraseChart.measure4[0].push(progression[3]);
+                break;
+            case 3:
+                phraseChart.measure1[0].push(progression[0]);
+                phraseChart.measure2[0].push(progression[1]);
+                phraseChart.measure3[generateChance(2, 2) - 1].push(progression[2]);
+                phraseChart.measure4[0].push(progression[3]);
         }
     }
     if (progression.length === 5) {
-        let chance = generateChance(3);
-        if (chance === 1) {
-            phraseUnit.measure1[0].push(progression[0]);
-            phraseUnit.measure2[0].push(progression[1]);
-            phraseUnit.measure3[0].push(progression[2]);
-            phraseUnit.measure3[generateChance(2, 2) - 1].push(progression[3]);
-            phraseUnit.measure4[0].push(progression[4]);
-        } else if (chance === 2) {
-            phraseUnit.measure1[0].push(progression[0]);
-            phraseUnit.measure1[generateChance(2, 2) - 1].push(progression[1]);
-            phraseUnit.measure2[0].push(progression[2]);
-            phraseUnit.measure3[0].push(progression[3]);
-            phraseUnit.measure4[0].push(progression[4]);
-        } else if (chance === 3) {
-            phraseUnit.measure1[0].push(progression[0]);
-            phraseUnit.measure2[0].push(progression[1]);
-            phraseUnit.measure2[generateChance(2, 2) - 1].push(progression[2]);
-            phraseUnit.measure3[0].push(progression[3]);
-            phraseUnit.measure4[0].push(progression[4]);
+        switch (generateChance(3)) {
+            case 1:
+                phraseChart.measure1[0].push(progression[0]);
+                phraseChart.measure2[0].push(progression[1]);
+                phraseChart.measure3[0].push(progression[2]);
+                phraseChart.measure3[generateChance(2, 2) - 1].push(progression[3]);
+                phraseChart.measure4[0].push(progression[4]);
+                break;
+            case 2:
+                phraseChart.measure1[0].push(progression[0]);
+                phraseChart.measure1[generateChance(2, 2) - 1].push(progression[1]);
+                phraseChart.measure2[0].push(progression[2]);
+                phraseChart.measure3[0].push(progression[3]);
+                phraseChart.measure4[0].push(progression[4]);
+                break;
+            case 3:
+                phraseChart.measure1[0].push(progression[0]);
+                phraseChart.measure2[0].push(progression[1]);
+                phraseChart.measure2[generateChance(2, 2) - 1].push(progression[2]);
+                phraseChart.measure3[0].push(progression[3]);
+                phraseChart.measure4[0].push(progression[4]);
         }
     }
     if (progression.length === 6) {
-        let chance = generateChance(3);
-        if (chance === 1) {
-            phraseUnit.measure1[0].push(progression[0]);
-            phraseUnit.measure2[0].push(progression[1]);
-            phraseUnit.measure2[generateChance(2, 2) - 1].push(progression[2]);
-            phraseUnit.measure3[0].push(progression[3]);
-            phraseUnit.measure3[generateChance(2, 2) - 1].push(progression[4]);
-            phraseUnit.measure4[0].push(progression[5]);
-        } else if (chance === 2) {
-            phraseUnit.measure1[0].push(progression[0]);
-            phraseUnit.measure1[generateChance(2, 2) - 1].push(progression[1]);
-            phraseUnit.measure2[0].push(progression[2]);
-            phraseUnit.measure3[0].push(progression[3]);
-            phraseUnit.measure3[generateChance(2, 2) - 1].push(progression[4]);
-            phraseUnit.measure4[0].push(progression[5]);
-        } else if (chance === 3) {
-            phraseUnit.measure1[0].push(progression[0]);
-            phraseUnit.measure1[generateChance(2, 2) - 1].push(progression[1]);
-            phraseUnit.measure2[0].push(progression[2]);
-            phraseUnit.measure2[generateChance(2, 2) - 1].push(progression[3]);
-            phraseUnit.measure3[0].push(progression[4]);
-            phraseUnit.measure4[0].push(progression[5]);
+        switch (generateChance(3)) {
+            case 1:
+                phraseChart.measure1[0].push(progression[0]);
+                phraseChart.measure2[0].push(progression[1]);
+                phraseChart.measure2[generateChance(2, 2) - 1].push(progression[2]);
+                phraseChart.measure3[0].push(progression[3]);
+                phraseChart.measure3[generateChance(2, 2) - 1].push(progression[4]);
+                phraseChart.measure4[0].push(progression[5]);
+                break;
+            case 2:
+                phraseChart.measure1[0].push(progression[0]);
+                phraseChart.measure1[generateChance(2, 2) - 1].push(progression[1]);
+                phraseChart.measure2[0].push(progression[2]);
+                phraseChart.measure3[0].push(progression[3]);
+                phraseChart.measure3[generateChance(2, 2) - 1].push(progression[4]);
+                phraseChart.measure4[0].push(progression[5]);
+                break;
+            case 3:
+                phraseChart.measure1[0].push(progression[0]);
+                phraseChart.measure1[generateChance(2, 2) - 1].push(progression[1]);
+                phraseChart.measure2[0].push(progression[2]);
+                phraseChart.measure2[generateChance(2, 2) - 1].push(progression[3]);
+                phraseChart.measure3[0].push(progression[4]);
+                phraseChart.measure4[0].push(progression[5]);
         }
     }
     if (progression.length === 7) {
-        phraseUnit.measure1[0].push(progression[0]);
-        phraseUnit.measure1[generateChance(2, 2) - 1].push(progression[1]);
-        phraseUnit.measure2[0].push(progression[2]);
-        phraseUnit.measure2[generateChance(2, 2) - 1].push(progression[3]);
-        phraseUnit.measure3[0].push(progression[4]);
-        phraseUnit.measure3[generateChance(2, 2) - 1].push(progression[5]);
-        phraseUnit.measure4[0].push(progression[6]);
+        phraseChart.measure1[0].push(progression[0]);
+        phraseChart.measure1[generateChance(2, 2) - 1].push(progression[1]);
+        phraseChart.measure2[0].push(progression[2]);
+        phraseChart.measure2[generateChance(2, 2) - 1].push(progression[3]);
+        phraseChart.measure3[0].push(progression[4]);
+        phraseChart.measure3[generateChance(2, 2) - 1].push(progression[5]);
+        phraseChart.measure4[0].push(progression[6]);
     }
 }
 
