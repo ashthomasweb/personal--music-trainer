@@ -10,44 +10,7 @@ let sopranoVoiceArray = [];
 
 function voiceLeadHandler() {
 
-    // NEEDS refactor for multiple keys
-    function checkForRoot() {
-        for (let i = 0; i <= progression.length - 1; i++) {
-            let rootBool = false;
-            let roots = [];
-            // get current chord
-            let currentChord = progression[i];
-            // look in romanNumeral array for rootArray
-            keyNumerals.forEach((item) => {
-                if (item.numeral === currentChord) {
-                    roots = [...item.root];
-                }
-            });
-            if (roots.includes(bassVoiceArray[i])) {
-                rootBool = true;
-            }
-            if (roots.includes(tenorVoiceArray[i])) {
-                rootBool = true;
-            }
-            if (roots.includes(altoVoiceArray[i])) {
-                rootBool = true;
-            }
-            if (roots.includes(sopranoVoiceArray[i])) {
-                rootBool = true;
-            }
-
-            // let nearestRoot;
-            // if (noteIndex.indexOf(bassVoiceArray[i]) < 7) {
-            //     nearestRoot = roots[0];
-            // } else {
-            //     nearestRoot = roots[1];
-            // }
-            // if false then move bass to nearest root
-            if (rootBool === false) {
-                bassVoiceArray[i] = roots[0];
-            }
-        }
-    }
+    
 
     // get first chord as string
     let firstChord = progression[0];
@@ -91,33 +54,36 @@ function voiceLeadHandler() {
     satbSplitter();
 
     // create array indicating overall voice leading direction
-    let direction;
-    resolutionDirectionArray = [];
-    for (let i = 0; i <= progression.length - 2; i++) {
-        switch (generateChance(6)) {
-            case 1:
-                direction = 'up';
-                break;
-            case 2:
-                direction = 'down';
-                break;
-            default:
-                direction = 'smoothest';
-                break;
+    function createResolutionArray() {
+        let direction;
+        resolutionDirectionArray = [];
+        for (let i = 0; i <= progression.length - 2; i++) {
+            switch (generateChance(6)) {
+                case 1:
+                    direction = 'up';
+                    break;
+                case 2:
+                    direction = 'down';
+                    break;
+                default:
+                    direction = 'smoothest';
+                    break;
+            }
+            resolutionDirectionArray.push(direction);
         }
-        resolutionDirectionArray.push(direction);
+        
+        // apply cadential tendency to direction array
+        if (cadenceValue === 'Authentic' || cadenceValue === 'Plagal') {
+            resolutionDirectionArray[resolutionDirectionArray.length - 1] = 'down';
+            resolutionDirectionArray[resolutionDirectionArray.length - 2] = 'smoothest';
+        }
+        if (cadenceValue === 'Half' || cadenceValue === 'Deceptive') {
+            resolutionDirectionArray[resolutionDirectionArray.length - 1] = 'up';
+            resolutionDirectionArray[resolutionDirectionArray.length - 2] = 'smoothest';
+        }
     }
-
-    // apply cadential tendency to direction array
-    if (cadenceValue === 'Authentic' || cadenceValue === 'Plagal') {
-        resolutionDirectionArray[resolutionDirectionArray.length - 1] = 'down';
-        resolutionDirectionArray[resolutionDirectionArray.length - 2] = 'smoothest';
-    }
-    if (cadenceValue === 'Half' || cadenceValue === 'Deceptive') {
-        resolutionDirectionArray[resolutionDirectionArray.length - 1] = 'up';
-        resolutionDirectionArray[resolutionDirectionArray.length - 2] = 'smoothest';
-    }
-
+    createResolutionArray();
+        
     function createBassArray() {
         getVoiceLeading('triad');
         bassVoiceArray = [...tempVoiceArray];
@@ -139,31 +105,78 @@ function voiceLeadHandler() {
     }
 
     // set first note of voice and handle voice-leading for satb
-    // lowest root
-    startingNote = firstChord.root[0];
-    createBassArray();
+    function createAllVoiceArrays() {
+        // lowest root
+        startingNote = firstChord.root[0];
+        createBassArray();
+        
+        startingNote = noteIndex[tenorTones[generateChance(tenorTones.length) - 1]];
+        createTenorArray();
+        
+        startingNote = noteIndex[altoTones[generateChance(altoTones.length) - 1]];
+        createAltoArray();
+        
+        // highest third
+        startingNote = firstChord.third[firstChord.third.length - 1];
+        createSopranoArray();
+    }
+    createAllVoiceArrays();
 
-    startingNote = noteIndex[tenorTones[generateChance(tenorTones.length) - 1]];
-    createTenorArray();
+    // NEEDS refactor for multiple keys
+    function checkForRoot() {
+        for (let i = 0; i <= progression.length - 1; i++) {
+            let rootBool = false;
+            let roots = [];
+            // get current chord
+            let currentChord = progression[i];
+            // look in romanNumeral array for rootArray
+            keyNumerals.forEach((item) => {
+                if (item.numeral === currentChord) {
+                    roots = [...item.root];
+                }
+            });
 
-    startingNote = noteIndex[altoTones[generateChance(altoTones.length) - 1]];
-    createAltoArray();
 
-    // highest third
-    startingNote = firstChord.third[firstChord.third.length - 1];
-    createSopranoArray();
+            if (roots.includes(bassVoiceArray[i])) {
+                rootBool = true;
+            }
+            if (roots.includes(tenorVoiceArray[i])) {
+                rootBool = true;
+            }
+            if (roots.includes(altoVoiceArray[i])) {
+                rootBool = true;
+            }
+            if (roots.includes(sopranoVoiceArray[i])) {
+                rootBool = true;
+            }
 
+            // let nearestRoot;
+            // if (noteIndex.indexOf(bassVoiceArray[i]) < 7) {
+            //     nearestRoot = roots[0];
+            // } else {
+            //     nearestRoot = roots[1];
+            // }
+            // if false then move bass to nearest root
+            if (rootBool === false) {
+                bassVoiceArray[i] = roots[0];
+            }
+        }
+    }
     checkForRoot();
 
     // raw voice-lead info
-    let satbArray = [];
-    satbArray.push(bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray);
-    // iterate to info array
-    satbArray.forEach((item) => {
-        phraseChart.info.voiceLeading.push(item);
-    });
-    // push to playback handling
-    tempPlaybackArray.push(satbArray);
+    function voiceArrayDataHandler() {
+        let satbArray = [];
+        satbArray.push(bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray);
+        // iterate to info array
+        satbArray.forEach((item) => {
+            phraseChart.info.voiceLeading.push(item);
+        });
+        // push to playback handling
+        tempPlaybackArray.push(satbArray);
+    }
+    voiceArrayDataHandler();
+
 }
 
 function getVoiceLeading(extensions, counterpoint) {
@@ -176,39 +189,44 @@ function getVoiceLeading(extensions, counterpoint) {
         // apply chance of seventh to be added to potential chord tones
         let chordMemberIndexArray = [];
 
-        function seventhChance() {
-            if (i === progression.length - 2) {
-                return 2;
-            } else {
-                if (generateChance(3) === 1) {
-                    return 1;
-                } else {
+        function findAvailChordTones() {
+            function seventhChance() { // NEED to account for 'V'
+                if (i === progression.length - 2) { // make seventh available on penultimate harmony
                     return 2;
+                } else {
+                    if (generateChance(3) === 1) {
+                        return 1;
+                    } else {
+                        return 2;
+                    }
+                }
+            }
+            
+            if (extensions === 'triad') {
+                // length of resolveChord loop determines how many color tones are included. (-2) is triad, (-1) includes sevenths.
+                for (let i = 1; i <= Object.keys(resolveChord).length - 2; i++) {
+                    // gets index of all chord members in resolution chord
+                    Object.values(resolveChord)[i].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
+                }
+            } else if (extensions === 'seventh') {
+                for (let i = 1; i <= Object.keys(resolveChord).length - seventhChance(); i++) {
+                    // gets index of all chord members including sevenths in resolution chord
+                    Object.values(resolveChord)[i].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
                 }
             }
         }
+        findAvailChordTones();
 
-        if (extensions === 'triad') {
-            // length of resolveChord loop determines how many color tones are included. (-2) is triad, (-1) includes sevenths.
-            for (let i = 1; i <= Object.keys(resolveChord).length - 2; i++) {
-                // gets index of all chord members in resolution chord
-                Object.values(resolveChord)[i].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
-            }
-        } else if (extensions === 'seventh') {
-            for (let i = 1; i <= Object.keys(resolveChord).length - seventhChance(); i++) {
-                // gets index of all chord members in resolution chord
-                Object.values(resolveChord)[i].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
-            }
-        }
-
-
+        // find and apply available resolution tones
         let distanceFromAntecedent;
         let indexOfSmallestDistance;
         let smoothestTransition;
         let goodTransition;
         let okayTransition;
+        let resolution;
+        let resolutionOptions;
 
-        function getTransitionOptions() {
+        function getClosestResolutions() {
             distanceFromAntecedent = [];
             // get smoothest transition via difference of current note's index and nearest note's index
             chordMemberIndexArray.forEach((item) => {
@@ -229,13 +247,11 @@ function getVoiceLeading(extensions, counterpoint) {
             // Does not work in a loop, do not refactor
             nextClosestResolution();
             okayTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistance]];
+            resolutionOptions = [smoothestTransition, goodTransition, okayTransition];
         }
-        getTransitionOptions();
+        getClosestResolutions();
 
         // random chance of smoothest or next best voice-leading option
-        let resolution;
-        let resolutionOptions = [smoothestTransition, goodTransition, okayTransition];
-
         function smoothResolutionChance() {
             if (generateChance(3) === 1) {
                 resolution = resolutionOptions[1];
@@ -246,7 +262,7 @@ function getVoiceLeading(extensions, counterpoint) {
 
         // categorization and handling of voice leading options
         let currentNote = startingNote;
-
+        
         function voiceLeadDirectionOptions() {
             let resolveUp;
             let resolveDown;
