@@ -127,6 +127,7 @@ function voiceLeadHandler() {
         for (let i = 0; i <= progression.length - 1; i++) {
             let rootBool = false;
             let roots = [];
+            let voiceArrays = [bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray];
             // get current chord
             let currentChord = progression[i];
             // look in romanNumeral array for rootArray
@@ -136,20 +137,12 @@ function voiceLeadHandler() {
                 }
             });
 
-
-            if (roots.includes(bassVoiceArray[i])) {
-                rootBool = true;
-            }
-            if (roots.includes(tenorVoiceArray[i])) {
-                rootBool = true;
-            }
-            if (roots.includes(altoVoiceArray[i])) {
-                rootBool = true;
-            }
-            if (roots.includes(sopranoVoiceArray[i])) {
-                rootBool = true;
-            }
-
+            voiceArrays.forEach( (item) => {
+                if (roots.includes(item[i])) {
+                    rootBool = true;
+                }
+            });
+            
             // let nearestRoot;
             // if (noteIndex.indexOf(bassVoiceArray[i]) < 7) {
             //     nearestRoot = roots[0];
@@ -176,7 +169,6 @@ function voiceLeadHandler() {
         tempPlaybackArray.push(satbArray);
     }
     voiceArrayDataHandler();
-
 }
 
 function getVoiceLeading(extensions, counterpoint = false) {
