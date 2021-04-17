@@ -10,8 +10,6 @@ let sopranoVoiceArray = [];
 
 function voiceLeadHandler() {
 
-
-
     // NEEDS refactor for multiple keys
     function checkForRoot() {
         for (let i = 0; i <= progression.length - 1; i++) {
@@ -92,7 +90,6 @@ function voiceLeadHandler() {
     }
     satbSplitter();
 
-
     // create array indicating overall voice leading direction
     let direction;
     resolutionDirectionArray = [];
@@ -111,7 +108,7 @@ function voiceLeadHandler() {
         resolutionDirectionArray.push(direction);
     }
 
-    // apply cadential tendency
+    // apply cadential tendency to direction array
     if (cadenceValue === 'Authentic' || cadenceValue === 'Plagal') {
         resolutionDirectionArray[resolutionDirectionArray.length - 1] = 'down';
         resolutionDirectionArray[resolutionDirectionArray.length - 2] = 'smoothest';
@@ -132,12 +129,12 @@ function voiceLeadHandler() {
     }
 
     function createAltoArray() {
-        getVoiceLeading('seventh');
+        getVoiceLeading('seventh', true);
         altoVoiceArray = [...tempVoiceArray];
     }
 
     function createSopranoArray() {
-        getVoiceLeading('seventh', true);
+        getVoiceLeading('seventh');
         sopranoVoiceArray = [...tempVoiceArray];
     }
 
@@ -175,8 +172,9 @@ function getVoiceLeading(extensions, counterpoint) {
     let resolveChord;
 
     function leadSingleVoice(startingNote, resolveChord, i, counterpoint) {
+
+        // apply chance of seventh to be added to potential chord tones
         let chordMemberIndexArray = [];
-        let differenceOfArray = [];
 
         function seventhChance() {
             if (i === progression.length - 2) {
@@ -202,31 +200,42 @@ function getVoiceLeading(extensions, counterpoint) {
                 Object.values(resolveChord)[i].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
             }
         }
-        // get smoothest transition via difference of current note's index and nearest note's index
-        chordMemberIndexArray.forEach((item) => {
-            differenceOfArray.push(Math.abs(noteIndex.indexOf(startingNote) - item));
-        });
 
-        let indexOfSmallestDistanceInDiff = differenceOfArray.indexOf(Math.min(...differenceOfArray));
-        let smoothestTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistanceInDiff]];
 
-        // repeat procedure after removing previous to find next best option
-        function nextClosestResolution() {
-          differenceOfArray.splice(indexOfSmallestDistanceInDiff, 1);
-          chordMemberIndexArray.splice(indexOfSmallestDistanceInDiff, 1);
-          indexOfSmallestDistanceInDiff = differenceOfArray.indexOf(Math.min(...differenceOfArray));
+        let distanceFromAntecedent;
+        let indexOfSmallestDistance;
+        let smoothestTransition;
+        let goodTransition;
+        let okayTransition;
+
+        function getTransitionOptions() {
+            distanceFromAntecedent = [];
+            // get smoothest transition via difference of current note's index and nearest note's index
+            chordMemberIndexArray.forEach((item) => {
+                distanceFromAntecedent.push(Math.abs(noteIndex.indexOf(startingNote) - item));
+            });
+            indexOfSmallestDistance = distanceFromAntecedent.indexOf(Math.min(...distanceFromAntecedent));
+            smoothestTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistance]];
+
+            function nextClosestResolution() { // will remove nearest tone from available tones
+                distanceFromAntecedent.splice(indexOfSmallestDistance, 1);
+                chordMemberIndexArray.splice(indexOfSmallestDistance, 1);
+                indexOfSmallestDistance = distanceFromAntecedent.indexOf(Math.min(...distanceFromAntecedent));
+            }
+            // assign next best option after removing previous smoothest transition
+            nextClosestResolution();
+            goodTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistance]];
+            // assign next best option after removing previous smoothest transition...again. 
+            // Does not work in a loop, do not refactor
+            nextClosestResolution();
+            okayTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistance]];
         }
-        nextClosestResolution();
-        let goodTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistanceInDiff]];
-        // repeat procedure after removing previous to find next best option again
-        nextClosestResolution();
-        let okayTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistanceInDiff]];
-
-        let resolution;
-        let currentNote = startingNote;
-        let resolutionOptions = [smoothestTransition, goodTransition, okayTransition];
+        getTransitionOptions();
 
         // random chance of smoothest or next best voice-leading option
+        let resolution;
+        let resolutionOptions = [smoothestTransition, goodTransition, okayTransition];
+
         function smoothResolutionChance() {
             if (generateChance(3) === 1) {
                 resolution = resolutionOptions[1];
@@ -236,50 +245,53 @@ function getVoiceLeading(extensions, counterpoint) {
         }
 
         // categorization of voice leading options
+        let currentNote = startingNote;
+
         function voiceLeadDirectionOptions() {
-            let directionUp;
-            let directionDown;
+            let resolveUp;
+            let resolveDown;
 
             resolutionOptions.forEach((item) => {
-
                 if (noteIndex.indexOf(item) < noteIndex.indexOf(currentNote)) {
-                    directionDown = item;
+                    resolveDown = item;
                 } else if (noteIndex.indexOf(item) > noteIndex.indexOf(currentNote)) {
-                    directionUp = item;
+                    resolveUp = item;
                 }
-
             });
 
             // THIS is where I can control basic counterpoint
-
-            if (counterpoint === true) {
-                if (resolutionDirectionArray[i] === 'up') {
-                    if (directionUp) {
-                        resolution = directionDown;
-                    } else {
-                        resolution = smoothestTransition;
+            switch (counterpoint) {
+                case true:
+                    if (resolutionDirectionArray[i] === 'up') {
+                        if (resolveUp) {
+                            resolution = resolveDown;
+                        } else {
+                            resolution = smoothestTransition;
+                        }
+                    } else if (resolutionDirectionArray[i] === 'down') {
+                        if (resolveDown) {
+                            resolution = resolveUp;
+                        } else {
+                            resolution = smoothestTransition;
+                        }
                     }
-                } else if (resolutionDirectionArray[i] === 'down') {
-                    if (directionDown) {
-                        resolution = directionUp;
-                    } else {
-                        resolution = smoothestTransition;
+                    break;
+                case false:
+                    if (resolutionDirectionArray[i] === 'up') {
+                        if (resolveUp) {
+                            resolution = resolveUp;
+                        } else {
+                            resolution = smoothestTransition;
+                        }
+                    } else if (resolutionDirectionArray[i] === 'down') {
+                        if (resolveDown) {
+                            resolution = resolveDown;
+                        } else {
+                            resolution = smoothestTransition;
+                        }
                     }
-                }
-            } else {
-                if (resolutionDirectionArray[i] === 'up') {
-                    if (directionUp) {
-                        resolution = directionUp;
-                    } else {
-                        resolution = smoothestTransition;
-                    }
-                } else if (resolutionDirectionArray[i] === 'down') {
-                    if (directionDown) {
-                        resolution = directionDown;
-                    } else {
-                        resolution = smoothestTransition;
-                    }
-                }
+                    default:
+                        break;
             }
         }
 
@@ -313,6 +325,5 @@ function getVoiceLeading(extensions, counterpoint) {
     }
 
 }
-
 
 // END of document

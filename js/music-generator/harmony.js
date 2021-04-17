@@ -260,25 +260,25 @@ function getNewProgression(start, cadence) {
     cadenceValue = cadence;
 
     function generateInitialHarmonies() {
-        for (let index = 1; index <= generateChance(5, 2) - 1; index++) {
-            progression[index] = generateStrongMotion(progression[index - 1]);
+        for (let i = 1; i <= generateChance(5, 2) - 1; i++) {
+            progression[i] = generateStrongMotion(progression[i - 1]);
         }
         // THIS is where I can add raised harmonies
         if (currentHarmony === minor) {
 
-            progression.forEach((item, i) => {
+            progression.forEach((item, j) => {
                 switch (item) {
                     case "ii∅":
-                        generateChance(2) === 1 ? progression[i] = 'ii∅' : progression[i] = 'ii';
+                        generateChance(2) === 1 ? progression[j] = 'ii∅' : progression[j] = 'ii';
                         break;
                     case "iv":
-                        generateChance(2) === 1 ? progression[i] = 'iv' : progression[i] = 'IV7';
+                        generateChance(2) === 1 ? progression[j] = 'iv' : progression[j] = 'IV7';
                         break;
                     case "bVI":
-                        generateChance(2) === 1 ? progression[i] = 'bVI' : progression[i] = 'vi∅';
+                        generateChance(2) === 1 ? progression[j] = 'bVI' : progression[j] = 'vi∅';
                         break;
                     case "bVII":
-                        generateChance(2) === 1 ? progression[i] = 'bVII' : progression[i] = 'vii°';
+                        generateChance(2) === 1 ? progression[j] = 'bVII' : progression[j] = 'vii°';
                     default:
                         break;
                 }
