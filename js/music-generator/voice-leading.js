@@ -106,8 +106,6 @@ function voiceLeadHandler() {
     }
 
     function createAllVoiceArrays() {
-
-
         // lowest root
         startingNote = firstChord.root[0];
         createBassArray();
@@ -281,39 +279,35 @@ function getVoiceLeading(extensions, counterpoint = false) {
             // THIS is where I can control basic counterpoint
             switch (counterpoint) {
                 case true:
-                    if (resolutionDirectionArray[i] === 'up') {
-                        if (resolveUp) {
-                            resolution = resolveDown;
-                        } else { // handles tones that are at edge of available range
+                    switch (resolutionDirectionArray[i]) {
+                        case 'up':
+                            resolveUp ? resolution = resolveDown : resolution = smoothestTransition;
+                            break;
+                        case 'down':
+                            resolveDown ? resolution = resolveUp : resolution = smoothestTransition;
+                            break;
+                        default:
                             resolution = smoothestTransition;
-                        }
-                    } else if (resolutionDirectionArray[i] === 'down') {
-                        if (resolveDown) {
-                            resolution = resolveUp;
-                        } else { // handles tones that are at edge of available range
-                            resolution = smoothestTransition;
-                        }
+                            break;
                     }
                     break;
                 case false:
-                    if (resolutionDirectionArray[i] === 'up') {
-                        if (resolveUp) {
-                            resolution = resolveUp;
-                        } else { // handles tones that are at edge of available range
+                    switch (resolutionDirectionArray[i]) {
+                        case 'up':
+                            resolveUp ? resolution = resolveUp : resolution = smoothestTransition;
+                            break;
+                        case 'down':
+                            resolveDown ? resolution = resolveDown : resolution = smoothestTransition;
+                            break;
+                        default:
                             resolution = smoothestTransition;
-                        }
-                    } else if (resolutionDirectionArray[i] === 'down') {
-                        if (resolveDown) {
-                            resolution = resolveDown;
-                        } else { // handles tones that are at edge of available range
-                            resolution = smoothestTransition;
-                        }
+                            break;
                     }
-                    default:
-                        break;
+                default:
+                    resolution = smoothestTransition;
+                    break;
             }
         }
-
 
         // check direction array for shift
         voiceLeadDirectionOptions(counterpoint);
