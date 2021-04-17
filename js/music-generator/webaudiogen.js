@@ -87,7 +87,6 @@ function satbNodeConnector() {
 }
 satbNodeConnector();
 
-
 let currentBass = [];
 let currentTenor = [];
 let currentAlto = [];

@@ -60,6 +60,4 @@ function allStop() {
     }
 }
 
-
-
 // END of document

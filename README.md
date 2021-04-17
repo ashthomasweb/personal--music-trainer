@@ -28,7 +28,7 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 * Create Melodic Dictation Trainer.
 
 * Add 'Tonic Start' and 'Accidental Mode' to score history.
-
+* Add user interaction on generator 
 * Add percussion bank.
 * Add Violin and Contrabass to generator.
 ## Known Issues
