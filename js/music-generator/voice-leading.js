@@ -244,7 +244,7 @@ function getVoiceLeading(extensions, counterpoint) {
             }
         }
 
-        // categorization of voice leading options
+        // categorization and handling of voice leading options
         let currentNote = startingNote;
 
         function voiceLeadDirectionOptions() {
@@ -265,13 +265,13 @@ function getVoiceLeading(extensions, counterpoint) {
                     if (resolutionDirectionArray[i] === 'up') {
                         if (resolveUp) {
                             resolution = resolveDown;
-                        } else {
+                        } else { // handles tones that are at edge of available range
                             resolution = smoothestTransition;
                         }
                     } else if (resolutionDirectionArray[i] === 'down') {
                         if (resolveDown) {
                             resolution = resolveUp;
-                        } else {
+                        } else { // handles tones that are at edge of available range
                             resolution = smoothestTransition;
                         }
                     }
@@ -280,13 +280,13 @@ function getVoiceLeading(extensions, counterpoint) {
                     if (resolutionDirectionArray[i] === 'up') {
                         if (resolveUp) {
                             resolution = resolveUp;
-                        } else {
+                        } else { // handles tones that are at edge of available range
                             resolution = smoothestTransition;
                         }
                     } else if (resolutionDirectionArray[i] === 'down') {
                         if (resolveDown) {
                             resolution = resolveDown;
-                        } else {
+                        } else { // handles tones that are at edge of available range
                             resolution = smoothestTransition;
                         }
                     }
@@ -300,7 +300,7 @@ function getVoiceLeading(extensions, counterpoint) {
         // check direction array for shift
         voiceLeadDirectionOptions();
 
-        // assign resolution to startingNote for next loop through
+        // assign resolution to startingNote for next loop
         startingNote = resolution;
         tempVoiceArray.push(resolution);
     }
