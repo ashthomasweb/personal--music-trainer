@@ -183,7 +183,6 @@ function voiceLeadHandler() {
             lastBass = roots[indexOfClosestRoot];
             bassVoiceArray[bassVoiceArray.length - 1] = lastBass;
         }
-        console.log('hi');
     }
     generateChance(3) < 3 && checkCadenceBass();
     

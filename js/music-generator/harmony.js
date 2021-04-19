@@ -14,6 +14,7 @@ function getEmptyChart() {
             formId: "",
             progression: "",
             progressionLength: "",
+            cadence: "",
             voiceLeading: [],
             prevFinalVoicing: [],
             key: "",
@@ -163,6 +164,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     }
 
     function cadenceHandler(section) {
+        // assigning progression to a variable causes function to not work
         if (section === 1) { // second 'A'
             if (generateChance(2) === 1) {
                 cadenceValue = 'Deceptive';
@@ -196,10 +198,11 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         info.progression = [...progression];
         info.progressionLength = progression.length;
         info.key = concatKeyInfo();
+        info.cadence = cadenceValue;
     }
 
     function getNewTempo() {
-        return generateChance(250, 250);
+        return generateChance(250, 350);
     }
 
     function getCloselyRelatedTempo(input) {
@@ -243,7 +246,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
         // get 'A' section progression and apply cadence
         progression = [...phraseContainer[(formNum - 1) * 4][0].progression];
-        cadenceHandler(section, progression);
+        cadenceHandler(section);
         storePlaybackData();
     }
 }
