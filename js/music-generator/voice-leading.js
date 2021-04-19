@@ -143,19 +143,42 @@ function voiceLeadHandler() {
                 }
             });
             
-            // let nearestRoot;
-            // if (noteIndex.indexOf(bassVoiceArray[i]) < 7) {
-            //     nearestRoot = roots[0];
-            // } else {
-            //     nearestRoot = roots[1];
-            // }
-            // if false then move bass to nearest root
+            // if false then move bass to lowest root
             if (rootBool === false) {
                 bassVoiceArray[i] = roots[0];
             }
         }
     }
     checkForRoot();
+
+    function checkForThird() {
+        for (let i = 0; i <= progression.length - 1; i++) {
+            let thirdBool = false;
+            let thirds = [];
+            let voiceArrays = [bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray];
+            // get current chord
+            let currentChord = progression[i];
+            // look in romanNumeral array for rootArray
+            keyNumerals.forEach((item) => {
+                if (item.numeral === currentChord) {
+                    thirds = [...item.third];
+                }
+            });
+
+            voiceArrays.forEach( (item) => {
+                if (thirds.includes(item[i])) {
+                    thirdBool = true;
+                }
+            });
+            
+            // if false then move soprano to highest third
+            if (thirdBool === false) {
+                sopranoVoiceArray[i] = thirds[thirds.length - 1];
+                console.log('log');
+            }
+        }
+    }
+    checkForThird();
 
     // raw voice-lead info
     function voiceArrayDataHandler() {
