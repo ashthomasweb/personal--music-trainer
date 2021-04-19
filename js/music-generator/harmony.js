@@ -162,28 +162,23 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         return center + ' ' + mode;
     }
 
-    function cadenceHandler(section, progression) {
-      let length = progression.length;
-      let lastHarmony = progression[length - 1];
-      let secondLast = progression[length - 2];
-      let thirdLast = progression[length - 3];
-
+    function cadenceHandler(section) {
         if (section === 1) { // second 'A'
             if (generateChance(2) === 1) {
                 cadenceValue = 'Deceptive';
-                lastHarmony = romanNumSix;
-                secondLast = romanNumFive;
-                thirdLast = romanNumOne;
+                progression[progression.length - 1] = romanNumSix;
+                progression[progression.length - 2] = romanNumFive;
+                progression[progression.length - 3] = romanNumOne;
             } else {
                 cadenceValue = 'Half';
-                lastHarmony = romanNumFive;
-                secondLast = romanNumOne;
+                progression[progression.length - 1] = romanNumFive;
+                progression[progression.length - 2] = romanNumOne;
             }
         }
         if (section === 3) { // final 'A'
             cadenceValue = 'Authentic';
-            lastHarmony = romanNumOne;
-            secondLast = romanNumFive;
+            progression[progression.length - 1] = romanNumOne;
+            progression[progression.length - 2] = romanNumFive;
         }
     }
 
@@ -204,7 +199,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     }
 
     function getNewTempo() {
-        return generateChance(500, 500);
+        return generateChance(250, 250);
     }
 
     function getCloselyRelatedTempo(input) {
@@ -234,7 +229,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         } else if (sequenceChance > 8) {
             harmonicDiatonicSequencer(4);
         }
-        cadenceHandler(section, progression);
+        cadenceHandler(section);
         storePlaybackData();
         // third 4 bar phrase
     } else if (section === 2) {

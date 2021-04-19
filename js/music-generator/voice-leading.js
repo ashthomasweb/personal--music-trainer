@@ -155,7 +155,6 @@ function voiceLeadHandler() {
             }
             if (thirdBool === false) {
                 sopranoVoiceArray[i] = thirds[thirds.length - 1];
-                console.log('log');
             }
         }
     }
@@ -163,13 +162,12 @@ function voiceLeadHandler() {
 
     function checkCadenceBass() {
         let lastBass = bassVoiceArray[bassVoiceArray.length - 1];
-        let penultBass = bassVoiceArray[bassVoiceArray.length - 2];
-        let voiceArrays = [bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray];
 
-        for (let i = progression.length - 2; i <= progression.length - 1; i++) {
+        for (let i = progression.length - 1; i <= progression.length - 1; i++) {
             let roots = [];
             let currentChord = progression[i];
             let distanceFromCurrentNote = [];
+            let indexOfClosestRoot;
             // look in romanNumeral array for rootArray
             keyNumerals.forEach((item) => {
                 if (item.numeral === currentChord) {
@@ -178,14 +176,17 @@ function voiceLeadHandler() {
             });
 
             roots.forEach((item) => {
-                distanceFromCurrentNote.push(Math.abs(noteIndex.indexOf(lastBass) - item));
+                distanceFromCurrentNote.push(Math.abs(noteIndex.indexOf(lastBass) - noteIndex.indexOf(item)));
             });
+            indexOfClosestRoot = distanceFromCurrentNote.indexOf(Math.min(...distanceFromCurrentNote));
 
-            lastBass = noteIndex[noteIndex.indexOf(Math.min(...distanceFromCurrentNote))];
-            console.log(lastBass);
+            lastBass = roots[indexOfClosestRoot];
+            bassVoiceArray[bassVoiceArray.length - 1] = lastBass;
         }
+        console.log('hi');
     }
-    checkCadenceBass(); // NOT WORKING
+    generateChance(3) < 3 && checkCadenceBass();
+    
 
     // raw voice-lead info
     function voiceArrayDataHandler() {
