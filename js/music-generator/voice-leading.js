@@ -123,36 +123,10 @@ function voiceLeadHandler() {
     createAllVoiceArrays();
 
     // NEEDS refactor for multiple keys
-    function checkForRoot() {
+    function checkForRootAndThird() {
         for (let i = 0; i <= progression.length - 1; i++) {
             let rootBool = false;
             let roots = [];
-            let voiceArrays = [bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray];
-            // get current chord
-            let currentChord = progression[i];
-            // look in romanNumeral array for rootArray
-            keyNumerals.forEach((item) => {
-                if (item.numeral === currentChord) {
-                    roots = [...item.root];
-                }
-            });
-
-            voiceArrays.forEach( (item) => {
-                if (roots.includes(item[i])) {
-                    rootBool = true;
-                }
-            });
-            
-            // if false then move bass to lowest root
-            if (rootBool === false) {
-                bassVoiceArray[i] = roots[0];
-            }
-        }
-    }
-    checkForRoot();
-
-    function checkForThird() {
-        for (let i = 0; i <= progression.length - 1; i++) {
             let thirdBool = false;
             let thirds = [];
             let voiceArrays = [bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray];
@@ -161,24 +135,57 @@ function voiceLeadHandler() {
             // look in romanNumeral array for rootArray
             keyNumerals.forEach((item) => {
                 if (item.numeral === currentChord) {
+                    roots = [...item.root];
                     thirds = [...item.third];
                 }
             });
 
-            voiceArrays.forEach( (item) => {
+            voiceArrays.forEach((item) => {
+                if (roots.includes(item[i])) {
+                    rootBool = true;
+                }
                 if (thirds.includes(item[i])) {
                     thirdBool = true;
                 }
             });
-            
-            // if false then move soprano to highest third
+
+            // if false then move bass to lowest root
+            if (rootBool === false) {
+                bassVoiceArray[i] = roots[0];
+            }
             if (thirdBool === false) {
                 sopranoVoiceArray[i] = thirds[thirds.length - 1];
                 console.log('log');
             }
         }
     }
-    checkForThird();
+    checkForRootAndThird();
+
+    function checkCadenceBass() {
+        let lastBass = bassVoiceArray[bassVoiceArray.length - 1];
+        let penultBass = bassVoiceArray[bassVoiceArray.length - 2];
+        let voiceArrays = [bassVoiceArray, tenorVoiceArray, altoVoiceArray, sopranoVoiceArray];
+
+        for (let i = progression.length - 2; i <= progression.length - 1; i++) {
+            let roots = [];
+            let currentChord = progression[i];
+            let distanceFromCurrentNote = [];
+            // look in romanNumeral array for rootArray
+            keyNumerals.forEach((item) => {
+                if (item.numeral === currentChord) {
+                    roots = [...item.root];
+                }
+            });
+
+            roots.forEach((item) => {
+                distanceFromCurrentNote.push(Math.abs(noteIndex.indexOf(lastBass) - item));
+            });
+
+            lastBass = noteIndex[noteIndex.indexOf(Math.min(...distanceFromCurrentNote))];
+            console.log(lastBass);
+        }
+    }
+    checkCadenceBass(); // NOT WORKING
 
     // raw voice-lead info
     function voiceArrayDataHandler() {
@@ -318,9 +325,9 @@ function getVoiceLeading(extensions, counterpoint = false) {
                             resolution = smoothestTransition;
                             break;
                     }
-                default:
-                    resolution = smoothestTransition;
-                    break;
+                    default:
+                        resolution = smoothestTransition;
+                        break;
             }
         }
 
