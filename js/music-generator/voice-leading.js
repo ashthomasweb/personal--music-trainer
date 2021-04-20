@@ -12,6 +12,7 @@ function voiceLeadHandler() {
 
     // get first chord as string
     let firstChord = progression[0];
+    
     // declare firstChord as object array
     for (let i = 0; i <= keyNumerals.length - 1; i++) {
         if (keyNumerals[i].numeral === firstChord) {
@@ -85,42 +86,66 @@ function voiceLeadHandler() {
     }
     createResolutionArray();
     // set first note of voice and handle voice-leading for satb
-    function createBassArray() {
-        getVoiceLeading('triad');
+    function createBassArray(satbPart) {
+        getVoiceLeading('triad', bass);
         bassVoiceArray = [...tempVoiceArray];
     }
 
-    function createTenorArray() {
-        getVoiceLeading('triad');
+    function createTenorArraysatbPart() {
+        getVoiceLeading('triad', tenor);
         tenorVoiceArray = [...tempVoiceArray];
     }
 
-    function createAltoArray() {
-        getVoiceLeading('seventh', true);
+    function createAltoArray(satbPart) {
+        getVoiceLeading('seventh', alto, true);
         altoVoiceArray = [...tempVoiceArray];
     }
 
-    function createSopranoArray() {
-        getVoiceLeading('seventh');
+    function createSopranoArray(satbPart) {
+        getVoiceLeading('seventh', soprano);
         sopranoVoiceArray = [...tempVoiceArray];
     }
+
+    // function usePrevVoicing() {
+    //     startingNote = prevChord[0];
+    //     createBassArray();
+    //     console.log(startingNote);
+    //     startingNote = prevChord[1];
+    //     createTenorArray();
+    //     console.log(startingNote);
+
+    //     startingNote = prevChord[2];
+    //     createAltoArray();
+    //     console.log(startingNote);
+
+    //     startingNote = prevChord[3];
+    //     createSopranoArray();
+    //     console.log(startingNote);
+
+    // }
+
+    // if (phraseChart.info.prevFinalVoicing[0] === undefined) {
+    // } else {
+    //     usePrevVoicing();
+    // }
+    
+    createAllVoiceArrays();
 
     function createAllVoiceArrays() {
         // lowest root
         startingNote = firstChord.root[0];
-        createBassArray();
+        createBassArray('bass');
 
         startingNote = noteIndex[tenorTones[generateChance(tenorTones.length) - 1]];
-        createTenorArray();
+        createTenorArray('tenor');
 
         startingNote = noteIndex[altoTones[generateChance(altoTones.length) - 1]];
-        createAltoArray();
+        createAltoArray('alto');
 
         // highest third
         startingNote = firstChord.third[firstChord.third.length - 1];
-        createSopranoArray();
+        createSopranoArray('soprano');
     }
-    createAllVoiceArrays();
 
     // NEEDS refactor for multiple keys
     function checkForRootAndThird() {
@@ -201,12 +226,12 @@ function voiceLeadHandler() {
     voiceArrayDataHandler();
 }
 
-function getVoiceLeading(extensions, counterpoint = false) {
+function getVoiceLeading(extensions, satbPart, counterpoint = false) {
     // empty array to hold all voice leading options
     tempVoiceArray = [];
     let resolveChord;
-    // let cpBool = counterpoint
-    function leadSingleVoice(startingNote, resolveChord, i, counterpoint) {
+
+    function leadSingleVoice(startingNote, resolveChord, i, counterpoint, satbPart) {
 
         // apply chance of seventh to be added to potential chord tones
         let chordMemberIndexArray = [];
@@ -339,8 +364,11 @@ function getVoiceLeading(extensions, counterpoint = false) {
         tempVoiceArray.push(resolution);
     }
 
+    let prevChord = phraseChart.info.prevFinalVoicing;
+
     // run function on entire progression
     for (let i = 0; i <= progression.length - 2; i++) {
+        console.log(prevChord);
         // push starting chord
         if (i === 0) {
             tempVoiceArray.push(startingNote)
