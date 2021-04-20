@@ -17,6 +17,7 @@ function getEmptyChart() {
             cadence: "",
             voiceLeading: [],
             prevFinalVoicing: [],
+            prevFinalChord: '',
             key: "",
             tempo: "",
         },
@@ -225,6 +226,8 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     } else if (section === 1) {
         info.formId = formNum + ':A1';
         info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
+        // info.prevFinalChord = phraseContainer[(formNum - 1) * 4][0].progressio
+
         // sequence by stongest motion most often
         let sequenceChance = generateChance(20);
         if (sequenceChance <= 8) {

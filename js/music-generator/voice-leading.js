@@ -87,22 +87,22 @@ function voiceLeadHandler() {
     createResolutionArray();
     // set first note of voice and handle voice-leading for satb
     function createBassArray(satbPart) {
-        getVoiceLeading('triad', bass);
+        getVoiceLeading('triad', satbPart);
         bassVoiceArray = [...tempVoiceArray];
     }
 
-    function createTenorArraysatbPart() {
-        getVoiceLeading('triad', tenor);
+    function createTenorArray(satbPart) {
+        getVoiceLeading('triad', satbPart);
         tenorVoiceArray = [...tempVoiceArray];
     }
 
     function createAltoArray(satbPart) {
-        getVoiceLeading('seventh', alto, true);
+        getVoiceLeading('seventh', satbPart, true);
         altoVoiceArray = [...tempVoiceArray];
     }
 
     function createSopranoArray(satbPart) {
-        getVoiceLeading('seventh', soprano);
+        getVoiceLeading('seventh', satbPart);
         sopranoVoiceArray = [...tempVoiceArray];
     }
 
@@ -134,17 +134,17 @@ function voiceLeadHandler() {
     function createAllVoiceArrays() {
         // lowest root
         startingNote = firstChord.root[0];
-        createBassArray('bass');
+        createBassArray(0);
 
         startingNote = noteIndex[tenorTones[generateChance(tenorTones.length) - 1]];
-        createTenorArray('tenor');
+        createTenorArray(1);
 
         startingNote = noteIndex[altoTones[generateChance(altoTones.length) - 1]];
-        createAltoArray('alto');
+        createAltoArray(2);
 
         // highest third
         startingNote = firstChord.third[firstChord.third.length - 1];
-        createSopranoArray('soprano');
+        createSopranoArray(3);
     }
 
     // NEEDS refactor for multiple keys
@@ -368,15 +368,18 @@ function getVoiceLeading(extensions, satbPart, counterpoint = false) {
 
     // run function on entire progression
     for (let i = 0; i <= progression.length - 2; i++) {
-        console.log(prevChord);
+        // get next chord in progression as string
+        // resolveChord = progression[i];
         // push starting chord
         if (i === 0) {
+            // tempVoiceArray.push(leadSingleVoice(prevChord[satbPart], resolveChord, i, counterpoint));
             tempVoiceArray.push(startingNote)
+
         }
 
-        // get next chord in progression as string
         resolveChord = progression[i + 1];
         // search for object based on string
+
         for (let i = 0; i <= keyNumerals.length - 1; i++) {
             if (keyNumerals[i].numeral === resolveChord) {
                 resolveChord = keyNumerals[i];
