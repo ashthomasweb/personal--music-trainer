@@ -8,11 +8,11 @@ let tenorVoiceArray = [];
 let altoVoiceArray = [];
 let sopranoVoiceArray = [];
 
-function voiceLeadHandler() {
+function voiceLeadHandler(section) {
 
     // get first chord as string
     let firstChord = progression[0];
-    
+
     // declare firstChord as object array
     for (let i = 0; i <= keyNumerals.length - 1; i++) {
         if (keyNumerals[i].numeral === firstChord) {
@@ -85,67 +85,45 @@ function voiceLeadHandler() {
         }
     }
     createResolutionArray();
+    
     // set first note of voice and handle voice-leading for satb
-    function createBassArray(satbPart) {
-        getVoiceLeading('triad', satbPart);
+    function createBassArray() {
+        getVoiceLeading('triad', section, 0);
         bassVoiceArray = [...tempVoiceArray];
     }
 
-    function createTenorArray(satbPart) {
-        getVoiceLeading('triad', satbPart);
+    function createTenorArray() {
+        getVoiceLeading('triad', section, 1);
         tenorVoiceArray = [...tempVoiceArray];
     }
 
-    function createAltoArray(satbPart) {
-        getVoiceLeading('seventh', satbPart, true);
+    function createAltoArray() {
+        getVoiceLeading('seventh', section, 2, true);
         altoVoiceArray = [...tempVoiceArray];
     }
 
-    function createSopranoArray(satbPart) {
-        getVoiceLeading('seventh', satbPart);
+    function createSopranoArray() {
+        getVoiceLeading('seventh', section, 3);
         sopranoVoiceArray = [...tempVoiceArray];
     }
-
-    // function usePrevVoicing() {
-    //     startingNote = prevChord[0];
-    //     createBassArray();
-    //     console.log(startingNote);
-    //     startingNote = prevChord[1];
-    //     createTenorArray();
-    //     console.log(startingNote);
-
-    //     startingNote = prevChord[2];
-    //     createAltoArray();
-    //     console.log(startingNote);
-
-    //     startingNote = prevChord[3];
-    //     createSopranoArray();
-    //     console.log(startingNote);
-
-    // }
-
-    // if (phraseChart.info.prevFinalVoicing[0] === undefined) {
-    // } else {
-    //     usePrevVoicing();
-    // }
-    
-    createAllVoiceArrays();
-
+  
     function createAllVoiceArrays() {
         // lowest root
         startingNote = firstChord.root[0];
-        createBassArray(0);
+        createBassArray();
 
         startingNote = noteIndex[tenorTones[generateChance(tenorTones.length) - 1]];
-        createTenorArray(1);
+        createTenorArray();
 
         startingNote = noteIndex[altoTones[generateChance(altoTones.length) - 1]];
-        createAltoArray(2);
+        createAltoArray();
 
         // highest third
         startingNote = firstChord.third[firstChord.third.length - 1];
-        createSopranoArray(3);
+        createSopranoArray();
     }
+
+    createAllVoiceArrays();
 
     // NEEDS refactor for multiple keys
     function checkForRootAndThird() {
@@ -210,7 +188,7 @@ function voiceLeadHandler() {
         }
     }
     generateChance(3) < 3 && checkCadenceBass();
-    
+
 
     // raw voice-lead info
     function voiceArrayDataHandler() {
@@ -226,12 +204,12 @@ function voiceLeadHandler() {
     voiceArrayDataHandler();
 }
 
-function getVoiceLeading(extensions, satbPart, counterpoint = false) {
+function getVoiceLeading(extensions, section, voice, counterpoint = false) {
     // empty array to hold all voice leading options
     tempVoiceArray = [];
     let resolveChord;
 
-    function leadSingleVoice(startingNote, resolveChord, i, counterpoint, satbPart) {
+    function leadSingleVoice(startingNote, resolveChord, i, counterpoint, forceSmooth = false) {
 
         // apply chance of seventh to be added to potential chord tones
         let chordMemberIndexArray = [];
@@ -299,11 +277,15 @@ function getVoiceLeading(extensions, satbPart, counterpoint = false) {
         getClosestResolutions();
 
         // pick smoothest or next best voice-leading option
-        function smoothResolutionChance() {
-            if (generateChance(3) === 1) {
-                resolution = resolutionOptions[1];
-            } else {
+        function smoothResolutionChance(forceSmooth) {
+            if (forceSmooth) {
                 resolution = resolutionOptions[0];
+            } else {
+                if (generateChance(3) === 1) {
+                    resolution = resolutionOptions[1];
+                } else {
+                    resolution = resolutionOptions[0];
+                }
             }
         }
         smoothResolutionChance();
@@ -364,17 +346,24 @@ function getVoiceLeading(extensions, satbPart, counterpoint = false) {
         tempVoiceArray.push(resolution);
     }
 
-    let prevChord = phraseChart.info.prevFinalVoicing;
-
     // run function on entire progression
     for (let i = 0; i <= progression.length - 2; i++) {
-        // get next chord in progression as string
-        // resolveChord = progression[i];
-        // push starting chord
-        if (i === 0) {
-            // tempVoiceArray.push(leadSingleVoice(prevChord[satbPart], resolveChord, i, counterpoint));
-            tempVoiceArray.push(startingNote)
+        if (i === 0 && section === 0) {
+            tempVoiceArray.push(startingNote); // original code, works for first chord.
+        }
 
+        if (i === 0 && section !== 0) {
+            // if not first loop, then get previous chord
+            console.log(phraseChart.info.prevFinalVoicing[voice]);
+
+            // search for object based on string
+            resolveChord = progression[i];
+            for (let i = 0; i <= keyNumerals.length - 1; i++) {
+                if (keyNumerals[i].numeral === resolveChord) {
+                    resolveChord = keyNumerals[i];
+                }
+            }
+            leadSingleVoice(phraseChart.info.prevFinalVoicing[voice], resolveChord, i, false, true);
         }
 
         resolveChord = progression[i + 1];
@@ -386,7 +375,7 @@ function getVoiceLeading(extensions, satbPart, counterpoint = false) {
             }
         }
         // voice lead one voice one harmonic change
-        leadSingleVoice(startingNote, resolveChord, i, counterpoint)
+        leadSingleVoice(startingNote, resolveChord, i, counterpoint);
     }
 
 }

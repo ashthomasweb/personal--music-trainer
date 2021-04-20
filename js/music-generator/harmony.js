@@ -105,26 +105,26 @@ function switchHarmonicMode() {
 function buildForm(numberOfRepeats) {
     for (let i = 0; i < numberOfRepeats; i++) {
         // THIS is where I can change options on a 16 measure basis
-        for (let j = 0; j <= 3; j++) {
-            if (j === 0) {
+        for (let section = 0; section <= 3; section++) {
+            if (section === 0) {
                 getKeyMode();
                 getKeyCenter();
                 createPhraseChart(0, i + 1); // builds phrasing array, harmonic progression, and harmonic rhythm
-                voiceLeadHandler(); // voice-leads progression
+                voiceLeadHandler(section); // voice-leads progression
             }
-            if (j === 1) {
+            if (section === 1) {
                 createPhraseChart(1, i + 1);
-                voiceLeadHandler();
+                voiceLeadHandler(section);
             }
-            if (j === 2) {
+            if (section === 2) {
                 switchHarmonicMode();
                 createPhraseChart(2, i + 1);
-                voiceLeadHandler();
+                voiceLeadHandler(section);
             }
-            if (j === 3) {
+            if (section === 3) {
                 switchHarmonicMode();
                 createPhraseChart(3, i + 1);
-                voiceLeadHandler();
+                voiceLeadHandler(section);
             }
         }
     }
@@ -134,6 +134,7 @@ function buildForm(numberOfRepeats) {
 // calls all builder helper functions and provides data for playback via phraseContainer
 let phraseChart;
 let phraseContainer = [];
+
 function createPhraseChart(section, formNum) {
     // gets progression, gets empty chart, generates harmonic rhythm
     createHarmonicUnit(section, formNum, getEmptyChart());
@@ -144,7 +145,9 @@ function createPhraseChart(section, formNum) {
 
 // makes a base unit of chords
 function createHarmonicUnit(section, formNum, phraseChart) {
-    let {info} = phraseChart;
+    let {
+        info
+    } = phraseChart;
 
     // data helper arrays
     function concatKeyInfo() {
@@ -203,7 +206,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     }
 
     function getNewTempo() {
-        return generateChance(250, 350);
+        return generateChance(150, 250);
     }
 
     function getCloselyRelatedTempo(input) {
@@ -226,8 +229,6 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     } else if (section === 1) {
         info.formId = formNum + ':A1';
         info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
-        // info.prevFinalChord = phraseContainer[(formNum - 1) * 4][0].progressio
-
         // sequence by stongest motion most often
         let sequenceChance = generateChance(20);
         if (sequenceChance <= 8) {
@@ -245,7 +246,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         storePlaybackData();
         // last 4 bar phrase
     } else if (section === 3) {
-        info.formId = formNum + ':A';
+        info.formId = formNum + ':A - Final';
         info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
         // get 'A' section progression and apply cadence
         progression = [...phraseContainer[(formNum - 1) * 4][0].progression];
