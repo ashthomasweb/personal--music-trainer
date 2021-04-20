@@ -90,7 +90,7 @@ function playPhraseChart() {
         displayTimer = displayTimer + (beatLength * 16);
 
         // Playback
-        
+
         phrase.forEach((item, i) => {
             if (i !== 0) { // prevent iteration on info index
                 phrase[i].forEach((item) => {
@@ -100,14 +100,13 @@ function playPhraseChart() {
                         }, voicesTimer + beatLength);
                         voicesTimer = voicesTimer + beatLength;
                     } else {
-                        setTimeout(() => {
-                        }, voicesTimer + beatLength);
+                        setTimeout(() => {}, voicesTimer + beatLength);
                         voicesTimer = voicesTimer + beatLength;
                     }
                 })
             }
         });
-        
+
         if (phrase[0].formId.includes('Final')) {
             setTimeout(() => {
                 console.log(i);
@@ -121,7 +120,7 @@ function playPhraseChart() {
 function iteratePlaybackArray(infoArray) {
     // THIS is where I can control which voices play per beat
     let temp = 4
-    switch (generateChance(4)) {
+    switch (generateChance(7)) {
         case 1:
             playbackTextureSwitch([allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
             break;
@@ -133,6 +132,15 @@ function iteratePlaybackArray(infoArray) {
             break;
         case 4:
             playbackTextureSwitch([allVoicesPlaybackArray[0][index], allVoicesPlaybackArray[1][index], allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
+            break;
+        case 5:
+            playbackTextureSwitch([allVoicesPlaybackArray[3][index]], infoArray);
+            break;
+        case 6:
+            playbackTextureSwitch([allVoicesPlaybackArray[0][index]], infoArray);
+            break;
+        case 7:
+            playbackTextureSwitch([allVoicesPlaybackArray[1][index], allVoicesPlaybackArray[2][index]], infoArray);
             break;
     }
     index++;
@@ -160,8 +168,7 @@ function playbackTextureSwitch(voices, infoArray) {
 // Arpeggiate voices without stopping repeated notes
 function arpeggiateVoices(voices, infoArray) {
     voicesTimer = 0;
-    let chance = Math.floor(Math.random() * 3);
-    // chance = 2;
+    let chance = generateChance(3);
 
     beatLength = infoArray.tempo;
 
