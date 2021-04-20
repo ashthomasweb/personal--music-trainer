@@ -125,7 +125,35 @@ function voiceLeadHandler(section) {
 
     createAllVoiceArrays();
 
-    // NEEDS refactor for multiple keys
+    
+    function checkCadenceBass() {
+        let lastBass = bassVoiceArray[bassVoiceArray.length - 1];
+
+        for (let i = progression.length - 1; i <= progression.length - 1; i++) {
+            let roots = [];
+            let currentChord = progression[i];
+            let distanceFromCurrentNote = [];
+            let indexOfClosestRoot;
+            // look in romanNumeral array for rootArray
+            keyNumerals.forEach((item) => {
+                if (item.numeral === currentChord) {
+                    roots = [...item.root];
+                }
+            });
+
+            roots.forEach((item) => {
+                distanceFromCurrentNote.push(Math.abs(noteIndex.indexOf(lastBass) - noteIndex.indexOf(item)));
+            });
+            indexOfClosestRoot = distanceFromCurrentNote.indexOf(Math.min(...distanceFromCurrentNote));
+
+            lastBass = roots[indexOfClosestRoot];
+            bassVoiceArray[bassVoiceArray.length - 1] = lastBass;
+        }
+    }
+    // generateChance(3) < 3 && checkCadenceBass();
+    checkCadenceBass();
+
+
     function checkForRootAndThird() {
         for (let i = 0; i <= progression.length - 1; i++) {
             let rootBool = false;
@@ -163,31 +191,6 @@ function voiceLeadHandler(section) {
     }
     checkForRootAndThird();
 
-    function checkCadenceBass() {
-        let lastBass = bassVoiceArray[bassVoiceArray.length - 1];
-
-        for (let i = progression.length - 1; i <= progression.length - 1; i++) {
-            let roots = [];
-            let currentChord = progression[i];
-            let distanceFromCurrentNote = [];
-            let indexOfClosestRoot;
-            // look in romanNumeral array for rootArray
-            keyNumerals.forEach((item) => {
-                if (item.numeral === currentChord) {
-                    roots = [...item.root];
-                }
-            });
-
-            roots.forEach((item) => {
-                distanceFromCurrentNote.push(Math.abs(noteIndex.indexOf(lastBass) - noteIndex.indexOf(item)));
-            });
-            indexOfClosestRoot = distanceFromCurrentNote.indexOf(Math.min(...distanceFromCurrentNote));
-
-            lastBass = roots[indexOfClosestRoot];
-            bassVoiceArray[bassVoiceArray.length - 1] = lastBass;
-        }
-    }
-    generateChance(3) < 3 && checkCadenceBass();
 
 
     // raw voice-lead info

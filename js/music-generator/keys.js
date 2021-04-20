@@ -418,4 +418,154 @@ let = keyOfG = [
     }
 ];
 
+
+let = keyOfD = [
+   
+    {
+        numeral: 'I',
+        root: ['D2', 'D3', 'D4', 'D5', 'D6'],
+        third: ['Gb2', 'Gb3', 'Gb4', 'Gb5'],
+        fifth: ['A2', 'A3', 'A4', 'A5'],
+        seventh: ['Db2', 'Db3', 'Db4', 'Db5', 'Db6']
+    },
+
+    {
+        numeral: 'ii',
+        root: ['E2', 'E3', 'E4', 'E5'],
+        third: ['G2', 'G3', 'G4', 'G5'],
+        fifth: ['B1', 'B2', 'B3', 'B4', 'B5'],
+        seventh: ['D2', 'D3', 'D4', 'D5', 'D6']
+    },
+
+    {
+        numeral: 'iii',
+        root: ['Gb2', 'Gb3', 'Gb4', 'Gb5'],
+        third: ['A2', 'A3', 'A4', 'A5'],
+        fifth: ['Db2', 'Db3', 'Db4', 'Db5', 'Db6'],
+        seventh: ['E2', 'E3', 'E4', 'E5']
+    },
+
+    {
+        numeral: 'IV',
+        root: ['G2', 'G3', 'G4', 'G5'],
+        third: ['B1', 'B2', 'B3', 'B4', 'B5'],
+        fifth: ['D2', 'D3', 'D4', 'D5', 'D6'],
+        seventh: ['Gb2', 'Gb3', 'Gb4', 'Gb5']
+    },
+
+    {
+        numeral: 'V',
+        root: ['A2', 'A3', 'A4', 'A5'],
+        third:  ['Db2', 'Db3', 'Db4', 'Db5', 'Db6'],
+        fifth: ['E2', 'E3', 'E4', 'E5'],
+        seventh: ['G2', 'G3', 'G4', 'G5']
+    },
+
+    {
+        numeral: 'vi',
+        root: ['B1', 'B2', 'B3', 'B4', 'B5'],
+        third: ['D2', 'D3', 'D4', 'D5', 'D6'],
+        fifth: ['Gb2', 'Gb3', 'Gb4', 'Gb5'],
+        seventh: ['A2', 'A3', 'A4', 'A5']
+    },
+
+    {
+        numeral: 'vii∅',
+        root:  ['Db2', 'Db3', 'Db4', 'Db5', 'Db6'],
+        third: ['E2', 'E3', 'E4', 'E5'],
+        fifth: ['G2', 'G3', 'G4', 'G5'],
+        seventh: ['B1', 'B2', 'B3', 'B4', 'B5']
+    },
+
+    {
+        numeral: 'i',
+        root: ['D2', 'D3', 'D4', 'D5', 'D6'],
+        third: ['F2', 'F3', 'F4', 'F5'],
+        fifth: ['A2', 'A3', 'A4', 'A5'],
+        seventh: ['C2', 'C3', 'C4', 'C5', 'C6']
+    },
+
+    {
+        numeral: 'imM6',
+        root: ['D2', 'D3', 'D4', 'D5', 'D6'],
+        third: ['F2', 'F3', 'F4', 'F5'],
+        fifth: ['A2', 'A3', 'A4', 'A5'],
+        seventh: ['B2', 'B3', 'B4', 'B5']
+    },
+
+    {
+        numeral: 'ii∅',
+        root: ['E2', 'E3', 'E4', 'E5'],
+        third: ['G2', 'G3', 'G4', 'G5'],
+        fifth: ['Bb2', 'Bb3', 'Bb4', 'Bb5'],
+        seventh: ['D2', 'D3', 'D4', 'D5', 'D6']
+    },
+
+    {
+        numeral: 'bIII',
+        root: ['F2', 'F3', 'F4', 'F5'],
+        third: ['A2', 'A3', 'A4', 'A5'],
+        fifth: ['C2', 'C3', 'C4', 'C5', 'C6'],
+        seventh: ['E2', 'E3', 'E4', 'E5']
+    },
+
+    {
+        numeral: 'iv',
+        root: ['G2', 'G3', 'G4', 'G5'],
+        third: ['Bb2', 'Bb3', 'Bb4', 'Bb5'],
+        fifth: ['D2', 'D3', 'D4', 'D5', 'D6'],
+        seventh: ['F2', 'F3', 'F4', 'F5']
+    },
+
+    {
+        numeral: 'IV7',
+        root: ['G2', 'G3', 'G4', 'G5'],
+        third: ['B2', 'B3', 'B4', 'B5'],
+        fifth: ['D2', 'D3', 'D4', 'D5', 'D6'],
+        seventh: ['F2', 'F3', 'F4', 'F5']
+    },
+
+    {
+        numeral: 'V',
+        root: ['A2', 'A3', 'A4', 'A5'],
+        third:  ['Db2', 'Db3', 'Db4', 'Db5', 'Db6'],
+        fifth: ['E2', 'E3', 'E4', 'E5'],
+        seventh: ['G2', 'G3', 'G4', 'G5']
+    },
+
+    {
+        numeral: 'bVI',
+        root: ['Bb2', 'Bb3', 'Bb4', 'Bb5'],
+        third: ['D2', 'D3', 'D4', 'D5', 'D6'],
+        fifth: ['F2', 'F3', 'F4', 'F5'],
+        seventh: ['A2', 'A3', 'A4', 'A5']
+    },
+
+    {
+        numeral: 'vi∅',
+        root: ['B2', 'B3', 'B4', 'B5'],
+        third: ['D2', 'D3', 'D4', 'D5', 'D6'],
+        fifth: ['F2', 'F3', 'F4', 'F5'],
+        seventh: ['A2', 'A3', 'A4', 'A5']
+    },
+
+    {
+        numeral: 'bVII',
+        root: ['C2', 'C3', 'C4', 'C5', 'C6'],
+        third: ['E2', 'E3', 'E4', 'E5'],
+        fifth: ['G2', 'G3', 'G4', 'G5'],
+        seventh: ['Bb2', 'Bb3', 'Bb4', 'Bb5']
+    },
+
+    {
+        numeral: 'vii°',
+        root: ['Db2', 'Db3', 'Db4', 'Db5', 'Db6'],
+        third: ['E2', 'E3', 'E4', 'E5'],
+        fifth: ['G2', 'G3', 'G4', 'G5'],
+        seventh: ['Bb2', 'Bb3', 'Bb4', 'Bb5']
+    },
+];
+
+
+
 // END of document

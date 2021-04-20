@@ -52,7 +52,7 @@ function getEmptyChart() {
 
 function getKeyCenter() {
 
-    switch (generateChance(3)) {
+    switch (generateChance(4)) {
         case 1:
             keyNumerals = keyOfC;
             break;
@@ -61,6 +61,9 @@ function getKeyCenter() {
             break;
         case 3:
             keyNumerals = keyOfG;
+            break;
+        case 4:
+            keyNumerals = keyOfD;
         default:
             break;
     }
@@ -151,6 +154,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
 
     // data helper arrays
     function concatKeyInfo() {
+
         switch (keyNumerals) {
             case keyOfC:
                 center = 'C'
@@ -160,6 +164,9 @@ function createHarmonicUnit(section, formNum, phraseChart) {
                 break;
             case keyOfF:
                 center = 'F'
+                break;
+            case keyOfD:
+                center = 'D'
             default:
                 break;
         }
@@ -206,7 +213,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     }
 
     function getNewTempo() {
-        return generateChance(150, 250);
+        return generateChance(250, 350);
     }
 
     function getCloselyRelatedTempo(input) {
