@@ -355,10 +355,8 @@ function getVoiceLeading(extensions, section, voice, counterpoint = false) {
             tempVoiceArray.push(startingNote); // original code, works for first chord.
         }
 
+        // if not first loop, then get previous chord
         if (i === 0 && section !== 0) {
-            // if not first loop, then get previous chord
-            console.log(phraseChart.info.prevFinalVoicing[voice]);
-
             // search for object based on string
             resolveChord = progression[i];
             for (let i = 0; i <= keyNumerals.length - 1; i++) {

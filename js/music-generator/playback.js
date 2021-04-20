@@ -90,6 +90,7 @@ function playPhraseChart() {
         displayTimer = displayTimer + (beatLength * 16);
 
         // Playback
+        
         phrase.forEach((item, i) => {
             if (i !== 0) { // prevent iteration on info index
                 phrase[i].forEach((item) => {
@@ -106,13 +107,14 @@ function playPhraseChart() {
                 })
             }
         });
-        setTimeout(() => {
-            console.log(phrase);
-        }, voicesTimer + beatLength);
-        voicesTimer = voicesTimer + 5000;
-        displayTimer = displayTimer + 5000;
-
         
+        if (phrase[0].formId.includes('Final')) {
+            setTimeout(() => {
+                console.log(i);
+            }, voicesTimer + beatLength);
+            voicesTimer = voicesTimer + 5000;
+            displayTimer = displayTimer + 5000;
+        }
     });
 }
 

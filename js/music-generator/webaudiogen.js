@@ -322,7 +322,8 @@ function noteSwitch(noteId) {
             playHandler(51, noteId);
             break;
         default:
-            console.log('Fin.')
+            console.log('Fin.');
+            break;
     }
 }
 
