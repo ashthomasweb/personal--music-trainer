@@ -57,7 +57,7 @@
     <div class="generate">
       <p>Out Of Date</p>
       <button onclick="getStartTones()" class="dropbtn">Get Start Tones</button>
-      <button type="button" onclick="assignValues()">Get Progression</button>
+      <!-- <button type="button" onclick="assignValues()">Get Progression</button> -->
       <button type="button" onmousedown="playProg()">Play</button>
       <button type="button" onmousedown="playVoices()">Voices</button>
       <button type="button" onmousedown="playVoicesBlock()">Block</button>
@@ -96,11 +96,7 @@
 
     <div class="options">
       <p>Form Options</p>
-    </div>
-
-    <div class="cadence">
-      <p>Out Of Date</p>
-      <p>How many chords?</p>
+      <p>How many repeats?</p>
       <div class="slidecontainer">
         <input type="range" min="3" max="32" value="9" class="slider" id="myRange">
         <p>Value: <span id="chord-num"></span></p>
@@ -115,6 +111,11 @@
         <input type="range" min="1" max="4" value="1" class="slider" id="myCadence">
         <p>Value: <span id="chord-end"></span></p>
       </div>
+    </div>
+
+    <div class="cadence">
+      <p>Out Of Date</p>
+     
     </div>
 
     <div class="your-progression">

@@ -83,12 +83,12 @@ let romanNumFive = 'V';
 let romanNumSix;
 
 let keyControl = false;
-let keyVar;
+let keyModeVar;
 
 function getKeyMode() {
     let chance;
     if (keyControl === true) {
-        if (keyVar === major) {
+        if (keyModeVar === major) {
             chance = 2;
         } else {
             chance = 1;
@@ -125,7 +125,16 @@ function switchHarmonicMode() {
 }
 
 // form construction
-function buildForm(numberOfRepeats) {
+let numOfRepeatsControl = false;
+let numOfRepeatsVar;
+function buildForm() {
+    if (numOfRepeatsControl === true) {
+        numberOfRepeats = numOfRepeatsVar;
+    } else {
+        numberOfRepeats = 50;
+    }
+    
+
     for (let i = 0; i < numberOfRepeats; i++) {
         // THIS is where I can change options on a 16 measure basis
         for (let section = 0; section <= 3; section++) {
@@ -169,6 +178,10 @@ function createPhraseChart(section, formNum) {
     phraseContainer.push(phraseChartArray);
 }
 
+let startingChordControl = false;
+let startingChordVar;
+let cadenceTypeControl = false;
+let cadenceTypeVar;
 // makes a base unit of chords
 function createHarmonicUnit(section, formNum, phraseChart) {
     let {
@@ -248,12 +261,26 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         }
     }
 
+    let startingChordConVar;
+    if (startingChordControl === true) {
+        startingChordConVar = startingChordVar;
+    } else {
+        startingChordConVar = 1;
+    }
+
+    let cadenceConVar;
+    if (cadenceTypeControl === true) {
+        cadenceConVar = cadenceTypeVar;
+    } else {
+        cadenceConVar = generateChance(3, 1);
+    }
+
     // first 4 bar phrase
     if (section === 0) {
         info.formId = formNum + ':A';
         info.tempo = getNewTempo();
         // generate new progression, any starting point, never Authentic cadence
-        getNewProgression(currentHarmony[0], cadenceType[generateChance(3, 1) - 1]);
+        getNewProgression(currentHarmony[startingChordConVar - 1], cadenceType[cadenceConVar - 1]);
         storePlaybackData();
         // second 4 bar phrase
     } else if (section === 1) {

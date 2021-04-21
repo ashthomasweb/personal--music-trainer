@@ -1,22 +1,24 @@
 // Page Elements for Music Generator
 
 // Assign values
-function assignValues() {
-    progression = [];
-    progLength = slider.value;
-    let start = outputStart.innerHTML;
-    let cadence = outputCadenceSlide.innerHTML;
-    document.getElementById('chord-prog').innerHTML = getProgression(start, cadence);
-}
+// function assignValues() {
+//     progression = [];
+//     progLength = slider.value;
+//     let start = outputStart.innerHTML;
+//     let cadence = outputCadenceSlide.innerHTML;
+//     document.getElementById('chord-prog').innerHTML = getProgression(start, cadence);
+// }
 
-// number of chords
+// number of repeats
 var slider = document.getElementById("myRange");
 var output = document.getElementById("chord-num");
 output.innerHTML = slider.value;
 
 slider.oninput = function () {
     output.innerHTML = this.value;
+    options.numOfRepeats = this.value;
 }
+
 
 // start progression on given harmony
 var startx = document.getElementById("myStart");
@@ -25,8 +27,13 @@ outputStart.innerHTML = currentHarmony[startx.value - 1];
 
 startx.oninput = function () {
     outputStart.innerHTML = currentHarmony[this.value - 1];
-    return majorHarmony[this.value - 1]
+    options.startingChordIndex = this.value;
+
+    // return majorHarmony[this.value - 1]
 }
+
+
+
 
 // type of cadence 
 var cadenceSlide = document.getElementById("myCadence");
@@ -35,8 +42,14 @@ outputCadenceSlide.innerHTML = cadenceType[cadenceSlide.value - 1];
 
 cadenceSlide.oninput = function () {
     outputCadenceSlide.innerHTML = cadenceType[this.value - 1];
-    return cadenceType[this.value - 1]
+    options.cadenceTypeIndex = this.value;
+
+    // return cadenceType[this.value - 1];
 }
+
+
+
+
 
 // On-screen diagnostic/helper functions 
 
@@ -49,13 +62,6 @@ function clearPlayContainers() {
         []
     ];
     tempPlaybackArray = [];
-    // bassVoiceArray = [];
-    // tenorVoiceArray = [];
-    // altoVoiceArray = [];
-    // sopranoVoiceArrray = [];
-    // tempVoiceArray = [];
-    // phraseChart = [];
-    // progression = [];
 }
 
 function allStop() {
