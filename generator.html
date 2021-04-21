@@ -78,12 +78,10 @@
 
     <div class="length">
       <p>Length Options</p>
-      <button onclick="buildForm(50)" class="dropbtn">Play a long time</button>
+      <button onclick="masterControl()" class="dropbtn">Random long-play</button>
       <br><br>
-      <button onclick="buildForm(1)" class="dropbtn">Play once</button>
-      <br><br>
-      <button onclick="buildForm(4)" class="dropbtn">Play four</button>
-
+      <button onclick="masterControl(options)" class="dropbtn">Play with options</button>
+  
     </div>
 
     <div class="start-point">
@@ -96,6 +94,8 @@
 
     <div class="options">
       <p>Form Options</p>
+      <p>Input or defaults</p>
+
       <p>How many repeats?</p>
       <div class="slidecontainer">
         <input type="range" min="3" max="32" value="9" class="slider" id="myRange">
