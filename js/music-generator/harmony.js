@@ -76,13 +76,28 @@ let romanNumFour;
 let romanNumFive = 'V';
 let romanNumSix;
 
+let keyControl = false;
+let keyVar;
+
 function getKeyMode() {
-    if (generateChance(2) === 1) {
+    let chance;
+    if (keyControl === true) {
+        console.log('test');
+        if (keyVar === major) {
+            chance = 2;
+        } else {
+            chance = 1;
+        }
+    } else {
+        chance = generateChance(2);
+    }
+
+    if (chance === 1) {
         currentHarmony = minor;
         romanNumOne = 'i';
         romanNumFour = 'iv';
         romanNumSix = 'bVI';
-    } else {
+    } else if (chance === 2) {
         currentHarmony = major;
         romanNumOne = 'I';
         romanNumFour = 'IV';
@@ -130,6 +145,9 @@ function buildForm(numberOfRepeats) {
                 voiceLeadHandler(section);
             }
         }
+        if ( i === 0 ) {
+            controlOff();
+        }
     }
     playPhraseChart();
 }
@@ -175,7 +193,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     }
 
     function cadenceHandler(section) {
-        // assigning progression to a variable causes function to not work
+        // assigning progression to a variable causes function to fail, do not refactor
         if (section === 1) { // second 'A'
             if (generateChance(2) === 1) {
                 cadenceValue = 'Deceptive';
