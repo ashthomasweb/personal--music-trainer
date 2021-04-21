@@ -50,22 +50,28 @@ function getEmptyChart() {
     return phraseChart;
 }
 
-function getKeyCenter() {
+let keyCenterControl = false;
+let keyCenterVar;
 
-    switch (generateChance(4)) {
-        case 1:
-            keyNumerals = keyOfC;
-            break;
-        case 2:
-            keyNumerals = keyOfF;
-            break;
-        case 3:
-            keyNumerals = keyOfG;
-            break;
-        case 4:
-            keyNumerals = keyOfD;
-        default:
-            break;
+function getKeyCenter() {
+    if (keyCenterControl === true) {
+        keyNumerals = keyCenterVar;
+    } else {
+        switch (generateChance(4)) {
+            case 1:
+                keyNumerals = keyOfC;
+                break;
+            case 2:
+                keyNumerals = keyOfF;
+                break;
+            case 3:
+                keyNumerals = keyOfG;
+                break;
+            case 4:
+                keyNumerals = keyOfD;
+            default:
+                break;
+        }
     }
 }
 
@@ -82,7 +88,6 @@ let keyVar;
 function getKeyMode() {
     let chance;
     if (keyControl === true) {
-        console.log('test');
         if (keyVar === major) {
             chance = 2;
         } else {
@@ -145,7 +150,7 @@ function buildForm(numberOfRepeats) {
                 voiceLeadHandler(section);
             }
         }
-        if ( i === 0 ) {
+        if (i === 0) {
             controlOff();
         }
     }
