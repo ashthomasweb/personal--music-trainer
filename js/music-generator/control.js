@@ -1,24 +1,34 @@
+const defaultOptions = {
+    key: undefined,
+    keyCenter: undefined
+}
 
+let options = {
+    key: undefined,
+    keyCenter: undefined
+}
 
-function masterControl(key, keyCenter) {
-    if (key !== undefined) {
-        keyControl = true;
-        keyVar = key;
+function masterControl(options) {
+    let controlOptions;
+
+    if (arguments.length === 0) {
+        controlOptions = defaultOptions;
+    } else {
+        controlOptions = options;
     }
     
-    if (keyCenter !== undefined) {
+    if (controlOptions.key !== undefined) {
+        keyControl = true;
+        keyVar = controlOptions.key;
+    }
+
+    if (controlOptions.keyCenter !== undefined) {
         keyCenterControl = true;
-        keyCenterVar = keyCenter;
+        keyCenterVar = controlOptions.keyCenter;
     }
 
     buildForm(20);
 }
-
-
-
-
-
-
 
 
 

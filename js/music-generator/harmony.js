@@ -253,7 +253,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         info.formId = formNum + ':A';
         info.tempo = getNewTempo();
         // generate new progression, any starting point, never Authentic cadence
-        getNewProgression(currentHarmony[generateChance(6, 1) - 1], cadenceType[generateChance(3, 1) - 1]);
+        getNewProgression(currentHarmony[0], cadenceType[generateChance(3, 1) - 1]);
         storePlaybackData();
         // second 4 bar phrase
     } else if (section === 1) {

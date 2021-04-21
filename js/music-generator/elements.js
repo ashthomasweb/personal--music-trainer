@@ -42,13 +42,20 @@ cadenceSlide.oninput = function () {
 
 function clearPlayContainers() {
     phraseContainer = [];
-    combinedVoicesPlayback = [
+    allVoicesPlaybackArray = [
         [],
         [],
         [],
         []
     ];
-    allVoicesPlayback = [];
+    tempPlaybackArray = [];
+    // bassVoiceArray = [];
+    // tenorVoiceArray = [];
+    // altoVoiceArray = [];
+    // sopranoVoiceArrray = [];
+    // tempVoiceArray = [];
+    // phraseChart = [];
+    // progression = [];
 }
 
 function allStop() {
