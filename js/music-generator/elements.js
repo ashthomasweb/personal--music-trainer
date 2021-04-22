@@ -83,9 +83,19 @@ function checkForUndefined() {
     }
 }
 
-function makePersist() {
-    options.persistControl = true;
-}
+// function makePersist() {
+//     if (options.persistControl !== undefined) {
+//         options.persistControl = !options.persistControl;
+//     }
+//     if (options.persistControl === undefined) {
+//         options.persistControl = true;
+//     }
+//     // if (options.persistControl === true) {
+//     //     document.getElementById('persist-toggle').style.backgroundColor = 'pink';
+//     // } else {
+//     //     document.getElementById('persist-toggle').style.backgroundColor = 'grey';
+//     // }
+// }
 
 function preset1() {
     options.numOfChords = 7;

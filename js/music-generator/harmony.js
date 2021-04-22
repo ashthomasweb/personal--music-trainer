@@ -174,7 +174,7 @@ function buildForm() {
             }
         } else {
             if (i === 0) {
-                // controlOff();
+                // turnControlOff();
             }
         }
 
