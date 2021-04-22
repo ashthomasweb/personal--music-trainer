@@ -119,8 +119,8 @@ function playPhraseChart() {
 
 function iteratePlaybackArray(infoArray) {
     // THIS is where I can control which voices play per beat
-    let temp = 4;
-    switch (temp) {
+    // let temp = 4;
+    switch (generateChance(9)) {
         case 1:
             playbackTextureSwitch([allVoicesPlaybackArray[2][index], allVoicesPlaybackArray[3][index]], infoArray);
             break;
@@ -143,7 +143,10 @@ function iteratePlaybackArray(infoArray) {
             playbackTextureSwitch([allVoicesPlaybackArray[1][index], allVoicesPlaybackArray[2][index]], infoArray);
             break;
         case 8:
-            playbackTextureSwitch([allVoicesPlaybackArray[2][index]],infoArray);
+            playbackTextureSwitch([allVoicesPlaybackArray[2][index]], infoArray);
+            break;
+        case 9:
+            playbackTextureSwitch([allVoicesPlaybackArray[1][index]], infoArray);
             break;
     }
     index++;

@@ -128,12 +128,16 @@ function switchHarmonicMode() {
 let numOfRepeatsControl = false;
 let numOfRepeatsVar;
 
+let persistentControl = false;
+let persistentVar;
+
 function buildForm() {
     if (numOfRepeatsControl === true) {
         numberOfRepeats = numOfRepeatsVar;
     } else {
         numberOfRepeats = 50;
     }
+    let persistConVar;
 
     for (let i = 0; i < numberOfRepeats; i++) {
         // THIS is where I can change options on a 16 measure basis
@@ -159,9 +163,21 @@ function buildForm() {
                 voiceLeadHandler(section);
             }
         }
-        if (i === 0) {
-            controlOff();
+        if (persistentControl === true) {
+            persistConVar = persistentVar;
         }
+
+        if (persistConVar === false) {
+
+            if (i === 0) {
+                turnControlOff();
+            }
+        } else {
+            if (i === 0) {
+                // controlOff();
+            }
+        }
+
     }
     playPhraseChart();
 }
@@ -249,7 +265,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     }
 
     function getNewTempo() {
-        return generateChance(250, 350);
+        return generateChance(150, 250);
     }
 
     function getCloselyRelatedTempo(input) {

@@ -69,8 +69,8 @@
 
 .cadence {
     grid-area: cadence;
-    opacity: .3;
-    pointer-events: none;
+    opacity: 1;
+    /* pointer-events: none; */
 
     background-color: rgba(128, 125, 125, .3);
 }

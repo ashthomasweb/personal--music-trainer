@@ -83,9 +83,8 @@ function checkForUndefined() {
     }
 }
 
-function optionsAssign() {
+function preset1() {
     options.numOfChords = 7;
     options.keyCenter = keyOfF;
-    options.numOfRepeats = 200;
 }
 // END of document

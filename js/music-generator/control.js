@@ -4,7 +4,8 @@ const defaultOptions = {
     numOfRepeats: undefined,
     startingChordIndex: undefined,
     cadenceTypeIndex: undefined,
-    numOfChords: undefined
+    numOfChords: undefined,
+    persistControl: undefined
 }
 
 let options = {
@@ -14,6 +15,7 @@ let options = {
     startingChordIndex: undefined,
     cadenceTypeIndex: undefined,
     numOfChords: undefined,
+    persistControl: undefined
 }
 
 function masterControl(options) {
@@ -55,15 +57,21 @@ function masterControl(options) {
         numOfChordsVar = controlOptions.numOfChords;
     }
 
+    if (controlOptions.persistControl !== undefined) {
+        persistentControl = true;
+        persistentVar = controlOptions.persistControl;
+    }
+
     buildForm();
 }
 
 // turn off control booleans
-function controlOff() {
+function turnControlOff() {
     keyControl = false;
     keyCenterControl = false;
     numOfRepeatsControl = false;
     startingChordControl = false;
     cadenceTypeControl = false;
     numOfChordsControl = false;
+    persistentControl = false;
 }
