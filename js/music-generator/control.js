@@ -4,6 +4,7 @@ const defaultOptions = {
     numOfRepeats: undefined,
     startingChordIndex: undefined,
     cadenceTypeIndex: undefined,
+    numOfChords: undefined
 }
 
 let options = {
@@ -12,6 +13,7 @@ let options = {
     numOfRepeats: undefined,
     startingChordIndex: undefined,
     cadenceTypeIndex: undefined,
+    numOfChords: undefined,
 }
 
 function masterControl(options) {
@@ -48,6 +50,11 @@ function masterControl(options) {
         cadenceTypeVar = controlOptions.cadenceTypeIndex;
     }
 
+    if (controlOptions.numOfChords !== undefined) {
+        numOfChordsControl = true;
+        numOfChordsVar = controlOptions.numOfChords;
+    }
+
     buildForm();
 }
 
@@ -58,4 +65,5 @@ function controlOff() {
     numOfRepeatsControl = false;
     startingChordControl = false;
     cadenceTypeControl = false;
+    numOfChordsControl = false;
 }

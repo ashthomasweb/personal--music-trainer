@@ -127,13 +127,13 @@ function switchHarmonicMode() {
 // form construction
 let numOfRepeatsControl = false;
 let numOfRepeatsVar;
+
 function buildForm() {
     if (numOfRepeatsControl === true) {
         numberOfRepeats = numOfRepeatsVar;
     } else {
         numberOfRepeats = 50;
     }
-    
 
     for (let i = 0; i < numberOfRepeats; i++) {
         // THIS is where I can change options on a 16 measure basis
@@ -314,12 +314,22 @@ function createHarmonicUnit(section, formNum, phraseChart) {
 
 let progression = [];
 
+let numOfChordsControl = false;
+let numOfChordsVar;
+
 function getNewProgression(start, cadence) {
     // 'cadenceValue' is a data store variable used in /voice-leading.js
     cadenceValue = cadence;
+    let numOfChordsConVar;
+
+    if (numOfChordsControl === true) {
+        numOfChordsConVar = numOfChordsVar;
+    } else {
+        numOfChordsConVar = generateChance(5, 2);
+    }
 
     function generateInitialHarmonies() {
-        for (let i = 1; i <= generateChance(5, 2) - 1; i++) {
+        for (let i = 1; i <= numOfChordsConVar - 1; i++) {
             progression[i] = generateStrongMotion(progression[i - 1]);
         }
         // THIS is where I can add raised harmonies

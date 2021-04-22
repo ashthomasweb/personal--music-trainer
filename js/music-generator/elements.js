@@ -73,4 +73,19 @@ function allStop() {
     }
 }
 
+function checkForUndefined() {
+    for ( i = 0; i <= phraseContainer.length - 1; i++) {
+        console.log('test ' + i);
+        phraseContainer[i][0].voiceLeading[0].includes(undefined) && console.log('undefined value occured bass');
+        phraseContainer[i][0].voiceLeading[1].includes(undefined) && console.log('undefined value occured t');
+        phraseContainer[i][0].voiceLeading[2].includes(undefined) && console.log('undefined value occured a');
+        phraseContainer[i][0].voiceLeading[3].includes(undefined) && console.log('undefined value occured s');
+    }
+}
+
+function optionsAssign() {
+    options.numOfChords = 7;
+    options.keyCenter = keyOfF;
+    options.numOfRepeats = 200;
+}
 // END of document

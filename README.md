@@ -33,6 +33,8 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 * Add Violin and Contrabass to generator.
 ## Known Issues
 * Windows 95 feel UI
+* Generator: undefined value occuring occasionally for unknown reason. Does not interrupt playback. Seems to only happen in alto and tenor, perhaps surrounding times where the voice drifts from it's initial range. Adding individual voice range suppport may solve issue. 
+* Generator: When the voice drifts out of it's given range due to voice-leading considerations, the associated gainNode cannot mute previous note, and overlap can occur, producing unwanted dissonance. Most likely happening during resolution direction or chord member check functions.
 
 ## Status
 Project is: _in development_.

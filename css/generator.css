@@ -60,13 +60,11 @@
 .length {
     grid-area: length;
     background-color: rgba(128, 125, 125, .3);
-
 }
 
 .start-point {
     grid-area: start;
     background-color: rgba(128, 125, 125, .3);
-
 }
 
 .cadence {
@@ -81,17 +79,13 @@
     opacity: .1;
     grid-area: generate;
     pointer-events: none;
-
     background-color: rgba(128, 125, 125, .3);
-
 }
 
 .options {
     grid-area: options;
     background-color: rgba(128, 125, 125, .3);
 }
-
-
 
 .slidecontainer {
     width: 100%;
