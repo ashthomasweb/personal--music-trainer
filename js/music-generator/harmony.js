@@ -296,7 +296,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         info.formId = formNum + ':A';
         info.tempo = getNewTempo();
         // generate new progression, any starting point, never Authentic cadence
-        getNewProgression(currentHarmony[startingChordConVar - 1], cadenceType[cadenceConVar - 1]);
+        getNewProgression(currentHarmony[startingChordConVar - 1], cadenceType[cadenceConVar - 1], section);
         storePlaybackData();
         // second 4 bar phrase
     } else if (section === 1) {
@@ -314,7 +314,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         // third 4 bar phrase
     } else if (section === 2) {
         info.formId = formNum + ':B';
-        getNewProgression(motionUpFourth(progression[progression.length - 1]), cadenceType[generateChance(2, 2) - 1]);
+        getNewProgression(motionUpFourth(progression[progression.length - 1]), cadenceType[generateChance(2, 2) - 1], section);
         info.tempo = getCloselyRelatedTempo(phraseContainer[(formNum - 1) * 4][0].tempo);
         storePlaybackData();
         // last 4 bar phrase
@@ -333,14 +333,15 @@ let progression = [];
 let numOfChordsControl = false;
 let numOfChordsVar;
 
-function getNewProgression(start, cadence) {
+function getNewProgression(start, cadence, section) {
     // 'cadenceValue' is a data store variable used in /voice-leading.js
     cadenceValue = cadence;
     let numOfChordsConVar;
 
-    if (numOfChordsControl === true) {
+    if (numOfChordsControl === true && section === 0) {
         numOfChordsConVar = numOfChordsVar;
     } else {
+        console.log('test')
         numOfChordsConVar = generateChance(5, 2);
     }
 

@@ -83,8 +83,13 @@ function checkForUndefined() {
     }
 }
 
+function makePersist() {
+    options.persistControl = true;
+}
+
 function preset1() {
     options.numOfChords = 7;
     options.keyCenter = keyOfF;
 }
+
 // END of document
