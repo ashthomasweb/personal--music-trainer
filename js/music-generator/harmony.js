@@ -174,7 +174,7 @@ function buildForm() {
             }
         } else {
             if (i === 0) {
-                // controlOff();
+                // controlOff(); // do nothing
             }
         }
         // turnControlOff();
@@ -296,7 +296,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         info.formId = formNum + ':A';
         info.tempo = getNewTempo();
         // generate new progression, any starting point, never Authentic cadence
-        getNewProgression(currentHarmony[startingChordConVar - 1], cadenceType[cadenceConVar - 1]);
+        getNewProgression(currentHarmony[startingChordConVar - 1], cadenceType[cadenceConVar - 1], section);
         storePlaybackData();
         // second 4 bar phrase
     } else if (section === 1) {
@@ -314,7 +314,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         // third 4 bar phrase
     } else if (section === 2) {
         info.formId = formNum + ':B';
-        getNewProgression(motionUpFourth(progression[progression.length - 1]), cadenceType[generateChance(2, 2) - 1]);
+        getNewProgression(motionUpFourth(progression[progression.length - 1]), cadenceType[generateChance(2, 2) - 1], section);
         info.tempo = getCloselyRelatedTempo(phraseContainer[(formNum - 1) * 4][0].tempo);
         storePlaybackData();
         // last 4 bar phrase
@@ -338,23 +338,15 @@ function getNewProgression(start, cadence, section) {
     cadenceValue = cadence;
     let numOfChordsConVar;
 
-    if (numOfChordsControl === true) {
-        // console.log(numOfChordsVar);
-        // console.log('control');
-        
+    if (numOfChordsControl === true && section === 0) {
         numOfChordsConVar = numOfChordsVar;
-        // console.log(numOfChordsConVar);
-
-        // console.log(typeof(numOfChordsConVar));
     } else {
-        // console.log('test');
         numOfChordsConVar = generateChance(5, 2);
     }
 
     function generateInitialHarmonies() {
         for (let i = 1; i <= numOfChordsConVar - 1; i++) {
             progression[i] = generateStrongMotion(progression[i - 1]);
-            // console.log(numOfChordsConVar);
         }
         // THIS is where I can add raised harmonies
         if (currentHarmony === minor) {
@@ -411,7 +403,8 @@ function getNewProgression(start, cadence, section) {
         } else {
             for (let i = 1; i <= progression.length - 1; i++) {
                 if (checkIfStrong(progression[i - 1], progression[i]) === false) {
-                    return getNewProgression(start, cadence);
+                    console.log('Do not pass go, do not collect $200.');
+                    return getNewProgression(start, cadence, section);
                 }
             }
         }

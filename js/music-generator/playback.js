@@ -109,7 +109,7 @@ function playPhraseChart() {
 
         if (phrase[0].formId.includes('Final')) {
             setTimeout(() => {
-                console.log(i);
+                // console.log(i);
             }, voicesTimer + beatLength);
             voicesTimer = voicesTimer + 5000;
             displayTimer = displayTimer + 5000;
