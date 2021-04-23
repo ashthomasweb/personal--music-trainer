@@ -52,6 +52,20 @@ function getEmptyChart() {
 
 let keyCenterConBool = false;
 let keyCenterOption;
+// control variables
+let startingChordConBool = false;
+let startingChordOption;
+let typeOfCadenceConBool = false;
+let typeOfCadenceOption;
+let keyModeConBool = false;
+let keyModeOption;
+let numOfRepeatsConBool = false;
+let numOfRepeatsOption;
+
+let persistStateConBool = false;
+let persistStateOption;
+let numOfChordsConBool = false;
+let numOfChordsOption;
 
 function getKeyCenter() {
     keyCenterConVar = keyCenterOption
@@ -83,8 +97,7 @@ let romanNumFour;
 let romanNumFive;
 let romanNumSix;
 
-let keyModeConBool = false;
-let keyModeOption;
+
 
 function getKeyMode() {
     if (keyModeConBool === true) {
@@ -131,11 +144,7 @@ function switchHarmonicMode() {
 }
 
 // form construction
-let numOfRepeatsConBool = false;
-let numOfRepeatsOption;
 
-let persistStateConBool = false;
-let persistStateOption;
 
 
 function buildForm() {
@@ -169,7 +178,7 @@ function buildForm() {
                 voiceLeadHandler(section);
             }
         }
-        // let persistStateConVar;
+        let persistStateConVar;
         if (persistStateConBool === true) {
             persistStateConVar = persistStateOption;
         }
@@ -200,10 +209,7 @@ function createPhraseChart(section, formNum) {
     phraseContainer.push(phraseChartArray);
 }
 
-let startingChordConBool = false;
-let startingChordOption;
-let typeOfCadenceConBool = false;
-    let typeOfCadenceOption;
+
 // makes a base unit of chords
 function createHarmonicUnit(section, formNum, phraseChart) {
     let {
@@ -334,8 +340,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
 
 let progression = [];
 
-let numOfChordsConBool = false;
-let numOfChordsOption;
+
 
 function getNewProgression(start, cadence, section) {
     let numOfChordsConVar; // control variable from /control.js as set in global object 'options'
