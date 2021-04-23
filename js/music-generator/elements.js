@@ -84,12 +84,31 @@ function checkForUndefined() {
 }
 
 function makePersist() {
-    options.persistControl = true;
+    if (options.persistControl !== undefined) {
+        options.persistControl = !options.persistControl;
+    }
+    if (options.persistControl === undefined) {
+        options.persistControl = true;
+    }
+    if (options.persistControl === true) {
+        document.getElementById('persist-toggle').style.backgroundColor = 'pink';
+    } else {
+        document.getElementById('persist-toggle').style.backgroundColor = 'grey';
+    }
 }
 
 function preset1() {
     options.numOfChords = 7;
     options.keyCenter = keyOfF;
+}
+
+function preset2() {
+    options.numOfChords = 7;
+    options.keyCenter = keyOfC;
+    options.numOfRepeats = 3;
+    options.cadenceTypeIndex = 2;
+    options.startingChordIndex = 2;
+    options.makePersist = true;
 }
 
 // END of document

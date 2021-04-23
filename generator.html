@@ -112,13 +112,15 @@
         <input type="range" min="1" max="4" value="1" class="slider" id="myCadence">
         <p>Value: <span id="chord-end"></span></p>
       </div>
-      <button onclick="makePersist()">Make Persist</button>
+      <button id="persist-toggle" onclick="makePersist()">Make Persist</button>
 
     </div>
 
     <div class="cadence">
       <p>Presets</p>
       <button onclick="preset1()">7 chords in F</button>
+      <button onclick="preset2()">Test preset</button>
+
     </div>
 
     <div class="your-progression">
