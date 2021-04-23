@@ -2,20 +2,20 @@ const defaultOptions = {
     keyMode: undefined,
     keyCenter: undefined,
     numOfRepeats: undefined,
-    startingChordIndex: undefined,
-    cadenceTypeIndex: undefined,
+    startingChord: undefined,
+    typeOfCadence: undefined,
     numOfChords: undefined,
-    persistControl: undefined
+    persistState: undefined
 }
 
 let options = {
     keyMode: undefined,
     keyCenter: undefined,
     numOfRepeats: undefined,
-    startingChordIndex: undefined,
-    cadenceTypeIndex: undefined,
+    startingChord: undefined,
+    typeOfCadence: undefined,
     numOfChords: undefined,
-    persistControl: undefined
+    persistState: undefined
 }
 
 function masterControl(options) {
@@ -27,39 +27,40 @@ function masterControl(options) {
         controlOptions = options;
     }
     
+    // Control variables
     if (controlOptions.keyMode !== undefined) {
-        keyControl = true;
-        keyModeVar = controlOptions.keyMode;
+        keyModeConBool = true;
+        keyModeOption = controlOptions.keyMode;
     }
 
     if (controlOptions.keyCenter !== undefined) {
-        keyCenterControl = true;
-        keyCenterVar = controlOptions.keyCenter;
+        keyCenterConBool = true;
+        keyCenterOption = controlOptions.keyCenter;
     }
 
     if (controlOptions.numOfRepeats !== undefined) {
-        numOfRepeatsControl = true;
-        numOfRepeatsVar = controlOptions.numOfRepeats;
+        numOfRepeatsConBool = true;
+        numOfRepeatsOption = controlOptions.numOfRepeats;
     }
 
-    if (controlOptions.startingChordIndex !== undefined) {
-        startingChordControl = true;
-        startingChordVar = controlOptions.startingChordIndex;
+    if (controlOptions.startingChord !== undefined) {
+        startingChordConBool = true;
+        startingChordOption = controlOptions.startingChord;
     }
 
-    if (controlOptions.cadenceTypeIndex !== undefined) {
-        cadenceTypeControl = true;
-        cadenceTypeVar = controlOptions.cadenceTypeIndex;
+    if (controlOptions.typeOfCadence !== undefined) {
+        typeOfCadenceConBool = true;
+        typeOfCadenceOption = controlOptions.typeOfCadence;
     }
 
     if (controlOptions.numOfChords !== undefined) {
-        numOfChordsControl = true;
-        numOfChordsVar = controlOptions.numOfChords;
+        numOfChordsConBool = true;
+        numOfChordsOption = controlOptions.numOfChords;
     }
 
-    if (controlOptions.persistControl !== undefined) {
-        persistentControl = true;
-        persistentVar = controlOptions.persistControl;
+    if (controlOptions.persistState !== undefined) {
+        persistStateConBool = true;
+        persistStateOption = controlOptions.persistState;
     }
 
     buildForm();
@@ -67,11 +68,13 @@ function masterControl(options) {
 
 // turn off control booleans
 function turnControlOff() {
-    keyControl = false;
-    keyCenterControl = false;
-    numOfRepeatsControl = false;
-    startingChordControl = false;
-    cadenceTypeControl = false;
-    numOfChordsControl = false;
-    persistentControl = false;
+    keyModeConBool = false;
+    keyCenterConBool = false;
+    numOfRepeatsConBool = false;
+    startingChordConBool = false;
+    typeOfCadenceConBool = false;
+    numOfChordsConBool = false;
+    persistStateConBool = false;
 }
+
+// END of document

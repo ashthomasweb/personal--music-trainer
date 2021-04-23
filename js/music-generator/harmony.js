@@ -50,12 +50,13 @@ function getEmptyChart() {
     return phraseChart;
 }
 
-let keyCenterControl = false;
-let keyCenterVar;
+let keyCenterConBool = false;
+let keyCenterOption;
 
 function getKeyCenter() {
-    if (keyCenterControl === true) {
-        keyNumerals = keyCenterVar;
+    keyCenterConVar = keyCenterOption
+    if (keyCenterConBool === true) {
+        keyNumerals = keyCenterConVar;
     } else {
         switch (generateChance(4)) {
             case 1:
@@ -79,36 +80,41 @@ function getKeyCenter() {
 let currentHarmony = major;
 let romanNumOne;
 let romanNumFour;
-let romanNumFive = 'V';
+let romanNumFive;
 let romanNumSix;
 
-let keyControl = false;
-let keyModeVar;
+let keyModeConBool = false;
+let keyModeOption;
 
 function getKeyMode() {
-    let chance;
-    if (keyControl === true) {
-        if (keyModeVar === major) {
-            chance = 2;
+    if (keyModeConBool === true) {
+        if (keyModeOption === major) {
+            keyModeConVar = 2;
+        } else if (keyModeOption === minor ) {
+            keyModeConVar = 1;
         } else {
-            chance = 1;
+            keyModeConVar = generateChance(2);
         }
     } else {
-        chance = generateChance(2);
+        keyModeConVar = generateChance(2);
     }
 
-    if (chance === 1) {
+    if (keyModeConVar === 1) {
         currentHarmony = minor;
         romanNumOne = 'i';
         romanNumFour = 'iv';
+        romanNumFive = 'V';
         romanNumSix = 'bVI';
-    } else if (chance === 2) {
+    } else if (keyModeConVar === 2) {
         currentHarmony = major;
         romanNumOne = 'I';
         romanNumFour = 'IV';
+        romanNumFive = 'V';
         romanNumSix = 'vi';
     }
 }
+
+
 
 function switchHarmonicMode() {
     if (currentHarmony === major) {
@@ -125,21 +131,21 @@ function switchHarmonicMode() {
 }
 
 // form construction
-let numOfRepeatsControl = false;
-let numOfRepeatsVar;
+let numOfRepeatsConBool = false;
+let numOfRepeatsOption;
 
-let persistentControl = false;
-let persistentVar;
+let persistStateConBool = false;
+let persistStateOption;
+
 
 function buildForm() {
-    if (numOfRepeatsControl === true) {
-        numberOfRepeats = numOfRepeatsVar;
+    if (numOfRepeatsConBool === true) {
+        numOfRepeatsConVar = numOfRepeatsOption;
     } else {
-        numberOfRepeats = 10;
+        numOfRepeatsConVar = 10;
     }
-    let persistConVar;
-
-    for (let i = 0; i < numberOfRepeats; i++) {
+    
+    for (let i = 0; i < numOfRepeatsConVar; i++) {
         // THIS is where I can change options on a 16 measure basis
         for (let section = 0; section <= 3; section++) {
             if (section === 0) {
@@ -163,12 +169,12 @@ function buildForm() {
                 voiceLeadHandler(section);
             }
         }
-        if (persistentControl === true) {
-            persistConVar = persistentVar;
+        // let persistStateConVar;
+        if (persistStateConBool === true) {
+            persistStateConVar = persistStateOption;
         }
 
-        if (persistConVar === false) {
-
+        if (persistStateConVar === false || persistStateConVar === undefined) {
             if (i === 0) {
                 turnControlOff();
             }
@@ -194,10 +200,10 @@ function createPhraseChart(section, formNum) {
     phraseContainer.push(phraseChartArray);
 }
 
-let startingChordControl = false;
-let startingChordVar;
-let cadenceTypeControl = false;
-let cadenceTypeVar;
+let startingChordConBool = false;
+let startingChordOption;
+let typeOfCadenceConBool = false;
+    let typeOfCadenceOption;
 // makes a base unit of chords
 function createHarmonicUnit(section, formNum, phraseChart) {
     let {
@@ -277,18 +283,16 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         }
     }
 
-    let startingChordConVar;
-    if (startingChordControl === true) {
-        startingChordConVar = startingChordVar;
+    if (startingChordConBool === true) {
+        startingChordConVar = startingChordOption;
     } else {
         startingChordConVar = 1;
     }
 
-    let cadenceConVar;
-    if (cadenceTypeControl === true) {
-        cadenceConVar = cadenceTypeVar;
+    if (typeOfCadenceConBool === true) {
+        typeOfCadenceConVar = typeOfCadenceOption;
     } else {
-        cadenceConVar = generateChance(3, 1);
+        typeOfCadenceConVar = generateChance(3, 1);
     }
 
     // first 4 bar phrase
@@ -296,7 +300,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         info.formId = formNum + ':A';
         info.tempo = getNewTempo();
         // generate new progression, any starting point, never Authentic cadence
-        getNewProgression(currentHarmony[startingChordConVar - 1], cadenceType[cadenceConVar - 1], section);
+        getNewProgression(currentHarmony[startingChordConVar - 1], cadenceType[typeOfCadenceConVar - 1], section);
         storePlaybackData();
         // second 4 bar phrase
     } else if (section === 1) {
@@ -330,16 +334,17 @@ function createHarmonicUnit(section, formNum, phraseChart) {
 
 let progression = [];
 
-let numOfChordsControl = false;
-let numOfChordsVar;
+let numOfChordsConBool = false;
+let numOfChordsOption;
 
 function getNewProgression(start, cadence, section) {
-    // 'cadenceValue' is a data store variable used in /voice-leading.js
-    cadenceValue = cadence;
-    let numOfChordsConVar;
+    let numOfChordsConVar; // control variable from /control.js as set in global object 'options'
 
-    if (numOfChordsControl === true && section === 0) {
-        numOfChordsConVar = numOfChordsVar;
+    // 'cadenceValue' is a iterated data store variable used in /voice-leading.js
+    cadenceValue = cadence;
+
+    if (numOfChordsConBool === true && section === 0) {
+        numOfChordsConVar = numOfChordsOption;
     } else {
         numOfChordsConVar = generateChance(5, 2);
     }
@@ -397,7 +402,7 @@ function getNewProgression(start, cadence, section) {
         if (cadence === 'Plagal') {
             for (let i = 1; i <= progression.length - 2; i++) {
                 if (checkIfStrong(progression[i - 1], progression[i]) === false) {
-                    return getNewProgression(start, cadence);
+                    return getNewProgression(start, cadence, section);
                 }
             }
         } else {

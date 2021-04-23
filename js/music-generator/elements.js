@@ -27,7 +27,7 @@ outputStart.innerHTML = currentHarmony[startx.value - 1];
 
 startx.oninput = function () {
     outputStart.innerHTML = currentHarmony[this.value - 1];
-    options.startingChordIndex = this.value;
+    options.startingChord = this.value;
 
     // return majorHarmony[this.value - 1]
 }
@@ -42,7 +42,7 @@ outputCadenceSlide.innerHTML = cadenceType[cadenceSlide.value - 1];
 
 cadenceSlide.oninput = function () {
     outputCadenceSlide.innerHTML = cadenceType[this.value - 1];
-    options.cadenceTypeIndex = this.value;
+    options.typeOfCadence = this.value;
 
     // return cadenceType[this.value - 1];
 }
@@ -84,13 +84,13 @@ function checkForUndefined() {
 }
 
 function makePersist() {
-    if (options.persistControl !== undefined) {
-        options.persistControl = !options.persistControl;
+    if (options.persistState !== undefined) {
+        options.persistState = !options.persistState;
     }
-    if (options.persistControl === undefined) {
-        options.persistControl = true;
+    if (options.persistState === undefined) {
+        options.persistState = true;
     }
-    if (options.persistControl === true) {
+    if (options.persistState === true) {
         document.getElementById('persist-toggle').style.backgroundColor = 'pink';
     } else {
         document.getElementById('persist-toggle').style.backgroundColor = 'grey';
@@ -106,8 +106,8 @@ function preset2() {
     options.numOfChords = 7;
     options.keyCenter = keyOfC;
     options.numOfRepeats = 3;
-    options.cadenceTypeIndex = 2;
-    options.startingChordIndex = 2;
+    options.typeOfCadence = 2;
+    options.startingChord = 2;
     options.makePersist = true;
 }
 
