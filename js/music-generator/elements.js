@@ -1,14 +1,5 @@
 // Page Elements for Music Generator
 
-// Assign values
-// function assignValues() {
-//     progression = [];
-//     progLength = slider.value;
-//     let start = outputStart.innerHTML;
-//     let cadence = outputCadenceSlide.innerHTML;
-//     document.getElementById('chord-prog').innerHTML = getProgression(start, cadence);
-// }
-
 // number of repeats
 var numRepeatsSlider = document.getElementById("num-repeats-slider");
 var numRepeatsSliderOutput = document.getElementById("num-repeats-output");
@@ -57,7 +48,6 @@ var keyModeSliderOutput = document.getElementById("key-mode-output");
 keyModeSliderOutput.innerHTML = "Major";
 
 keyModeSlider.oninput = function () {
-
     if ( modeArray[this.value - 1] === major ) {
         keyModeSliderOutput.innerHTML = "Major";
     } else {
@@ -66,6 +56,20 @@ keyModeSlider.oninput = function () {
     options.keyMode = modeArray[this.value - 1];
 }
 
+// // major / minor
+// let modeArray = [major, minor];
+// var keyModeSlider = document.getElementById("key-mode-slider");
+// var keyModeSliderOutput = document.getElementById("key-mode-output");
+// keyModeSliderOutput.innerHTML = "Major";
+
+// keyModeSlider.oninput = function () {
+//     if ( modeArray[this.value - 1] === major ) {
+//         keyModeSliderOutput.innerHTML = "Major";
+//     } else {
+//         keyModeSliderOutput.innerHTML = "Minor";
+//     }
+//     options.keyMode = modeArray[this.value - 1];
+// }
 
 
 // On-screen diagnostic/helper functions 
