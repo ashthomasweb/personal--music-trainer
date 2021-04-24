@@ -10,59 +10,44 @@
 // }
 
 // number of repeats
-var slider = document.getElementById("myRange");
-var output = document.getElementById("chord-num");
-output.innerHTML = slider.value;
+var numRepeatsSlider = document.getElementById("num-repeats-slider");
+var numRepeatsSliderOutput = document.getElementById("num-repeats-output");
+numRepeatsSliderOutput.innerHTML = numRepeatsSlider.value;
 
-slider.oninput = function () {
-    output.innerHTML = this.value;
+numRepeatsSlider.oninput = function () {
+    numRepeatsSliderOutput.innerHTML = this.value;
     options.numOfRepeats = this.value;
 }
 
-
-
 // number of chords
-var sliderNumOfChords = document.getElementById("myNumOfChords");
-var outputNumOfChords = document.getElementById("num-of-chords");
-outputNumOfChords.innerHTML = slider.value;
+var numChordsSlider = document.getElementById("num-chords-slider");
+var numChordsOutput = document.getElementById("num-chords-options");
+numChordsOutput.innerHTML = numChordsSlider.value;
 
-sliderNumOfChords.oninput = function () {
-    outputNumOfChords.innerHTML = this.value;
+numChordsSlider.oninput = function () {
+    numChordsOutput.innerHTML = this.value;
     options.numOfChords = this.value;
 }
 
-
-
-
-
 // start progression on given harmony
-var startx = document.getElementById("myStart");
-var outputStart = document.getElementById("chord-start");
-outputStart.innerHTML = currentHarmony[startx.value - 1];
+var startingChordSlider = document.getElementById("starting-chord-slider");
+var startingChordOutput = document.getElementById("starting-chord-output");
+startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
 
-startx.oninput = function () {
-    outputStart.innerHTML = currentHarmony[this.value - 1];
+startingChordSlider.oninput = function () {
+    startingChordOutput.innerHTML = currentHarmony[this.value - 1];
     options.startingChord = this.value;
-
-    // return majorHarmony[this.value - 1]
 }
-
-
-
 
 // type of cadence 
-var cadenceSlide = document.getElementById("myCadence");
-var outputCadenceSlide = document.getElementById("chord-end");
-outputCadenceSlide.innerHTML = cadenceType[cadenceSlide.value - 1];
+var cadenceSlider = document.getElementById("cadence-slider");
+var cadenceSliderOutput = document.getElementById("cadence-output");
+cadenceSliderOutput.innerHTML = cadenceType[cadenceSlider.value - 1];
 
-cadenceSlide.oninput = function () {
-    outputCadenceSlide.innerHTML = cadenceType[this.value - 1];
+cadenceSlider.oninput = function () {
+    cadenceSliderOutput.innerHTML = cadenceType[this.value - 1];
     options.typeOfCadence = this.value;
-
-    // return cadenceType[this.value - 1];
 }
-
-
 
 
 

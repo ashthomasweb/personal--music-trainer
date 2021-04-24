@@ -145,8 +145,6 @@ function switchHarmonicMode() {
 
 // form construction
 
-
-
 function buildDoublePeriod() {
     if (numOfRepeatsConBool === true) {
         numOfRepeatsConVar = numOfRepeatsOption;
