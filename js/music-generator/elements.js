@@ -21,7 +21,7 @@ numRepeatsSlider.oninput = function () {
 
 // number of chords
 var numChordsSlider = document.getElementById("num-chords-slider");
-var numChordsOutput = document.getElementById("num-chords-options");
+var numChordsOutput = document.getElementById("num-chords-output");
 numChordsOutput.innerHTML = numChordsSlider.value;
 
 numChordsSlider.oninput = function () {
@@ -47,6 +47,23 @@ cadenceSliderOutput.innerHTML = cadenceType[cadenceSlider.value - 1];
 cadenceSlider.oninput = function () {
     cadenceSliderOutput.innerHTML = cadenceType[this.value - 1];
     options.typeOfCadence = this.value;
+}
+
+
+// major / minor
+let modeArray = [major, minor];
+var keyModeSlider = document.getElementById("key-mode-slider");
+var keyModeSliderOutput = document.getElementById("key-mode-output");
+keyModeSliderOutput.innerHTML = "Major";
+
+keyModeSlider.oninput = function () {
+
+    if ( modeArray[this.value - 1] === major ) {
+        keyModeSliderOutput.innerHTML = "Major";
+    } else {
+        keyModeSliderOutput.innerHTML = "Minor";
+    }
+    options.keyMode = modeArray[this.value - 1];
 }
 
 

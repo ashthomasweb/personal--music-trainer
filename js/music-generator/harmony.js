@@ -67,6 +67,7 @@ let persistStateOption;
 let numOfChordsConBool = false;
 let numOfChordsOption;
 
+
 function getKeyCenter() {
     keyCenterConVar = keyCenterOption
     if (keyCenterConBool === true) {
