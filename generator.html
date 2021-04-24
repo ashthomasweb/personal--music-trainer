@@ -63,7 +63,7 @@
       <button type="button" onmousedown="playVoicesBlock()">Block</button>
       <button type="button" onmousedown="arpeggiateVoices()">Arpeggiate</button>
     </div>
-
+<!-- 
     <div class="mode">
       <h2>Mode</h2>
       <div class="dropdown">
@@ -74,7 +74,7 @@
         </div>
       </div>
       <p id="mode-type">Major</p>
-    </div>
+    </div> -->
 
     <div class="length">
       <p>Length Options</p>
@@ -96,8 +96,15 @@
     </div>
 
     <div class="options">
+      <p>Presets</p>
+      <button onclick="preset1()">7 chords in F</button><br>
+      <button onclick="preset2()">Test preset</button>
+
+    </div>
+
+    <div class="cadence">
       <p>Form Options</p>
-      <p>Input or defaults</p>
+      <!-- <p>Input or defaults</p> -->
 
       <p>How many repeats?</p>
       <div class="slidecontainer">
@@ -114,14 +121,15 @@
         <input type="range" min="1" max="4" value="1" class="slider" id="myCadence">
         <p>Value: <span id="chord-end"></span></p>
       </div>
+      <p>How many chords?</p>
+      <div class="slidecontainer">
+        <input type="range" min="3" max="7" value="5" class="slider" id="myNumOfChords">
+        <p>Value: <span id="num-of-chords"></span></p>
+      </div>
+
+      <br>
       <button id="persist-toggle" onclick="makePersist()">Make Persist</button>
-
-    </div>
-
-    <div class="cadence">
-      <p>Presets</p>
-      <button onclick="preset1()">7 chords in F</button>
-      <button onclick="preset2()">Test preset</button>
+      
 
     </div>
 

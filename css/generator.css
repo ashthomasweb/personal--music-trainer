@@ -1,6 +1,6 @@
 .grid-container {
     grid-template-areas:
-        "header messages messages mode mode instrument"
+        "header messages messages cadence cadence instrument"
         "length start options cadence cadence generate"
         "....... prog prog prog prog ......."
         "piano piano piano piano piano piano"

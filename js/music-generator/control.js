@@ -63,7 +63,7 @@ function masterControl(options) {
         persistStateOption = controlOptions.persistState;
     }
 
-    buildForm();
+    buildDoublePeriod();
 }
 
 // turn off control booleans

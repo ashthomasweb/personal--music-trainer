@@ -20,6 +20,21 @@ slider.oninput = function () {
 }
 
 
+
+// number of chords
+var sliderNumOfChords = document.getElementById("myNumOfChords");
+var outputNumOfChords = document.getElementById("num-of-chords");
+outputNumOfChords.innerHTML = slider.value;
+
+sliderNumOfChords.oninput = function () {
+    outputNumOfChords.innerHTML = this.value;
+    options.numOfChords = this.value;
+}
+
+
+
+
+
 // start progression on given harmony
 var startx = document.getElementById("myStart");
 var outputStart = document.getElementById("chord-start");
