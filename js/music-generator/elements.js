@@ -56,20 +56,24 @@ keyModeSlider.oninput = function () {
     options.keyMode = modeArray[this.value - 1];
 }
 
-// // major / minor
-// let modeArray = [major, minor];
-// var keyModeSlider = document.getElementById("key-mode-slider");
-// var keyModeSliderOutput = document.getElementById("key-mode-output");
-// keyModeSliderOutput.innerHTML = "Major";
+// key center
+let keyCenterArray = [keyOfF, keyOfC, keyOfG, keyOfD];
+var keyCenterSlider = document.getElementById("key-center-slider");
+var keyCenterSliderOutput = document.getElementById("key-center-output");
+keyCenterSliderOutput.innerHTML = "Key of C";
 
-// keyModeSlider.oninput = function () {
-//     if ( modeArray[this.value - 1] === major ) {
-//         keyModeSliderOutput.innerHTML = "Major";
-//     } else {
-//         keyModeSliderOutput.innerHTML = "Minor";
-//     }
-//     options.keyMode = modeArray[this.value - 1];
-// }
+keyCenterSlider.oninput = function () {
+    if ( keyCenterArray[this.value - 1] === keyOfF ) {
+        keyCenterSliderOutput.innerHTML = "Key of F";
+    } else  if ( keyCenterArray[this.value - 1] === keyOfC ) {
+        keyCenterSliderOutput.innerHTML = "Key of C";
+    } else  if ( keyCenterArray[this.value - 1] === keyOfG ) {
+        keyCenterSliderOutput.innerHTML = "Key of G";
+    } else  if ( keyCenterArray[this.value - 1] === keyOfD ) {
+        keyCenterSliderOutput.innerHTML = "Key of D";
+    }
+    options.keyCenter = keyCenterArray[this.value - 1];
+}
 
 
 // On-screen diagnostic/helper functions 
