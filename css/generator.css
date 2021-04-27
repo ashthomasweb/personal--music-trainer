@@ -1,11 +1,10 @@
 .gen-container {
     grid-template-areas:
-        "header messages messages instrument cadence "
-        "length start options instrument cadence "
-        "prog prog prog instrument cadence "
-        "prog prog prog instrument cadence "
+        "header messages messages options cadence "
+        "length start preset options cadence "
+        "prog prog prog options cadence "
+        "prog prog prog options cadence "
 }
-
 
 .your-progression {
     z-index: 100;
@@ -37,7 +36,6 @@
 .your-progression p {
     font-family: monospace;
     /* position: absolute; */
-
 }
 
 .piano-container {
@@ -85,6 +83,17 @@
     background-color: rgba(128, 125, 125, .3);
 }
 
+.options {
+    grid-area: options;
+    background-color: rgba(128, 125, 125, .3);
+}
+
+#persist-toggle {
+    position: relative;
+    top: -15px;
+    right: -100px;
+}
+
 .cadence {
     grid-area: cadence;
     position: relative;
@@ -105,8 +114,8 @@
     background-color: rgba(128, 125, 125, .3);
 }
 
-.options {
-    grid-area: options;
+.preset {
+    grid-area: preset;
     background-color: rgba(128, 125, 125, .3);
 }
 
@@ -147,8 +156,6 @@
     opacity: 1;
 }
 
-
-
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -164,7 +171,6 @@
     background: #4CAF50;
     cursor: pointer;
 }
-
 
 /* from tempo trainer  needs refactor*/
 

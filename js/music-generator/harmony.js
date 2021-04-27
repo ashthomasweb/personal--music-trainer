@@ -4,7 +4,6 @@ let major = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii∅'];
 let minor = ['i', 'ii∅', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
 let cadenceType = ['Authentic', 'Plagal', 'Deceptive', 'Half'];
 
-
 // gets phrase length
 function getEmptyChart() {
 
@@ -149,7 +148,6 @@ function switchHarmonicMode() {
     }
 }
 
-
 // form construction
 
 function buildDoublePeriod() {
@@ -213,7 +211,6 @@ function createPhraseChart(section, formNum) {
     let phraseChartArray = Object.values(phraseChart);
     phraseContainer.push(phraseChartArray);
 }
-
 
 // makes a base unit of chords
 function createHarmonicUnit(section, formNum, phraseChart) {
@@ -344,8 +341,6 @@ function createHarmonicUnit(section, formNum, phraseChart) {
 }
 
 let progression = [];
-
-
 
 function getNewProgression(start, cadence, section) {
     let numOfChordsConVar; // control variable from /control.js as set in global object 'options'
