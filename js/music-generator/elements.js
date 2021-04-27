@@ -1,8 +1,5 @@
 // Page Elements for Music Generator
 
-
-
-
 // number of repeats
 var numRepeatsSlider = document.getElementById("num-repeats-slider");
 var numRepeatsSliderOutput = document.getElementById("num-repeats-output");
@@ -28,8 +25,6 @@ repeatsCheck.oninput = () => {
     }
 }
 
-
-
 // number of chords
 var numChordsSlider = document.getElementById("num-chords-slider");
 var numChordsSliderOutput = document.getElementById("num-chords-output");
@@ -42,7 +37,6 @@ numChordsSlider.oninput = function () {
     chordsCheck.checked = false;
     numOfChordsRandom = chordsCheck.checked;
     document.getElementById('num-chords-slider').style.opacity = 0.9;
-
 }
 
 chordsCheck.oninput = () => {
@@ -68,7 +62,6 @@ startingChordSlider.oninput = function () {
     startingChordCheck.checked = false;
     startingChordRandom = startingChordCheck.checked;
     document.getElementById('starting-chord-slider').style.opacity = 0.9;
-
 }
 
 startingChordCheck.oninput = () => {
@@ -82,14 +75,11 @@ startingChordCheck.oninput = () => {
     }
 }
 
-
-
 // major / minor
 let modeArray = [major, minor];
 var keyModeSlider = document.getElementById("key-mode-slider");
 var keyModeSliderOutput = document.getElementById("key-mode-output");
 var keyModeCheck = document.getElementById("keyMode-check");
-
 
 keyModeSliderOutput.innerHTML = "...";
 keyModeSlider.oninput = function () {
@@ -102,7 +92,6 @@ keyModeSlider.oninput = function () {
     keyModeRandom = startingChordCheck.checked;
     onScreenFirstPassOptions.keyMode = modeArray[this.value - 1];
     document.getElementById('key-mode-slider').style.opacity = 0.9;
-
 }
 
 keyModeCheck.oninput = () => {
@@ -170,7 +159,6 @@ keyCenterSlider.oninput = function () {
     document.getElementById('key-center-slider').style.opacity = 0.9;
 }
 
-
 keyCenterCheck.oninput = () => {
     keyCenterRandom = keyCenterCheck.checked;
     if (keyCenterCheck.checked === true) {
@@ -190,18 +178,6 @@ keyCenterCheck.oninput = () => {
         onScreenFirstPassOptions.keyCenter = keyCenterArray[Number(keyCenterSlider.value) - 1];
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 // On-screen diagnostic/helper functions 
 

@@ -1,17 +1,5 @@
 const generateChance = (factor, addend = 0) => Math.ceil(Math.random() * factor) + addend;
 
-
-// const programDefaults = {
-//     keyMode: undefined,
-//     keyCenter: undefined,
-//     numOfRepeats: undefined,
-//     startingChord: undefined,
-//     typeOfCadence: undefined,
-//     numOfChords: undefined,
-//     persistState: undefined
-// }
-
-
 // onscreen assigned options
 let onScreenFirstPassOptions = {
     keyMode: undefined,
@@ -23,28 +11,7 @@ let onScreenFirstPassOptions = {
     persistState: undefined
 }
 
-// function defaultOptionHandler() {
-//     let typeOfDefault;
-
-//     let temp = Object.values(userDefaults);
-//     let tempBool = false;
-//     temp.forEach((item) => {
-//         if (item !== undefined) {
-//             tempBool = true;
-//         }
-//     });
-
-//     if (tempBool === true) {
-//         typeOfDefault = userDefaults;
-//     } else {
-//         typeOfDefault = programDefaults;
-//     }
-
-//     return typeOfDefault;
-// }
-
 function masterControl() {
-
     // if onscreen assigned options are manipulated, use them
     let controlOptions = onScreenFirstPassOptions;
 
@@ -57,7 +24,6 @@ function masterControl() {
         keyModeConBool = true;
         keyModeOption = controlOptions.keyMode;
     }
-
 
     if (controlOptions.keyCenter !== undefined) {
         keyCenterConBool = true;
@@ -99,3 +65,36 @@ function turnControlOff() {
 }
 
 // END of document
+
+// SCRATCH 
+
+// const programDefaults = {
+//     keyMode: undefined,
+//     keyCenter: undefined,
+//     numOfRepeats: undefined,
+//     startingChord: undefined,
+//     typeOfCadence: undefined,
+//     numOfChords: undefined,
+//     persistState: undefined
+// }
+// function defaultOptionHandler() {
+//     let typeOfDefault;
+
+//     let temp = Object.values(userDefaults);
+//     let tempBool = false;
+//     temp.forEach((item) => {
+//         if (item !== undefined) {
+//             tempBool = true;
+//         }
+//     });
+
+//     if (tempBool === true) {
+//         typeOfDefault = userDefaults;
+//     } else {
+//         typeOfDefault = programDefaults;
+//     }
+
+//     return typeOfDefault;
+// }
+
+
