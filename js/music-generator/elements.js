@@ -3,10 +3,6 @@
 
 
 
-
-
-
-
 // number of repeats
 var numRepeatsSlider = document.getElementById("num-repeats-slider");
 var numRepeatsSliderOutput = document.getElementById("num-repeats-output");
@@ -30,19 +26,6 @@ repeatsCheck.oninput = () => {
         document.getElementById('num-repeats-slider').style.opacity = 0.9;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -24,122 +24,36 @@ let onScreenFirstPassOptions = {
 }
 
 
+// function defaultOptionHandler() {
+//     let typeOfDefault;
 
+//     let temp = Object.values(userDefaults);
+//     let tempBool = false;
+//     temp.forEach((item) => {
+//         if (item !== undefined) {
+//             tempBool = true;
+//         }
+//     });
 
+//     if (tempBool === true) {
+//         typeOfDefault = userDefaults;
+//     } else {
+//         typeOfDefault = programDefaults;
+//     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function defaultOptionHandler() {
-    let typeOfDefault;
-
-    let temp = Object.values(userDefaults);
-    let tempBool = false;
-    temp.forEach((item) => {
-        if (item !== undefined) {
-            tempBool = true;
-        }
-    });
-
-    if (tempBool === true) {
-        typeOfDefault = userDefaults;
-    } else {
-        typeOfDefault = programDefaults;
-    }
-
-    return typeOfDefault;
-}
-
-
-
-
-
-
-
-
-
-
+//     return typeOfDefault;
+// }
 
 function masterControl() {
 
-
-
     // if onscreen assigned options are manipulated, use them
     let controlOptions = onScreenFirstPassOptions;
-
 
     if (controlOptions.numOfRepeats !== undefined) {
         numOfRepeatsConBool = true;
         numOfRepeatsOption = controlOptions.numOfRepeats;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // Control variables
     if (controlOptions.keyMode !== undefined) {
         keyModeConBool = true;
         keyModeOption = controlOptions.keyMode;

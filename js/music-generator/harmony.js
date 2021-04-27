@@ -53,37 +53,30 @@ function getEmptyChart() {
 // control variables
 let startingChordConBool = false;
 let startingChordOption;
+let startingChordRandom = true;
+
 let typeOfCadenceConBool = false;
 let typeOfCadenceOption;
+let typeOfCadenceRandom = true;
+
 let keyModeConBool = false;
 let keyModeOption;
-
+let keyModeRandom = true;
 
 let persistStateConBool = false;
 let persistStateOption;
+
 let numOfChordsConBool = false;
 let numOfChordsOption;
+let numOfChordsRandom = true;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let numOfRepeatsConBool = false;
+let numOfRepeatsOption;
+let numOfRepeatsRandom = true;
 
 let keyCenterConBool = false;
 let keyCenterOption;
+let keyCenterRandom = true;
 
 function getKeyCenter() {
     keyCenterConVar = keyCenterOption;
@@ -108,33 +101,14 @@ function getKeyCenter() {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 let currentHarmony = major;
 let romanNumOne;
 let romanNumFour;
 let romanNumFive;
 let romanNumSix;
 
-
-
 function getKeyMode() {
-    if (keyModeConBool === true) {
+    if (keyModeConBool === true && keyModeRandom === false) {
         if (keyModeOption === major) {
             keyModeConVar = 2;
         } else if (keyModeOption === minor ) {
@@ -161,8 +135,6 @@ function getKeyMode() {
     }
 }
 
-
-
 function switchHarmonicMode() {
     if (currentHarmony === major) {
         currentHarmony = minor;
@@ -177,29 +149,6 @@ function switchHarmonicMode() {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let numOfRepeatsConBool = false;
-let numOfRepeatsOption;
-let numOfRepeatsRandom = true;
 
 // form construction
 
@@ -345,13 +294,13 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         }
     }
 
-    if (startingChordConBool === true) {
+    if (startingChordConBool === true && startingChordRandom === false) {
         startingChordConVar = startingChordOption;
     } else {
         startingChordConVar = 1;
     }
 
-    if (typeOfCadenceConBool === true) {
+    if (typeOfCadenceConBool === true && typeOfCadenceRandom === false) {
         typeOfCadenceConVar = typeOfCadenceOption;
     } else {
         typeOfCadenceConVar = generateChance(3, 1);
@@ -404,7 +353,7 @@ function getNewProgression(start, cadence, section) {
     // 'cadenceValue' is a iterated data store variable used in /voice-leading.js
     cadenceValue = cadence;
 
-    if (numOfChordsConBool === true && section === 0) {
+    if (numOfChordsConBool === true && section === 0 && numOfChordsRandom === false ) {
         numOfChordsConVar = numOfChordsOption;
     } else {
         numOfChordsConVar = generateChance(5, 2);

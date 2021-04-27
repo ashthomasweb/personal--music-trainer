@@ -24,21 +24,11 @@
 </head>
 
 <body>
-  <div class="grid-container">
+  <div class="gen-container">
     <div class="header">
       <h1>Music Generator</h1>
       <button type="button"
         onclick="document.location='https://rideoutweb.github.io/personal--music-trainer/'">Menu</button>
-    </div>
-
-    <div class="messages">
-      <h2>Messages</h2>
-      <p>JavaScript plays the piano.<br><br>Use the controls to manipulate the first phrase you will hear, from then JavaScript will utilize effective voice-leading per common practices to find block voicings that are typically used in western music.</p>
-      <br>
-      <p id="msg-pane"></p>
-    </div>
-
-    <div class="instrument">
       <h2>Instrument</h2>
       <div class="dropdown">
         <button onclick="displayInstMenu()" class="dropbtn">Select Instrument</button>
@@ -52,18 +42,48 @@
         </div>
       </div>
       <p id="instr-type">None Selected</p>
+
     </div>
 
-    <div class="generate">
+    <div class="messages">
+      <h2>Messages</h2>
+      <p>JavaScript plays the piano.<br><br>Use the controls to manipulate the first phrase you will hear, from then
+        JavaScript will utilize effective voice-leading per common practices to find block voicings that are typically
+        used in western music.</p>
+      <br>
+      <p id="msg-pane"></p>
+    </div>
+
+    <div class="instrument">
+
+      <div class="slidecontainer">
+        <p class="slider-title">How many repeats?</p>
+        <p class="slider-value"><span id="num-repeats-output"></span></p>
+        <label for="repeats-check">Random</label>
+        <input type="checkbox" id="numOfRepeats-check" name="repeats-check" checked="true">
+        <input type="range" min="1" max="100" value="10" class="slider" id="num-repeats-slider">
+      </div>
+
+      
+      <div class="slidecontainer">
+        <p>Major or Minor?</p>
+        <input type="range" min="1" max="2" value="1" class="slider" id="key-mode-slider">
+        <p>Value: <span id="key-mode-output"></span></p>
+      </div>
+
+      
+    </div>
+
+    <!-- <div class="generate">
       <p>Out Of Date</p>
       <button onclick="getStartTones()" class="dropbtn">Get Start Tones</button>
       <!-- <button type="button" onclick="assignValues()">Get Progression</button> -->
-      <button type="button" onmousedown="playProg()">Play</button>
+      <!-- <button type="button" onmousedown="playProg()">Play</button>
       <button type="button" onmousedown="playVoices()">Voices</button>
       <button type="button" onmousedown="playVoicesBlock()">Block</button>
       <button type="button" onmousedown="arpeggiateVoices()">Arpeggiate</button>
-    </div>
-<!-- 
+    </div> -->
+    <!-- 
     <div class="mode">
       <h2>Mode</h2>
       <div class="dropdown">
@@ -92,7 +112,7 @@
     <div class="start-point">
       <p>Helper</p>
       <button onclick="console.log(phraseContainer)">phraseContainer</button>
-      
+
       <button onclick="checkForUndefined()">Check undefined</button>
 
     </div>
@@ -105,45 +125,43 @@
     </div>
 
     <div class="cadence">
-      <p>Form Options</p>
-      <!-- <p>Input or defaults</p> -->
+      <h2>Form Options</h2>
 
-      <p>How many repeats?</p>
+      
+
+
       <div class="slidecontainer">
-        <label for="repeats-check">Random</label>
-        <input type="checkbox" id="numOfRepeats-check" name="repeats-check" checked="true">
-        <input type="range" min="1" max="100" value="10" class="slider" id="num-repeats-slider">
-        <p>Value: <span id="num-repeats-output"></span></p>
-      </div>
-      <p>Where to start?</p>
-      <div class="slidecontainer">
+        <p>Where to start?</p>
         <input type="range" min="1" max="7" value="1" class="slider" id="starting-chord-slider">
         <p>Value: <span id="starting-chord-output"></span></p>
       </div>
-      <p>How to end?</p>
+
+
       <div class="slidecontainer">
+        <p>How to end?</p>
         <input type="range" min="1" max="4" value="1" class="slider" id="cadence-slider">
         <p>Value: <span id="cadence-output">Authentic</span></p>
       </div>
-      <p>How many chords?</p>
+
+
       <div class="slidecontainer">
+        <p>How many chords?</p>
         <input type="range" min="3" max="7" value="5" class="slider" id="num-chords-slider">
         <p>Value: <span id="num-chords-output"></span></p>
       </div>
-      <p>Major or Minor?</p>
+
+
+
+
       <div class="slidecontainer">
-        <input type="range" min="1" max="2" value="1" class="slider" id="key-mode-slider">
-        <p>Value: <span id="key-mode-output"></span></p>
-      </div>
-      <p>Key Center?</p>
-      <div class="slidecontainer">
+        <p>Key Center?</p>
         <input type="range" min="0" max="4" value="2" class="slider" id="key-center-slider">
         <p>Value: <span id="key-center-output">Random</span></p>
       </div>
 
       <br>
       <button id="persist-toggle" onclick="makePersist()">Make Persist</button>
-      
+
     </div>
 
     <div class="your-progression">
@@ -160,9 +178,9 @@
       <p id="chord-prog"></p>
 
     </div>
-
+<!-- 
     <div class="piano-container">
-    </div>
+    </div> -->
 
   </div>
 

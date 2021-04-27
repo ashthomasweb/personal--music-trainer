@@ -1,10 +1,9 @@
-.grid-container {
+.gen-container {
     grid-template-areas:
-        "header messages messages cadence cadence instrument"
-        "length start options cadence cadence generate"
-        "....... prog prog prog prog ......."
-        "piano piano piano piano piano piano"
-        "piano piano piano piano piano piano";
+        "header messages messages instrument cadence "
+        "length start options instrument cadence "
+        "prog prog prog instrument cadence "
+        "prog prog prog instrument cadence "
 }
 
 
@@ -13,6 +12,26 @@
     grid-area: prog;
     background-color: rgba(128, 125, 125, .8);
     position: relative;
+}
+
+.gen-container {
+   
+    position: relative;
+    top: 50vh;
+    transform: translateY(-50%);
+    display: grid;
+    grid-template-columns: 150px auto 200px auto auto;
+    grid-template-rows: repeat(6, fr);
+    grid-gap: 15px;
+    max-width: 1200px;
+    height: 100vh;
+    padding: 30px;
+    margin: 0 auto;
+}
+
+.gen-container>div {
+    border-radius: 10px;
+    padding: 8px;
 }
 
 .your-progression p {
@@ -68,10 +87,15 @@
 
 .cadence {
     grid-area: cadence;
+    position: relative;
     opacity: 1;
     /* pointer-events: none; */
 
     background-color: rgba(128, 125, 125, .3);
+}
+
+.cadence h2 {
+    margin-bottom: 5px;
 }
 
 .generate {
@@ -88,22 +112,35 @@
 
 .slidecontainer {
     width: 100%;
-    padding: 0 15px;
+    padding: 5px 15px;
+    border-top: solid 3px black;
 }
 
 .slidecontainer label {
-    display: inline-block;
+    float: right;
+}
+
+.slidecontainer input[type=checkbox] {
+    float: right;
 }
 
 .slider {
     -webkit-appearance: none;
     width: 100%;
-    height: 25px;
+    height: 20px;
     background: #d3d3d3;
     outline: none;
     opacity: 0.3;
     -webkit-transition: .2s;
     transition: opacity .2s;
+}
+
+.slider-value {
+    float: left;
+}
+
+.slider-title {
+    text-align: center;
 }
 
 .slider:hover {
@@ -114,14 +151,14 @@
     -webkit-appearance: none;
     appearance: none;
     width: 25px;
-    height: 25px;
+    height: 20px;
     background: #4CAF50;
     cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
     width: 25px;
-    height: 25px;
+    height: 20px;
     background: #4CAF50;
     cursor: pointer;
 }
