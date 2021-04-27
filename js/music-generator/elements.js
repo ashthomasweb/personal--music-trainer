@@ -1,14 +1,40 @@
 // Page Elements for Music Generator
 
+
+
+
+
+
+
+
 // number of repeats
 var numRepeatsSlider = document.getElementById("num-repeats-slider");
 var numRepeatsSliderOutput = document.getElementById("num-repeats-output");
-numRepeatsSliderOutput.innerHTML = defaultOptions.numOfRepeats;
+numRepeatsSliderOutput.innerHTML = programDefaults.numOfRepeats;
+// create button that will reset to persistent program defaults
 
 numRepeatsSlider.oninput = function () {
     numRepeatsSliderOutput.innerHTML = this.value;
-    options.numOfRepeats = this.value;
+    onScreenFirstPassOptions.numOfRepeats = this.value;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // number of chords
 var numChordsSlider = document.getElementById("num-chords-slider");
@@ -17,7 +43,7 @@ numChordsOutput.innerHTML = numChordsSlider.value;
 
 numChordsSlider.oninput = function () {
     numChordsOutput.innerHTML = this.value;
-    options.numOfChords = this.value;
+    onScreenFirstPassOptions.numOfChords = this.value;
 }
 
 // start progression on given harmony
@@ -27,7 +53,7 @@ startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
 
 startingChordSlider.oninput = function () {
     startingChordOutput.innerHTML = currentHarmony[this.value - 1];
-    options.startingChord = this.value;
+    onScreenFirstPassOptions.startingChord = this.value;
 }
 
 // type of cadence 
@@ -37,7 +63,7 @@ cadenceSliderOutput.innerHTML = cadenceType[cadenceSlider.value - 1];
 
 cadenceSlider.oninput = function () {
     cadenceSliderOutput.innerHTML = cadenceType[this.value - 1];
-    options.typeOfCadence = this.value;
+    onScreenFirstPassOptions.typeOfCadence = this.value;
 }
 
 
@@ -53,8 +79,21 @@ keyModeSlider.oninput = function () {
     } else {
         keyModeSliderOutput.innerHTML = "Minor";
     }
-    options.keyMode = modeArray[this.value - 1];
+    onScreenFirstPassOptions.keyMode = modeArray[this.value - 1];
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // key center
 let keyCenterArray = [keyOfF, keyOfC, keyOfG, keyOfD];
@@ -77,9 +116,21 @@ keyCenterSlider.oninput = function () {
         } else  if ( keyCenterArray[this.value - 1] === keyOfD ) {
             keyCenterSliderOutput.innerHTML = "Key of D";
         }
-        options.keyCenter = keyCenterArray[this.value - 1];
+        onScreenFirstPassOptions.keyCenter = keyCenterArray[this.value - 1];
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // On-screen diagnostic/helper functions 

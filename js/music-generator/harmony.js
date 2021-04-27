@@ -51,8 +51,6 @@ function getEmptyChart() {
 }
 
 // hard-code defaults
-let keyCenterConBool = false;
-let keyCenterOption;
 // control variables
 let startingChordConBool = false;
 let startingChordOption;
@@ -60,14 +58,33 @@ let typeOfCadenceConBool = false;
 let typeOfCadenceOption;
 let keyModeConBool = false;
 let keyModeOption;
-let numOfRepeatsConBool = false;
-let numOfRepeatsOption;
+
 
 let persistStateConBool = false;
 let persistStateOption;
 let numOfChordsConBool = false;
 let numOfChordsOption;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let keyCenterConBool = false;
+let keyCenterOption;
 
 function getKeyCenter() {
     keyCenterConVar = keyCenterOption;
@@ -91,6 +108,22 @@ function getKeyCenter() {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 let currentHarmony = major;
@@ -145,13 +178,37 @@ function switchHarmonicMode() {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let numOfRepeatsConBool = false;
+let numOfRepeatsOption;
+let numOfRepeatsDefault = programDefaults.numOfRepeats;
+
 // form construction
 
 function buildDoublePeriod() {
     if (numOfRepeatsConBool === true) {
         numOfRepeatsConVar = numOfRepeatsOption;
     } else {
-        numOfRepeatsConVar = 10;
+        numOfRepeatsConVar = numOfRepeatsDefault;
     }
     
     for (let i = 0; i < numOfRepeatsConVar; i++) {
