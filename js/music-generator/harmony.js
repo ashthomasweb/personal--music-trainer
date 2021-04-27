@@ -53,7 +53,7 @@ function getEmptyChart() {
 // control variables
 let startingChordConBool = false;
 let startingChordOption;
-let startingChordRandom = true;
+let startingChordRandom = false;
 
 let typeOfCadenceConBool = false;
 let typeOfCadenceOption;
