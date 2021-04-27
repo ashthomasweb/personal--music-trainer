@@ -20,7 +20,7 @@
     top: 50vh;
     transform: translateY(-50%);
     display: grid;
-    grid-template-columns: 150px auto 200px auto auto;
+    grid-template-columns: 150px auto 200px 220px 220px;
     grid-template-rows: repeat(6, fr);
     grid-gap: 15px;
     max-width: 1200px;
@@ -146,6 +146,8 @@
 .slider:hover {
     opacity: 1;
 }
+
+
 
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;

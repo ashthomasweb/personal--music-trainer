@@ -6,24 +6,25 @@
 // number of repeats
 var numRepeatsSlider = document.getElementById("num-repeats-slider");
 var numRepeatsSliderOutput = document.getElementById("num-repeats-output");
-numRepeatsSliderOutput.innerHTML = programDefaults.numOfRepeats;
+numRepeatsSliderOutput.innerHTML = '...';
 
 numRepeatsSlider.oninput = function () {
     numRepeatsSliderOutput.innerHTML = this.value;
     onScreenFirstPassOptions.numOfRepeats = this.value;
     repeatsCheck.checked = false;
     numOfRepeatsRandom = repeatsCheck.checked;
-
 }
 
 var repeatsCheck = document.getElementById("numOfRepeats-check");
 
 repeatsCheck.oninput = () => {
     numOfRepeatsRandom = repeatsCheck.checked;
-    if ( repeatsCheck.checked === true ) {
+    if (repeatsCheck.checked === true) {
         document.getElementById('num-repeats-slider').style.opacity = 0.3;
+        numRepeatsSliderOutput.innerHTML = '...';
     } else {
         document.getElementById('num-repeats-slider').style.opacity = 0.9;
+        numRepeatsSliderOutput.innerHTML = numRepeatsSlider.value;
     }
 }
 
@@ -69,7 +70,7 @@ var keyModeSliderOutput = document.getElementById("key-mode-output");
 keyModeSliderOutput.innerHTML = "Major";
 
 keyModeSlider.oninput = function () {
-    if ( modeArray[this.value - 1] === major ) {
+    if (modeArray[this.value - 1] === major) {
         keyModeSliderOutput.innerHTML = "Major";
     } else {
         keyModeSliderOutput.innerHTML = "Minor";
@@ -102,13 +103,13 @@ keyCenterSlider.oninput = function () {
         // keyCenterOption = // hard-code random
     } else {
 
-        if ( keyCenterArray[this.value - 1] === keyOfF ) {
+        if (keyCenterArray[this.value - 1] === keyOfF) {
             keyCenterSliderOutput.innerHTML = "Key of F";
-        } else  if ( keyCenterArray[this.value - 1] === keyOfC ) {
+        } else if (keyCenterArray[this.value - 1] === keyOfC) {
             keyCenterSliderOutput.innerHTML = "Key of C";
-        } else  if ( keyCenterArray[this.value - 1] === keyOfG ) {
+        } else if (keyCenterArray[this.value - 1] === keyOfG) {
             keyCenterSliderOutput.innerHTML = "Key of G";
-        } else  if ( keyCenterArray[this.value - 1] === keyOfD ) {
+        } else if (keyCenterArray[this.value - 1] === keyOfD) {
             keyCenterSliderOutput.innerHTML = "Key of D";
         }
         onScreenFirstPassOptions.keyCenter = keyCenterArray[this.value - 1];
@@ -151,7 +152,7 @@ function allStop() {
 }
 
 function checkForUndefined() {
-    for ( i = 0; i <= phraseContainer.length - 1; i++) {
+    for (i = 0; i <= phraseContainer.length - 1; i++) {
         console.log('test ' + i);
         phraseContainer[i][0].voiceLeading[0].includes(undefined) && console.log('undefined value occured bass');
         phraseContainer[i][0].voiceLeading[1].includes(undefined) && console.log('undefined value occured t');
@@ -161,13 +162,13 @@ function checkForUndefined() {
 }
 
 function makePersist() {
-    if (options.persistState !== undefined) {
-        options.persistState = !options.persistState;
+    if (onScreenFirstPassOptions.persistState !== undefined) {
+        onScreenFirstPassOptions.persistState = !onScreenFirstPassOptions.persistState;
     }
-    if (options.persistState === undefined) {
-        options.persistState = true;
+    if (onScreenFirstPassOptions.persistState === undefined) {
+        onScreenFirstPassOptions.persistState = true;
     }
-    if (options.persistState === true) {
+    if (onScreenFirstPassOptions.persistState === true) {
         document.getElementById('persist-toggle').style.backgroundColor = 'pink';
     } else {
         document.getElementById('persist-toggle').style.backgroundColor = 'grey';
@@ -175,17 +176,17 @@ function makePersist() {
 }
 
 function preset1() {
-    options.numOfChords = 7;
-    options.keyCenter = keyOfF;
+    onScreenFirstPassOptions.numOfChords = 7;
+    onScreenFirstPassOptions.keyCenter = keyOfF;
 }
 
 function preset2() {
-    options.numOfChords = 7;
-    options.keyCenter = keyOfC;
-    options.numOfRepeats = 3;
-    options.typeOfCadence = 2;
-    options.startingChord = 2;
-    options.makePersist = true;
+    onScreenFirstPassOptions.numOfChords = 7;
+    onScreenFirstPassOptions.keyCenter = keyOfC;
+    onScreenFirstPassOptions.numOfRepeats = 3;
+    onScreenFirstPassOptions.typeOfCadence = 2;
+    onScreenFirstPassOptions.startingChord = 2;
+    onScreenFirstPassOptions.makePersist = true;
 }
 
 // END of document

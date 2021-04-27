@@ -1,15 +1,15 @@
 const generateChance = (factor, addend = 0) => Math.ceil(Math.random() * factor) + addend;
 
 
-const programDefaults = {
-    keyMode: undefined,
-    keyCenter: undefined,
-    numOfRepeats: undefined,
-    startingChord: undefined,
-    typeOfCadence: undefined,
-    numOfChords: undefined,
-    persistState: undefined
-}
+// const programDefaults = {
+//     keyMode: undefined,
+//     keyCenter: undefined,
+//     numOfRepeats: undefined,
+//     startingChord: undefined,
+//     typeOfCadence: undefined,
+//     numOfChords: undefined,
+//     persistState: undefined
+// }
 
 
 // onscreen assigned options
@@ -22,7 +22,6 @@ let onScreenFirstPassOptions = {
     numOfChords: undefined,
     persistState: undefined
 }
-
 
 // function defaultOptionHandler() {
 //     let typeOfDefault;
