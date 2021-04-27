@@ -413,7 +413,7 @@ function getNewProgression(start, cadence, section) {
         } else {
             for (let i = 1; i <= progression.length - 1; i++) {
                 if (checkIfStrong(progression[i - 1], progression[i]) === false) {
-                    console.log('Do not pass go, do not collect $200.');
+                    // console.log('Do not pass go, do not collect $200.');
                     return getNewProgression(start, cadence, section);
                 }
             }

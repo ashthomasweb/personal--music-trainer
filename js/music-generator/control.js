@@ -1,8 +1,18 @@
-// user defaults 
-const defaultOptions = {
+const programDefaults = {
     keyMode: undefined,
     keyCenter: undefined,
-    numOfRepeats: 25,
+    numOfRepeats: 3,
+    startingChord: undefined,
+    typeOfCadence: undefined,
+    numOfChords: undefined,
+    persistState: undefined
+}
+
+// user defaults 
+let userDefaults = {
+    keyMode: undefined,
+    keyCenter: undefined,
+    numOfRepeats: 3,
     startingChord: undefined,
     typeOfCadence: undefined,
     numOfChords: undefined,
@@ -10,7 +20,7 @@ const defaultOptions = {
 }
 
 // onscreen assigned options
-let options = {
+let assignedOptions = {
     keyMode: undefined,
     keyCenter: undefined,
     numOfRepeats: undefined,
@@ -20,14 +30,40 @@ let options = {
     persistState: undefined
 }
 
-function masterControl(options) {
-    let controlOptions;
 
-    if (arguments.length === 0) {
-        controlOptions = defaultOptions;
+function defaultOptionHandler() {
+    let typeOfDefault;
+
+    let temp = Object.values(userDefaults);
+    let tempBool = false;
+    temp.forEach( (item) => {
+        if ( item !== undefined ) {
+            tempBool = true;
+        } 
+    });
+
+    if ( tempBool === true ) {
+        typeOfDefault = userDefaults;
     } else {
-        controlOptions = options;
+        typeOfDefault = programDefaults;
     }
+
+    return typeOfDefault; 
+}
+
+// DINNER! this needs rework, not tested. progably will need additional defaultOptionsHandler() to run on load as well as on play.
+function masterControl() {
+    // apply user defaults or get program defaults
+    let userDefaults = defaultOptionHandler();
+
+
+    // handle defaults or assigned options
+
+
+    // if onscreen assigned options are manipulated, use them
+    let controlOptions = assignedOptions;
+    
+
     
     // Control variables
     if (controlOptions.keyMode !== undefined) {
