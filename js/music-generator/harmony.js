@@ -80,7 +80,7 @@ let keyCenterRandom = true;
 
 function getKeyCenter() {
     keyCenterConVar = keyCenterOption;
-    if (keyCenterConBool === true) {
+    if (keyCenterConBool === true && keyCenterRandom === false) {
         keyNumerals = keyCenterConVar;
     } else {
         switch (generateChance(4)) { // program defaults

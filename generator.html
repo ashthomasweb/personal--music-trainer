@@ -88,6 +88,25 @@
         <input type="range" min="1" max="2" value="1" class="slider" id="key-mode-slider">
       </div>
 
+      
+      <div class="slidecontainer">
+        <p class="slider-title">How to end?</p>
+        <p class="slider-value"><span id="cadence-output">...</span></p>
+        <label for="cadence-check">Random</label>
+        <input type="checkbox" id="cadence-check" name="cadence-check" checked="checked">
+        <input type="range" min="1" max="4" value="1" class="slider" id="cadence-slider">
+      </div>
+
+      <div class="slidecontainer">
+        <p class="slider-title">Key Center?</p>
+        <p class="slider-value"><span id="key-center-output">...</span></p>
+        <label for="key-center-check">Random</label>
+        <input type="checkbox" id="keyCenter-check" name="key-center-check" checked="checked">
+        <input type="range" min="1" max="4" value="1" class="slider" id="key-center-slider">
+      </div>
+
+
+
 
     </div>
 
@@ -131,6 +150,7 @@
       <button onclick="console.log(phraseContainer)">phraseContainer</button>
 
       <button onclick="checkForUndefined()">Check undefined</button>
+      <button onclick="resetPlay()">Reset and Play</button>
 
     </div>
 
@@ -150,23 +170,12 @@
       
 
 
-      <div class="slidecontainer">
-        <p>How to end?</p>
-        <input type="range" min="1" max="4" value="1" class="slider" id="cadence-slider">
-        <p>Value: <span id="cadence-output">Authentic</span></p>
-      </div>
-
-
       
 
 
 
 
-      <div class="slidecontainer">
-        <p>Key Center?</p>
-        <input type="range" min="0" max="4" value="2" class="slider" id="key-center-slider">
-        <p>Value: <span id="key-center-output">Random</span></p>
-      </div>
+      
 
       <br>
       <button id="persist-toggle" onclick="makePersist()">Make Persist</button>
