@@ -1,23 +1,16 @@
+const generateChance = (factor, addend = 0) => Math.ceil(Math.random() * factor) + addend;
+
+
 const programDefaults = {
     keyMode: undefined,
     keyCenter: undefined,
-    numOfRepeats: 5,
+    numOfRepeats: undefined,
     startingChord: undefined,
     typeOfCadence: undefined,
     numOfChords: undefined,
     persistState: undefined
 }
 
-// // user defaults 
-// let userDefaults = {
-//     keyMode: undefined,
-//     keyCenter: undefined,
-//     numOfRepeats: 3,
-//     startingChord: undefined,
-//     typeOfCadence: undefined,
-//     numOfChords: undefined,
-//     persistState: undefined
-// }
 
 // onscreen assigned options
 let onScreenFirstPassOptions = {
@@ -108,7 +101,6 @@ function defaultOptionHandler() {
 
 
 
-// DINNER! this needs rework, not tested. progably will need additional defaultOptionsHandler() to run on load as well as on play.
 function masterControl() {
 
 

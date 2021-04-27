@@ -11,13 +11,25 @@
 var numRepeatsSlider = document.getElementById("num-repeats-slider");
 var numRepeatsSliderOutput = document.getElementById("num-repeats-output");
 numRepeatsSliderOutput.innerHTML = programDefaults.numOfRepeats;
-// create button that will reset to persistent program defaults
 
 numRepeatsSlider.oninput = function () {
     numRepeatsSliderOutput.innerHTML = this.value;
     onScreenFirstPassOptions.numOfRepeats = this.value;
+    repeatsCheck.checked = false;
+    numOfRepeatsRandom = repeatsCheck.checked;
+
 }
 
+var repeatsCheck = document.getElementById("numOfRepeats-check");
+
+repeatsCheck.oninput = () => {
+    numOfRepeatsRandom = repeatsCheck.checked;
+    if ( repeatsCheck.checked === true ) {
+        document.getElementById('num-repeats-slider').style.opacity = 0.3;
+    } else {
+        document.getElementById('num-repeats-slider').style.opacity = 0.9;
+    }
+}
 
 
 

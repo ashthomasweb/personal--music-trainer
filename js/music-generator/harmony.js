@@ -4,7 +4,6 @@ let major = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii∅'];
 let minor = ['i', 'ii∅', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
 let cadenceType = ['Authentic', 'Plagal', 'Deceptive', 'Half'];
 
-const generateChance = (factor, addend = 0) => Math.ceil(Math.random() * factor) + addend;
 
 // gets phrase length
 function getEmptyChart() {
@@ -200,15 +199,15 @@ function switchHarmonicMode() {
 
 let numOfRepeatsConBool = false;
 let numOfRepeatsOption;
-let numOfRepeatsDefault = programDefaults.numOfRepeats;
+let numOfRepeatsRandom = true;
 
 // form construction
 
 function buildDoublePeriod() {
-    if (numOfRepeatsConBool === true) {
+    if (numOfRepeatsConBool === true && numOfRepeatsRandom === false) {
         numOfRepeatsConVar = numOfRepeatsOption;
     } else {
-        numOfRepeatsConVar = numOfRepeatsDefault;
+        numOfRepeatsConVar = generateChance(100);
     }
     
     for (let i = 0; i < numOfRepeatsConVar; i++) {

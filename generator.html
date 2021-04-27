@@ -33,7 +33,7 @@
 
     <div class="messages">
       <h2>Messages</h2>
-      <p>JavaScript plays the piano</p>
+      <p>JavaScript plays the piano.<br><br>Use the controls to manipulate the first phrase you will hear, from then JavaScript will utilize effective voice-leading per common practices to find block voicings that are typically used in western music.</p>
       <br>
       <p id="msg-pane"></p>
     </div>
@@ -110,6 +110,8 @@
 
       <p>How many repeats?</p>
       <div class="slidecontainer">
+        <label for="repeats-check">Random</label>
+        <input type="checkbox" id="numOfRepeats-check" name="repeats-check" checked="true">
         <input type="range" min="1" max="100" value="10" class="slider" id="num-repeats-slider">
         <p>Value: <span id="num-repeats-output"></span></p>
       </div>
@@ -164,10 +166,10 @@
 
   </div>
 
-  <script src="js/music-generator/control.js" charset="utf-8"></script>
   <script src="js/global.js" charset="utf-8"></script>
   <script src="js/global-func.js" charset="utf-8"></script>
   <script src="js/music-generator/webaudiogen.js" charset="utf-8"></script>
+  <script src="js/music-generator/control.js" charset="utf-8"></script>
   <script src="js/music-generator/harmony.js" charset="utf-8"></script>
   <script src="js/music-generator/harm-rhythm.js" charset="utf-8"></script>
   <script src="js/music-generator/keys.js" charset="utf-8"></script>
