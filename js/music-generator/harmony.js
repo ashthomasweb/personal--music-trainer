@@ -50,6 +50,7 @@ function getEmptyChart() {
     return phraseChart;
 }
 
+// hard-code defaults
 let keyCenterConBool = false;
 let keyCenterOption;
 // control variables
@@ -69,11 +70,11 @@ let numOfChordsOption;
 
 
 function getKeyCenter() {
-    keyCenterConVar = keyCenterOption
+    keyCenterConVar = keyCenterOption;
     if (keyCenterConBool === true) {
         keyNumerals = keyCenterConVar;
     } else {
-        switch (generateChance(4)) {
+        switch (generateChance(4)) { // program defaults
             case 1:
                 keyNumerals = keyOfC;
                 break;

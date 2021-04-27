@@ -1,13 +1,15 @@
+// user defaults 
 const defaultOptions = {
     keyMode: undefined,
     keyCenter: undefined,
-    numOfRepeats: undefined,
+    numOfRepeats: 25,
     startingChord: undefined,
     typeOfCadence: undefined,
     numOfChords: undefined,
     persistState: undefined
 }
 
+// onscreen assigned options
 let options = {
     keyMode: undefined,
     keyCenter: undefined,

@@ -3,7 +3,7 @@
 // number of repeats
 var numRepeatsSlider = document.getElementById("num-repeats-slider");
 var numRepeatsSliderOutput = document.getElementById("num-repeats-output");
-numRepeatsSliderOutput.innerHTML = numRepeatsSlider.value;
+numRepeatsSliderOutput.innerHTML = defaultOptions.numOfRepeats;
 
 numRepeatsSlider.oninput = function () {
     numRepeatsSliderOutput.innerHTML = this.value;
@@ -63,16 +63,22 @@ var keyCenterSliderOutput = document.getElementById("key-center-output");
 keyCenterSliderOutput.innerHTML = "Key of C";
 
 keyCenterSlider.oninput = function () {
-    if ( keyCenterArray[this.value - 1] === keyOfF ) {
-        keyCenterSliderOutput.innerHTML = "Key of F";
-    } else  if ( keyCenterArray[this.value - 1] === keyOfC ) {
-        keyCenterSliderOutput.innerHTML = "Key of C";
-    } else  if ( keyCenterArray[this.value - 1] === keyOfG ) {
-        keyCenterSliderOutput.innerHTML = "Key of G";
-    } else  if ( keyCenterArray[this.value - 1] === keyOfD ) {
-        keyCenterSliderOutput.innerHTML = "Key of D";
+    if (this.value === 0) {
+        keyCenterSliderOutput.innerHTML = "Random";
+        // keyCenterOption = // hard-code random
+    } else {
+
+        if ( keyCenterArray[this.value - 1] === keyOfF ) {
+            keyCenterSliderOutput.innerHTML = "Key of F";
+        } else  if ( keyCenterArray[this.value - 1] === keyOfC ) {
+            keyCenterSliderOutput.innerHTML = "Key of C";
+        } else  if ( keyCenterArray[this.value - 1] === keyOfG ) {
+            keyCenterSliderOutput.innerHTML = "Key of G";
+        } else  if ( keyCenterArray[this.value - 1] === keyOfD ) {
+            keyCenterSliderOutput.innerHTML = "Key of D";
+        }
+        options.keyCenter = keyCenterArray[this.value - 1];
     }
-    options.keyCenter = keyCenterArray[this.value - 1];
 }
 
 
