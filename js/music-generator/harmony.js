@@ -138,37 +138,82 @@ function getKeyMode() {
 
 
 
-let keyModeSwitchConBool = false;
-let keyModeSwitchOption;
-let keyModeSwitchRandom = true;
+
+
+
+
+
+
+
+
+
+
+
+// // value controls whether or not onscreen options are applied and or initialized
+// let keyModeSwitchConBool = false;
+
+// // value of onscreen chosen option, applied from masterControl();
+// let keyModeSwitchOption;
+
+// // value of onscreen checkbox, pre checked to represent the options applied after first iteration
+// let keyModeSwitchRandom = true;
+
+// function switchHarmonicMode() {
+
+//     let modeShiftArray = ['static', 'parallel'];
+    
+//     if (keyModeSwitchConBool === true && keyModeSwitchRandom === false) { // onscreen user controled
+//         if (keyModeSwitchOption === 'static') {
+//             keyModeSwitchConVar = modeShiftArray[2 - 1];
+//         } else if (keyModeSwitchOption === minor ) {
+//             keyModeSwitchConVar = modeShiftArray[1 - 1];
+//         } else {
+//             keyModeSwitchConVar = modeShiftArray[generateChance(2) - 1];
+//         }
+//     } else { // random checkbox output
+//         keyModeSwitchConVar = modeShiftArray[generateChance(2) - 1];
+//     } // otherwise run with hard coded options
+
+
+
+
+//     if (keyModeSwitchConVar === major) {
+//         currentHarmony = minor;
+//         romanNumOne = 'i';
+//         romanNumFour = 'iv';
+//         romanNumSix = 'bVI';
+//     } else {
+//         keyModeSwitchConVar = major;
+//         romanNumOne = 'I';
+//         romanNumFour = 'IV';
+//         romanNumSix = 'vi';
+//     }
+// }
+
+
+
+
+
 
 function switchHarmonicMode() {
-    let harmonyArrays = [major, minor];
-    
-    if (keyModeSwitchConBool === true && keyModeSwitchRandom === false) {
-        if (keyModeSwitchOption === major) {
-            keyModeSwitchConVar = harmonyArrays[2 - 1];
-        } else if (keyModeSwitchOption === minor ) {
-            keyModeSwitchConVar = harmonyArrays[1 - 1];
-        } else {
-            keyModeSwitchConVar = harmonyArrays[generateChance(2) - 1];
-        }
-    } else {
-        keyModeSwitchConVar = harmonyArrays[generateChance(2) - 1];
-    }
-
-    if (keyModeSwitchConVar === major) {
+    if (currentHarmony === major) {
         currentHarmony = minor;
         romanNumOne = 'i';
         romanNumFour = 'iv';
         romanNumSix = 'bVI';
     } else {
-        keyModeSwitchConVar = major;
+        currentHarmony = major;
         romanNumOne = 'I';
         romanNumFour = 'IV';
         romanNumSix = 'vi';
     }
 }
+
+
+
+
+
+
 
 // form construction
 

@@ -8,7 +8,8 @@ let onScreenFirstPassOptions = {
     startingChord: undefined,
     typeOfCadence: undefined,
     numOfChords: undefined,
-    persistState: undefined
+    persistState: undefined,
+    keyModeSwitch: undefined
 }
 
 function masterControl() {
@@ -50,6 +51,11 @@ function masterControl() {
         persistStateOption = controlOptions.persistState;
     }
 
+    // if (controlOptions.keyModeSwitch !== undefined) {
+    //     keyModeSwitchConBool = true;
+    //     keyModeSwitchOption = controlOptions.keyModeSwitch;
+    // }
+
     buildDoublePeriod();
 }
 
@@ -62,6 +68,7 @@ function turnControlOff() {
     typeOfCadenceConBool = false;
     numOfChordsConBool = false;
     persistStateConBool = false;
+    keyModeSwitchConBool = false;
 }
 
 // END of document

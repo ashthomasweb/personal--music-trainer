@@ -75,6 +75,23 @@ startingChordCheck.oninput = () => {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // major / minor
 let modeArray = [major, minor];
 var keyModeSlider = document.getElementById("key-mode-slider");
@@ -90,7 +107,7 @@ keyModeSlider.oninput = function () {
     }
     keyModeCheck.checked = false;
     keyModeRandom = startingChordCheck.checked;
-    onScreenFirstPassOptions.keyMode = modeArray[this.value - 1];
+    onScreenFirstPassOptions.keyModeSwitch = modeArray[this.value - 1];
     document.getElementById('key-mode-slider').style.opacity = 0.9;
 }
 
@@ -106,9 +123,75 @@ keyModeCheck.oninput = () => {
         } else {
             keyModeSliderOutput.innerHTML = "Minor";
         }
-        onScreenFirstPassOptions.keyMode = modeArray[keyModeSlider.value - 1];
+        onScreenFirstPassOptions.keyModeSwitch = modeArray[keyModeSlider.value - 1];
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // // key shift - IN PROGRESS DOES NOT WORK
+// let modeShiftArray = ['static', 'parallel'];
+
+
+// var keyModeSwitchSlider = document.getElementById("key-mode-switch-slider");
+// var keyModeSwitchSliderOutput = document.getElementById("key-mode-switch-output");
+// var keyModeSwitchCheck = document.getElementById("keyModeSwitch-check");
+
+// keyModeSwitchSliderOutput.innerHTML = "...";
+// keyModeSwitchSlider.oninput = function () {
+//     if (Number(this.value) === 1) {
+//         keyModeSwitchSliderOutput.innerHTML = "Stay same";
+//     } else {
+//         keyModeSwitchSliderOutput.innerHTML = "Parallel";
+//     }
+//     keyModeSwitchCheck.checked = false;
+//     keyModeSwitchRandom = keyModeSwitchCheck.checked;
+//     onScreenFirstPassOptions.keyModeSwitch = modeShiftArray[this.value - 1];
+//     document.getElementById('key-mode-switch-slider').style.opacity = 0.9;
+// }
+
+// // when checking the box....
+// keyModeSwitchCheck.oninput = () => {
+//     // apply checked value to control variable
+//     keyModeSwitchRandom = keyModeSwitchCheck.checked;
+
+
+//     if (keyModeSwitchCheck.checked === true) {
+//         document.getElementById('key-mode-switch-slider').style.opacity = 0.3;
+//         keyModeSwitchSliderOutput.innerHTML = '...';
+//     } else {
+//         document.getElementById('key-mode-switch-slider').style.opacity = 0.9;
+//         if (Number(keyModeSwitchSlider.value) === 1) {
+//             keyModeSwitchSliderOutput.innerHTML = "Stay same";
+//         } else {
+//             keyModeSwitchSliderOutput.innerHTML = "Parallel";
+//         }
+//         onScreenFirstPassOptions.keyModeSwitch = modeShiftArray[keyModeSwitchSlider.value - 1];
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
 
 // type of cadence 
 var cadenceSlider = document.getElementById("cadence-slider");
