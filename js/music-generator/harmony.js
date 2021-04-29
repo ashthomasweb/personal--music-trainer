@@ -62,6 +62,7 @@ let keyModeConBool = false;
 let keyModeOption;
 let keyModeRandom = true;
 
+
 let persistStateConBool = false;
 let persistStateOption;
 
@@ -134,14 +135,35 @@ function getKeyMode() {
     }
 }
 
+
+
+
+let keyModeSwitchConBool = false;
+let keyModeSwitchOption;
+let keyModeSwitchRandom = true;
+
 function switchHarmonicMode() {
-    if (currentHarmony === major) {
+    let harmonyArrays = [major, minor];
+    
+    if (keyModeSwitchConBool === true && keyModeSwitchRandom === false) {
+        if (keyModeSwitchOption === major) {
+            keyModeSwitchConVar = harmonyArrays[2 - 1];
+        } else if (keyModeSwitchOption === minor ) {
+            keyModeSwitchConVar = harmonyArrays[1 - 1];
+        } else {
+            keyModeSwitchConVar = harmonyArrays[generateChance(2) - 1];
+        }
+    } else {
+        keyModeSwitchConVar = harmonyArrays[generateChance(2) - 1];
+    }
+
+    if (keyModeSwitchConVar === major) {
         currentHarmony = minor;
         romanNumOne = 'i';
         romanNumFour = 'iv';
         romanNumSix = 'bVI';
     } else {
-        currentHarmony = major;
+        keyModeSwitchConVar = major;
         romanNumOne = 'I';
         romanNumFour = 'IV';
         romanNumSix = 'vi';
