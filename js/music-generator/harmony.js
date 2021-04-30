@@ -149,65 +149,76 @@ function getKeyMode() {
 
 
 
-// // value controls whether or not onscreen options are applied and or initialized
-// let keyModeSwitchConBool = false;
+// value controls whether or not onscreen options are applied and or initialized
+let keyModeSwitchConBool = true;
 
-// // value of onscreen chosen option, applied from masterControl();
-// let keyModeSwitchOption;
+// value of onscreen chosen option, applied from masterControl();
+let keyModeSwitchOption;
 
-// // value of onscreen checkbox, pre checked to represent the options applied after first iteration
-// let keyModeSwitchRandom = true;
+// value of onscreen checkbox, pre checked to represent the options applied after first iteration
+let keyModeSwitchRandom = false;
 
-// function switchHarmonicMode() {
+function switchParallelMode(repeat) {
 
-//     let modeShiftArray = ['static', 'parallel'];
-    
-//     if (keyModeSwitchConBool === true && keyModeSwitchRandom === false) { // onscreen user controled
-//         if (keyModeSwitchOption === 'static') {
-//             keyModeSwitchConVar = modeShiftArray[2 - 1];
-//         } else if (keyModeSwitchOption === minor ) {
-//             keyModeSwitchConVar = modeShiftArray[1 - 1];
-//         } else {
-//             keyModeSwitchConVar = modeShiftArray[generateChance(2) - 1];
-//         }
-//     } else { // random checkbox output
-//         keyModeSwitchConVar = modeShiftArray[generateChance(2) - 1];
-//     } // otherwise run with hard coded options
+    let modeShiftArray = ['static', 'parallel'];
+    function parallelMode() {
+        if (currentHarmony === major) {
+            currentHarmony = minor;
+            romanNumOne = 'i';
+            romanNumFour = 'iv';
+            romanNumSix = 'bVI';
+        } else {
+            currentHarmony = major;
+            romanNumOne = 'I';
+            romanNumFour = 'IV';
+            romanNumSix = 'vi';
+        }
+    }
+
+    // onscreen user controled options enabled, box onchecked
+    if (keyModeSwitchConBool === true && keyModeSwitchRandom === false) {
+        console.log('options no check');
+        // mode shift options
+        if (keyModeSwitchOption === 'static') {
+            keyModeSwitchConVar = modeShiftArray[0];
+        } else if (keyModeSwitchOption === 'parallel' ) {
+            keyModeSwitchConVar = modeShiftArray[1];
+        } else { // input error handling default option
+            console.log('test');
+            keyModeSwitchConVar = modeShiftArray[generateChance(2) - 1];
+        }
+    // random checkbox enabled, only on first pass
+    } else if ( keyModeSwitchRandom === true && ) {
+        console.log('check');
+        keyModeSwitchConVar = modeShiftArray[generateChance(2) - 1];
+        console.log(keyModeSwitchConVar);
+    // no user options set, random box unchecked, hard-coded option
+    } else { 
+        console.log('default');
+        keyModeSwitchConVar = 'parallel';
+    } 
+
+    if (keyModeSwitchConVar === 'parallel') {
+        parallelMode();
+    } else if ( keyModeSwitchConVar === 'static') {
+        // do nothing
+    }
+}
+
+
+// function keyReturnHome() {
+//     console.log(phraseContainer[phraseContainer.length - 3][0].key);
+//     console.log(currentHarmony);
+//     console.log()
+//     let startingKey = phraseContainer[phraseContainer.length - 3][0].key;
 
 
 
 
-//     if (keyModeSwitchConVar === major) {
-//         currentHarmony = minor;
-//         romanNumOne = 'i';
-//         romanNumFour = 'iv';
-//         romanNumSix = 'bVI';
-//     } else {
-//         keyModeSwitchConVar = major;
-//         romanNumOne = 'I';
-//         romanNumFour = 'IV';
-//         romanNumSix = 'vi';
-//     }
 // }
 
 
 
-
-
-
-function switchHarmonicMode() {
-    if (currentHarmony === major) {
-        currentHarmony = minor;
-        romanNumOne = 'i';
-        romanNumFour = 'iv';
-        romanNumSix = 'bVI';
-    } else {
-        currentHarmony = major;
-        romanNumOne = 'I';
-        romanNumFour = 'IV';
-        romanNumSix = 'vi';
-    }
-}
 
 
 
@@ -238,12 +249,13 @@ function buildDoublePeriod() {
                 voiceLeadHandler(section);
             }
             if (section === 2) {
-                switchHarmonicMode();
+                switchParallelMode(i);
                 createPhraseChart(2, i + 1);
                 voiceLeadHandler(section);
             }
             if (section === 3) {
-                switchHarmonicMode();
+                // keyReturnHome();
+                switchParallelMode();
                 createPhraseChart(3, i + 1);
                 voiceLeadHandler(section);
             }
@@ -262,7 +274,6 @@ function buildDoublePeriod() {
                 // controlOff(); // do nothing
             }
         }
-        // turnControlOff();
     }
     playPhraseChart();
 }
@@ -405,6 +416,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         cadenceHandler(section);
         storePlaybackData();
     }
+    // console.log(info.formId + info.key)
 }
 
 let progression = [];

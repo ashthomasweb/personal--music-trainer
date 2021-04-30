@@ -172,6 +172,11 @@
     cursor: pointer;
 }
 
+
+#starting-chord-slider {
+    opacity: 0.9;
+}
+
 /* from tempo trainer  needs refactor*/
 
 .tempo-box {

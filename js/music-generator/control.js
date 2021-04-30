@@ -51,10 +51,10 @@ function masterControl() {
         persistStateOption = controlOptions.persistState;
     }
 
-    // if (controlOptions.keyModeSwitch !== undefined) {
-    //     keyModeSwitchConBool = true;
-    //     keyModeSwitchOption = controlOptions.keyModeSwitch;
-    // }
+    if (controlOptions.keyModeSwitch !== undefined) {
+        keyModeSwitchConBool = true;
+        keyModeSwitchOption = controlOptions.keyModeSwitch;
+    }
 
     buildDoublePeriod();
 }
