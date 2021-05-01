@@ -51,10 +51,10 @@ function masterControl() {
         persistStateOption = controlOptions.persistState;
     }
 
-    if (controlOptions.keyModeSwitch !== undefined) {
-        keyModeSwitchConBool = true;
-        keyModeSwitchOption = controlOptions.keyModeSwitch;
-    }
+    // if (controlOptions.keyModeSwitch !== undefined) {
+    //     keyModeSwitchConBool = true;
+    //     keyModeSwitchOption = controlOptions.keyModeSwitch;
+    // }
 
     buildDoublePeriod();
 }
@@ -68,7 +68,7 @@ function turnControlOff() {
     typeOfCadenceConBool = false;
     numOfChordsConBool = false;
     persistStateConBool = false;
-    keyModeSwitchConBool = false;
+    // keyModeSwitchConBool = false;
 }
 
 // END of document

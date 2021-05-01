@@ -145,49 +145,49 @@ keyModeCheck.oninput = () => {
 
 
 
-// // key shift - IN PROGRESS DOES NOT WORK
-let modeShiftArray = ['static', 'parallel'];
+// // // key shift - IN PROGRESS DOES NOT WORK
+// let modeShiftArray = ['static', 'parallel'];
 
 
-var keyModeSwitchSlider = document.getElementById("key-mode-switch-slider");
-var keyModeSwitchSliderOutput = document.getElementById("key-mode-switch-output");
-var keyModeSwitchCheck = document.getElementById("keyModeSwitch-check");
+// var keyModeSwitchSlider = document.getElementById("key-mode-switch-slider");
+// var keyModeSwitchSliderOutput = document.getElementById("key-mode-switch-output");
+// var keyModeSwitchCheck = document.getElementById("keyModeSwitch-check");
 
-if (keyModeSwitchCheck.checked === false ) {
-    keyModeSwitchSlider.style.opacity = 0.9;
-} 
-keyModeSwitchSliderOutput.innerHTML = "Parallel";
+// if (keyModeSwitchCheck.checked === false ) {
+//     keyModeSwitchSlider.style.opacity = 0.9;
+// } 
+// keyModeSwitchSliderOutput.innerHTML = "Parallel";
 
-keyModeSwitchSlider.oninput = function () {
-    if (Number(this.value) === 1) {
-        keyModeSwitchSliderOutput.innerHTML = "Stay same";
-    } else {
-        keyModeSwitchSliderOutput.innerHTML = "Parallel";
-    }
-    keyModeSwitchCheck.checked = false;
-    keyModeSwitchRandom = keyModeSwitchCheck.checked;
-    onScreenFirstPassOptions.keyModeSwitch = modeShiftArray[this.value - 1];
-    document.getElementById('key-mode-switch-slider').style.opacity = 0.9;
-}
+// keyModeSwitchSlider.oninput = function () {
+//     if (Number(this.value) === 1) {
+//         keyModeSwitchSliderOutput.innerHTML = "Stay same";
+//     } else {
+//         keyModeSwitchSliderOutput.innerHTML = "Parallel";
+//     }
+//     keyModeSwitchCheck.checked = false;
+//     keyModeSwitchRandom = keyModeSwitchCheck.checked;
+//     onScreenFirstPassOptions.keyModeSwitch = modeShiftArray[this.value - 1];
+//     document.getElementById('key-mode-switch-slider').style.opacity = 0.9;
+// }
 
-// when checking the box....
-keyModeSwitchCheck.oninput = () => {
-    // apply checked value to control variable
-    keyModeSwitchRandom = keyModeSwitchCheck.checked;
+// // when checking the box....
+// keyModeSwitchCheck.oninput = () => {
+//     // apply checked value to control variable
+//     keyModeSwitchRandom = keyModeSwitchCheck.checked;
 
-    if (keyModeSwitchCheck.checked === true) {
-        document.getElementById('key-mode-switch-slider').style.opacity = 0.3;
-        keyModeSwitchSliderOutput.innerHTML = '...';
-    } else {
-        document.getElementById('key-mode-switch-slider').style.opacity = 0.9;
-        if (Number(keyModeSwitchSlider.value) === 1) {
-            keyModeSwitchSliderOutput.innerHTML = "Stay same";
-        } else {
-            keyModeSwitchSliderOutput.innerHTML = "Parallel";
-        }
-        onScreenFirstPassOptions.keyModeSwitch = modeShiftArray[keyModeSwitchSlider.value - 1];
-    }
-}
+//     if (keyModeSwitchCheck.checked === true) {
+//         document.getElementById('key-mode-switch-slider').style.opacity = 0.3;
+//         keyModeSwitchSliderOutput.innerHTML = '...';
+//     } else {
+//         document.getElementById('key-mode-switch-slider').style.opacity = 0.9;
+//         if (Number(keyModeSwitchSlider.value) === 1) {
+//             keyModeSwitchSliderOutput.innerHTML = "Stay same";
+//         } else {
+//             keyModeSwitchSliderOutput.innerHTML = "Parallel";
+//         }
+//         onScreenFirstPassOptions.keyModeSwitch = modeShiftArray[keyModeSwitchSlider.value - 1];
+//     }
+// }
 
 
 

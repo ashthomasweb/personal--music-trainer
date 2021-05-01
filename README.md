@@ -31,17 +31,17 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 * Add user interaction on generator 
 * Add percussion bank.
 * Add Violin and Contrabass to generator.
+
 ## Known Issues
-* Windows 95 feel UI
+* Generator: onscreen options need refactor. Persistent variable needs to be individually controlled, needs a variable for each option. Refer to written system chart.  
 * Generator: undefined value occuring occasionally for unknown reason in alto voice. Does not interrupt playback. Seems to only happen in alto, perhaps surrounding times where the voice drifts from it's initial range. Adding individual voice range suppport may solve issue. 
 * Generator: When the voice drifts out of it's given range due to voice-leading considerations, the associated gainNode cannot mute previous note, and overlap can occur, producing unwanted dissonance. Most likely happening during resolution direction or chord member check functions.
-
 
 ## Status
 Project is: _in development_.
 
 ## Inspiration
-I built a memory game during my career transition that inspired me to connect the old and the new. Synesthesia and color hearing both led me to include color choice options. 
+I built a memory game during my career transition that inspired me to connect my first career with my new one. Synesthesia and color hearing both led me to include color choice options. While teaching, I used to say that if music theory was programmed into a computer, what came out would sound surprisingly familiar and even pretty at times, with minimal awkwardness.
 
 ## Contact
 Created by Ashley Thomas (https://www.ashthomasweb.com/) - feel free to contact me!
