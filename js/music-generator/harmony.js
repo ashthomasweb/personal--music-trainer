@@ -50,6 +50,15 @@ function getEmptyChart() {
 
 // hard-code defaults
 // control variables
+let numOfRepeatsConBool = false;
+let numOfRepeatsOption;
+let numOfRepeatsRandom = true;
+
+let persistStateConBool = false;
+let persistStateOption;
+
+
+let startingChordPersist = false;
 let startingChordConBool = false;
 let startingChordOption;
 let startingChordRandom = false;
@@ -57,25 +66,23 @@ let startingChordRandom = false;
 
 
 
+let typeOfCadencePersist = false;
 let typeOfCadenceConBool = false;
 let typeOfCadenceOption;
 let typeOfCadenceRandom = true;
 
+let keyModePersist = false;
 let keyModeConBool = false;
 let keyModeOption;
 let keyModeRandom = true;
 
 
-let persistStateConBool = false;
-let persistStateOption;
 
+let numOfChordsPersist = false;
 let numOfChordsConBool = false;
 let numOfChordsOption;
 let numOfChordsRandom = true;
 
-let numOfRepeatsConBool = false;
-let numOfRepeatsOption;
-let numOfRepeatsRandom = true;
 
 let keyCenterPersist = false;
 let keyCenterConBool = false;
@@ -151,7 +158,7 @@ function getKeyMode() {
 
 
 
-
+// let keyModeSwitchPersist = false;
 
 // // value controls whether or not onscreen options are applied and or initialized
 // let keyModeSwitchConBool = true;

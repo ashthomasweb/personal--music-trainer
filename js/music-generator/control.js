@@ -59,7 +59,54 @@ function masterControl() {
     buildDoublePeriod();
 }
 
-function keyPersist() {
+
+
+function sectionModeShift() {
+    keyCenterPersist = !keyCenterPersist;
+    if ( keyCenterPersist === true ) {
+        document.getElementById('section-shift-persist-toggle').style.backgroundColor = 'pink';
+    } else {
+        document.getElementById('section-shift-persist-toggle').style.backgroundColor = 'white';
+    }
+}
+
+function numChordPersist() {
+    numOfChordsPersist = !numOfChordsPersist;
+    if ( numOfChordsPersist === true ) {
+        document.getElementById('num-chord-persist-toggle').style.backgroundColor = 'pink';
+    } else {
+        document.getElementById('num-chord-persist-toggle').style.backgroundColor = 'white';
+    }
+}
+
+function startChordPersist() {
+    startingChordPersist = !startingChordPersist;
+    if ( startingChordPersist === true ) {
+        document.getElementById('start-chord-persist-toggle').style.backgroundColor = 'pink';
+    } else {
+        document.getElementById('start-chord-persist-toggle').style.backgroundColor = 'white';
+    }
+}
+
+function keyModePersist() {
+    keyModePersist = !keyModePersist;
+    if ( keyModePersist === true ) {
+        document.getElementById('key-mode-persist-toggle').style.backgroundColor = 'pink';
+    } else {
+        document.getElementById('key-mode-persist-toggle').style.backgroundColor = 'white';
+    }
+}
+
+function cadencePersist() {
+    typeOfCadencePersist = !typeOfCadencePersist;
+    if ( typeOfCadencePersist === true ) {
+        document.getElementById('cadence-persist-toggle').style.backgroundColor = 'pink';
+    } else {
+        document.getElementById('cadence-persist-toggle').style.backgroundColor = 'white';
+    }
+}
+
+function keyCenterPersist() {
     keyCenterPersist = !keyCenterPersist;
     if ( keyCenterPersist === true ) {
         document.getElementById('key-persist-toggle').style.backgroundColor = 'pink';

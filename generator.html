@@ -56,7 +56,7 @@
 
     <div class="options">
       <h2>Form Options</h2>
-      <button id="persist-toggle" onclick="makePersist()">Make Persist</button>
+      <button id="persist-toggle" onclick="makeAllPersist()">Make All Persist</button>
 
       <div class="slidecontainer">
         <p class="slider-title">How many repeats?</p>
@@ -64,6 +64,7 @@
         <label for="repeats-check">Random</label>
         <input type="checkbox" id="numOfRepeats-check" name="repeats-check" checked="checked">
         <input type="range" min="1" max="100" value="4" class="slider" id="num-repeats-slider">
+
       </div>
 
       <div class="slidecontainer">
@@ -72,6 +73,8 @@
         <label for="chords-check">Random</label>
         <input type="checkbox" id="numOfChords-check" name="chords-check" checked="checked">
         <input type="range" min="3" max="7" value="5" class="slider" id="num-chords-slider">
+        <button id="num-chord-persist-toggle" onclick="numChordPersist()">Persist</button>
+
       </div>
 
       <div class="slidecontainer">
@@ -80,6 +83,8 @@
         <label for="starting-chord-check">Random</label>
         <input type="checkbox" id="startingChord-check" name="starting-chord-check" >
         <input type="range" min="1" max="7" value="1" class="slider" id="starting-chord-slider">
+        <button id="start-chord-persist-toggle" onclick="startChordPersist()">Persist</button>
+
       </div>
 
       <div class="slidecontainer">
@@ -88,6 +93,8 @@
         <label for="key-mode-check">Random</label>
         <input type="checkbox" id="keyMode-check" name="key-mode-check" checked="checked">
         <input type="range" min="1" max="2" value="1" class="slider" id="key-mode-slider">
+        <button id="key-mode-persist-toggle" onclick="keyModePersist()">Persist</button>
+
       </div>
       
       <div class="slidecontainer">
@@ -96,15 +103,17 @@
         <label for="cadence-check">Random</label>
         <input type="checkbox" id="cadence-check" name="cadence-check" checked="checked">
         <input type="range" min="1" max="4" value="1" class="slider" id="cadence-slider">
+        <button id="cadence-persist-toggle" onclick="cadencePersist()">Persist</button>
+
       </div>
 
       <div class="slidecontainer">
-        <p class="slider-title">Key Center?</p>
+        <p class="slider-title">Center?</p>
         <p class="slider-value"><span id="key-center-output">...</span></p>
         <label for="key-center-check">Random</label>
         <input type="checkbox" id="keyCenter-check" name="key-center-check" checked="checked">
         <input type="range" min="1" max="4" value="1" class="slider" id="key-center-slider">
-        <button id="key-persist-toggle" onclick="keyPersist()">Key Persist</button>
+        <button id="key-persist-toggle" onclick="keyCenterPersist()">Persist</button>
 
       </div>
 
@@ -122,6 +131,8 @@
         <label for="key-mode-switch-check">Random</label>
         <input type="checkbox" id="keyModeSwitch-check" name="key-mode-switch-check" >
         <input type="range" min="1" max="2" value="2" class="slider" id="key-mode-switch-slider">
+        <button id="section-shift-persist-toggle" onclick="sectionModeShift()">Persist</button>
+
       </div>
 
 
