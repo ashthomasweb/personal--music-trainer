@@ -59,10 +59,24 @@ function masterControl() {
     buildDoublePeriod();
 }
 
+function keyPersist() {
+    keyCenterPersist = !keyCenterPersist;
+    if ( keyCenterPersist === true ) {
+        document.getElementById('key-persist-toggle').style.backgroundColor = 'pink';
+    } else {
+        document.getElementById('key-persist-toggle').style.backgroundColor = 'white';
+    }
+}
+
+
+
 // turn off control booleans
 function turnControlOff() {
+
     keyModeConBool = false;
-    keyCenterConBool = false;
+    if ( keyCenterPersist === false ) {
+        keyCenterConBool = false;
+    }
     numOfRepeatsConBool = false;
     startingChordConBool = false;
     typeOfCadenceConBool = false;

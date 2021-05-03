@@ -54,6 +54,9 @@ let startingChordConBool = false;
 let startingChordOption;
 let startingChordRandom = false;
 
+
+
+
 let typeOfCadenceConBool = false;
 let typeOfCadenceOption;
 let typeOfCadenceRandom = true;
@@ -74,6 +77,7 @@ let numOfRepeatsConBool = false;
 let numOfRepeatsOption;
 let numOfRepeatsRandom = true;
 
+let keyCenterPersist = false;
 let keyCenterConBool = false;
 let keyCenterOption;
 let keyCenterRandom = true;
