@@ -84,6 +84,12 @@ let numOfChordsOption;
 let numOfChordsRandom = true;
 
 
+
+
+
+
+
+
 let keyCenterPersist = false;
 let keyCenterConBool = false;
 let keyCenterOption;
@@ -243,7 +249,7 @@ function buildDoublePeriod() {
     if (numOfRepeatsConBool === true && numOfRepeatsRandom === false) {
         numOfRepeatsConVar = numOfRepeatsOption;
     } else {
-        numOfRepeatsConVar = generateChance(100);
+        numOfRepeatsConVar = generateChance(10, 5);
     }
     
     for (let i = 0; i < numOfRepeatsConVar; i++) {
@@ -427,7 +433,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         cadenceHandler(section);
         storePlaybackData();
     }
-    // console.log(info.formId + info.key)
+    console.log(info.formId + ' ' + info.key)
 }
 
 let progression = [];

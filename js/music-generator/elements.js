@@ -253,9 +253,13 @@ keyCenterCheck.oninput = () => {
     keyCenterRandom = keyCenterCheck.checked;
     if (keyCenterCheck.checked === true) {
         document.getElementById('key-center-slider').style.opacity = 0.3;
+        document.getElementById('key-center-label').style.opacity = 1;
+
         keyCenterSliderOutput.innerHTML = '...';
     } else {
         document.getElementById('key-center-slider').style.opacity = 0.9;
+        document.getElementById('key-center-label').style.opacity = 0.4;
+
         if (keyCenterArray[Number(keyCenterSlider.value) - 1] === keyOfF) {
             keyCenterSliderOutput.innerHTML = "Key of F";
         } else if (keyCenterArray[Number(keyCenterSlider.value) - 1] === keyOfC) {
