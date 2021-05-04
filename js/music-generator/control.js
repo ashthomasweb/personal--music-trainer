@@ -5,7 +5,7 @@ let onScreenFirstPassOptions = {
     keyCenter: undefined,
     // keyMode: undefined,
     // numOfRepeats: undefined,
-    // startingChord: undefined,
+    startingChord: undefined,
     // typeOfCadence: undefined,
     // numOfChords: undefined,
     // persistState: undefined,
@@ -13,6 +13,7 @@ let onScreenFirstPassOptions = {
 }
 
 function masterControl() {
+
     // if onscreen assigned options are manipulated, use them
     let controlOptions = onScreenFirstPassOptions;
 
@@ -26,15 +27,15 @@ function masterControl() {
     //     keyModeOption = controlOptions.keyMode;
     // }
 
-    if (controlOptions.keyCenter !== undefined) {
+    if (controlOptions.keyCenter !== undefined || keyCenterRandom === true) {
         keyCenterConBool = true;
         keyCenterOption = controlOptions.keyCenter;
     }
 
-    // if (controlOptions.startingChord !== undefined) {
-    //     startingChordConBool = true;
-    //     startingChordOption = controlOptions.startingChord;
-    // }
+    if (controlOptions.startingChord !== undefined || startingChordRandom === true) {
+        startingChordConBool = true;
+        startingChordOption = controlOptions.startingChord;
+    }
 
     // if (controlOptions.typeOfCadence !== undefined) {
     //     typeOfCadenceConBool = true;
@@ -79,14 +80,14 @@ function masterControl() {
 //     }
 // }
 
-// function startChordPersist() {
-//     startingChordPersist = !startingChordPersist;
-//     if ( startingChordPersist === true ) {
-//         document.getElementById('start-chord-persist-toggle').style.backgroundColor = 'pink';
-//     } else {
-//         document.getElementById('start-chord-persist-toggle').style.backgroundColor = 'white';
-//     }
-// }
+function startChordPersist() {
+    startingChordPersist = !startingChordPersist;
+    if (startingChordPersist === true) {
+        document.getElementById('start-chord-persist-toggle').style.backgroundColor = 'pink';
+    } else {
+        document.getElementById('start-chord-persist-toggle').style.backgroundColor = 'white';
+    }
+}
 
 // function makeKeyModePersist() {
 //     keyModePersist = !keyModePersist;
@@ -108,7 +109,7 @@ function masterControl() {
 
 function keyCtrPersist() {
     keyCenterPersist = !keyCenterPersist;
-    if ( keyCenterPersist === true ) {
+    if (keyCenterPersist === true) {
         document.getElementById('key-persist-toggle').style.backgroundColor = 'pink';
     } else {
         document.getElementById('key-persist-toggle').style.backgroundColor = 'white';
@@ -120,12 +121,22 @@ function keyCtrPersist() {
 // turn off control booleans
 function turnControlOff() {
 
-    if ( keyCenterPersist === false ) {
+    if (keyCenterPersist === false) {
         keyCenterConBool = false;
     }
+
+    if (startingChordPersist === false) {
+
+        startingChordConBool = false;
+    }
+
+
+
+
+
+
     // keyModeConBool = false;
     // numOfRepeatsConBool = false;
-    // startingChordConBool = false;
     // typeOfCadenceConBool = false;
     // numOfChordsConBool = false;
     // persistStateConBool = false;
@@ -164,5 +175,3 @@ function turnControlOff() {
 
 //     return typeOfDefault;
 // }
-
-

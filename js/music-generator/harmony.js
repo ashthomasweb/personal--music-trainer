@@ -96,11 +96,29 @@ let keyCenterOption;
 let keyCenterRandom = true;
 
 function getKeyCenter() {
-    keyCenterConVar = keyCenterOption;
+
+    // onscreen user controled option has been clicked, random box onchecked
     if (keyCenterConBool === true && keyCenterRandom === false) {
+        keyCenterConVar = keyCenterOption;
         keyNumerals = keyCenterConVar;
-    } else {
-        switch (generateChance(4)) { // program defaults
+    } else if (keyCenterConBool === true && keyCenterRandom === true) { // random checkbox enabled
+        switch (generateChance(4)) { 
+            case 1:
+                keyNumerals = keyOfC;
+                break;
+            case 2:
+                keyNumerals = keyOfF;
+                break;
+            case 3:
+                keyNumerals = keyOfG;
+                break;
+            case 4:
+                keyNumerals = keyOfD;
+            default:
+                break;
+        }
+    } else { // hard-coded option
+        switch (generateChance(4)) { 
             case 1:
                 keyNumerals = keyOfC;
                 break;
@@ -277,20 +295,23 @@ function buildDoublePeriod() {
                 voiceLeadHandler(section);
             }
         }
-        let persistStateConVar;
-        if (persistStateConBool === true) {
-            persistStateConVar = persistStateOption;
-        }
+        // CONTROL HANDLING ---------
+        // let persistStateConVar;
+        // if (persistStateConBool === true) {
+        //     persistStateConVar = persistStateOption;
+        // }
 
-        if (persistStateConVar === false || persistStateConVar === undefined) {
-            if (i === 0) {
-                turnControlOff();
-            }
-        } else {
-            if (i === 0) {
-                // controlOff(); // do nothing
-            }
-        }
+        // if (persistStateConVar === false || persistStateConVar === undefined) {
+        //     if (i === 0) {
+        //     }
+        // } else {
+        //     if (i === 0) {
+        //         // controlOff(); // do nothing
+        //     }
+        // }
+        turnControlOff();
+        // CONTROL HANDLING ---------
+
     }
     playPhraseChart();
 }
@@ -385,18 +406,41 @@ function createHarmonicUnit(section, formNum, phraseChart) {
             return input - amountChange;
         }
     }
+ 
+    // CONTROL HANDLING --------------
 
+    // onscreen user controled option has been clicked, random box onchecked
     if (startingChordConBool === true && startingChordRandom === false) {
         startingChordConVar = startingChordOption;
-    } else {
+    } else if (startingChordConBool === true && startingChordRandom === true ) { // random checkbox enabled
+        startingChordConVar = generateChance(7);
+    } else { // hard-coded option
         startingChordConVar = 1;
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     if (typeOfCadenceConBool === true && typeOfCadenceRandom === false) {
         typeOfCadenceConVar = typeOfCadenceOption;
     } else {
         typeOfCadenceConVar = generateChance(3, 1);
     }
+    // CONTROL HANDLING --------------
+
+
+
+
+
 
     // first 4 bar phrase
     if (section === 0) {
@@ -433,7 +477,9 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         cadenceHandler(section);
         storePlaybackData();
     }
+    // console.log(info.formId + ' ' + info.progression[0])
     console.log(info.formId + ' ' + info.key)
+
 }
 
 let progression = [];

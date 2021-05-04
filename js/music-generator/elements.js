@@ -50,34 +50,42 @@
 //     }
 // }
 
-// // start progression on given harmony
-// var startingChordSlider = document.getElementById("starting-chord-slider");
-// var startingChordOutput = document.getElementById("starting-chord-output");
-// var startingChordCheck = document.getElementById("startingChord-check");
 
-// if (startingChordCheck.checked === false ) {
-//     startingChordSlider.style.opacity = 0.9;
-// }
 
-// startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
-// startingChordSlider.oninput = function () {
-//     startingChordOutput.innerHTML = currentHarmony[this.value - 1];
-//     onScreenFirstPassOptions.startingChord = this.value;
-//     startingChordCheck.checked = false;
-//     startingChordRandom = startingChordCheck.checked;
-//     document.getElementById('starting-chord-slider').style.opacity = 0.9;
-// }
 
-// startingChordCheck.oninput = () => {
-//     startingChordRandom = startingChordCheck.checked;
-//     if (startingChordCheck.checked === true) {
-//         document.getElementById('starting-chord-slider').style.opacity = 0.3;
-//         startingChordOutput.innerHTML = '...';
-//     } else {
-//         document.getElementById('starting-chord-slider').style.opacity = 0.9;
-//         startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
-//     }
-// }
+
+// start progression on given harmony
+var startingChordSlider = document.getElementById("starting-chord-slider");
+var startingChordOutput = document.getElementById("starting-chord-output");
+var startingChordCheck = document.getElementById("startingChord-check");
+
+if (startingChordCheck.checked === false ) {
+    startingChordSlider.style.opacity = 0.9;
+}
+
+startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
+startingChordSlider.oninput = function () {
+    startingChordConBool = true;
+    startingChordOutput.innerHTML = currentHarmony[this.value - 1];
+    onScreenFirstPassOptions.startingChord = this.value;
+    startingChordCheck.checked = false;
+    startingChordRandom = startingChordCheck.checked;
+    document.getElementById('starting-chord-slider').style.opacity = 0.9;
+}
+
+startingChordCheck.oninput = () => {
+    startingChordRandom = startingChordCheck.checked;
+    startingChordConBool = true;
+    if (startingChordCheck.checked === true) {
+        document.getElementById('starting-chord-slider').style.opacity = 0.3;
+        document.getElementById('starting-chord-label').style.opacity = 1;
+        startingChordOutput.innerHTML = '...';
+    } else {
+        document.getElementById('starting-chord-slider').style.opacity = 0.9;
+        document.getElementById('starting-chord-label').style.opacity = 0.4;
+        startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
+    }
+}
 
 
 
@@ -234,6 +242,7 @@ var keyCenterCheck = document.getElementById("keyCenter-check");
 
 keyCenterSliderOutput.innerHTML = '...';
 keyCenterSlider.oninput = function () {
+    keyCenterConBool = true;
     if (keyCenterArray[this.value - 1] === keyOfF) {
         keyCenterSliderOutput.innerHTML = "Key of F";
     } else if (keyCenterArray[this.value - 1] === keyOfC) {
@@ -250,6 +259,8 @@ keyCenterSlider.oninput = function () {
 }
 
 keyCenterCheck.oninput = () => {
+    keyCenterConBool = true;
+
     keyCenterRandom = keyCenterCheck.checked;
     if (keyCenterCheck.checked === true) {
         document.getElementById('key-center-slider').style.opacity = 0.3;
