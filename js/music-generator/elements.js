@@ -61,6 +61,7 @@ var startingChordCheck = document.getElementById("startingChord-check");
 
 if (startingChordCheck.checked === false ) {
     startingChordSlider.style.opacity = 0.9;
+    document.getElementById('starting-chord-label').style.opacity = 0.4;
 }
 
 startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
@@ -208,31 +209,38 @@ startingChordCheck.oninput = () => {
 
 
 
-// // type of cadence 
-// var cadenceSlider = document.getElementById("cadence-slider");
-// var cadenceSliderOutput = document.getElementById("cadence-output");
-// var cadenceCheck = document.getElementById("cadence-check");
+// type of cadence 
+var cadenceSlider = document.getElementById("cadence-slider");
+var cadenceSliderOutput = document.getElementById("cadence-output");
+var cadenceCheck = document.getElementById("cadence-check");
 
-// cadenceSliderOutput.innerHTML = '...';
-// cadenceSlider.oninput = function () {
-//     cadenceSliderOutput.innerHTML = cadenceType[this.value - 1];
-//     onScreenFirstPassOptions.typeOfCadence = this.value;
-//     cadenceCheck.checked = false;
-//     typeOfCadenceRandom = cadenceCheck.checked;
-//     document.getElementById('cadence-slider').style.opacity = 0.9;
-// }
+cadenceSliderOutput.innerHTML = '...';
+cadenceSlider.oninput = function () {
+    cadenceSliderOutput.innerHTML = cadenceType[this.value - 1];
+    onScreenFirstPassOptions.typeOfCadence = this.value;
+    cadenceCheck.checked = false;
+    typeOfCadenceRandom = cadenceCheck.checked;
+    document.getElementById('cadence-slider').style.opacity = 0.9;
+    
+}
 
-// cadenceCheck.oninput = () => {
-//     typeOfCadenceRandom = cadenceCheck.checked;
-//     if (cadenceCheck.checked === true) {
-//         document.getElementById('cadence-slider').style.opacity = 0.3;
-//         cadenceSliderOutput.innerHTML = '...';
-//     } else {
-//         document.getElementById('cadence-slider').style.opacity = 0.9;
-//         cadenceSliderOutput.innerHTML = cadenceType[Number(cadenceSlider.value) - 1];
-//         onScreenFirstPassOptions.typeOfCadence = Number(cadenceSlider.value);
-//     }
-// }
+cadenceCheck.oninput = () => {
+    typeOfCadenceRandom = cadenceCheck.checked;
+    if (cadenceCheck.checked === true) {
+        document.getElementById('cadence-slider').style.opacity = 0.3;
+        document.getElementById('cadence-label').style.opacity = 1;
+        
+        cadenceSliderOutput.innerHTML = '...';
+    } else {
+        document.getElementById('cadence-slider').style.opacity = 0.9;
+        document.getElementById('cadence-label').style.opacity = 0.4;
+        cadenceSliderOutput.innerHTML = cadenceType[Number(cadenceSlider.value) - 1];
+        onScreenFirstPassOptions.typeOfCadence = Number(cadenceSlider.value);
+    }
+}
+
+
+
 
 // key center
 let keyCenterArray = [keyOfF, keyOfC, keyOfG, keyOfD];

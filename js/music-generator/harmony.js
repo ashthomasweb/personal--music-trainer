@@ -50,6 +50,28 @@ function getEmptyChart() {
 
 // hard-code defaults
 // control variables
+
+
+
+let keyCenterPersist = false;
+let keyCenterConBool = false;
+let keyCenterOption;
+let keyCenterRandom = true;
+
+let startingChordPersist = false;
+let startingChordConBool = false;
+let startingChordOption;
+let startingChordRandom = false;
+
+let typeOfCadencePersist = false;
+let typeOfCadenceConBool = false;
+let typeOfCadenceOption;
+let typeOfCadenceRandom = true;
+
+
+
+
+
 let numOfRepeatsConBool = false;
 let numOfRepeatsOption;
 let numOfRepeatsRandom = true;
@@ -58,25 +80,10 @@ let persistStateConBool = false;
 let persistStateOption;
 
 
-let startingChordPersist = false;
-let startingChordConBool = false;
-let startingChordOption;
-let startingChordRandom = false;
-
-
-
-
-let typeOfCadencePersist = false;
-let typeOfCadenceConBool = false;
-let typeOfCadenceOption;
-let typeOfCadenceRandom = true;
-
 let keyModePersist = false;
 let keyModeConBool = false;
 let keyModeOption;
 let keyModeRandom = true;
-
-
 
 let numOfChordsPersist = false;
 let numOfChordsConBool = false;
@@ -86,14 +93,6 @@ let numOfChordsRandom = true;
 
 
 
-
-
-
-
-let keyCenterPersist = false;
-let keyCenterConBool = false;
-let keyCenterOption;
-let keyCenterRandom = true;
 
 function getKeyCenter() {
 
@@ -135,6 +134,11 @@ function getKeyCenter() {
         }
     }
 }
+
+
+
+
+
 
 let currentHarmony = major;
 let romanNumOne;
@@ -395,11 +399,11 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     }
 
     function getNewTempo() {
-        return generateChance(150, 250);
+        return generateChance(250, 350);
     }
 
     function getCloselyRelatedTempo(input) {
-        let amountChange = generateChance(70, 80);
+        let amountChange = generateChance(70, 50);
         if (generateChance(2) === 1) {
             return input + amountChange;
         } else {
@@ -420,21 +424,15 @@ function createHarmonicUnit(section, formNum, phraseChart) {
 
 
 
-
-
-
-
-
-
-
-
-
-
+    // onscreen user controled option has been clicked, random box onchecked
     if (typeOfCadenceConBool === true && typeOfCadenceRandom === false) {
         typeOfCadenceConVar = typeOfCadenceOption;
-    } else {
+    } else if (typeOfCadenceConBool === true && typeOfCadenceRandom === true) { // random checkbox enabled
+        typeOfCadenceConVar = generateChance(4);
+    } else { // hard-coded option
         typeOfCadenceConVar = generateChance(3, 1);
     }
+
     // CONTROL HANDLING --------------
 
 
@@ -477,8 +475,8 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         cadenceHandler(section);
         storePlaybackData();
     }
-    // console.log(info.formId + ' ' + info.progression[0])
-    console.log(info.formId + ' ' + info.key)
+    // console.log(info.formId + ' ' + info.progression[0]);
+    console.log(info.formId + ' ' + info.cadence)
 
 }
 
