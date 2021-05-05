@@ -95,7 +95,6 @@ let numOfChordsRandom = true;
 
 
 function getKeyCenter() {
-
     // onscreen user controled option has been clicked, random box onchecked
     if (keyCenterConBool === true && keyCenterRandom === false) {
         keyCenterConVar = keyCenterOption;

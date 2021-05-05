@@ -64,6 +64,7 @@ function masterControl() {
 
 
 function startChordPersist() {
+    startingChordConBool = true;
     startingChordPersist = !startingChordPersist;
     if (startingChordPersist === true) {
         document.getElementById('start-chord-persist-toggle').style.backgroundColor = 'pink';
@@ -73,6 +74,7 @@ function startChordPersist() {
 }
 
 function keyCtrPersist() {
+    keyCenterConBool = true;
     keyCenterPersist = !keyCenterPersist;
     if (keyCenterPersist === true) {
         document.getElementById('key-persist-toggle').style.backgroundColor = 'pink';
@@ -82,6 +84,7 @@ function keyCtrPersist() {
 }
 
 function cadencePersist() {
+    typeOfCadenceConBool = true;
     typeOfCadencePersist = !typeOfCadencePersist;
     if ( typeOfCadencePersist === true ) {
         document.getElementById('cadence-persist-toggle').style.backgroundColor = 'pink';
