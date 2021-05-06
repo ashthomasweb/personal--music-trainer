@@ -170,37 +170,55 @@
 
 
 
+function cadenceControlHandler() {
 
-// type of cadence 
-var cadenceSlider = document.getElementById("cadence-slider");
-var cadenceSliderOutput = document.getElementById("cadence-output");
-var cadenceCheck = document.getElementById("cadence-check");
-
-cadenceSliderOutput.innerHTML = '...';
-cadenceSlider.oninput = function () {
-    typeOfCadenceConBool = true;
-    cadenceSliderOutput.innerHTML = cadenceType[this.value - 1];
-    onScreenFirstPassOptions.typeOfCadence = this.value;
-    cadenceCheck.checked = false;
-    typeOfCadenceRandom = cadenceCheck.checked;
-    document.getElementById('cadence-slider').style.opacity = 0.9;
-}
-
-cadenceCheck.oninput = () => {
-    typeOfCadenceRandom = cadenceCheck.checked;
-    typeOfCadenceConBool = true;
-    if (cadenceCheck.checked === true) {
-        document.getElementById('cadence-slider').style.opacity = 0.3;
-        document.getElementById('cadence-label').style.opacity = 1;
-        cadenceSliderOutput.innerHTML = '...';
-    } else {
-        document.getElementById('cadence-slider').style.opacity = 0.9;
-        document.getElementById('cadence-label').style.opacity = 0.4;
-        cadenceSliderOutput.innerHTML = cadenceType[Number(cadenceSlider.value) - 1];
-        onScreenFirstPassOptions.typeOfCadence = Number(cadenceSlider.value);
+    // type of cadence 
+    var cadenceSlider = document.getElementById("cadence-slider");
+    var cadenceSliderOutput = document.getElementById("cadence-output");
+    var cadenceCheck = document.getElementById("cadence-check");
+    var cadenceLabel = document.getElementById('cadence-label');
+    
+    function cadenceOpacity() {
+        cadenceLabel.style.opacity = 0.9;
+        cadenceLabel.style.opacity = 0.4;
     }
-}
 
+    // set initial display value
+    cadenceSliderOutput.innerHTML = '...';
+
+    cadenceSlider.oninput = function () {
+        // turn off checkbox
+        cadenceCheck.checked = false;
+        // indicate user control
+        typeOfCadenceConBool = true;
+        // push user value to control object
+        onScreenFirstPassOptions.typeOfCadence = this.value;
+        // release random control
+        typeOfCadenceRandom = cadenceCheck.checked;
+        // display handling
+        cadenceSliderOutput.innerHTML = cadenceType[this.value - 1];
+        cadenceOpacity();
+    }
+    
+    cadenceCheck.oninput = () => {
+        // indicate user control
+        typeOfCadenceConBool = true;
+        // set checkbox
+        typeOfCadenceRandom = cadenceCheck.checked;
+        // display handling
+        if (cadenceCheck.checked === true) {
+            cadenceSliderOutput.innerHTML = '...';
+            cadenceSlider.style.opacity = 0.3;
+            cadenceLabel.style.opacity = 1;
+        } else {
+            cadenceSliderOutput.innerHTML = cadenceType[cadenceSlider.value - 1];
+            onScreenFirstPassOptions.typeOfCadence = cadenceSlider.value;
+            cadenceOpacity();
+        }
+    }
+    
+}
+cadenceControlHandler();
 
 
 
