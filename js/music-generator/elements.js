@@ -71,40 +71,6 @@
 
 
 
-// // major / minor
-// let modeArray = [major, minor];
-// var keyModeSlider = document.getElementById("key-mode-slider");
-// var keyModeSliderOutput = document.getElementById("key-mode-output");
-// var keyModeCheck = document.getElementById("keyMode-check");
-
-// keyModeSliderOutput.innerHTML = "...";
-// keyModeSlider.oninput = function () {
-//     if (Number(this.value) === 1) {
-//         keyModeSliderOutput.innerHTML = "Major";
-//     } else {
-//         keyModeSliderOutput.innerHTML = "Minor";
-//     }
-//     keyModeCheck.checked = false;
-//     keyModeRandom = startingChordCheck.checked;
-//     onScreenFirstPassOptions.keyModeSwitch = modeArray[this.value - 1];
-//     document.getElementById('key-mode-slider').style.opacity = 0.9;
-// }
-
-// keyModeCheck.oninput = () => {
-//     keyModeRandom = keyModeCheck.checked;
-//     if (keyModeCheck.checked === true) {
-//         document.getElementById('key-mode-slider').style.opacity = 0.3;
-//         keyModeSliderOutput.innerHTML = '...';
-//     } else {
-//         document.getElementById('key-mode-slider').style.opacity = 0.9;
-//         if (Number(keyModeSlider.value) === 1) {
-//             keyModeSliderOutput.innerHTML = "Major";
-//         } else {
-//             keyModeSliderOutput.innerHTML = "Minor";
-//         }
-//         onScreenFirstPassOptions.keyModeSwitch = modeArray[keyModeSlider.value - 1];
-//     }
-// }
 
 
 
@@ -114,13 +80,7 @@
 
 
 
-
-
-
-
-
-
-// // // key shift - IN PROGRESS DOES NOT WORK
+// // // key shift
 // let modeShiftArray = ['static', 'parallel'];
 
 
@@ -128,9 +88,9 @@
 // var keyModeSwitchSliderOutput = document.getElementById("key-mode-switch-output");
 // var keyModeSwitchCheck = document.getElementById("keyModeSwitch-check");
 
-// if (keyModeSwitchCheck.checked === false ) {
+// if (keyModeSwitchCheck.checked === false) {
 //     keyModeSwitchSlider.style.opacity = 0.9;
-// } 
+// }
 // keyModeSwitchSliderOutput.innerHTML = "Parallel";
 
 // keyModeSwitchSlider.oninput = function () {
@@ -164,116 +124,6 @@
 //     }
 // }
 
-
-
-
-
-
-
-function cadenceControlHandler() {
-
-    // type of cadence 
-    var cadenceSlider = document.getElementById("cadence-slider");
-    var cadenceSliderOutput = document.getElementById("cadence-output");
-    var cadenceCheck = document.getElementById("cadence-check");
-    var cadenceLabel = document.getElementById('cadence-label');
-    
-    function cadenceOpacity() {
-        cadenceLabel.style.opacity = 0.9;
-        cadenceLabel.style.opacity = 0.4;
-    }
-
-    // set initial display value
-    cadenceSliderOutput.innerHTML = '...';
-
-    cadenceSlider.oninput = function () {
-        // turn off checkbox
-        cadenceCheck.checked = false;
-        // indicate user control
-        typeOfCadenceConBool = true;
-        // push user value to control object
-        onScreenFirstPassOptions.typeOfCadence = this.value;
-        // release random control
-        typeOfCadenceRandom = cadenceCheck.checked;
-        // display handling
-        cadenceSliderOutput.innerHTML = cadenceType[this.value - 1];
-        cadenceOpacity();
-    }
-    
-    cadenceCheck.oninput = () => {
-        // indicate user control
-        typeOfCadenceConBool = true;
-        // set checkbox
-        typeOfCadenceRandom = cadenceCheck.checked;
-        // display handling
-        if (cadenceCheck.checked === true) {
-            cadenceSliderOutput.innerHTML = '...';
-            cadenceSlider.style.opacity = 0.3;
-            cadenceLabel.style.opacity = 1;
-        } else {
-            cadenceSliderOutput.innerHTML = cadenceType[cadenceSlider.value - 1];
-            onScreenFirstPassOptions.typeOfCadence = cadenceSlider.value;
-            cadenceOpacity();
-        }
-    }
-    
-}
-cadenceControlHandler();
-
-
-
-
-
-
-// key center
-let keyCenterArray = [keyOfF, keyOfC, keyOfG, keyOfD];
-var keyCenterSlider = document.getElementById("key-center-slider");
-var keyCenterSliderOutput = document.getElementById("key-center-output");
-var keyCenterCheck = document.getElementById("keyCenter-check");
-
-keyCenterSliderOutput.innerHTML = '...';
-keyCenterSlider.oninput = function () {
-    keyCenterConBool = true;
-    if (keyCenterArray[this.value - 1] === keyOfF) {
-        keyCenterSliderOutput.innerHTML = "Key of F";
-    } else if (keyCenterArray[this.value - 1] === keyOfC) {
-        keyCenterSliderOutput.innerHTML = "Key of C";
-    } else if (keyCenterArray[this.value - 1] === keyOfG) {
-        keyCenterSliderOutput.innerHTML = "Key of G";
-    } else if (keyCenterArray[this.value - 1] === keyOfD) {
-        keyCenterSliderOutput.innerHTML = "Key of D";
-    }
-    onScreenFirstPassOptions.keyCenter = keyCenterArray[this.value - 1];
-    keyCenterCheck.checked = false;
-    keyCenterRandom = keyCenterCheck.checked;
-    document.getElementById('key-center-slider').style.opacity = 0.9;
-}
-
-keyCenterCheck.oninput = () => {
-    keyCenterConBool = true;
-
-    keyCenterRandom = keyCenterCheck.checked;
-    if (keyCenterCheck.checked === true) {
-        document.getElementById('key-center-slider').style.opacity = 0.3;
-        document.getElementById('key-center-label').style.opacity = 1;
-
-        keyCenterSliderOutput.innerHTML = '...';
-    } else {
-        document.getElementById('key-center-slider').style.opacity = 0.9;
-        document.getElementById('key-center-label').style.opacity = 0.4;
-
-        if (keyCenterArray[Number(keyCenterSlider.value) - 1] === keyOfF) {
-            keyCenterSliderOutput.innerHTML = "Key of F";
-        } else if (keyCenterArray[Number(keyCenterSlider.value) - 1] === keyOfC) {
-            keyCenterSliderOutput.innerHTML = "Key of C";
-        } else if (keyCenterArray[Number(keyCenterSlider.value) - 1] === keyOfG) {
-            keyCenterSliderOutput.innerHTML = "Key of G";
-        } else if (keyCenterArray[Number(keyCenterSlider.value) - 1] === keyOfD) {
-            keyCenterSliderOutput.innerHTML = "Key of D";
-        }
-        onScreenFirstPassOptions.keyCenter = keyCenterArray[Number(keyCenterSlider.value) - 1];
-    }
-}
 
 
 

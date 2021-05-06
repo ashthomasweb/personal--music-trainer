@@ -53,20 +53,12 @@ function getEmptyChart() {
 
 
 
-let keyCenterPersist = false;
-let keyCenterConBool = false;
-let keyCenterOption;
-let keyCenterRandom = true;
 
-let startingChordPersist = false;
-let startingChordConBool = false;
-let startingChordOption;
-let startingChordRandom = false;
 
-let typeOfCadencePersist = false;
-let typeOfCadenceConBool = false;
-let typeOfCadenceOption;
-let typeOfCadenceRandom = true;
+
+
+
+
 
 
 
@@ -80,10 +72,6 @@ let persistStateConBool = false;
 let persistStateOption;
 
 
-let keyModePersist = false;
-let keyModeConBool = false;
-let keyModeOption;
-let keyModeRandom = true;
 
 let numOfChordsPersist = false;
 let numOfChordsConBool = false;
@@ -92,7 +80,10 @@ let numOfChordsRandom = true;
 
 
 
-
+let keyCenterPersist = false;
+let keyCenterConBool = false;
+let keyCenterOption;
+let keyCenterRandom = true;
 
 function getKeyCenter() {
     // onscreen user controled option has been clicked, random box onchecked
@@ -134,11 +125,10 @@ function getKeyCenter() {
     }
 }
 
-
-
-
-
-
+let keyModePersist = false;
+let keyModeConBool = false;
+let keyModeOption;
+let keyModeRandom = true;
 let currentHarmony = major;
 let romanNumOne;
 let romanNumFour;
@@ -146,6 +136,7 @@ let romanNumFive;
 let romanNumSix;
 
 function getKeyMode() {
+    // onscreen user controled option has been clicked, random box onchecked
     if (keyModeConBool === true && keyModeRandom === false) {
         if (keyModeOption === major) {
             keyModeConVar = 2;
@@ -154,10 +145,12 @@ function getKeyMode() {
         } else {
             keyModeConVar = generateChance(2);
         }
-    } else {
+    } else if (keyModeConBool === true && keyModeRandom === true) { // random checkbox enabled
+        keyModeConVar = generateChance(2);
+    } else { // hard-coded option
         keyModeConVar = generateChance(2);
     }
-
+    // multiple value assignment handling
     if (keyModeConVar === 1) {
         currentHarmony = minor;
         romanNumOne = 'i';
@@ -199,8 +192,7 @@ function getKeyMode() {
 // function switchParallelMode(repeat) {
 
 //     let modeShiftArray = ['static', 'parallel'];
-//    
-
+   
 //     // onscreen user controled options enabled, box onchecked
 //     if (keyModeSwitchConBool === true && keyModeSwitchRandom === false) {
 //         console.log('options no check');
@@ -232,15 +224,14 @@ function getKeyMode() {
 // }
 
 
+
+
+
 // function keyReturnHome() {
 //     console.log(phraseContainer[phraseContainer.length - 3][0].key);
 //     console.log(currentHarmony);
 //     console.log()
 //     let startingKey = phraseContainer[phraseContainer.length - 3][0].key;
-
-
-
-
 // }
 
 
@@ -330,6 +321,16 @@ function createPhraseChart(section, formNum) {
     let phraseChartArray = Object.values(phraseChart);
     phraseContainer.push(phraseChartArray);
 }
+
+let startingChordPersist = false;
+let startingChordConBool = false;
+let startingChordOption;
+let startingChordRandom = false;
+
+let typeOfCadencePersist = false;
+let typeOfCadenceConBool = false;
+let typeOfCadenceOption;
+let typeOfCadenceRandom = true;
 
 // makes a base unit of chords
 function createHarmonicUnit(section, formNum, phraseChart) {
@@ -421,8 +422,6 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         startingChordConVar = 1;
     }
 
-
-
     // onscreen user controled option has been clicked, random box onchecked
     if (typeOfCadenceConBool === true && typeOfCadenceRandom === false) {
         typeOfCadenceConVar = typeOfCadenceOption;
@@ -475,7 +474,9 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         storePlaybackData();
     }
     // console.log(info.formId + ' ' + info.progression[0]);
-    console.log(info.formId + ' ' + info.cadence)
+    console.log(info.formId + ' ' + info.key);
+
+    // console.log(info.formId + ' ' + info.cadence)
 
 }
 
