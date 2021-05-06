@@ -75,9 +75,6 @@ function startChordPersist() {
     }
 }
 
-
-
-
 // start progression on given harmony
 var startingChordSlider = document.getElementById("starting-chord-slider");
 var startingChordOutput = document.getElementById("starting-chord-output");
@@ -126,6 +123,11 @@ startingChordCheck.oninput = () => {
         startingChordOpacity();
     }
 }
+
+
+
+
+
 
 
 

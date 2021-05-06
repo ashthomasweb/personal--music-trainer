@@ -412,7 +412,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
  
     // CONTROL HANDLING --------------
 
-    // onscreen user controled option has been clicked, random box onchecked
+    // onscreen user controled option has been clicked, random box unchecked
     if (startingChordConBool === true && startingChordRandom === false) {
         startingChordConVar = startingChordOption;
     } else if (startingChordConBool === true && startingChordRandom === true ) { // random checkbox enabled

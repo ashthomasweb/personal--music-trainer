@@ -32,8 +32,7 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 * Add percussion bank.
 * Add Violin and Contrabass to generator.
 
-## Known Issues
-* Generator: onscreen options need refactor. Persistent variable needs to be individually controlled, needs a variable for each option. Refer to written system chart.  
+## Known Issues 
 * Generator: undefined value occuring occasionally for unknown reason in alto voice. Does not interrupt playback. Seems to only happen in alto, perhaps surrounding times where the voice drifts from it's initial range. Adding individual voice range suppport may solve issue. 
 * Generator: When the voice drifts out of it's given range due to voice-leading considerations, the associated gainNode cannot mute previous note, and overlap can occur, producing unwanted dissonance. Most likely happening during resolution direction or chord member check functions.
 
