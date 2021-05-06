@@ -14,7 +14,7 @@ let onScreenFirstPassOptions = {
 
 function masterControl() {
 
-    // if onscreen assigned options are manipulated, use them
+    // if onscreen assigned options are manipulated
     let controlOptions = onScreenFirstPassOptions;
 
     if (controlOptions.keyCenter !== undefined || keyCenterRandom === true) {
@@ -32,6 +32,10 @@ function masterControl() {
         typeOfCadenceOption = controlOptions.typeOfCadence;
     }
 
+
+
+
+
     // if (controlOptions.numOfRepeats !== undefined) {
     //     numOfRepeatsConBool = true;
     //     numOfRepeatsOption = controlOptions.numOfRepeats;
@@ -41,8 +45,6 @@ function masterControl() {
     //     keyModeConBool = true;
     //     keyModeOption = controlOptions.keyMode;
     // }
-
-
 
     // if (controlOptions.numOfChords !== undefined) {
     //     numOfChordsConBool = true;
@@ -72,6 +74,62 @@ function startChordPersist() {
         document.getElementById('start-chord-persist-toggle').style.backgroundColor = 'white';
     }
 }
+
+
+
+
+// start progression on given harmony
+var startingChordSlider = document.getElementById("starting-chord-slider");
+var startingChordOutput = document.getElementById("starting-chord-output");
+var startingChordCheck = document.getElementById("startingChord-check");
+var startingChordLabel = document.getElementById('starting-chord-label');
+
+function startingChordOpacity() {
+    startingChordSlider.style.opacity = 0.9;
+    startingChordLabel.style.opacity = 0.4;
+}
+
+// handle on-page-load conditional styling
+if (startingChordCheck.checked === false ) {
+    startingChordOpacity();
+}
+
+// set initial display value
+startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
+
+startingChordSlider.oninput = function () {
+    // turn off checkbox
+    startingChordCheck.checked = false;
+    // indicate user control
+    startingChordConBool = true;
+    // release random control
+    startingChordRandom = startingChordCheck.checked;
+    // push user value to control object
+    onScreenFirstPassOptions.startingChord = this.value;
+    // display handling
+    startingChordOutput.innerHTML = currentHarmony[this.value - 1];
+    startingChordOpacity();
+}
+
+startingChordCheck.oninput = () => {
+    // indicate user control
+    startingChordConBool = true;
+    // set checkbox
+    startingChordRandom = startingChordCheck.checked;
+    // display handling
+    if (startingChordCheck.checked === true) {
+        startingChordOutput.innerHTML = '...';
+        startingChordSlider.style.opacity = 0.3;
+        startingChordLabel.style.opacity = 1;
+    } else {
+        startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
+        startingChordOpacity();
+    }
+}
+
+
+
+
 
 function keyCtrPersist() {
     keyCenterConBool = true;

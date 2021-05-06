@@ -170,47 +170,6 @@
 
 
 
-// start progression on given harmony
-var startingChordSlider = document.getElementById("starting-chord-slider");
-var startingChordOutput = document.getElementById("starting-chord-output");
-var startingChordCheck = document.getElementById("startingChord-check");
-var startingChordLabel = document.getElementById('starting-chord-label');
-
-// handle on-page-load conditional styling
-if (startingChordCheck.checked === false ) {
-    startingChordSlider.style.opacity = 0.9;
-    startingChordLabel.style.opacity = 0.4;
-}
-
-startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
-startingChordSlider.oninput = function () {
-    startingChordConBool = true;
-    startingChordCheck.checked = false;
-    startingChordRandom = startingChordCheck.checked;
-    startingChordOutput.innerHTML = currentHarmony[this.value - 1];
-    onScreenFirstPassOptions.startingChord = this.value;
-    startingChordSlider.style.opacity = 0.9;
-    startingChordLabel.style.opacity = 0.4;
-}
-
-startingChordCheck.oninput = () => {
-    startingChordRandom = startingChordCheck.checked;
-    startingChordConBool = true;
-    if (startingChordCheck.checked === true) {
-        startingChordOutput.innerHTML = '...';
-        startingChordSlider.style.opacity = 0.3;
-        startingChordLabel.style.opacity = 1;
-    } else {
-        startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
-        startingChordSlider.style.opacity = 0.9;
-        startingChordLabel.style.opacity = 0.4;
-    }
-}
-
-
-
-
-
 
 // type of cadence 
 var cadenceSlider = document.getElementById("cadence-slider");
@@ -241,6 +200,9 @@ cadenceCheck.oninput = () => {
         onScreenFirstPassOptions.typeOfCadence = Number(cadenceSlider.value);
     }
 }
+
+
+
 
 
 
