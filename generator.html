@@ -58,6 +58,14 @@
       <!-- <button id="persist-toggle" onclick="makeAllPersist()">Make All Persist</button> -->
 
       <div class="slidecontainer">
+        <p class="slider-title">How many repeats?</p>
+        <p class="slider-value"><span id="num-repeats-output">...</span></p>
+        <label id="num-repeats-label" for="repeats-check">Random</label>
+        <input type="checkbox" id="numOfRepeats-check" name="repeats-check" checked="checked">
+        <input type="range" min="1" max="100" value="4" class="slider" id="num-repeats-slider">
+      </div>
+
+      <div class="slidecontainer">
         <p class="slider-title">Where to start?</p>
         <p class="slider-value"><span id="starting-chord-output">...</span></p>
         <input type="range" min="1" max="7" value="1" class="slider" id="starting-chord-slider">
@@ -93,17 +101,6 @@
         <button id="key-mode-persist-toggle" onclick="makeKeyModePersist()">Persist</button>
       </div>
 
-
-
-      <!-- <div class="slidecontainer">
-        <p class="slider-title">How many repeats?</p>
-        <p class="slider-value"><span id="num-repeats-output">...</span></p>
-        <label for="repeats-check">Random</label>
-        <input type="checkbox" id="numOfRepeats-check" name="repeats-check" checked="checked">
-        <input type="range" min="1" max="100" value="4" class="slider" id="num-repeats-slider">
-
-      </div> -->
-
       <div class="slidecontainer">
         <p class="slider-title">How many chords?</p>
         <p class="slider-value"><span id="num-chords-output">...</span></p>
@@ -111,48 +108,18 @@
         <label id="num-chords-label" for="chords-check">Random</label>
         <input type="checkbox" id="numOfChords-check" name="chords-check" checked="checked">
         <button id="num-chord-persist-toggle" onclick="numChordPersist()">Persist</button>
-
       </div>
-      
-
-      
-
-
-
-
-
-
-
-
-
-      <!-- <div class="slidecontainer">
+    
+      <div class="slidecontainer">
         <p class="slider-title">B section Mode Shift?</p>
         <p class="slider-value"><span id="key-mode-switch-output">...</span></p>
         <input type="range" min="1" max="2" value="2" class="slider" id="key-mode-switch-slider">
-        <label for="key-mode-switch-check">Random</label>
+        <label id="key-mode-switch-label" for="key-mode-switch-check">Random</label>
         <input type="checkbox" id="keyModeSwitch-check" name="key-mode-switch-check" >
         <button id="section-shift-persist-toggle" onclick="sectionModeShift()">Persist</button>
-
-      </div> -->
-
+      </div>
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <div class="length">
       <p>Length Options</p>

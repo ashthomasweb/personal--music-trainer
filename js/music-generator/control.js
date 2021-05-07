@@ -7,9 +7,9 @@ let onScreenFirstPassOptions = {
     typeOfCadence: undefined,
     keyMode: undefined,
     numOfChords: undefined,
-    // numOfRepeats: undefined,
-    // persistState: undefined,
-    // keyModeSwitch: undefined
+    numOfRepeats: undefined,
+    keyModeSwitch: undefined
+    // persistState: undefined
 }
 
 function masterControl() {
@@ -42,23 +42,19 @@ function masterControl() {
         numOfChordsOption = controlOptions.numOfChords;
     }
 
-
-
-    // if (controlOptions.numOfRepeats !== undefined) {
-    //     numOfRepeatsConBool = true;
-    //     numOfRepeatsOption = controlOptions.numOfRepeats;
-    // }
-
-
+    if (controlOptions.numOfRepeats !== undefined) {
+        numOfRepeatsConBool = true;
+        numOfRepeatsOption = controlOptions.numOfRepeats;
+    }
+    
+    if (controlOptions.keyModeSwitch !== undefined) {
+        keyModeSwitchConBool = true;
+        keyModeSwitchOption = controlOptions.keyModeSwitch;
+    }
 
     // if (controlOptions.persistState !== undefined) {
     //     persistStateConBool = true;
     //     persistStateOption = controlOptions.persistState;
-    // }
-
-    // if (controlOptions.keyModeSwitch !== undefined) {
-    //     keyModeSwitchConBool = true;
-    //     keyModeSwitchOption = controlOptions.keyModeSwitch;
     // }
 
     buildDoublePeriod();
@@ -265,7 +261,6 @@ function keyCenterControlHandler() {
 }
 keyCenterControlHandler();
 
-
 function makeKeyModePersist() {
     keyModePersist = !keyModePersist;
     if (keyModePersist === true) {
@@ -389,30 +384,124 @@ function numChordsHandler() {
 }
 numChordsHandler();
 
+function numRepeatsHandler() {
 
+    var numRepeatsSlider = document.getElementById("num-repeats-slider");
+    var numRepeatsSliderOutput = document.getElementById("num-repeats-output");
+    var repeatsCheck = document.getElementById("numOfRepeats-check");
+    let numRepeatsLabel = document.getElementById("num-repeats-label");
+    
+    function numRepeatsOpacity() {
+        numRepeatsSlider.style.opacity = 0.9;
+        numRepeatsLabel.style.opacity = 0.4;
+    }
+    // set initial display value
+    numRepeatsSliderOutput.innerHTML = '...';
+    
+    numRepeatsSlider.oninput = function () {
+        // turn off checkbox
+        repeatsCheck.checked = false;
+        // indicate user control
+        numOfRepeatsConBool = true;
+        // release random control
+        numOfRepeatsRandom = repeatsCheck.checked;
+        // push user value to control object
+        onScreenFirstPassOptions.numOfRepeats = this.value;
+        // display handling
+        numRepeatsSliderOutput.innerHTML = this.value;
+        numRepeatsOpacity();
+    }
+    
+    repeatsCheck.oninput = () => {
+        // indicate user control
+        numOfRepeatsConBool = true;
+        // set random boolean from checkbox
+        numOfRepeatsRandom = repeatsCheck.checked;
+        // display handling
+        if (repeatsCheck.checked === true) {
+            numRepeatsSliderOutput.innerHTML = '...';
+            numRepeatsSlider.style.opacity = 0.3;
+            numRepeatsLabel.style.opacity = 1;
+        } else {
+            numRepeatsSliderOutput.innerHTML = numRepeatsSlider.value;
+            numRepeatsOpacity();
+        }
+    }
+}
+numRepeatsHandler();
 
+function sectionModeShift() {
+    keyModeSwitchPersist = !keyModeSwitchPersist;
+    if ( keyModeSwitchPersist === true ) {
+        document.getElementById('section-shift-persist-toggle').style.backgroundColor = 'pink';
+    } else {
+        document.getElementById('section-shift-persist-toggle').style.backgroundColor = 'white';
+    }
+}
 
+function keyModeSwitchHandler() {
+    let modeShiftArray = ['static', 'parallel'];
+    var keyModeSwitchSlider = document.getElementById("key-mode-switch-slider");
+    var keyModeSwitchSliderOutput = document.getElementById("key-mode-switch-output");
+    var keyModeSwitchCheck = document.getElementById("keyModeSwitch-check");
+    let keyModeSwitchLabel = document.getElementById('key-mode-switch-label');
 
+    function keyShiftOpacity() {
+        keyModeSwitchSlider.style.opacity = 0.9;
+        keyModeSwitchLabel.style.opacity = 0.4;
+    }
 
+    // handle on-page-load conditional styling
+    if (keyModeSwitchCheck.checked === false) {
+        keyModeSwitchSlider.style.opacity = 0.9;
+        keyModeSwitchLabel.style.opacity = 0.4;
+    }
 
-// function sectionModeShift() {
-//     keyCenterPersist = !keyCenterPersist;
-//     if ( keyCenterPersist === true ) {
-//         document.getElementById('section-shift-persist-toggle').style.backgroundColor = 'pink';
-//     } else {
-//         document.getElementById('section-shift-persist-toggle').style.backgroundColor = 'white';
-//     }
-// }
+    // set initial display value
+    keyModeSwitchSliderOutput.innerHTML = "Parallel";
 
+    keyModeSwitchSlider.onclick = function () {
+        // turn off checkbox
+        keyModeSwitchCheck.checked = false;
+        // indicate user control
+        keyModeSwitchConBool = true;
+        // release random control
+        keyModeSwitchRandom = keyModeSwitchCheck.checked;
+        // push user value to control object
+        onScreenFirstPassOptions.keyModeSwitch = modeShiftArray[this.value - 1];
+        // display handling
+        if (this.value == 1) {
+            keyModeSwitchSliderOutput.innerHTML = "Stay same";
+        } else {
+            keyModeSwitchSliderOutput.innerHTML = "Parallel";
+        }
+        keyShiftOpacity()
+    }
 
-
-
-
-
-
-
-
-
+    keyModeSwitchCheck.oninput = () => {
+        // indicate user control
+        keyModeSwitchConBool = true;
+        // set random boolean from checkbox
+        keyModeSwitchRandom = keyModeSwitchCheck.checked;
+        // display handling
+        if (keyModeSwitchCheck.checked === true) {
+            keyModeSwitchSliderOutput.innerHTML = '...';
+            keyModeSwitchSlider.style.opacity = 0.3;
+            keyModeSwitchLabel.style.opacity = 1;
+        } else {
+            // push value that was hidden to control object
+            onScreenFirstPassOptions.keyModeSwitch = modeShiftArray[keyModeSwitchSlider.value - 1];
+            // display handling
+            if (keyModeSwitchSlider.value == 1) {
+                keyModeSwitchSliderOutput.innerHTML = "Stay same";
+            } else {
+                keyModeSwitchSliderOutput.innerHTML = "Parallel";
+            }
+            keyShiftOpacity();
+        }
+    }
+}
+keyModeSwitchHandler();
 
 // turn off control booleans
 function turnControlOff() {
@@ -437,41 +526,15 @@ function turnControlOff() {
         numOfChordsConBool = false;
     }
 
+    if (keyModeSwitchPersist === false) {
+        keyModeSwitchConBool = false;
+    }
 
-    // numOfRepeatsConBool = false;
+    numOfRepeatsConBool = false;
+
     // persistStateConBool = false;
-    // keyModeSwitchConBool = false;
 }
 
 // END of document
 
 // SCRATCH 
-
-// const programDefaults = {
-//     keyMode: undefined,
-//     keyCenter: undefined,
-//     numOfRepeats: undefined,
-//     startingChord: undefined,
-//     typeOfCadence: undefined,
-//     numOfChords: undefined,
-//     persistState: undefined
-// }
-// function defaultOptionHandler() {
-//     let typeOfDefault;
-
-//     let temp = Object.values(userDefaults);
-//     let tempBool = false;
-//     temp.forEach((item) => {
-//         if (item !== undefined) {
-//             tempBool = true;
-//         }
-//     });
-
-//     if (tempBool === true) {
-//         typeOfDefault = userDefaults;
-//     } else {
-//         typeOfDefault = programDefaults;
-//     }
-
-//     return typeOfDefault;
-// }

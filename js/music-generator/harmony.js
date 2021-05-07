@@ -51,30 +51,8 @@ function getEmptyChart() {
 // hard-code defaults
 // control variables
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-let numOfRepeatsConBool = false;
-let numOfRepeatsOption;
-let numOfRepeatsRandom = true;
-
-let persistStateConBool = false;
-let persistStateOption;
-
-
-
-
-
+// let persistStateConBool = false;
+// let persistStateOption;
 
 let keyCenterPersist = false;
 let keyCenterConBool = false;
@@ -87,7 +65,7 @@ function getKeyCenter() {
         keyCenterConVar = keyCenterOption;
         keyNumerals = keyCenterConVar;
     } else if (keyCenterConBool === true && keyCenterRandom === true) { // random checkbox enabled
-        switch (generateChance(4)) { 
+        switch (generateChance(4)) {
             case 1:
                 keyNumerals = keyOfC;
                 break;
@@ -103,7 +81,7 @@ function getKeyCenter() {
                 break;
         }
     } else { // hard-coded option
-        switch (generateChance(4)) { 
+        switch (generateChance(4)) {
             case 1:
                 keyNumerals = keyOfC;
                 break;
@@ -136,14 +114,14 @@ function getKeyMode() {
     if (keyModeConBool === true && keyModeRandom === false) {
         if (keyModeOption === major) {
             keyModeConVar = 2;
-        } else if (keyModeOption === minor ) {
+        } else if (keyModeOption === minor) {
             keyModeConVar = 1;
         } else {
             keyModeConVar = generateChance(2);
         }
     } else if (keyModeConBool === true && keyModeRandom === true) { // random checkbox enabled
         keyModeConVar = generateChance(2);
-    } else { // hard-coded option
+    } else {
         keyModeConVar = generateChance(2);
     }
     // multiple value assignment handling
@@ -162,104 +140,60 @@ function getKeyMode() {
     }
 }
 
+let keyModeSwitchPersist = false;
+let keyModeSwitchConBool = true; // value controls whether or not onscreen options are applied and or initialized
+let keyModeSwitchOption;
+let keyModeSwitchRandom = false; // value of onscreen checkbox, pre checked to represent the options applied after first iteration
 
-
-
-
-
-
-
-
-
-
-
-
-// let keyModeSwitchPersist = false;
-
-// // value controls whether or not onscreen options are applied and or initialized
-// let keyModeSwitchConBool = true;
-
-// // value of onscreen chosen option, applied from masterControl();
-// let keyModeSwitchOption;
-
-// // value of onscreen checkbox, pre checked to represent the options applied after first iteration
-// // let keyModeSwitchRandom = false;
-
-// function switchParallelMode(repeat) {
-
-//     let modeShiftArray = ['static', 'parallel'];
-   
-//     // onscreen user controled options enabled, box onchecked
-//     if (keyModeSwitchConBool === true && keyModeSwitchRandom === false) {
-//         console.log('options no check');
-//         // mode shift options
-//         if (keyModeSwitchOption === 'static') {
-//             keyModeSwitchConVar = modeShiftArray[0];
-//         } else if (keyModeSwitchOption === 'parallel' ) {
-//             keyModeSwitchConVar = modeShiftArray[1];
-//         } else { // input error handling default option
-//             console.log('test');
-//             keyModeSwitchConVar = modeShiftArray[generateChance(2) - 1];
-//         }
-//     // random checkbox enabled, only on first pass
-//     } else if ( keyModeSwitchRandom === true ) {
-//         console.log('check');
-//         keyModeSwitchConVar = modeShiftArray[generateChance(2) - 1];
-//         console.log(keyModeSwitchConVar);
-//     // no user options set, random box unchecked, hard-coded option
-//     } else { 
-//         console.log('default');
-//         keyModeSwitchConVar = 'parallel';
-//     } 
-
-//     if (keyModeSwitchConVar === 'parallel') {
-//         parallelMode();
-//     } else if ( keyModeSwitchConVar === 'static') {
-//         // do nothing
-//     }
-// }
-
-
-
-
-
-// function keyReturnHome() {
-//     console.log(phraseContainer[phraseContainer.length - 3][0].key);
-//     console.log(currentHarmony);
-//     console.log()
-//     let startingKey = phraseContainer[phraseContainer.length - 3][0].key;
-// }
-
-
+// multiple value assignment handling
 function parallelMode() {
-            if (currentHarmony === major) {
-                currentHarmony = minor;
-                romanNumOne = 'i';
-                romanNumFour = 'iv';
-                romanNumSix = 'bVI';
-            } else {
-                currentHarmony = major;
-                romanNumOne = 'I';
-                romanNumFour = 'IV';
-                romanNumSix = 'vi';
-            }
-        }
+    if (currentHarmony === major) {
+        currentHarmony = minor;
+        romanNumOne = 'i';
+        romanNumFour = 'iv';
+        romanNumSix = 'bVI';
+    } else {
+        currentHarmony = major;
+        romanNumOne = 'I';
+        romanNumFour = 'IV';
+        romanNumSix = 'vi';
+    }
+}
 
+function switchParallelMode() {
+    let modeShiftArray = ['static', 'parallel'];
+    // onscreen user controled options enabled, box onchecked
+    if (keyModeSwitchConBool === true && keyModeSwitchRandom === false) {
+        keyModeSwitchConVar = keyModeSwitchOption;
+    } else if (keyModeSwitchConBool === true && keyModeSwitchRandom === true) { // random checkbox enabled, only on first pass
+        keyModeSwitchConVar = modeShiftArray[generateChance(2) - 1];
+    } else { // hard-coded option
+        keyModeSwitchConVar = 'parallel';
+    }
 
-
-
-
-
+    // multiple value assignment handling
+    if (keyModeSwitchConVar === 'parallel') {
+        parallelMode();
+    } else if (keyModeSwitchConVar === 'static') {
+        // do nothing
+    }
+}
 
 // form construction
+let numOfRepeatsConBool = false;
+let numOfRepeatsOption;
+let numOfRepeatsRandom = true;
 
 function buildDoublePeriod() {
+    // onscreen user controled option has been clicked, random box unchecked
     if (numOfRepeatsConBool === true && numOfRepeatsRandom === false) {
         numOfRepeatsConVar = numOfRepeatsOption;
-    } else {
+    } else if (numOfRepeatsConBool === true && numOfRepeatsRandom === true) { // random checkbox enabled
+        numOfRepeatsConVar = generateChance(10, 5);
+    } else { // hard-coded option
         numOfRepeatsConVar = generateChance(10, 5);
     }
-    
+
     for (let i = 0; i < numOfRepeatsConVar; i++) {
         // THIS is where I can change options on a 16 measure basis
         for (let section = 0; section <= 3; section++) {
@@ -274,18 +208,19 @@ function buildDoublePeriod() {
                 voiceLeadHandler(section);
             }
             if (section === 2) {
-                parallelMode(i);
+                switchParallelMode();
                 createPhraseChart(2, i + 1);
                 voiceLeadHandler(section);
             }
             if (section === 3) {
-                // keyReturnHome();
-                parallelMode();
+                switchParallelMode();
                 createPhraseChart(3, i + 1);
                 voiceLeadHandler(section);
             }
         }
+  
         // CONTROL HANDLING ---------
+
         // let persistStateConVar;
         // if (persistStateConBool === true) {
         //     persistStateConVar = persistStateOption;
@@ -299,9 +234,10 @@ function buildDoublePeriod() {
         //         // controlOff(); // do nothing
         //     }
         // }
-        turnControlOff();
-        // CONTROL HANDLING ---------
 
+        turnControlOff();
+        
+        // CONTROL HANDLING ---------
     }
     playPhraseChart();
 }
@@ -406,13 +342,13 @@ function createHarmonicUnit(section, formNum, phraseChart) {
             return input - amountChange;
         }
     }
- 
+
     // CONTROL HANDLING --------------
 
     // onscreen user controled option has been clicked, random box unchecked
     if (startingChordConBool === true && startingChordRandom === false) {
         startingChordConVar = startingChordOption;
-    } else if (startingChordConBool === true && startingChordRandom === true ) { // random checkbox enabled
+    } else if (startingChordConBool === true && startingChordRandom === true) { // random checkbox enabled
         startingChordConVar = generateChance(7);
     } else { // hard-coded option
         startingChordConVar = 1;
@@ -428,11 +364,6 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     }
 
     // CONTROL HANDLING --------------
-
-
-
-
-
 
     // first 4 bar phrase
     if (section === 0) {
@@ -469,12 +400,11 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         cadenceHandler(section);
         storePlaybackData();
     }
+    
     // console.log(info.formId + ' ' + info.progression[0]);
-    // console.log(info.formId + ' ' + info.key);
-    console.log(info.formId + ' ' + info.progressionLength);
-
+    console.log(info.formId + ' ' + info.key);
+    // console.log(info.formId + ' ' + info.progressionLength);
     // console.log(info.formId + ' ' + info.cadence);
-
 }
 
 let numOfChordsPersist = false;
@@ -485,7 +415,7 @@ let progression = [];
 
 function getNewProgression(start, cadence, section) {
     // onscreen user controled option has been clicked, random box unchecked
-    if (numOfChordsConBool === true && section === 0 && numOfChordsRandom === false ) {
+    if (numOfChordsConBool === true && section === 0 && numOfChordsRandom === false) {
         numOfChordsConVar = numOfChordsOption;
     } else if (numOfChordsConBool === true && numOfChordsRandom === true) { // random checkbox enabled
         numOfChordsConVar = generateChance(5, 2);
