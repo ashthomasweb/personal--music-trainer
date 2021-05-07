@@ -73,10 +73,6 @@ let persistStateOption;
 
 
 
-let numOfChordsPersist = false;
-let numOfChordsConBool = false;
-let numOfChordsOption;
-let numOfChordsRandom = true;
 
 
 
@@ -474,25 +470,31 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         storePlaybackData();
     }
     // console.log(info.formId + ' ' + info.progression[0]);
-    console.log(info.formId + ' ' + info.key);
+    // console.log(info.formId + ' ' + info.key);
+    console.log(info.formId + ' ' + info.progressionLength);
 
-    // console.log(info.formId + ' ' + info.cadence)
+    // console.log(info.formId + ' ' + info.cadence);
 
 }
 
+let numOfChordsPersist = false;
+let numOfChordsConBool = false;
+let numOfChordsOption;
+let numOfChordsRandom = true;
 let progression = [];
 
 function getNewProgression(start, cadence, section) {
-    let numOfChordsConVar; // control variable from /control.js as set in global object 'options'
+    // onscreen user controled option has been clicked, random box unchecked
+    if (numOfChordsConBool === true && section === 0 && numOfChordsRandom === false ) {
+        numOfChordsConVar = numOfChordsOption;
+    } else if (numOfChordsConBool === true && numOfChordsRandom === true) { // random checkbox enabled
+        numOfChordsConVar = generateChance(5, 2);
+    } else { // hard-coded option
+        numOfChordsConVar = generateChance(5, 2);
+    }
 
     // 'cadenceValue' is a iterated data store variable used in /voice-leading.js
     cadenceValue = cadence;
-
-    if (numOfChordsConBool === true && section === 0 && numOfChordsRandom === false ) {
-        numOfChordsConVar = numOfChordsOption;
-    } else {
-        numOfChordsConVar = generateChance(5, 2);
-    }
 
     function generateInitialHarmonies() {
         for (let i = 1; i <= numOfChordsConVar - 1; i++) {

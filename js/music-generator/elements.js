@@ -25,30 +25,16 @@
 //     }
 // }
 
-// // number of chords
-// var numChordsSlider = document.getElementById("num-chords-slider");
-// var numChordsSliderOutput = document.getElementById("num-chords-output");
-// var chordsCheck = document.getElementById("numOfChords-check");
 
-// numChordsSliderOutput.innerHTML = '...';
-// numChordsSlider.oninput = function () {
-//     numChordsSliderOutput.innerHTML = this.value;
-//     onScreenFirstPassOptions.numOfChords = this.value;
-//     chordsCheck.checked = false;
-//     numOfChordsRandom = chordsCheck.checked;
-//     document.getElementById('num-chords-slider').style.opacity = 0.9;
-// }
 
-// chordsCheck.oninput = () => {
-//     numOfChordsRandom = chordsCheck.checked;
-//     if (chordsCheck.checked === true) {
-//         document.getElementById('num-chords-slider').style.opacity = 0.3;
-//         numChordsSliderOutput.innerHTML = '...';
-//     } else {
-//         document.getElementById('num-chords-slider').style.opacity = 0.9;
-//         numChordsSliderOutput.innerHTML = numChordsSlider.value;
-//     }
-// }
+
+
+
+
+
+
+
+
 
 
 

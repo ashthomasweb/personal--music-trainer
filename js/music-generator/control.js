@@ -6,8 +6,8 @@ let onScreenFirstPassOptions = {
     startingChord: undefined,
     typeOfCadence: undefined,
     keyMode: undefined,
+    numOfChords: undefined,
     // numOfRepeats: undefined,
-    // numOfChords: undefined,
     // persistState: undefined,
     // keyModeSwitch: undefined
 }
@@ -37,6 +37,10 @@ function masterControl() {
         keyModeOption = controlOptions.keyMode;
     }
 
+    if (controlOptions.numOfChords !== undefined) {
+        numOfChordsConBool = true;
+        numOfChordsOption = controlOptions.numOfChords;
+    }
 
 
 
@@ -46,10 +50,6 @@ function masterControl() {
     // }
 
 
-    // if (controlOptions.numOfChords !== undefined) {
-    //     numOfChordsConBool = true;
-    //     numOfChordsOption = controlOptions.numOfChords;
-    // }
 
     // if (controlOptions.persistState !== undefined) {
     //     persistStateConBool = true;
@@ -333,9 +333,61 @@ function keyModeControlHandler() {
 }
 keyModeControlHandler();
 
+function numChordPersist() {
+    numOfChordsPersist = !numOfChordsPersist;
+    if (numOfChordsPersist === true) {
+        document.getElementById('num-chord-persist-toggle').style.backgroundColor = 'pink';
+    } else {
+        document.getElementById('num-chord-persist-toggle').style.backgroundColor = 'white';
+    }
+}
 
+function numChordsHandler() {
+    var numChordsSlider = document.getElementById("num-chords-slider");
+    var numChordsSliderOutput = document.getElementById("num-chords-output");
+    var chordsCheck = document.getElementById("numOfChords-check");
+    let numChordsLabel = document.getElementById('num-chords-label');
 
+    function numChordsOpacity() {
+        numChordsSlider.style.opacity = 0.9;
+        numChordsLabel.style.opacity = 0.4;
+    }
 
+    // set initial display value
+    numChordsSliderOutput.innerHTML = '...';
+
+    numChordsSlider.onclick = function () {
+        // turn off checkbox
+        chordsCheck.checked = false;
+        // indicate user control
+        numOfChordsConBool = true;
+        // release random control
+        numOfChordsRandom = chordsCheck.checked;
+        // push user value to control object
+        onScreenFirstPassOptions.numOfChords = this.value;
+        // display handling
+        numChordsSliderOutput.innerHTML = this.value;
+        numChordsOpacity();
+    }
+
+    chordsCheck.oninput = () => {
+        // indicate user control
+        numOfChordsConBool = true;
+        // set random boolean from checkbox
+        numOfChordsRandom = chordsCheck.checked;
+        // display handling
+        if (chordsCheck.checked === true) {
+            numChordsSliderOutput.innerHTML = '...';
+            numChordsSlider.style.opacity = 0.3;
+            numChordsLabel.style.opacity = 1;
+        } else {
+            numChordsSliderOutput.innerHTML = numChordsSlider.value;
+            numChordsOpacity();
+        }
+    }
+
+}
+numChordsHandler();
 
 
 
@@ -352,14 +404,7 @@ keyModeControlHandler();
 //     }
 // }
 
-// function numChordPersist() {
-//     numOfChordsPersist = !numOfChordsPersist;
-//     if ( numOfChordsPersist === true ) {
-//         document.getElementById('num-chord-persist-toggle').style.backgroundColor = 'pink';
-//     } else {
-//         document.getElementById('num-chord-persist-toggle').style.backgroundColor = 'white';
-//     }
-// }
+
 
 
 
@@ -388,10 +433,12 @@ function turnControlOff() {
         keyModeConBool = false;
     }
 
+    if (numOfChordsPersist === false) {
+        numOfChordsConBool = false;
+    }
 
 
     // numOfRepeatsConBool = false;
-    // numOfChordsConBool = false;
     // persistStateConBool = false;
     // keyModeSwitchConBool = false;
 }
