@@ -402,9 +402,9 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     }
     
     // console.log(info.formId + ' ' + info.progression[0]);
-    // console.log(info.formId + ' ' + info.key);
+    console.log(info.formId + ' ' + info.key);
     // console.log(info.formId + ' ' + info.progressionLength);
-    console.log(info.formId + ' ' + info.cadence);
+    // console.log(info.formId + ' ' + info.cadence);
 }
 
 let numOfChordsPersist = false;

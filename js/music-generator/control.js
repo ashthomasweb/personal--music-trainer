@@ -67,7 +67,7 @@ function startingChordOptionHandler() {
     let startingChordCheck = document.getElementById("startingChord-check");
     let startingChordLabel = document.getElementById('starting-chord-label');
 
-    function startingChordDisplayHandler() {
+    function displayHandler() {
         if (startingChordCheck.checked === true) {
             startingChordOutput.innerHTML = '...';
             startingChordSlider.style.opacity = 0.3;
@@ -86,8 +86,16 @@ function startingChordOptionHandler() {
         startingChordRandom = startingChordCheck.checked;
     }
 
+    function multiDataControlDisplay() {
+        controlHandler();
+        // push user value to control object
+        onScreenFirstPassOptions.startingChord = startingChordSlider.value;
+        // display handling
+        displayHandler();
+    }
+
     // handle on-page-load conditional styling
-    startingChordCheck.checked === false && startingChordDisplayHandler();
+    startingChordCheck.checked === false && displayHandler();
 
     // set initial display value
     startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
@@ -95,39 +103,23 @@ function startingChordOptionHandler() {
     startingChordSlider.onclick = () => {
         // turn off checkbox
         startingChordCheck.checked = false;
-        controlHandler();
-        // push user value to control object
-        onScreenFirstPassOptions.startingChord = startingChordSlider.value;
-        // display handling
-        startingChordDisplayHandler();
+        multiDataControlDisplay();
     }
 
-    startingChordSlider.oninput = () => {
-        startingChordDisplayHandler();
-    }
+    startingChordSlider.oninput = () => displayHandler();
 
-    startingChordCheck.oninput = () => {
-        controlHandler();
-        startingChordDisplayHandler();
-    }
+    startingChordCheck.oninput = () => multiDataControlDisplay();
 }
 startingChordOptionHandler();
 
 function cadenceControlHandler() {
     let cadenceSlider = document.getElementById("cadence-slider");
     let cadenceSliderOutput = document.getElementById("cadence-output");
-    let cadenceCheck = document.getElementById("cadence-check");
+    let cadenceCheckbox = document.getElementById("cadence-check");
     let cadenceLabel = document.getElementById('cadence-label');
 
-    function controlHandler() {
-        // indicate user control
-        typeOfCadenceConBool = true;
-        // release random control
-        typeOfCadenceRandom = cadenceCheck.checked;
-    }
-
-    function cadenceDisplayHandling() {
-        if (cadenceCheck.checked === true) {
+    function displayHandler() {
+        if (cadenceCheckbox.checked === true) {
             cadenceSliderOutput.innerHTML = '...';
             cadenceSlider.style.opacity = 0.3;
             cadenceLabel.style.opacity = 1;
@@ -138,30 +130,31 @@ function cadenceControlHandler() {
         }
     }
 
+    function controlHandler() {
+        // indicate user control
+        typeOfCadenceConBool = true;
+        // release random control
+        typeOfCadenceRandom = cadenceCheckbox.checked;
+    }
+
+    function multiDataControlDisplay() {
+        controlHandler();
+        // push value to control object
+        onScreenFirstPassOptions.typeOfCadence = cadenceSlider.value;
+        displayHandler();
+    }
+
     // set initial display value
     cadenceSliderOutput.innerHTML = '...';
 
-    cadenceSlider.onclick = function () {
-        // turn off checkbox
-        cadenceCheck.checked = false;
-        controlHandler();
-        // push user value to control object
-        onScreenFirstPassOptions.typeOfCadence = this.value;
-        // display handling
-        cadenceDisplayHandling();
+    cadenceSlider.onclick = () => {
+        cadenceCheckbox.checked = false;
+        multiDataControlDisplay();
     }
 
-    cadenceSlider.oninput = function () {
-        cadenceDisplayHandling();
-    }
+    cadenceSlider.oninput = () => displayHandler();
 
-    cadenceCheck.oninput = () => {
-        controlHandler();
-        // push value that was hidden to control object
-        onScreenFirstPassOptions.typeOfCadence = cadenceSlider.value;
-        // display handling
-        cadenceDisplayHandling();
-    }
+    cadenceCheckbox.oninput = () => multiDataControlDisplay();
 }
 cadenceControlHandler();
 
@@ -173,60 +166,44 @@ function keyCenterControlHandler() {
     var keyCenterCheck = document.getElementById("keyCenter-check");
     let keyCenterLabel = document.getElementById('key-center-label');
 
-    function keyCenterOpacity() {
-        keyCenterSlider.style.opacity = 0.9;
-        keyCenterLabel.style.opacity = 0.4;
-    }
-    // set initial display value
-    keyCenterSliderOutput.innerHTML = '...';
-
-    keyCenterSlider.onclick = function () {
-        // indicate user control
-        keyCenterConBool = true;
-        // turn off checkbox
-        keyCenterCheck.checked = false;
-        // push user value to control object
-        onScreenFirstPassOptions.keyCenter = keyCenterArray[this.value - 1];
-        // release random control
-        keyCenterRandom = keyCenterCheck.checked;
-        // display handling
-        keyCenterSliderOutput.innerHTML = keyCenterString[this.value - 1];
-        keyCenterOpacity();
-    }
-
-    keyCenterSlider.oninput = function () {
-        // display handling
-        keyCenterSliderOutput.innerHTML = keyCenterString[this.value - 1];
-        keyCenterOpacity();
-    }
-
-    keyCenterCheck.oninput = () => {
-        // indicate user control
-        keyCenterConBool = true;
-        // set random boolean from checkbox
-        keyCenterRandom = keyCenterCheck.checked;
-        // display handling
+    function displayHandler() {
         if (keyCenterCheck.checked === true) {
             keyCenterSliderOutput.innerHTML = '...';
             keyCenterSlider.style.opacity = 0.3;
             keyCenterLabel.style.opacity = 1;
         } else {
-            // push value that was hidden to control object
-            onScreenFirstPassOptions.keyCenter = keyCenterArray[keyCenterSlider.value - 1];
-            // display handling
-            if (keyCenterArray[keyCenterSlider.value - 1] == keyOfF) {
-                keyCenterSliderOutput.innerHTML = "Key of F";
-            } else if (keyCenterArray[keyCenterSlider.value - 1] == keyOfC) {
-                keyCenterSliderOutput.innerHTML = "Key of C";
-            } else if (keyCenterArray[keyCenterSlider.value - 1] == keyOfG) {
-                keyCenterSliderOutput.innerHTML = "Key of G";
-            } else if (keyCenterArray[keyCenterSlider.value - 1] == keyOfD) {
-                keyCenterSliderOutput.innerHTML = "Key of D";
-            }
-            keyCenterOpacity();
+            keyCenterSliderOutput.innerHTML = keyCenterString[keyCenterSlider.value - 1];
+            keyCenterSlider.style.opacity = 0.9;
+            keyCenterLabel.style.opacity = 0.4;
         }
     }
 
+    function controlHandler() {
+        // release random control
+        keyCenterRandom = keyCenterCheck.checked;
+        // indicate user control
+        keyCenterConBool = true;
+    }
+
+    function multiDataControlDisplay() {
+        controlHandler();
+        // push user value to control object
+        onScreenFirstPassOptions.keyCenter = keyCenterArray[keyCenterSlider.value - 1];
+        displayHandler();
+    }
+
+    // set initial display value
+    keyCenterSliderOutput.innerHTML = '...';
+
+    keyCenterSlider.onclick = () => {
+        // turn off checkbox
+        keyCenterCheck.checked = false;
+        multiDataControlDisplay();
+    }
+
+    keyCenterSlider.oninput = () => multiDataControlDisplay();
+
+    keyCenterCheck.oninput = () => multiDataControlDisplay();
 }
 keyCenterControlHandler();
 
