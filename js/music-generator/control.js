@@ -17,12 +17,12 @@ function masterControl() {
     // if onscreen assigned options are manipulated
     let controlOptions = onScreenFirstPassOptions;
 
-    if (controlOptions.keyCenter !== undefined || keyCenterRandom === true) {
+    if (controlOptions.keyCenter !== undefined) {
         keyCenterConBool = true;
         keyCenterOption = controlOptions.keyCenter;
     }
 
-    if (controlOptions.startingChord !== undefined || startingChordRandom === true) {
+    if (controlOptions.startingChord !== undefined) {
         startingChordConBool = true;
         startingChordOption = controlOptions.startingChord;
     }
@@ -94,6 +94,13 @@ function startingChordOptionHandler() {
         startingChordOpacity();
     }
 
+    startingChordSlider.oninput = function () {
+        // display handling
+        startingChordOutput.innerHTML = currentHarmony[this.value - 1];
+        startingChordOpacity();
+    }
+
+
     startingChordCheck.oninput = () => {
         // indicate user control
         startingChordConBool = true;
@@ -140,6 +147,12 @@ function cadenceControlHandler() {
         cadenceOpacity();
     }
 
+    cadenceSlider.oninput = function () {
+        // display handling
+        cadenceSliderOutput.innerHTML = cadenceType[this.value - 1];
+        cadenceOpacity();
+    }
+
     cadenceCheck.oninput = () => {
         // indicate user control
         typeOfCadenceConBool = true;
@@ -164,11 +177,12 @@ cadenceControlHandler();
 
 function keyCenterControlHandler() {
     let keyCenterArray = [keyOfF, keyOfC, keyOfG, keyOfD];
+    let keyCenterString = ['Key of F', 'Key of C', 'Key of G', 'Key of D'];
     var keyCenterSlider = document.getElementById("key-center-slider");
     var keyCenterSliderOutput = document.getElementById("key-center-output");
     var keyCenterCheck = document.getElementById("keyCenter-check");
     let keyCenterLabel = document.getElementById('key-center-label');
-    
+
     function keyCenterOpacity() {
         keyCenterSlider.style.opacity = 0.9;
         keyCenterLabel.style.opacity = 0.4;
@@ -186,15 +200,13 @@ function keyCenterControlHandler() {
         // release random control
         keyCenterRandom = keyCenterCheck.checked;
         // display handling
-        if (keyCenterArray[this.value - 1] === keyOfF) {
-            keyCenterSliderOutput.innerHTML = "Key of F";
-        } else if (keyCenterArray[this.value - 1] === keyOfC) {
-            keyCenterSliderOutput.innerHTML = "Key of C";
-        } else if (keyCenterArray[this.value - 1] === keyOfG) {
-            keyCenterSliderOutput.innerHTML = "Key of G";
-        } else if (keyCenterArray[this.value - 1] === keyOfD) {
-            keyCenterSliderOutput.innerHTML = "Key of D";
-        }
+        keyCenterSliderOutput.innerHTML = keyCenterString[this.value - 1];
+        keyCenterOpacity();
+    }
+
+    keyCenterSlider.oninput = function () {
+        // display handling
+        keyCenterSliderOutput.innerHTML = keyCenterString[this.value - 1];
         keyCenterOpacity();
     }
 
@@ -252,12 +264,14 @@ function keyModeControlHandler() {
         onScreenFirstPassOptions.keyMode = modeArray[this.value - 1];
         // release random control
         keyModeRandom = keyModeCheck.checked;
-        // display handling - note: 'value' is a string
-        if (this.value == 1) {
-            keyModeSliderOutput.innerHTML = "Major";
-        } else {
-            keyModeSliderOutput.innerHTML = "Minor";
-        }
+        // display handling - note: typeof(value) --> string
+        this.value == 1 ? keyModeSliderOutput.innerHTML = "Major" : keyModeSliderOutput.innerHTML = "Minor";
+        keyModeOpacity();
+    }
+
+    keyModeSlider.oninput = function () {
+        // display handling - note: typeof(value) --> string
+        this.value == 1 ? keyModeSliderOutput.innerHTML = "Major" : keyModeSliderOutput.innerHTML = "Minor";
         keyModeOpacity();
     }
 
@@ -272,12 +286,8 @@ function keyModeControlHandler() {
             document.getElementById('key-mode-slider').style.opacity = 0.3;
             keyModeSliderOutput.innerHTML = '...';
         } else {
-            // display handling - note: 'value' is a string
-            if (keyModeSlider.value == 1) {
-                keyModeSliderOutput.innerHTML = "Major";
-            } else {
-                keyModeSliderOutput.innerHTML = "Minor";
-            }
+            // display handling - note: typeof(value) --> string
+            keyModeSlider.value == 1 ? keyModeSliderOutput.innerHTML = "Major" : keyModeSliderOutput.innerHTML = "Minor";
             keyModeOpacity();
             // push value that was hidden to control object
             onScreenFirstPassOptions.keyMode = modeArray[keyModeSlider.value - 1];
@@ -309,6 +319,12 @@ function numChordsHandler() {
         numOfChordsRandom = chordsCheck.checked;
         // push user value to control object
         onScreenFirstPassOptions.numOfChords = this.value;
+        // display handling
+        numChordsSliderOutput.innerHTML = this.value;
+        numChordsOpacity();
+    }
+
+    numChordsSlider.oninput = function () {
         // display handling
         numChordsSliderOutput.innerHTML = this.value;
         numChordsOpacity();
@@ -347,7 +363,7 @@ function numRepeatsHandler() {
     // set initial display value
     numRepeatsSliderOutput.innerHTML = '...';
 
-    numRepeatsSlider.oninput = function () {
+    numRepeatsSlider.onclick = function () {
         // turn off checkbox
         repeatsCheck.checked = false;
         // indicate user control
@@ -410,13 +426,15 @@ function keyModeSwitchHandler() {
         // push user value to control object
         onScreenFirstPassOptions.keyModeSwitch = modeShiftArray[this.value - 1];
         // display handling
-        if (this.value == 1) {
-            keyModeSwitchSliderOutput.innerHTML = "Stay same";
-        } else {
-            keyModeSwitchSliderOutput.innerHTML = "Parallel";
-        }
+        this.value == 1 ? keyModeSwitchSliderOutput.innerHTML = "Stay same" : keyModeSwitchSliderOutput.innerHTML = "Parallel";
         keyShiftOpacity()
     }
+
+    keyModeSwitchSlider.oninput = function () {
+        this.value == 1 ? keyModeSwitchSliderOutput.innerHTML = "Stay same" : keyModeSwitchSliderOutput.innerHTML = "Parallel";
+        keyShiftOpacity()
+    }
+
 
     keyModeSwitchCheck.oninput = () => {
         // indicate user control
@@ -432,17 +450,14 @@ function keyModeSwitchHandler() {
             // push value that was hidden to control object
             onScreenFirstPassOptions.keyModeSwitch = modeShiftArray[keyModeSwitchSlider.value - 1];
             // display handling
-            if (keyModeSwitchSlider.value == 1) {
-                keyModeSwitchSliderOutput.innerHTML = "Stay same";
-            } else {
-                keyModeSwitchSliderOutput.innerHTML = "Parallel";
-            }
+            keyModeSwitchSlider.value == 1 ? keyModeSwitchSliderOutput.innerHTML = "Stay same" : keyModeSwitchSliderOutput.innerHTML = "Parallel";
             keyShiftOpacity();
         }
     }
 }
 keyModeSwitchHandler();
 
+// Persist buttons
 function startChordPersist() {
     let element = document.getElementById('start-chord-persist-toggle');
     // indicate user control
