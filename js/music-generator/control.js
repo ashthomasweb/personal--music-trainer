@@ -245,7 +245,7 @@ function keyModeControlHandler() {
     // set initial display value
     keyModeSliderOutput.innerHTML = "...";
 
-    keyModeSlider.onclick = function () {
+    keyModeSlider.onclick = () => {
         // turn off checkbox
         keyModeCheck.checked = false;
         // change current harmony and start chord slider display
@@ -254,7 +254,7 @@ function keyModeControlHandler() {
         multiDataControlDisplay();
     }
 
-    keyModeSlider.oninput = function () {
+    keyModeSlider.oninput = () => {
         multiDataControlDisplay();
     }
 
