@@ -46,7 +46,7 @@ function masterControl() {
         numOfRepeatsConBool = true;
         numOfRepeatsOption = controlOptions.numOfRepeats;
     }
-    
+
     if (controlOptions.keyModeSwitch !== undefined) {
         keyModeSwitchConBool = true;
         keyModeSwitchOption = controlOptions.keyModeSwitch;
@@ -58,17 +58,6 @@ function masterControl() {
     // }
 
     buildDoublePeriod();
-}
-
-// onscreen button function
-function startChordPersist() {
-    startingChordConBool = true;
-    startingChordPersist = !startingChordPersist;
-    if (startingChordPersist === true) {
-        document.getElementById('start-chord-persist-toggle').style.backgroundColor = 'pink';
-    } else {
-        document.getElementById('start-chord-persist-toggle').style.backgroundColor = 'white';
-    }
 }
 
 function startingChordOptionHandler() {
@@ -123,17 +112,6 @@ function startingChordOptionHandler() {
 }
 startingChordOptionHandler();
 
-// onscreen button function
-function cadencePersist() {
-    typeOfCadenceConBool = true;
-    typeOfCadencePersist = !typeOfCadencePersist;
-    if (typeOfCadencePersist === true) {
-        document.getElementById('cadence-persist-toggle').style.backgroundColor = 'pink';
-    } else {
-        document.getElementById('cadence-persist-toggle').style.backgroundColor = 'white';
-    }
-}
-
 function cadenceControlHandler() {
     let cadenceSlider = document.getElementById("cadence-slider");
     let cadenceSliderOutput = document.getElementById("cadence-output");
@@ -184,24 +162,13 @@ function cadenceControlHandler() {
 }
 cadenceControlHandler();
 
-// onscreen button function
-function keyCtrPersist() {
-    keyCenterConBool = true;
-    keyCenterPersist = !keyCenterPersist;
-    if (keyCenterPersist === true) {
-        document.getElementById('key-persist-toggle').style.backgroundColor = 'pink';
-    } else {
-        document.getElementById('key-persist-toggle').style.backgroundColor = 'white';
-    }
-}
-
 function keyCenterControlHandler() {
     let keyCenterArray = [keyOfF, keyOfC, keyOfG, keyOfD];
     var keyCenterSlider = document.getElementById("key-center-slider");
     var keyCenterSliderOutput = document.getElementById("key-center-output");
     var keyCenterCheck = document.getElementById("keyCenter-check");
     let keyCenterLabel = document.getElementById('key-center-label');
-
+    
     function keyCenterOpacity() {
         keyCenterSlider.style.opacity = 0.9;
         keyCenterLabel.style.opacity = 0.4;
@@ -243,15 +210,15 @@ function keyCenterControlHandler() {
             keyCenterLabel.style.opacity = 1;
         } else {
             // push value that was hidden to control object
-            onScreenFirstPassOptions.keyCenter = keyCenterArray[Number(keyCenterSlider.value) - 1];
+            onScreenFirstPassOptions.keyCenter = keyCenterArray[keyCenterSlider.value - 1];
             // display handling
-            if (keyCenterArray[Number(keyCenterSlider.value) - 1] === keyOfF) {
+            if (keyCenterArray[keyCenterSlider.value - 1] == keyOfF) {
                 keyCenterSliderOutput.innerHTML = "Key of F";
-            } else if (keyCenterArray[Number(keyCenterSlider.value) - 1] === keyOfC) {
+            } else if (keyCenterArray[keyCenterSlider.value - 1] == keyOfC) {
                 keyCenterSliderOutput.innerHTML = "Key of C";
-            } else if (keyCenterArray[Number(keyCenterSlider.value) - 1] === keyOfG) {
+            } else if (keyCenterArray[keyCenterSlider.value - 1] == keyOfG) {
                 keyCenterSliderOutput.innerHTML = "Key of G";
-            } else if (keyCenterArray[Number(keyCenterSlider.value) - 1] === keyOfD) {
+            } else if (keyCenterArray[keyCenterSlider.value - 1] == keyOfD) {
                 keyCenterSliderOutput.innerHTML = "Key of D";
             }
             keyCenterOpacity();
@@ -260,15 +227,6 @@ function keyCenterControlHandler() {
 
 }
 keyCenterControlHandler();
-
-function makeKeyModePersist() {
-    keyModePersist = !keyModePersist;
-    if (keyModePersist === true) {
-        document.getElementById('key-mode-persist-toggle').style.backgroundColor = 'pink';
-    } else {
-        document.getElementById('key-mode-persist-toggle').style.backgroundColor = 'white';
-    }
-}
 
 function keyModeControlHandler() {
     let modeArray = [major, minor];
@@ -328,15 +286,6 @@ function keyModeControlHandler() {
 }
 keyModeControlHandler();
 
-function numChordPersist() {
-    numOfChordsPersist = !numOfChordsPersist;
-    if (numOfChordsPersist === true) {
-        document.getElementById('num-chord-persist-toggle').style.backgroundColor = 'pink';
-    } else {
-        document.getElementById('num-chord-persist-toggle').style.backgroundColor = 'white';
-    }
-}
-
 function numChordsHandler() {
     var numChordsSlider = document.getElementById("num-chords-slider");
     var numChordsSliderOutput = document.getElementById("num-chords-output");
@@ -390,14 +339,14 @@ function numRepeatsHandler() {
     var numRepeatsSliderOutput = document.getElementById("num-repeats-output");
     var repeatsCheck = document.getElementById("numOfRepeats-check");
     let numRepeatsLabel = document.getElementById("num-repeats-label");
-    
+
     function numRepeatsOpacity() {
         numRepeatsSlider.style.opacity = 0.9;
         numRepeatsLabel.style.opacity = 0.4;
     }
     // set initial display value
     numRepeatsSliderOutput.innerHTML = '...';
-    
+
     numRepeatsSlider.oninput = function () {
         // turn off checkbox
         repeatsCheck.checked = false;
@@ -411,7 +360,7 @@ function numRepeatsHandler() {
         numRepeatsSliderOutput.innerHTML = this.value;
         numRepeatsOpacity();
     }
-    
+
     repeatsCheck.oninput = () => {
         // indicate user control
         numOfRepeatsConBool = true;
@@ -429,15 +378,6 @@ function numRepeatsHandler() {
     }
 }
 numRepeatsHandler();
-
-function sectionModeShift() {
-    keyModeSwitchPersist = !keyModeSwitchPersist;
-    if ( keyModeSwitchPersist === true ) {
-        document.getElementById('section-shift-persist-toggle').style.backgroundColor = 'pink';
-    } else {
-        document.getElementById('section-shift-persist-toggle').style.backgroundColor = 'white';
-    }
-}
 
 function keyModeSwitchHandler() {
     let modeShiftArray = ['static', 'parallel'];
@@ -503,6 +443,51 @@ function keyModeSwitchHandler() {
 }
 keyModeSwitchHandler();
 
+function startChordPersist() {
+    let element = document.getElementById('start-chord-persist-toggle');
+    // indicate user control
+    startingChordConBool = true;
+    // change current toggle state
+    startingChordPersist = !startingChordPersist;
+    // display handling
+    startingChordPersist === true ? element.style.backgroundColor = 'pink' : element.style.backgroundColor = 'white';
+}
+
+function cadencePersist() {
+    let element = document.getElementById('cadence-persist-toggle');
+    typeOfCadenceConBool = true;
+    typeOfCadencePersist = !typeOfCadencePersist;
+    typeOfCadencePersist === true ? element.style.backgroundColor = 'pink' : element.style.backgroundColor = 'white';
+}
+
+function keyCtrPersist() {
+    let element = document.getElementById('key-persist-toggle');
+    keyCenterConBool = true;
+    keyCenterPersist = !keyCenterPersist;
+    keyCenterPersist === true ? element.style.backgroundColor = 'pink' : element.style.backgroundColor = 'white';
+}
+
+function makeKeyModePersist() {
+    let element = document.getElementById('key-mode-persist-toggle');
+    keyModeConBool = true;
+    keyModePersist = !keyModePersist;
+    keyModePersist === true ? element.style.backgroundColor = 'pink' : element.style.backgroundColor = 'white';
+}
+
+function numChordPersist() {
+    let element = document.getElementById('num-chord-persist-toggle');
+    numOfChordsConBool = true;
+    numOfChordsPersist = !numOfChordsPersist;
+    numOfChordsPersist === true ? element.style.backgroundColor = 'pink' : element.style.backgroundColor = 'white';
+}
+
+function sectionModeShift() {
+    let element = document.getElementById('section-shift-persist-toggle');
+    keyModeSwitchConBool = true;
+    keyModeSwitchPersist = !keyModeSwitchPersist;
+    keyModeSwitchPersist === true ? element.style.backgroundColor = 'pink' : element.style.backgroundColor = 'white';
+}
+
 // turn off control booleans
 function turnControlOff() {
 
@@ -538,3 +523,45 @@ function turnControlOff() {
 // END of document
 
 // SCRATCH 
+
+
+
+// function persistButtonHandler() {
+//     let conBool = [
+//         startingChordConBool,
+//         typeOfCadenceConBool,
+//         keyCenterConBool,
+//         keyModeConBool,
+//         numOfChordsConBool,
+//         keyModeSwitchConBool,
+//     ];
+
+//     let persistBool = [
+//         startingChordPersist,
+//         typeOfCadencePersist,
+//         keyCenterPersist,
+//         keyModePersist,
+//         numOfChordsPersist,
+//         keyModeSwitchPersist
+//     ];
+
+//     let buttonElem = [
+//         'start-chord-persist-toggle',
+//         'cadence-persist-toggle',
+//         'key-persist-toggle',
+//         'key-mode-persist-toggle',
+//         'num-chord-persist-toggle',
+//         'section-shift-persist-toggle'
+//     ];
+
+//     conBool.forEach((item, i) => {
+//         item = true;
+//         persistBool[i] = !persistBool[i];
+//         if (persistBool[i] === true) {
+//             document.getElementById(buttonElem[i]).style.backgroundColor = 'pink';
+//         } else {
+//             document.getElementById(buttonElem[i]).style.backgroundColor = 'white';
+//         }
+//     })
+// }
+// persistButtonHandler();
