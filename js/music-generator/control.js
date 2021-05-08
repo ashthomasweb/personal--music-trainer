@@ -67,54 +67,48 @@ function startingChordOptionHandler() {
     let startingChordCheck = document.getElementById("startingChord-check");
     let startingChordLabel = document.getElementById('starting-chord-label');
 
-    function startingChordOpacity() {
-        startingChordSlider.style.opacity = 0.9;
-        startingChordLabel.style.opacity = 0.4;
-    }
-
-    // handle on-page-load conditional styling
-    if (startingChordCheck.checked === false) {
-        startingChordOpacity();
-    }
-
-    // set initial display value
-    startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
-
-    startingChordSlider.onclick = function () {
-        // turn off checkbox
-        startingChordCheck.checked = false;
-        // indicate user control
-        startingChordConBool = true;
-        // release random control
-        startingChordRandom = startingChordCheck.checked;
-        // push user value to control object
-        onScreenFirstPassOptions.startingChord = this.value;
-        // display handling
-        startingChordOutput.innerHTML = currentHarmony[this.value - 1];
-        startingChordOpacity();
-    }
-
-    startingChordSlider.oninput = function () {
-        // display handling
-        startingChordOutput.innerHTML = currentHarmony[this.value - 1];
-        startingChordOpacity();
-    }
-
-
-    startingChordCheck.oninput = () => {
-        // indicate user control
-        startingChordConBool = true;
-        // set random boolean from checkbox
-        startingChordRandom = startingChordCheck.checked;
-        // display handling
+    function startingChordDisplayHandler() {
         if (startingChordCheck.checked === true) {
             startingChordOutput.innerHTML = '...';
             startingChordSlider.style.opacity = 0.3;
             startingChordLabel.style.opacity = 1;
         } else {
             startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
-            startingChordOpacity();
+            startingChordSlider.style.opacity = 0.9;
+            startingChordLabel.style.opacity = 0.4;
         }
+    }
+
+    function controlHandler() {
+        // indicate user control
+        startingChordConBool = true;
+        // set random boolean from checkbox
+        startingChordRandom = startingChordCheck.checked;
+    }
+
+    // handle on-page-load conditional styling
+    startingChordCheck.checked === false && startingChordDisplayHandler();
+
+    // set initial display value
+    startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
+
+    startingChordSlider.onclick = () => {
+        // turn off checkbox
+        startingChordCheck.checked = false;
+        controlHandler();
+        // push user value to control object
+        onScreenFirstPassOptions.startingChord = startingChordSlider.value;
+        // display handling
+        startingChordDisplayHandler();
+    }
+
+    startingChordSlider.oninput = () => {
+        startingChordDisplayHandler();
+    }
+
+    startingChordCheck.oninput = () => {
+        controlHandler();
+        startingChordDisplayHandler();
     }
 }
 startingChordOptionHandler();
@@ -125,9 +119,23 @@ function cadenceControlHandler() {
     let cadenceCheck = document.getElementById("cadence-check");
     let cadenceLabel = document.getElementById('cadence-label');
 
-    function cadenceOpacity() {
-        cadenceSlider.style.opacity = 0.9;
-        cadenceLabel.style.opacity = 0.4;
+    function controlHandler() {
+        // indicate user control
+        typeOfCadenceConBool = true;
+        // release random control
+        typeOfCadenceRandom = cadenceCheck.checked;
+    }
+
+    function cadenceDisplayHandling() {
+        if (cadenceCheck.checked === true) {
+            cadenceSliderOutput.innerHTML = '...';
+            cadenceSlider.style.opacity = 0.3;
+            cadenceLabel.style.opacity = 1;
+        } else {
+            cadenceSliderOutput.innerHTML = cadenceType[cadenceSlider.value - 1];
+            cadenceSlider.style.opacity = 0.9;
+            cadenceLabel.style.opacity = 0.4;
+        }
     }
 
     // set initial display value
@@ -136,42 +144,24 @@ function cadenceControlHandler() {
     cadenceSlider.onclick = function () {
         // turn off checkbox
         cadenceCheck.checked = false;
-        // indicate user control
-        typeOfCadenceConBool = true;
+        controlHandler();
         // push user value to control object
         onScreenFirstPassOptions.typeOfCadence = this.value;
-        // release random control
-        typeOfCadenceRandom = cadenceCheck.checked;
         // display handling
-        cadenceSliderOutput.innerHTML = cadenceType[this.value - 1];
-        cadenceOpacity();
+        cadenceDisplayHandling();
     }
 
     cadenceSlider.oninput = function () {
-        // display handling
-        cadenceSliderOutput.innerHTML = cadenceType[this.value - 1];
-        cadenceOpacity();
+        cadenceDisplayHandling();
     }
 
     cadenceCheck.oninput = () => {
-        // indicate user control
-        typeOfCadenceConBool = true;
-        // set random boolean from checkbox
-        typeOfCadenceRandom = cadenceCheck.checked;
+        controlHandler();
+        // push value that was hidden to control object
+        onScreenFirstPassOptions.typeOfCadence = cadenceSlider.value;
         // display handling
-        if (cadenceCheck.checked === true) {
-            cadenceSliderOutput.innerHTML = '...';
-            cadenceSlider.style.opacity = 0.3;
-            cadenceLabel.style.opacity = 1;
-        } else {
-            // push value that was hidden to control object
-            onScreenFirstPassOptions.typeOfCadence = cadenceSlider.value;
-            // display handling
-            cadenceSliderOutput.innerHTML = cadenceType[cadenceSlider.value - 1];
-            cadenceOpacity();
-        }
+        cadenceDisplayHandling();
     }
-
 }
 cadenceControlHandler();
 
@@ -246,6 +236,8 @@ function keyModeControlHandler() {
     var keyModeSliderOutput = document.getElementById("key-mode-output");
     var keyModeCheck = document.getElementById("keyMode-check");
     let keyModeLabel = document.getElementById('key-mode-label');
+    let startChordSlider = document.getElementById("starting-chord-slider");
+    let startChordDisplay = document.getElementById("starting-chord-output");
 
     function keyModeOpacity() {
         keyModeSlider.style.opacity = 0.9;
@@ -262,6 +254,9 @@ function keyModeControlHandler() {
         keyModeConBool = true;
         // push user value to control object
         onScreenFirstPassOptions.keyMode = modeArray[this.value - 1];
+        // change current harmony and start chord slider display
+        currentHarmony = modeArray[this.value - 1];
+        startChordDisplay.innerHTML = currentHarmony[startChordSlider.value - 1];
         // release random control
         keyModeRandom = keyModeCheck.checked;
         // display handling - note: typeof(value) --> string
@@ -291,6 +286,7 @@ function keyModeControlHandler() {
             keyModeOpacity();
             // push value that was hidden to control object
             onScreenFirstPassOptions.keyMode = modeArray[keyModeSlider.value - 1];
+            currentHarmony = modeArray[this.value - 1];
         }
     }
 }
