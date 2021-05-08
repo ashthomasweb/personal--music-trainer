@@ -216,9 +216,30 @@ function keyModeControlHandler() {
     let startChordSlider = document.getElementById("starting-chord-slider");
     let startChordDisplay = document.getElementById("starting-chord-output");
 
-    function keyModeOpacity() {
-        keyModeSlider.style.opacity = 0.9;
-        keyModeLabel.style.opacity = 0.4;
+    function displayHandler() {
+        if (keyModeCheck.checked === true) {
+            keyModeSliderOutput.innerHTML = '...';
+            keyModeSlider.style.opacity = 0.3;
+            keyModeLabel.style.opacity = 1;
+        } else {
+            keyModeSlider.value == 1 ? keyModeSliderOutput.innerHTML = "Major" : keyModeSliderOutput.innerHTML = "Minor";
+            keyModeSlider.style.opacity = 0.9;
+            keyModeLabel.style.opacity = 0.4;
+        }
+    }
+
+    function controlHandler() {
+        // indicate user control
+        keyModeConBool = true;
+        // release random control
+        keyModeRandom = keyModeCheck.checked;
+    }
+
+    function multiDataControlDisplay() {
+        controlHandler();
+        // push user value to control object
+        onScreenFirstPassOptions.keyMode = modeArray[keyModeSlider.value - 1];
+        displayHandler();
     }
 
     // set initial display value
@@ -227,46 +248,22 @@ function keyModeControlHandler() {
     keyModeSlider.onclick = function () {
         // turn off checkbox
         keyModeCheck.checked = false;
-        // indicate user control
-        keyModeConBool = true;
-        // push user value to control object
-        onScreenFirstPassOptions.keyMode = modeArray[this.value - 1];
         // change current harmony and start chord slider display
-        currentHarmony = modeArray[this.value - 1];
+        currentHarmony = modeArray[keyModeSlider.value - 1];
         startChordDisplay.innerHTML = currentHarmony[startChordSlider.value - 1];
-        // release random control
-        keyModeRandom = keyModeCheck.checked;
-        // display handling - note: typeof(value) --> string
-        this.value == 1 ? keyModeSliderOutput.innerHTML = "Major" : keyModeSliderOutput.innerHTML = "Minor";
-        keyModeOpacity();
+        multiDataControlDisplay();
     }
 
     keyModeSlider.oninput = function () {
-        // display handling - note: typeof(value) --> string
-        this.value == 1 ? keyModeSliderOutput.innerHTML = "Major" : keyModeSliderOutput.innerHTML = "Minor";
-        keyModeOpacity();
+        multiDataControlDisplay();
     }
 
     keyModeCheck.oninput = () => {
-        // indicate user control
-        keyModeConBool = true;
-        // set random boolean from checkbox
-        keyModeRandom = keyModeCheck.checked;
-
-        // display handling
-        if (keyModeCheck.checked === true) {
-            document.getElementById('key-mode-slider').style.opacity = 0.3;
-            keyModeSliderOutput.innerHTML = '...';
-        } else {
-            // display handling - note: typeof(value) --> string
-            keyModeSlider.value == 1 ? keyModeSliderOutput.innerHTML = "Major" : keyModeSliderOutput.innerHTML = "Minor";
-            keyModeOpacity();
-            // push value that was hidden to control object
-            onScreenFirstPassOptions.keyMode = modeArray[keyModeSlider.value - 1];
-            currentHarmony = modeArray[this.value - 1];
-        }
+        multiDataControlDisplay();
+        currentHarmony = modeArray[keyModeSlider.value - 1];
     }
 }
+
 keyModeControlHandler();
 
 function numChordsHandler() {
