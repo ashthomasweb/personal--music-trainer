@@ -248,22 +248,20 @@ function keyModeControlHandler() {
     keyModeSlider.onclick = () => {
         // turn off checkbox
         keyModeCheck.checked = false;
-        // change current harmony and start chord slider display
+        // change helper variable and starting chord slider display
         currentHarmony = modeArray[keyModeSlider.value - 1];
         startChordDisplay.innerHTML = currentHarmony[startChordSlider.value - 1];
         multiDataControlDisplay();
     }
 
-    keyModeSlider.oninput = () => {
-        multiDataControlDisplay();
-    }
+    keyModeSlider.oninput = () => displayHandler();
 
     keyModeCheck.oninput = () => {
         multiDataControlDisplay();
+        // change helper variable
         currentHarmony = modeArray[keyModeSlider.value - 1];
     }
 }
-
 keyModeControlHandler();
 
 function numChordsHandler() {
