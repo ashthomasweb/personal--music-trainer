@@ -264,64 +264,74 @@ function keyModeControlHandler() {
 }
 keyModeControlHandler();
 
+
+
+
+
+
+
 function numChordsHandler() {
     var numChordsSlider = document.getElementById("num-chords-slider");
     var numChordsSliderOutput = document.getElementById("num-chords-output");
-    var chordsCheck = document.getElementById("numOfChords-check");
+    var chordsCheckbox = document.getElementById("numOfChords-check");
     let numChordsLabel = document.getElementById('num-chords-label');
 
     function displayHandler() {
-        numChordsSlider.style.opacity = 0.9;
-        numChordsLabel.style.opacity = 0.4;
-    }
-
-    function multiDataControlDisplay() {
-        controlHandler();
-
-        displayHandler();
-    }
-    
-    // set initial display value
-    numChordsSliderOutput.innerHTML = '...';
-
-    numChordsSlider.onclick = function () {
-        // turn off checkbox
-        chordsCheck.checked = false;
-        // indicate user control
-        numOfChordsConBool = true;
-        // release random control
-        numOfChordsRandom = chordsCheck.checked;
-        // push user value to control object
-        onScreenFirstPassOptions.numOfChords = this.value;
-        // display handling
-        numChordsSliderOutput.innerHTML = this.value;
-        numChordsOpacity();
-    }
-
-    numChordsSlider.oninput = function () {
-        // display handling
-        numChordsSliderOutput.innerHTML = this.value;
-        numChordsOpacity();
-    }
-
-    chordsCheck.oninput = () => {
-        // indicate user control
-        numOfChordsConBool = true;
-        // set random boolean from checkbox
-        numOfChordsRandom = chordsCheck.checked;
-        // display handling
-        if (chordsCheck.checked === true) {
+        if (chordsCheckbox.checked === true) {
             numChordsSliderOutput.innerHTML = '...';
             numChordsSlider.style.opacity = 0.3;
             numChordsLabel.style.opacity = 1;
         } else {
             numChordsSliderOutput.innerHTML = numChordsSlider.value;
-            numChordsOpacity();
+            numChordsSlider.style.opacity = 0.9;
+            numChordsLabel.style.opacity = 0.4;
         }
     }
 
+    function controlHandler() {
+        // indicate user control
+        numOfChordsConBool = true;
+        // release random control
+        numOfChordsRandom = chordsCheckbox.checked;
+    }
+
+    function multiDataControlDisplay() {
+        // push user value to control object
+        onScreenFirstPassOptions.numOfChords = numChordsSlider.value;
+        controlHandler();
+        displayHandler();
+    }
+
+    // set initial display value
+    numChordsSliderOutput.innerHTML = '...';
+
+    numChordsSlider.onclick = () => {
+        chordsCheckbox.checked = false;
+        multiDataControlDisplay();
+    }
+
+    numChordsSlider.oninput = () => displayHandler();
+
+    chordsCheckbox.oninput = () => multiDataControlDisplay();
+
 }
 numChordsHandler();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function numRepeatsHandler() {
 

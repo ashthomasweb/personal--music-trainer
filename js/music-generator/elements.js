@@ -52,7 +52,6 @@ function resetPlay() {
     masterControl();
 }
 
-
 function preset1() {
     onScreenFirstPassOptions.numOfChords = 7;
     onScreenFirstPassOptions.keyCenter = keyOfF;
