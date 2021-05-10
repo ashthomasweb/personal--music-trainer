@@ -270,11 +270,17 @@ function numChordsHandler() {
     var chordsCheck = document.getElementById("numOfChords-check");
     let numChordsLabel = document.getElementById('num-chords-label');
 
-    function numChordsOpacity() {
+    function displayHandler() {
         numChordsSlider.style.opacity = 0.9;
         numChordsLabel.style.opacity = 0.4;
     }
 
+    function multiDataControlDisplay() {
+        controlHandler();
+
+        displayHandler();
+    }
+    
     // set initial display value
     numChordsSliderOutput.innerHTML = '...';
 
