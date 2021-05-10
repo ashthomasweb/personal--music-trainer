@@ -64,15 +64,15 @@ function startingChordOptionHandler() {
     // start progression on given harmony
     let startingChordSlider = document.getElementById("starting-chord-slider");
     let startingChordOutput = document.getElementById("starting-chord-output");
-    let startingChordCheck = document.getElementById("startingChord-check");
+    let startingChordCheckbox = document.getElementById("startingChord-check");
     let startingChordLabel = document.getElementById('starting-chord-label');
 
     function displayHandler() {
-        if (startingChordCheck.checked === true) {
+        if (startingChordCheckbox.checked === true) {
             startingChordOutput.innerHTML = '...';
             startingChordSlider.style.opacity = 0.3;
             startingChordLabel.style.opacity = 1;
-        } else {
+        } else if (startingChordCheckbox.checked === false) {
             startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
             startingChordSlider.style.opacity = 0.9;
             startingChordLabel.style.opacity = 0.4;
@@ -83,7 +83,7 @@ function startingChordOptionHandler() {
         // indicate user control
         startingChordConBool = true;
         // set random boolean from checkbox
-        startingChordRandom = startingChordCheck.checked;
+        startingChordRandom = startingChordCheckbox.checked;
     }
 
     function multiDataControlDisplay() {
@@ -95,20 +95,21 @@ function startingChordOptionHandler() {
     }
 
     // handle on-page-load conditional styling
-    startingChordCheck.checked === false && displayHandler();
+    startingChordCheckbox.checked === false && displayHandler();
 
     // set initial display value
     startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
 
-    startingChordSlider.onclick = () => {
-        // turn off checkbox
-        startingChordCheck.checked = false;
-        multiDataControlDisplay();
+    startingChordSlider.onclick = () => multiDataControlDisplay();
+    
+    startingChordSlider.onmousedown = () => {
+        startingChordCheckbox.checked = false;
+        displayHandler();
     }
 
     startingChordSlider.oninput = () => displayHandler();
 
-    startingChordCheck.oninput = () => multiDataControlDisplay();
+    startingChordCheckbox.oninput = () => multiDataControlDisplay();
 }
 startingChordOptionHandler();
 
@@ -123,7 +124,7 @@ function cadenceControlHandler() {
             cadenceSliderOutput.innerHTML = '...';
             cadenceSlider.style.opacity = 0.3;
             cadenceLabel.style.opacity = 1;
-        } else {
+        } else if (cadenceCheckbox.checked === false) {
             cadenceSliderOutput.innerHTML = cadenceType[cadenceSlider.value - 1];
             cadenceSlider.style.opacity = 0.9;
             cadenceLabel.style.opacity = 0.4;
@@ -147,9 +148,11 @@ function cadenceControlHandler() {
     // set initial display value
     cadenceSliderOutput.innerHTML = '...';
 
-    cadenceSlider.onclick = () => {
+    cadenceSlider.onclick = () => multiDataControlDisplay();
+    
+    cadenceSlider.onmousedown = () => {
         cadenceCheckbox.checked = false;
-        multiDataControlDisplay();
+        displayHandler();
     }
 
     cadenceSlider.oninput = () => displayHandler();
@@ -161,17 +164,17 @@ cadenceControlHandler();
 function keyCenterControlHandler() {
     let keyCenterArray = [keyOfF, keyOfC, keyOfG, keyOfD];
     let keyCenterString = ['Key of F', 'Key of C', 'Key of G', 'Key of D'];
-    var keyCenterSlider = document.getElementById("key-center-slider");
-    var keyCenterSliderOutput = document.getElementById("key-center-output");
-    var keyCenterCheck = document.getElementById("keyCenter-check");
+    let keyCenterSlider = document.getElementById("key-center-slider");
+    let keyCenterSliderOutput = document.getElementById("key-center-output");
+    let keyCenterCheckbox = document.getElementById("keyCenter-check");
     let keyCenterLabel = document.getElementById('key-center-label');
 
     function displayHandler() {
-        if (keyCenterCheck.checked === true) {
+        if (keyCenterCheckbox.checked === true) {
             keyCenterSliderOutput.innerHTML = '...';
             keyCenterSlider.style.opacity = 0.3;
             keyCenterLabel.style.opacity = 1;
-        } else {
+        } else if (keyCenterCheckbox.checked === false) {
             keyCenterSliderOutput.innerHTML = keyCenterString[keyCenterSlider.value - 1];
             keyCenterSlider.style.opacity = 0.9;
             keyCenterLabel.style.opacity = 0.4;
@@ -180,7 +183,7 @@ function keyCenterControlHandler() {
 
     function controlHandler() {
         // release random control
-        keyCenterRandom = keyCenterCheck.checked;
+        keyCenterRandom = keyCenterCheckbox.checked;
         // indicate user control
         keyCenterConBool = true;
     }
@@ -195,33 +198,34 @@ function keyCenterControlHandler() {
     // set initial display value
     keyCenterSliderOutput.innerHTML = '...';
 
-    keyCenterSlider.onclick = () => {
-        // turn off checkbox
-        keyCenterCheck.checked = false;
-        multiDataControlDisplay();
+    keyCenterSlider.onclick = () => multiDataControlDisplay();
+    
+    keyCenterSlider.onmousedown = () => {
+        keyCenterCheckbox.checked = false;
+        displayHandler();
     }
 
-    keyCenterSlider.oninput = () => multiDataControlDisplay();
+    keyCenterSlider.oninput = () => displayHandler();
 
-    keyCenterCheck.oninput = () => multiDataControlDisplay();
+    keyCenterCheckbox.oninput = () => multiDataControlDisplay();
 }
 keyCenterControlHandler();
 
 function keyModeControlHandler() {
     let modeArray = [major, minor];
-    var keyModeSlider = document.getElementById("key-mode-slider");
-    var keyModeSliderOutput = document.getElementById("key-mode-output");
-    var keyModeCheck = document.getElementById("keyMode-check");
+    let keyModeSlider = document.getElementById("key-mode-slider");
+    let keyModeSliderOutput = document.getElementById("key-mode-output");
+    let keyModeCheckbox = document.getElementById("keyMode-check");
     let keyModeLabel = document.getElementById('key-mode-label');
     let startChordSlider = document.getElementById("starting-chord-slider");
     let startChordDisplay = document.getElementById("starting-chord-output");
 
     function displayHandler() {
-        if (keyModeCheck.checked === true) {
+        if (keyModeCheckbox.checked === true) {
             keyModeSliderOutput.innerHTML = '...';
             keyModeSlider.style.opacity = 0.3;
             keyModeLabel.style.opacity = 1;
-        } else {
+        } else if (keyModeCheckbox.checked === false) {
             keyModeSlider.value == 1 ? keyModeSliderOutput.innerHTML = "Major" : keyModeSliderOutput.innerHTML = "Minor";
             keyModeSlider.style.opacity = 0.9;
             keyModeLabel.style.opacity = 0.4;
@@ -232,7 +236,7 @@ function keyModeControlHandler() {
         // indicate user control
         keyModeConBool = true;
         // release random control
-        keyModeRandom = keyModeCheck.checked;
+        keyModeRandom = keyModeCheckbox.checked;
     }
 
     function multiDataControlDisplay() {
@@ -246,189 +250,182 @@ function keyModeControlHandler() {
     keyModeSliderOutput.innerHTML = "...";
 
     keyModeSlider.onclick = () => {
-        // turn off checkbox
-        keyModeCheck.checked = false;
-        // change helper variable and starting chord slider display
+        // change helper letiable and starting chord slider display
         currentHarmony = modeArray[keyModeSlider.value - 1];
         startChordDisplay.innerHTML = currentHarmony[startChordSlider.value - 1];
         multiDataControlDisplay();
     }
+    
+    keyModeSlider.onmousedown = () => {
+        // turn off checkboxx
+        keyModeCheckbox.checked = false;
+        displayHandler();
+    }
 
     keyModeSlider.oninput = () => displayHandler();
 
-    keyModeCheck.oninput = () => {
+    keyModeCheckbox.oninput = () => {
         multiDataControlDisplay();
-        // change helper variable
+        // change helper letiable
         currentHarmony = modeArray[keyModeSlider.value - 1];
     }
 }
 keyModeControlHandler();
 
 function numChordsHandler() {
-    var numChordsSlider = document.getElementById("num-chords-slider");
-    var numChordsSliderOutput = document.getElementById("num-chords-output");
-    var chordsCheck = document.getElementById("numOfChords-check");
+    let numChordsSlider = document.getElementById("num-chords-slider");
+    let numChordsSliderOutput = document.getElementById("num-chords-output");
+    let chordsCheckbox = document.getElementById("numOfChords-check");
     let numChordsLabel = document.getElementById('num-chords-label');
 
     function displayHandler() {
-        numChordsSlider.style.opacity = 0.9;
-        numChordsLabel.style.opacity = 0.4;
-    }
-
-    function multiDataControlDisplay() {
-        controlHandler();
-
-        displayHandler();
-    }
-    
-    // set initial display value
-    numChordsSliderOutput.innerHTML = '...';
-
-    numChordsSlider.onclick = function () {
-        // turn off checkbox
-        chordsCheck.checked = false;
-        // indicate user control
-        numOfChordsConBool = true;
-        // release random control
-        numOfChordsRandom = chordsCheck.checked;
-        // push user value to control object
-        onScreenFirstPassOptions.numOfChords = this.value;
-        // display handling
-        numChordsSliderOutput.innerHTML = this.value;
-        numChordsOpacity();
-    }
-
-    numChordsSlider.oninput = function () {
-        // display handling
-        numChordsSliderOutput.innerHTML = this.value;
-        numChordsOpacity();
-    }
-
-    chordsCheck.oninput = () => {
-        // indicate user control
-        numOfChordsConBool = true;
-        // set random boolean from checkbox
-        numOfChordsRandom = chordsCheck.checked;
-        // display handling
-        if (chordsCheck.checked === true) {
+        if (chordsCheckbox.checked === true) {
             numChordsSliderOutput.innerHTML = '...';
             numChordsSlider.style.opacity = 0.3;
             numChordsLabel.style.opacity = 1;
-        } else {
+        } else  if (chordsCheckbox.checked === false) {
             numChordsSliderOutput.innerHTML = numChordsSlider.value;
-            numChordsOpacity();
+            numChordsSlider.style.opacity = 0.9;
+            numChordsLabel.style.opacity = 0.4;
         }
     }
+
+    function controlHandler() {
+        // indicate user control
+        numOfChordsConBool = true;
+        // release random control
+        numOfChordsRandom = chordsCheckbox.checked;
+    }
+
+    function multiDataControlDisplay() {
+        // push user value to control object
+        onScreenFirstPassOptions.numOfChords = numChordsSlider.value;
+        controlHandler();
+        displayHandler();
+    }
+
+    // set initial display value
+    numChordsSliderOutput.innerHTML = '...';
+
+    numChordsSlider.onclick = () => multiDataControlDisplay();
+    
+    numChordsSlider.onmousedown = () => {
+        chordsCheckbox.checked = false;
+        displayHandler();
+    }
+
+    numChordsSlider.oninput = () => displayHandler();
+
+    chordsCheckbox.oninput = () => multiDataControlDisplay();
 
 }
 numChordsHandler();
 
 function numRepeatsHandler() {
 
-    var numRepeatsSlider = document.getElementById("num-repeats-slider");
-    var numRepeatsSliderOutput = document.getElementById("num-repeats-output");
-    var repeatsCheck = document.getElementById("numOfRepeats-check");
+    let numRepeatsSlider = document.getElementById("num-repeats-slider");
+    let numRepeatsSliderOutput = document.getElementById("num-repeats-output");
+    let repeatsCheckbox = document.getElementById("numOfRepeats-check");
     let numRepeatsLabel = document.getElementById("num-repeats-label");
 
-    function numRepeatsOpacity() {
-        numRepeatsSlider.style.opacity = 0.9;
-        numRepeatsLabel.style.opacity = 0.4;
-    }
-    // set initial display value
-    numRepeatsSliderOutput.innerHTML = '...';
-
-    numRepeatsSlider.onclick = function () {
-        // turn off checkbox
-        repeatsCheck.checked = false;
-        // indicate user control
-        numOfRepeatsConBool = true;
-        // release random control
-        numOfRepeatsRandom = repeatsCheck.checked;
-        // push user value to control object
-        onScreenFirstPassOptions.numOfRepeats = this.value;
-        // display handling
-        numRepeatsSliderOutput.innerHTML = this.value;
-        numRepeatsOpacity();
-    }
-
-    repeatsCheck.oninput = () => {
-        // indicate user control
-        numOfRepeatsConBool = true;
-        // set random boolean from checkbox
-        numOfRepeatsRandom = repeatsCheck.checked;
-        // display handling
-        if (repeatsCheck.checked === true) {
+    function displayHandler() {
+        if (repeatsCheckbox.checked === true) {
             numRepeatsSliderOutput.innerHTML = '...';
             numRepeatsSlider.style.opacity = 0.3;
             numRepeatsLabel.style.opacity = 1;
-        } else {
+        } else if (repeatsCheckbox.checked === false) {
+            numRepeatsSlider.style.opacity = 0.9;
+            numRepeatsLabel.style.opacity = 0.4;
             numRepeatsSliderOutput.innerHTML = numRepeatsSlider.value;
-            numRepeatsOpacity();
         }
     }
+
+    function controlHandler() {
+        // indicate user control
+        numOfRepeatsConBool = true;
+        // release random control
+        numOfRepeatsRandom = repeatsCheckbox.checked;
+    }
+
+    function multiDataControlDisplay() {
+        // push user value to control object
+        onScreenFirstPassOptions.numOfRepeats = numRepeatsSlider.value;
+        controlHandler();
+        displayHandler();
+    }
+
+    // set initial display value
+    numRepeatsSliderOutput.innerHTML = '...';
+
+    numRepeatsSlider.onclick = () => multiDataControlDisplay();
+
+    numRepeatsSlider.onmousedown = () => {
+        repeatsCheckbox.checked = false;
+        displayHandler();
+    }
+
+    numRepeatsSlider.oninput = () => displayHandler();
+
+    repeatsCheckbox.oninput = () => multiDataControlDisplay();
 }
 numRepeatsHandler();
 
 function keyModeSwitchHandler() {
     let modeShiftArray = ['static', 'parallel'];
-    var keyModeSwitchSlider = document.getElementById("key-mode-switch-slider");
-    var keyModeSwitchSliderOutput = document.getElementById("key-mode-switch-output");
-    var keyModeSwitchCheck = document.getElementById("keyModeSwitch-check");
+    let keyModeSwitchSlider = document.getElementById("key-mode-switch-slider");
+    let keyModeSwitchSliderOutput = document.getElementById("key-mode-switch-output");
+    let keyModeSwitchCheckbox = document.getElementById("keyModeSwitch-check");
     let keyModeSwitchLabel = document.getElementById('key-mode-switch-label');
 
-    function keyShiftOpacity() {
-        keyModeSwitchSlider.style.opacity = 0.9;
-        keyModeSwitchLabel.style.opacity = 0.4;
+    function displayHandler() {
+        // display handling
+        if (keyModeSwitchCheckbox.checked === true) {
+            keyModeSwitchSliderOutput.innerHTML = '...';
+            keyModeSwitchSlider.style.opacity = 0.3;
+            keyModeSwitchLabel.style.opacity = 1;
+        } else if (keyModeSwitchCheckbox.checked === false) {
+            keyModeSwitchSlider.value == 1 ? keyModeSwitchSliderOutput.innerHTML = "Stay same" : keyModeSwitchSliderOutput.innerHTML = "Parallel";
+            keyModeSwitchSlider.style.opacity = 0.9;
+            keyModeSwitchLabel.style.opacity = 0.4;
+        }
+    }
+
+    function controlHandler() {
+        // indicate user control
+        keyModeSwitchConBool = true;
+        // set random boolean from checkbox
+        keyModeSwitchRandom = keyModeSwitchCheckbox.checked;
+        // display handling
+    }
+
+    function multiDataControlDisplay() {
+        // push value that was hidden to control object
+        onScreenFirstPassOptions.keyModeSwitch = modeShiftArray[keyModeSwitchSlider.value - 1];
+        controlHandler();
+        displayHandler();
     }
 
     // handle on-page-load conditional styling
-    if (keyModeSwitchCheck.checked === false) {
+    if (keyModeSwitchCheckbox.checked === false) {
+        keyModeSwitchSliderOutput.innerHTML = "Parallel";
         keyModeSwitchSlider.style.opacity = 0.9;
         keyModeSwitchLabel.style.opacity = 0.4;
     }
 
     // set initial display value
-    keyModeSwitchSliderOutput.innerHTML = "Parallel";
 
-    keyModeSwitchSlider.onclick = function () {
-        // turn off checkbox
-        keyModeSwitchCheck.checked = false;
-        // indicate user control
-        keyModeSwitchConBool = true;
-        // release random control
-        keyModeSwitchRandom = keyModeSwitchCheck.checked;
-        // push user value to control object
-        onScreenFirstPassOptions.keyModeSwitch = modeShiftArray[this.value - 1];
-        // display handling
-        this.value == 1 ? keyModeSwitchSliderOutput.innerHTML = "Stay same" : keyModeSwitchSliderOutput.innerHTML = "Parallel";
-        keyShiftOpacity()
+    keyModeSwitchSlider.onclick = () => multiDataControlDisplay();
+
+    keyModeSwitchSlider.onmousedown = () => {
+        keyModeSwitchCheckbox.checked = false;
+        displayHandler();
     }
 
-    keyModeSwitchSlider.oninput = function () {
-        this.value == 1 ? keyModeSwitchSliderOutput.innerHTML = "Stay same" : keyModeSwitchSliderOutput.innerHTML = "Parallel";
-        keyShiftOpacity()
-    }
+    keyModeSwitchSlider.oninput = () => displayHandler();
 
-
-    keyModeSwitchCheck.oninput = () => {
-        // indicate user control
-        keyModeSwitchConBool = true;
-        // set random boolean from checkbox
-        keyModeSwitchRandom = keyModeSwitchCheck.checked;
-        // display handling
-        if (keyModeSwitchCheck.checked === true) {
-            keyModeSwitchSliderOutput.innerHTML = '...';
-            keyModeSwitchSlider.style.opacity = 0.3;
-            keyModeSwitchLabel.style.opacity = 1;
-        } else {
-            // push value that was hidden to control object
-            onScreenFirstPassOptions.keyModeSwitch = modeShiftArray[keyModeSwitchSlider.value - 1];
-            // display handling
-            keyModeSwitchSlider.value == 1 ? keyModeSwitchSliderOutput.innerHTML = "Stay same" : keyModeSwitchSliderOutput.innerHTML = "Parallel";
-            keyShiftOpacity();
-        }
-    }
+    keyModeSwitchCheckbox.oninput = () => multiDataControlDisplay();
 }
+
 keyModeSwitchHandler();
 
 // Persist buttons
