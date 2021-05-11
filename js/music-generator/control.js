@@ -384,7 +384,7 @@ function keyModeSwitchHandler() {
             keyModeSwitchSlider.style.opacity = 0.3;
             keyModeSwitchLabel.style.opacity = 1;
         } else if (keyModeSwitchCheckbox.checked === false) {
-            keyModeSwitchSlider.value == 1 ? keyModeSwitchSliderOutput.innerHTML = "Stay same" : keyModeSwitchSliderOutput.innerHTML = "Parallel";
+            keyModeSwitchSlider.value == 1 ? keyModeSwitchSliderOutput.innerHTML = "No shift" : keyModeSwitchSliderOutput.innerHTML = "Parallel Mode";
             keyModeSwitchSlider.style.opacity = 0.9;
             keyModeSwitchLabel.style.opacity = 0.4;
         }
@@ -395,7 +395,6 @@ function keyModeSwitchHandler() {
         keyModeSwitchConBool = true;
         // set random boolean from checkbox
         keyModeSwitchRandom = keyModeSwitchCheckbox.checked;
-        // display handling
     }
 
     function multiDataControlDisplay() {
@@ -404,15 +403,6 @@ function keyModeSwitchHandler() {
         controlHandler();
         displayHandler();
     }
-
-    // handle on-page-load conditional styling
-    if (keyModeSwitchCheckbox.checked === false) {
-        keyModeSwitchSliderOutput.innerHTML = "Parallel";
-        keyModeSwitchSlider.style.opacity = 0.9;
-        keyModeSwitchLabel.style.opacity = 0.4;
-    }
-
-    // set initial display value
 
     keyModeSwitchSlider.onclick = () => multiDataControlDisplay();
 
