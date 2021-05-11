@@ -117,6 +117,21 @@ function playPhraseChart() {
     });
 }
 
+// tempo controls
+function getNewTempo() {
+    return generateChance(250, 350);
+}
+
+function getCloselyRelatedTempo(input) {
+    let amountChange = generateChance(70, 50);
+    if (generateChance(2) === 1) {
+        return input + amountChange;
+    } else {
+        return input - amountChange;
+    }
+}
+
+// SATB controls - which play, which are silent
 function iteratePlaybackArray(infoArray) {
     // THIS is where I can control which voices play per beat
     let temp = 4;
@@ -168,6 +183,7 @@ function playbackTextureSwitch(voices, infoArray) {
             break;
     }
 }
+
 
 // || TEXTURES
 

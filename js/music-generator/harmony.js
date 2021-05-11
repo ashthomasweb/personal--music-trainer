@@ -168,15 +168,11 @@ function switchParallelMode() {
     } else if (keyModeSwitchConBool === true && keyModeSwitchRandom === true) { // random checkbox enabled, only on first pass
         keyModeSwitchConVar = modeShiftArray[generateChance(2) - 1];
     } else { // hard-coded option
-        keyModeSwitchConVar = 'parallel';
+        keyModeSwitchConVar = modeShiftArray[generateChance(2) - 1];
     }
 
     // multiple value assignment handling
-    if (keyModeSwitchConVar === 'parallel') {
-        parallelMode();
-    } else if (keyModeSwitchConVar === 'static') {
-        // do nothing
-    }
+    keyModeSwitchConVar === 'parallel' && parallelMode();
 }
 
 // form construction
@@ -330,19 +326,6 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         info.cadence = cadenceValue;
     }
 
-    function getNewTempo() {
-        return generateChance(250, 350);
-    }
-
-    function getCloselyRelatedTempo(input) {
-        let amountChange = generateChance(70, 50);
-        if (generateChance(2) === 1) {
-            return input + amountChange;
-        } else {
-            return input - amountChange;
-        }
-    }
-
     // CONTROL HANDLING --------------
 
     // onscreen user controled option has been clicked, random box unchecked
@@ -351,7 +334,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     } else if (startingChordConBool === true && startingChordRandom === true) { // random checkbox enabled
         startingChordConVar = generateChance(7);
     } else { // hard-coded option
-        startingChordConVar = 1;
+        generateChance(2) === 1 ? startingChordConVar = 1 : startingChordConVar = generateChance(7);
     }
 
     // onscreen user controled option has been clicked, random box onchecked
@@ -400,9 +383,20 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         cadenceHandler(section);
         storePlaybackData();
     }
-    
+
+    function checkForRetro() {
+        for ( let i = 1; i <= info.progression.length; i++) {
+            if ( info.progression[i] === 'V' && info.progression[i+1] === 'IV' ) {
+                console.log(info.formId + ' ' + info.progression)
+                console.log('ALERT**ALERT**ALERT**ALERT**ALERT**ALERT**ALERT**ALERT**ALERT');
+            }
+        }
+    }
+    // checkForRetro();
+
+    // console.log(info.formId + ' ' + info.progression);
     // console.log(info.formId + ' ' + info.progression[0]);
-    console.log(info.formId + ' ' + info.key);
+    // console.log(info.formId + ' ' + info.key);
     // console.log(info.formId + ' ' + info.progressionLength);
     // console.log(info.formId + ' ' + info.cadence);
 }
@@ -591,10 +585,11 @@ function motionStatic(chord) {
 
 function motionAnyToHome(chord) {
     if (chord === 'i' || chord === 'I') {
-        return currentHarmony[generateChance(6)];
+        return currentHarmony[generateChance(6, 1) - 1];
     } else {
         return currentHarmony[0];
     }
+    
 }
 
 // function to ensure progression moves into cadential figure with strong motion
