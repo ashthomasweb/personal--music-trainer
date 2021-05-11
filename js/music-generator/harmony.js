@@ -393,7 +393,6 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         }
     }
     // checkForRetro();
-
     // console.log(info.formId + ' ' + info.progression);
     // console.log(info.formId + ' ' + info.progression[0]);
     // console.log(info.formId + ' ' + info.key);
