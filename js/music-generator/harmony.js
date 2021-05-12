@@ -214,7 +214,7 @@ function buildDoublePeriod() {
                 voiceLeadHandler(section);
             }
         }
-  
+
         // CONTROL HANDLING ---------
 
         // let persistStateConVar;
@@ -232,7 +232,7 @@ function buildDoublePeriod() {
         // }
 
         turnControlOff();
-        
+
         // CONTROL HANDLING ---------
     }
     playPhraseChart();
@@ -353,7 +353,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         info.formId = formNum + ':A';
         info.tempo = getNewTempo();
         // generate new progression, any starting point, never Authentic cadence
-        getNewProgression(currentHarmony[startingChordConVar - 1], cadenceType[typeOfCadenceConVar - 1], section);
+        getNewProgression(currentHarmony[startingChordConVar - 1], cadenceType[typeOfCadenceConVar - 1], section, info);
         storePlaybackData();
         // second 4 bar phrase
     } else if (section === 1) {
@@ -371,7 +371,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         // third 4 bar phrase
     } else if (section === 2) {
         info.formId = formNum + ':B';
-        getNewProgression(motionUpFourth(progression[progression.length - 1]), cadenceType[generateChance(2, 2) - 1], section);
+        getNewProgression(motionUpFourth(progression[progression.length - 1]), cadenceType[generateChance(2, 2) - 1], section, info);
         info.tempo = getCloselyRelatedTempo(phraseContainer[(formNum - 1) * 4][0].tempo);
         storePlaybackData();
         // last 4 bar phrase
@@ -384,15 +384,6 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         storePlaybackData();
     }
 
-    function checkForRetro() {
-        for ( let i = 1; i <= info.progression.length; i++) {
-            if ( info.progression[i] === 'V' && info.progression[i+1] === 'IV' ) {
-                console.log(info.formId + ' ' + info.progression)
-                console.log('ALERT**ALERT**ALERT**ALERT**ALERT**ALERT**ALERT**ALERT**ALERT');
-            }
-        }
-    }
-    // checkForRetro();
     // console.log(info.formId + ' ' + info.progression);
     // console.log(info.formId + ' ' + info.progression[0]);
     // console.log(info.formId + ' ' + info.key);
@@ -406,7 +397,7 @@ let numOfChordsOption;
 let numOfChordsRandom = true;
 let progression = [];
 
-function getNewProgression(start, cadence, section) {
+function getNewProgression(start, cadence, section, info) {
     // onscreen user controled option has been clicked, random box unchecked
     if (numOfChordsConBool === true && section === 0 && numOfChordsRandom === false) {
         numOfChordsConVar = numOfChordsOption;
@@ -421,7 +412,7 @@ function getNewProgression(start, cadence, section) {
 
     function generateInitialHarmonies() {
         for (let i = 1; i <= numOfChordsConVar - 1; i++) {
-            progression[i] = generateStrongMotion(progression[i - 1]);
+            progression[i] = generateStrongMotion(progression[i - 1], info);
         }
         // THIS is where I can add raised harmonies
         if (currentHarmony === minor) {
@@ -468,18 +459,17 @@ function getNewProgression(start, cadence, section) {
         }
     }
 
-    function checkForStrongMotion() {
+    function checkForStrongMotion(info) {
         if (cadence === 'Plagal') {
             for (let i = 1; i <= progression.length - 2; i++) {
                 if (checkIfStrong(progression[i - 1], progression[i]) === false) {
-                    return getNewProgression(start, cadence, section);
+                    return getNewProgression(start, cadence, section, info);
                 }
             }
         } else {
             for (let i = 1; i <= progression.length - 1; i++) {
                 if (checkIfStrong(progression[i - 1], progression[i]) === false) {
-                    // console.log('Do not pass go, do not collect $200.');
-                    return getNewProgression(start, cadence, section);
+                    return getNewProgression(start, cadence, section, info);
                 }
             }
         }
@@ -489,7 +479,7 @@ function getNewProgression(start, cadence, section) {
     progression[0] = start;
     generateInitialHarmonies();
     assignNewCadence();
-    checkForStrongMotion();
+    checkForStrongMotion(info);
     return progression;
 }
 
@@ -505,7 +495,7 @@ function harmonicDiatonicSequencer(degreesUp) {
     }
 }
 
-function generateStrongMotion(chord) {
+function generateStrongMotion(chord, info) {
     switch (generateChance(7)) {
         case 1:
             return motionUpSecond(chord);
@@ -579,6 +569,7 @@ function motionUpFourth(chord) {
 }
 
 function motionStatic(chord) {
+
     return currentHarmony[currentHarmony.indexOf(chord)];
 }
 
@@ -588,7 +579,7 @@ function motionAnyToHome(chord) {
     } else {
         return currentHarmony[0];
     }
-    
+
 }
 
 // function to ensure progression moves into cadential figure with strong motion
