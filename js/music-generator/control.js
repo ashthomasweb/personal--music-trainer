@@ -8,7 +8,8 @@ let onScreenFirstPassOptions = {
     keyMode: undefined,
     numOfChords: undefined,
     numOfRepeats: undefined,
-    keyModeSwitch: undefined
+    keyModeSwitch: undefined,
+    primeSequence: undefined
     // persistState: undefined
 }
 
@@ -50,6 +51,11 @@ function masterControl() {
     if (controlOptions.keyModeSwitch !== undefined) {
         keyModeSwitchConBool = true;
         keyModeSwitchOption = controlOptions.keyModeSwitch;
+    }
+
+    if (controlOptions.primeSequence !== undefined) {
+        primeSequenceConBool = true;
+        primeSequenceOption = controlOptions.primeSequence;
     }
 
     // if (controlOptions.persistState !== undefined) {
@@ -101,7 +107,7 @@ function startingChordOptionHandler() {
     startingChordOutput.innerHTML = currentHarmony[startingChordSlider.value - 1];
 
     startingChordSlider.onclick = () => multiDataControlDisplay();
-    
+
     startingChordSlider.onmousedown = () => {
         startingChordCheckbox.checked = false;
         displayHandler();
@@ -149,7 +155,7 @@ function cadenceControlHandler() {
     cadenceSliderOutput.innerHTML = '...';
 
     cadenceSlider.onclick = () => multiDataControlDisplay();
-    
+
     cadenceSlider.onmousedown = () => {
         cadenceCheckbox.checked = false;
         displayHandler();
@@ -199,7 +205,7 @@ function keyCenterControlHandler() {
     keyCenterSliderOutput.innerHTML = '...';
 
     keyCenterSlider.onclick = () => multiDataControlDisplay();
-    
+
     keyCenterSlider.onmousedown = () => {
         keyCenterCheckbox.checked = false;
         displayHandler();
@@ -255,7 +261,7 @@ function keyModeControlHandler() {
         startChordDisplay.innerHTML = currentHarmony[startChordSlider.value - 1];
         multiDataControlDisplay();
     }
-    
+
     keyModeSlider.onmousedown = () => {
         // turn off checkboxx
         keyModeCheckbox.checked = false;
@@ -283,7 +289,7 @@ function numChordsHandler() {
             numChordsSliderOutput.innerHTML = '...';
             numChordsSlider.style.opacity = 0.3;
             numChordsLabel.style.opacity = 1;
-        } else  if (chordsCheckbox.checked === false) {
+        } else if (chordsCheckbox.checked === false) {
             numChordsSliderOutput.innerHTML = numChordsSlider.value;
             numChordsSlider.style.opacity = 0.9;
             numChordsLabel.style.opacity = 0.4;
@@ -308,7 +314,7 @@ function numChordsHandler() {
     numChordsSliderOutput.innerHTML = '...';
 
     numChordsSlider.onclick = () => multiDataControlDisplay();
-    
+
     numChordsSlider.onmousedown = () => {
         chordsCheckbox.checked = false;
         displayHandler();
@@ -415,8 +421,59 @@ function keyModeSwitchHandler() {
 
     keyModeSwitchCheckbox.oninput = () => multiDataControlDisplay();
 }
-
 keyModeSwitchHandler();
+
+function primeSequenceHandler() {
+    let primeSequenceArray = ['No change', 'Up a second', 'Up a third', 'Up a fourth', 'Up a fifth', 'Up a sixth', 'Up a seventh', 'Strongest Most Often'];
+    let primeSequenceSlider = document.getElementById("prime-sequence-slider");
+    let primeSequenceSliderOutput = document.getElementById("prime-sequence-output");
+    let primeSequenceCheckbox = document.getElementById("primeSequence-check");
+    let primeSequenceLabel = document.getElementById('prime-sequence-label');
+
+    function displayHandler() {
+        // display handling
+        if (primeSequenceCheckbox.checked === true) {
+            primeSequenceSliderOutput.innerHTML = '...';
+            primeSequenceSlider.style.opacity = 0.3;
+            primeSequenceLabel.style.opacity = 1;
+        } else if (primeSequenceCheckbox.checked === false) {
+            primeSequenceSliderOutput.innerHTML = primeSequenceArray[primeSequenceSlider.value - 1];
+            primeSequenceSlider.style.opacity = 0.9;
+            primeSequenceLabel.style.opacity = 0.4;
+        }
+    }
+
+    function controlHandler() {
+        // indicate user control
+        primeSequenceConBool = true;
+        // set random boolean from checkbox
+        primeSequenceRandom = primeSequenceCheckbox.checked;
+    }
+
+    function multiDataControlDisplay() {
+        // push value that was hidden to control object
+        onScreenFirstPassOptions.primeSequence = primeSequenceSlider.value;
+        controlHandler();
+        displayHandler();
+    }
+
+    // handle on-page-load conditional styling
+    primeSequenceCheckbox.checked === false && displayHandler();
+
+    primeSequenceSlider.onclick = () => multiDataControlDisplay();
+
+    primeSequenceSlider.onmousedown = () => {
+        primeSequenceCheckbox.checked = false;
+        displayHandler();
+    }
+
+    primeSequenceSlider.oninput = () => displayHandler();
+
+    primeSequenceCheckbox.oninput = () => multiDataControlDisplay();
+}
+primeSequenceHandler();
+
+
 
 // Persist buttons
 function startChordPersist() {
@@ -457,11 +514,18 @@ function numChordPersist() {
     numOfChordsPersist === true ? element.style.backgroundColor = 'pink' : element.style.backgroundColor = 'white';
 }
 
-function sectionModeShift() {
+function sectionModeShiftPersist() {
     let element = document.getElementById('section-shift-persist-toggle');
     keyModeSwitchConBool = true;
     keyModeSwitchPersist = !keyModeSwitchPersist;
     keyModeSwitchPersist === true ? element.style.backgroundColor = 'pink' : element.style.backgroundColor = 'white';
+}
+
+function primeSectionSequencePersist() {
+    let element = document.getElementById('prime-sequence-persist-toggle');
+    primeSequenceConBool = true;
+    primeSequencePersist = !primeSequencePersist;
+    primeSequencePersist === true ? element.style.backgroundColor = 'pink' : element.style.backgroundColor = 'white';
 }
 
 // turn off control booleans
@@ -489,6 +553,10 @@ function turnControlOff() {
 
     if (keyModeSwitchPersist === false) {
         keyModeSwitchConBool = false;
+    }
+
+    if (primeSequencePersist === false) {
+        primeSequenceConBool = false;
     }
 
     numOfRepeatsConBool = false;

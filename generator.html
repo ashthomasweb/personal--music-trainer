@@ -116,7 +116,16 @@
         <input type="range" min="1" max="2" value="2" class="slider" id="key-mode-switch-slider">
         <label id="key-mode-switch-label" for="key-mode-switch-check">Random</label>
         <input type="checkbox" id="keyModeSwitch-check" name="key-mode-switch-check" checked="checked">
-        <button id="section-shift-persist-toggle" onclick="sectionModeShift()">Persist</button>
+        <button id="section-shift-persist-toggle" onclick="sectionModeShiftPersist()">Persist</button>
+      </div>
+
+      <div class="slidecontainer">
+        <p class="slider-title">Prime section harmonic sequence?</p>
+        <p class="slider-value"><span id="prime-sequence-output">...</span></p>
+        <input type="range" min="1" max="8" value="8" class="slider" id="prime-sequence-slider">
+        <label id="prime-sequence-label" for="prime-sequence-check">Random</label>
+        <input type="checkbox" id="primeSequence-check" name="prime-sequence-check">
+        <button id="prime-sequence-persist-toggle" onclick="primeSectionSequencePersist()">Persist</button>
       </div>
 
     </div>
