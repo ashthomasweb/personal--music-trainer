@@ -260,6 +260,11 @@ let typeOfCadenceConBool = false;
 let typeOfCadenceOption;
 let typeOfCadenceRandom = true;
 
+let primeSequencePersist = false;
+let primeSequenceConBool = false;
+let primeSequenceOption;
+let primeSequenceRandom = false;
+
 // makes a base unit of chords
 function createHarmonicUnit(section, formNum, phraseChart) {
     let {
@@ -334,7 +339,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     } else if (startingChordConBool === true && startingChordRandom === true) { // random checkbox enabled
         startingChordConVar = generateChance(7);
     } else { // hard-coded option
-        generateChance(2) === 1 ? startingChordConVar = 1 : startingChordConVar = generateChance(7);
+        phraseContainer.length === 0 ? startingChordConVar = 1 : generateChance(2) === 1 ? startingChordConVar = 1 : startingChordConVar = generateChance(7);
     }
 
     // onscreen user controled option has been clicked, random box onchecked
@@ -344,6 +349,37 @@ function createHarmonicUnit(section, formNum, phraseChart) {
         typeOfCadenceConVar = generateChance(4);
     } else { // hard-coded option
         typeOfCadenceConVar = generateChance(3, 1);
+    }
+
+    function harmonicSequenceHandler() {
+
+        // onscreen harmonic sequencing option
+        if (primeSequenceConBool === true && primeSequenceRandom === false) {
+            primeSequenceConVar = primeSequenceOption;
+            primeSequenceConVar = Number(primeSequenceConVar);
+            if (primeSequenceConVar === 1) {
+                // do nothing
+            } else if (primeSequenceConVar > 1 && primeSequenceConVar < 8) {
+                harmonicDiatonicSequencer(primeSequenceConVar);
+            } else if (primeSequenceConVar >= 8) {
+                strongestMostOften();
+            }
+        } else if (primeSequenceConBool === true && primeSequenceRandom === true) { // random checkbox enabled
+            primeSequenceConVar = generateChance(8);
+            harmonicDiatonicSequencer(primeSequenceConVar);
+        } else { // hard-coded option
+            strongestMostOften();
+        }
+
+        function strongestMostOften() {
+            // sequence by stongest motion most often
+            let sequenceChance = generateChance(20);
+            if (sequenceChance <= 8) {
+                harmonicDiatonicSequencer(generateChance(8));
+            } else if (sequenceChance > 8) {
+                harmonicDiatonicSequencer(4);
+            }
+        }
     }
 
     // CONTROL HANDLING --------------
@@ -359,13 +395,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     } else if (section === 1) {
         info.formId = formNum + ':A1';
         info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
-        // sequence by stongest motion most often
-        let sequenceChance = generateChance(20);
-        if (sequenceChance <= 8) {
-            harmonicDiatonicSequencer(generateChance(8));
-        } else if (sequenceChance > 8) {
-            harmonicDiatonicSequencer(4);
-        }
+        harmonicSequenceHandler();
         cadenceHandler(section);
         storePlaybackData();
         // third 4 bar phrase
