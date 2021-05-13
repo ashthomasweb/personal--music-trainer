@@ -32,9 +32,6 @@ function checkForUndefined() {
     }
 }
 
-
-
-
 function makePersist() {
     if (onScreenFirstPassOptions.persistState !== undefined) {
         onScreenFirstPassOptions.persistState = !onScreenFirstPassOptions.persistState;

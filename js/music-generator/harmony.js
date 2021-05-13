@@ -386,27 +386,27 @@ function createHarmonicUnit(section, formNum, phraseChart) {
 
     // first 4 bar phrase
     if (section === 0) {
-        info.formId = formNum + ':A';
+        info.formId = formNum + ':A (Head)';
         info.tempo = getNewTempo();
         // generate new progression, any starting point, never Authentic cadence
         getNewProgression(currentHarmony[startingChordConVar - 1], cadenceType[typeOfCadenceConVar - 1], section, info);
         storePlaybackData();
         // second 4 bar phrase
     } else if (section === 1) {
-        info.formId = formNum + ':A1';
+        info.formId = formNum + ':A (Prime)';
         info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
         harmonicSequenceHandler();
         cadenceHandler(section);
         storePlaybackData();
         // third 4 bar phrase
     } else if (section === 2) {
-        info.formId = formNum + ':B';
+        info.formId = formNum + ':B Section';
         getNewProgression(motionUpFourth(progression[progression.length - 1]), cadenceType[generateChance(2, 2) - 1], section, info);
         info.tempo = getCloselyRelatedTempo(phraseContainer[(formNum - 1) * 4][0].tempo);
         storePlaybackData();
         // last 4 bar phrase
     } else if (section === 3) {
-        info.formId = formNum + ':A - Final';
+        info.formId = formNum + ':A (Tail)';
         info.tempo = phraseContainer[(formNum - 1) * 4][0].tempo;
         // get 'A' section progression and apply cadence
         progression = [...phraseContainer[(formNum - 1) * 4][0].progression];
@@ -415,7 +415,7 @@ function createHarmonicUnit(section, formNum, phraseChart) {
     }
 
     // console.log(info.formId + ' ' + info.progression);
-    // console.log(info.formId + ' ' + info.progression[0]);
+    console.log(info.formId + ' ' + info.progression[0]);
     // console.log(info.formId + ' ' + info.key);
     // console.log(info.formId + ' ' + info.progressionLength);
     // console.log(info.formId + ' ' + info.cadence);
@@ -429,12 +429,12 @@ let progression = [];
 
 function getNewProgression(start, cadence, section, info) {
     // onscreen user controled option has been clicked, random box unchecked
-    if (numOfChordsConBool === true && section === 0 && numOfChordsRandom === false) {
+    if (numOfChordsConBool === true && numOfChordsRandom === false) {
         numOfChordsConVar = numOfChordsOption;
     } else if (numOfChordsConBool === true && numOfChordsRandom === true) { // random checkbox enabled
-        numOfChordsConVar = generateChance(5, 2);
+        numOfChordsConVar = generateChance(4, 3);
     } else { // hard-coded option
-        numOfChordsConVar = generateChance(5, 2);
+        numOfChordsConVar = generateChance(4, 3);
     }
 
     // 'cadenceValue' is a iterated data store variable used in /voice-leading.js

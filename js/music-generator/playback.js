@@ -123,7 +123,7 @@ function getNewTempo() {
 }
 
 function getCloselyRelatedTempo(input) {
-    let amountChange = generateChance(70, 50);
+    let amountChange = generateChance(60, 40);
     if (generateChance(2) === 1) {
         return input + amountChange;
     } else {
@@ -169,7 +169,7 @@ function iteratePlaybackArray(infoArray) {
 
 // THIS is where I can engage textures
 function playbackTextureSwitch(voices, infoArray) {
-    switch (generateChance(1)) {
+    switch (2) {
         case 1:
             voices.forEach((item) => {
                 noteSwitch(item);
@@ -190,11 +190,11 @@ function playbackTextureSwitch(voices, infoArray) {
 // Arpeggiate voices without stopping repeated notes
 function arpeggiateVoices(voices, infoArray) {
     voicesTimer = 0;
-    let chance = generateChance(3);
+    let chance = generateChance(1);
 
     beatLength = infoArray.tempo;
 
-    if (chance === 0) {
+    if (chance === 1) {
         setTimeout(() => {
             noteSwitch(voices[0]);
         }, voicesTimer);
@@ -208,7 +208,7 @@ function arpeggiateVoices(voices, infoArray) {
             noteSwitch(voices[3]);
         }, voicesTimer + (beatLength * .75));
         voicesTimer = voicesTimer + beatLength;
-    } else if (chance === 1) {
+    } else if (chance === 2) {
         setTimeout(() => {
             noteSwitch(voices[3]);
         }, voicesTimer);
