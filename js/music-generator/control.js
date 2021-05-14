@@ -486,7 +486,6 @@ function startChordPersist() {
     startingChordPersist === true ? element.style.backgroundColor = 'pink' : element.style.backgroundColor = 'white';
     // assign data for control variable
     startingChordOption = document.querySelector('#starting-chord-slider').value;
-    console.log(document.querySelector('#starting-chord-slider').value);
 }
 
 function cadencePersist() {

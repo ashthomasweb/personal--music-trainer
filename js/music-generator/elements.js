@@ -32,6 +32,24 @@ function checkForUndefined() {
     }
 }
 
+function checkForRange() {
+    for (i = 0; i <= phraseContainer.length - 1; i++) {
+        console.log('range:  ' + i);
+        phraseContainer[i][0].voiceLeading[0].forEach( (note) => {
+            rangeHandler('bass', note) && console.log('Bass out of range' + note);
+        });
+        phraseContainer[i][0].voiceLeading[1].forEach( (note) => {
+            rangeHandler('tenor', note) && console.log('Tenor out of range' + note);
+        });
+        phraseContainer[i][0].voiceLeading[2].forEach( (note) => {
+            rangeHandler('alto', note) && console.log('Alto out of range' + note);
+        });
+        phraseContainer[i][0].voiceLeading[3].forEach( (note) => {
+            rangeHandler('soprano', note) && console.log('Soprano out of range' + note);
+        });
+    }
+}
+
 function makePersist() {
     if (onScreenFirstPassOptions.persistState !== undefined) {
         onScreenFirstPassOptions.persistState = !onScreenFirstPassOptions.persistState;

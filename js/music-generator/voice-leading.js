@@ -1,5 +1,57 @@
 let noteIndex = ['B1', 'C2', 'Db2', 'D2', 'Eb2', 'E2', 'F2', 'Gb2', 'G2', 'Ab2', 'A2', 'Bb2', 'B2', 'C3', 'Db3', 'D3', 'Eb3', 'E3', 'F3', 'Gb3', 'G3', 'Ab3', 'A3', 'Bb3', 'B3', 'C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4', 'C5', 'Db5', 'D5', 'Eb5', 'E5', 'F5', 'Gb5', 'G5', 'Ab5', 'A5', 'Bb5', 'B5', 'C6', 'Db6', 'D6'];
 
+
+let bassNoteIndexRange = {
+    minIndex: 0,
+    maxIndex: 18,
+    minNote: 'B1',
+    maxNote: 'F3'
+}
+
+let tenorNoteIndexRange = {
+    minIndex: 19,
+    maxIndex: 27,
+    minNote: 'Gb3',
+    maxNote: 'D4'
+}
+
+let altoNoteIndexRange = {
+    minIndex: 28,
+    maxIndex: 36,
+    minNote: 'Eb4',
+    maxNote: 'B4'
+}
+
+let sopranoNoteIndexRange = {
+    minIndex: 37,
+    maxIndex: 51,
+    minNote: 'C5',
+    maxNote: 'D6'
+}
+
+function rangeHandler(voice, input) {
+    if ( voice === 'bass') {
+        if ( input < bassNoteIndexRange.minIndex || input > bassNoteIndexRange.maxIndex) {
+            return false;
+        }
+    } else if ( voice === 'tenor') {
+        if ( input < tenorNoteIndexRange.minIndex || input > tenorNoteIndexRange.maxIndex) {
+            return false;
+        }
+    } else if ( voice === 'alto') {
+        if ( input < altoNoteIndexRange.minIndex || input > altoNoteIndexRange.maxIndex) {
+            return false;
+        }
+    } else if ( voice === 'soprano') {
+        if ( input < sopranoNoteIndexRange.minIndex || input > sopranoNoteIndexRange.maxIndex) {
+            return false;
+        }
+    } else {
+        return true;
+    }
+}
+
+
 let resolutionDirectionArray = [];
 let startingNote; // temp data store for each iteration
 let cadenceValue; // temp data store for each iteration
@@ -37,13 +89,13 @@ function voiceLeadHandler(section) {
 
         function satbSplitter() {
             allChordToneIndex.forEach((item) => {
-                if (item < 19) { // F3 and below
+                if (item <= 18) { // F3 and below
                     bassTones.push(item);
                 }
-                if (item >= 19 && item < 28) { // Gb3 to D4
+                if (item >= 19 && item <= 27) { // Gb3 to D4
                     tenorTones.push(item);
                 }
-                if (item >= 28 && item < 37) { // Eb4 to B4
+                if (item >= 28 && item <= 36) { // Eb4 to B4
                     altoTones.push(item);
                 }
                 if (item >= 37) { // C5 and above
@@ -56,7 +108,7 @@ function voiceLeadHandler(section) {
     satbHandler();
 
     // create array indicating overall voice leading direction
-    function createResolutionArray() {
+    function createResolutionDirectionArray() {
         let direction;
         resolutionDirectionArray = [];
         for (let i = 0; i <= progression.length - 2; i++) {
@@ -84,26 +136,26 @@ function voiceLeadHandler(section) {
             resolutionDirectionArray[resolutionDirectionArray.length - 2] = 'smoothest';
         }
     }
-    createResolutionArray();
+    createResolutionDirectionArray();
     
     // set first note of voice and handle voice-leading for satb
     function createBassArray() {
-        getVoiceLeading('triad', section, 0);
+        getVoiceLeading('triad', section, 'bass', 0);
         bassVoiceArray = [...tempVoiceArray];
     }
 
     function createTenorArray() {
-        getVoiceLeading('triad', section, 1);
+        getVoiceLeading('triad', section, 'tenor', 1);
         tenorVoiceArray = [...tempVoiceArray];
     }
 
     function createAltoArray() {
-        getVoiceLeading('seventh', section, 2, true);
+        getVoiceLeading('seventh', section, 'alto', 2);
         altoVoiceArray = [...tempVoiceArray];
     }
 
     function createSopranoArray() {
-        getVoiceLeading('seventh', section, 3);
+        getVoiceLeading('seventh', section, 'soprano', 3);
         sopranoVoiceArray = [...tempVoiceArray];
     }
   
@@ -184,6 +236,7 @@ function voiceLeadHandler(section) {
             if (rootBool === false) {
                 bassVoiceArray[i] = roots[0];
             }
+            // if false then move soprano to highest third
             if (thirdBool === false) {
                 sopranoVoiceArray[i] = thirds[thirds.length - 1];
             }
@@ -207,7 +260,7 @@ function voiceLeadHandler(section) {
     voiceArrayDataHandler();
 }
 
-function getVoiceLeading(extensions, section, voice, counterpoint = false) {
+function getVoiceLeading(extensions, section, voice, voiceIndex, counterpoint = false) {
     // empty array to hold all voice leading options
     tempVoiceArray = [];
     let resolveChord;
@@ -230,16 +283,31 @@ function getVoiceLeading(extensions, section, voice, counterpoint = false) {
                 }
             }
 
+
+
+
             if (extensions === 'triad') {
                 // length of resolveChord loop determines how many color tones are included. (-2) is triad, (-1) includes sevenths.
                 for (let i = 1; i <= Object.keys(resolveChord).length - 2; i++) {
                     // gets index of all chord members in resolution chord
                     Object.values(resolveChord)[i].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
+                    // console.log('old: ' + voice + chordMemberIndexArray);
+                    // NEED to remove indexes of out of range tones
+                    chordMemberIndexArray.forEach( (num, i) => {
+                        rangeHandler(voice, num) === false && chordMemberIndexArray.splice(i, 1);
+                    });
+                    // console.log('new: ' + voice + chordMemberIndexArray);
                 }
             } else if (extensions === 'seventh') {
                 for (let i = 1; i <= Object.keys(resolveChord).length - seventhChance(); i++) {
                     // gets index of all chord members including sevenths in resolution chord
                     Object.values(resolveChord)[i].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
+                    // console.log('old: ' + voice + chordMemberIndexArray);
+                    // NEED to remove indexes of out of range tones
+                    chordMemberIndexArray.forEach( (num, i) => {
+                        rangeHandler(voice, num) === false && chordMemberIndexArray.splice(i, 1);
+                    });
+                    // console.log('new: ' + voice + chordMemberIndexArray);
                 }
             }
         }
@@ -279,7 +347,7 @@ function getVoiceLeading(extensions, section, voice, counterpoint = false) {
         }
         getClosestResolutions();
 
-        // pick smoothest or next best voice-leading option
+        // pick smoothest or next best voice-leading option by default
         function smoothResolutionChance(forceSmooth) {
             if (forceSmooth) {
                 resolution = resolutionOptions[0];
@@ -351,20 +419,21 @@ function getVoiceLeading(extensions, section, voice, counterpoint = false) {
 
     // run function on entire progression
     for (let i = 0; i <= progression.length - 2; i++) {
+        // if first loop, generate voicing
         if (i === 0 && section === 0) {
-            tempVoiceArray.push(startingNote); // original code, works for first chord.
+            tempVoiceArray.push(startingNote);
         }
 
         // if not first loop, then get previous chord
         if (i === 0 && section !== 0) {
-            // search for object based on string
+            // assign object based on string
             resolveChord = progression[i];
             for (let i = 0; i <= keyNumerals.length - 1; i++) {
                 if (keyNumerals[i].numeral === resolveChord) {
                     resolveChord = keyNumerals[i];
                 }
             }
-            leadSingleVoice(phraseChart.info.prevFinalVoicing[voice], resolveChord, i, false, true);
+            leadSingleVoice(phraseChart.info.prevFinalVoicing[voiceIndex], resolveChord, i, false, true);
         }
 
         resolveChord = progression[i + 1];
