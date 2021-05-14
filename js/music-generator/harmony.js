@@ -427,7 +427,7 @@ let numOfChordsOption;
 let numOfChordsRandom = true;
 let progression = [];
 
-function getNewProgression(start, cadence, section, info) {
+function getNewProgression(start, cadence, section) {
     // onscreen user controled option has been clicked, random box unchecked
     if (numOfChordsConBool === true && numOfChordsRandom === false) {
         numOfChordsConVar = numOfChordsOption;
@@ -442,7 +442,7 @@ function getNewProgression(start, cadence, section, info) {
 
     function generateInitialHarmonies() {
         for (let i = 1; i <= numOfChordsConVar - 1; i++) {
-            progression[i] = generateStrongMotion(progression[i - 1], info);
+            progression[i] = generateStrongMotion(progression[i - 1]);
         }
         // THIS is where I can add raised harmonies
         if (currentHarmony === minor) {
@@ -493,13 +493,13 @@ function getNewProgression(start, cadence, section, info) {
         if (cadence === 'Plagal') {
             for (let i = 1; i <= progression.length - 2; i++) {
                 if (checkIfStrong(progression[i - 1], progression[i]) === false) {
-                    return getNewProgression(start, cadence, section, info);
+                    return getNewProgression(start, cadence, section);
                 }
             }
         } else {
             for (let i = 1; i <= progression.length - 1; i++) {
                 if (checkIfStrong(progression[i - 1], progression[i]) === false) {
-                    return getNewProgression(start, cadence, section, info);
+                    return getNewProgression(start, cadence, section);
                 }
             }
         }
@@ -509,7 +509,7 @@ function getNewProgression(start, cadence, section, info) {
     progression[0] = start;
     generateInitialHarmonies();
     assignNewCadence();
-    checkForStrongMotion(info);
+    checkForStrongMotion();
     return progression;
 }
 
@@ -525,7 +525,7 @@ function harmonicDiatonicSequencer(degreesUp) {
     }
 }
 
-function generateStrongMotion(chord, info) {
+function generateStrongMotion(chord) {
     switch (generateChance(7)) {
         case 1:
             return motionUpSecond(chord);

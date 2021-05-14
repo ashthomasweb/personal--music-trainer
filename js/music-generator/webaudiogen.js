@@ -69,14 +69,13 @@ let sopranoGain = audioContext.createGain();
 
 function satbNodeConnector() {
     for (let i = 0; i <= pianoExtendedC.length - 1; i++) {
-        if (i > 32) { // F3 and below
+        if (i >= 33) { // F3 and below
             pianoTrackArray[i].connect(bassGain);
             bassGain.connect(audioContext.destination);
-        } else if (i <= 32 && i > 23) { // Gb3 to D4
+        } else if (i <= 32 && i >= 24) { // Gb3 to D4
             pianoTrackArray[i].connect(tenorGain);
             tenorGain.connect(audioContext.destination);
-
-        } else if (i <= 23 && i > 14) { // Eb4 to B4
+        } else if (i <= 23 && i >= 15) { // Eb4 to B4
             pianoTrackArray[i].connect(altoGain);
             altoGain.connect(audioContext.destination);
         } else if (i <= 14) { // C5 and above
