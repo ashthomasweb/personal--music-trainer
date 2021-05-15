@@ -50,19 +50,43 @@ function checkForRange() {
     }
 }
 
-function makePersist() {
-    if (onScreenFirstPassOptions.persistState !== undefined) {
-        onScreenFirstPassOptions.persistState = !onScreenFirstPassOptions.persistState;
-    }
-    if (onScreenFirstPassOptions.persistState === undefined) {
-        onScreenFirstPassOptions.persistState = true;
-    }
-    if (onScreenFirstPassOptions.persistState === true) {
-        document.getElementById('persist-toggle').style.backgroundColor = 'pink';
-    } else {
-        document.getElementById('persist-toggle').style.backgroundColor = 'grey';
+function checkForDuplicates() {
+    for (i = 0; i <= phraseContainer.length - 1; i++) {
+        phraseContainer[i][0].voiceLeading[0].forEach( (note, j) => {
+            note === phraseContainer[i][0].voiceLeading[1][j] && console.log('duplicate B:T');
+            note === phraseContainer[i][0].voiceLeading[2][j] && console.log('duplicate B:A');
+            note === phraseContainer[i][0].voiceLeading[3][j] && console.log('duplicate B:S');
+            // console.log('bass test' + i);
+            // console.log(note);
+            // console.log(phraseContainer[i][0].voiceLeading[3]);
+        });
+        phraseContainer[i][0].voiceLeading[1].forEach( (note, j) => {
+            note === phraseContainer[i][0].voiceLeading[2][j] && console.log('duplicate T:A');
+            note === phraseContainer[i][0].voiceLeading[3][j] && console.log('duplicate T:S');
+            // console.log('tenor test' + i);
+            // console.log(note);
+        });
+        phraseContainer[i][0].voiceLeading[2].forEach( (note, j) => {
+            note === phraseContainer[i][0].voiceLeading[3][j] && console.log('duplicate A:S');
+            // console.log('alto test' + i);
+            // console.log(note);
+        });
     }
 }
+
+// function makePersist() {
+//     if (onScreenFirstPassOptions.persistState !== undefined) {
+//         onScreenFirstPassOptions.persistState = !onScreenFirstPassOptions.persistState;
+//     }
+//     if (onScreenFirstPassOptions.persistState === undefined) {
+//         onScreenFirstPassOptions.persistState = true;
+//     }
+//     if (onScreenFirstPassOptions.persistState === true) {
+//         document.getElementById('persist-toggle').style.backgroundColor = 'pink';
+//     } else {
+//         document.getElementById('persist-toggle').style.backgroundColor = 'grey';
+//     }
+// }
 
 function resetPlay() {
     allStop();

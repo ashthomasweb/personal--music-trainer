@@ -283,9 +283,6 @@ function getVoiceLeading(extensions, section, voice, voiceIndex, counterpoint = 
                 }
             }
 
-
-
-
             if (extensions === 'triad') {
                 // length of resolveChord loop determines how many color tones are included. (-2) is triad, (-1) includes sevenths.
                 for (let i = 1; i <= Object.keys(resolveChord).length - 2; i++) {
