@@ -119,7 +119,7 @@ function playPhraseChart() {
 
 // tempo controls
 function getNewTempo() {
-    return generateChance(250, 350);
+    return generateChance(350, 250);
 }
 
 function getCloselyRelatedTempo(input) {
@@ -169,7 +169,7 @@ function iteratePlaybackArray(infoArray) {
 
 // THIS is where I can engage textures
 function playbackTextureSwitch(voices, infoArray) {
-    switch (2) {
+    switch (1) {
         case 1:
             voices.forEach((item) => {
                 noteSwitch(item);
@@ -183,7 +183,6 @@ function playbackTextureSwitch(voices, infoArray) {
             break;
     }
 }
-
 
 // || TEXTURES
 
