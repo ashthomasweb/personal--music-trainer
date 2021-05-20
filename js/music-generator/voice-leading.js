@@ -143,7 +143,7 @@ function voiceLeadHandler(section) {
     }
 
     function createTenorArray() {
-        getVoiceLeading('triad', section, 'tenor', 1);
+        getVoiceLeading('triad', section, 'tenor', 1, true);
         tenorVoiceArray = [...tempVoiceArray];
     }
 
@@ -153,7 +153,7 @@ function voiceLeadHandler(section) {
     }
 
     function createSopranoArray() {
-        getVoiceLeading('seventh', section, 'soprano', 3, true);
+        getVoiceLeading('seventh', section, 'soprano', 3);
         sopranoVoiceArray = [...tempVoiceArray];
     }
   
@@ -345,7 +345,7 @@ function getVoiceLeading(extensions, section, voice, voiceIndex, counterpoint = 
                 });
                 
                 temp.forEach( (item) => {
-                    newArray.includes(item) ? console.log('yes'): console.log('no there is one out of range!');  
+                    newArray.includes(item) ? console.log('yes'): console.log('no, there is one out of range!');  
                 })
                 return temp;
             }
@@ -396,7 +396,6 @@ function getVoiceLeading(extensions, section, voice, voiceIndex, counterpoint = 
                             resolution = resolutionOptions[0];
                             break;
                     }
-                    break;
                 case false:
                     switch (resolutionDirectionArray[i]) {
                         case 'up':
@@ -409,9 +408,9 @@ function getVoiceLeading(extensions, section, voice, voiceIndex, counterpoint = 
                             resolution = resolutionOptions[0];
                             break;
                     }
-                    default:
-                        resolution = resolutionOptions[0];
-                        break;
+                default:
+                    resolution = resolutionOptions[0];
+                    break;  
             }
         }
 
