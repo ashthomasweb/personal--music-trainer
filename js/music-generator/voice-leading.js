@@ -153,7 +153,7 @@ function voiceLeadHandler(section) {
     }
 
     function createSopranoArray() {
-        getVoiceLeading('seventh', section, 'soprano', 3);
+        getVoiceLeading('seventh', section, 'soprano', 3, true);
         sopranoVoiceArray = [...tempVoiceArray];
     }
   
@@ -311,6 +311,9 @@ function getVoiceLeading(extensions, section, voice, voiceIndex, counterpoint = 
         let resolutionOptions;
 
         function getClosestResolutions() {
+            // console.log(chordMemberIndexArray + ' from getClosestResolutions()');
+            let newArray = [...chordMemberIndexArray];
+
             let distanceFromAntecedent;
             let indexOfSmallestDistance;
             distanceFromAntecedent = [];
@@ -334,6 +337,19 @@ function getVoiceLeading(extensions, section, voice, voiceIndex, counterpoint = 
             nextClosestResolution();
             okayTransition = noteIndex[chordMemberIndexArray[indexOfSmallestDistance]];
             resolutionOptions = [smoothestTransition, goodTransition, okayTransition];
+
+            let temp = [];
+            function log() {
+                resolutionOptions.forEach( (item) => {
+                    temp.push(noteIndex.indexOf(item));
+                });
+                
+                temp.forEach( (item) => {
+                    newArray.includes(item) ? console.log('yes'): console.log('no there is one out of range!');  
+                })
+                return temp;
+            }
+            // console.log('res options: ' + log());
         }
         getClosestResolutions();
 
@@ -371,30 +387,30 @@ function getVoiceLeading(extensions, section, voice, voiceIndex, counterpoint = 
                 case true:
                     switch (resolutionDirectionArray[i]) {
                         case 'up':
-                            resolveUp ? resolution = resolveDown : resolution = smoothestTransition;
+                            resolveUp ? resolution = resolveDown : resolution = resolutionOptions[0];
                             break;
                         case 'down':
-                            resolveDown ? resolution = resolveUp : resolution = smoothestTransition;
+                            resolveDown ? resolution = resolveUp : resolution = resolutionOptions[0];
                             break;
                         default:
-                            resolution = smoothestTransition;
+                            resolution = resolutionOptions[0];
                             break;
                     }
                     break;
                 case false:
                     switch (resolutionDirectionArray[i]) {
                         case 'up':
-                            resolveUp ? resolution = resolveUp : resolution = smoothestTransition;
+                            resolveUp ? resolution = resolveUp : resolution = resolutionOptions[0];
                             break;
                         case 'down':
-                            resolveDown ? resolution = resolveDown : resolution = smoothestTransition;
+                            resolveDown ? resolution = resolveDown : resolution = resolutionOptions[0];
                             break;
                         default:
-                            resolution = smoothestTransition;
+                            resolution = resolutionOptions[0];
                             break;
                     }
                     default:
-                        resolution = smoothestTransition;
+                        resolution = resolutionOptions[0];
                         break;
             }
         }
