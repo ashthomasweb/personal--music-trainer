@@ -107,7 +107,7 @@ function playPhraseChart() {
             }
         });
 
-        if (phrase[0].formId.includes('Final')) {
+        if (phrase[0].formId.includes('Tail')) {
             setTimeout(() => {
                 // console.log(i);
             }, voicesTimer + beatLength);
