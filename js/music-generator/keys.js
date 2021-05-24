@@ -1,6 +1,151 @@
 //  Key specific roman numeral JS file for "Music Generator"
 
 
+
+
+let keyOfEb = [
+    
+    {
+        numeral: 'I',
+        root: ['Eb2', 'Eb3', 'Eb4', 'Eb5'],
+        third: ['G2', 'G3', 'G4', 'G5'],
+        fifth: ['Bb2', 'Bb3', 'Bb4', 'Bb5'],
+        seventh: ['D2', 'D3', 'D4', 'D5', 'D6']
+    },
+    
+    {
+        numeral: 'ii',
+        root: ['F2', 'F3', 'F4', 'F5'],
+        third: ['Ab2', 'Ab3', 'Ab4', 'Ab5'],
+        fifth: ['C2', 'C3', 'C4', 'C5', 'C6'],
+        seventh: ['Eb2', 'Eb3', 'Eb4', 'Eb5']
+    },
+    
+    {
+        numeral: 'iii',
+        root: ['G2', 'G3', 'G4', 'G5'],
+        third: ['Bb2', 'Bb3', 'Bb4', 'Bb5'],
+        fifth: ['D2', 'D3', 'D4', 'D5', 'D6'],
+        seventh: ['F2', 'F3', 'F4', 'F5']
+    },
+    
+    {
+        numeral: 'IV',
+        root: ['Ab2', 'Ab3', 'Ab4', 'Ab5'],
+        third: ['C2', 'C3', 'C4', 'C5', 'C6'],
+        fifth: ['Eb2', 'Eb3', 'Eb4', 'Eb5'],
+        seventh: ['G2', 'G3', 'G4', 'G5']
+    },
+    
+    {
+        numeral: 'V',
+        root: ['Bb2', 'Bb3', 'Bb4', 'Bb5'],
+        third: ['D2', 'D3', 'D4', 'D5', 'D6'],
+        fifth: ['F2', 'F3', 'F4', 'F5'],
+        seventh: ['Ab2', 'Ab3', 'Ab4', 'Ab5']
+    },
+    
+    {
+        numeral: 'vi',
+        root: ['C2', 'C3', 'C4', 'C5', 'C6'],
+        third: ['Eb2', 'Eb3', 'Eb4', 'Eb5'],
+        fifth: ['G2', 'G3', 'G4', 'G5'],
+        seventh: ['Bb2', 'Bb3', 'Bb4', 'Bb5']
+    },
+    
+    {
+        numeral: 'vii∅',
+        root: ['D2', 'D3', 'D4', 'D5', 'D6'],
+        third: ['F2', 'F3', 'F4', 'F5'],
+        fifth: ['Ab2', 'Ab3', 'Ab4', 'Ab5'],
+        seventh: ['C2', 'C3', 'C4', 'C5', 'C6']
+    },
+
+    {
+        numeral: 'i',
+        root: ['Eb2', 'Eb3', 'Eb4', 'Eb5'],
+        third: ['Gb2', 'Gb3', 'Gb4', 'Gb5'],
+        fifth: ['Bb2', 'Bb3', 'Bb4', 'Bb5'],
+        seventh: ['Db2', 'Db3', 'Db4', 'Db5', 'Db6']
+    },
+    
+    {
+        numeral: 'im6',
+        root: ['Eb2', 'Eb3', 'Eb4', 'Eb5'],
+        third: ['Gb2', 'Gb3', 'Gb4', 'Gb5'],
+        fifth: ['Bb2', 'Bb3', 'Bb4', 'Bb5'],
+        seventh: ['C2', 'C3', 'C4', 'C5', 'C6']
+    },
+    
+    {
+        numeral: 'ii∅',
+        root: ['F2', 'F3', 'F4', 'F5'],
+        third: ['Ab2', 'Ab3', 'Ab4', 'Ab5'],
+        fifth: ['B2', 'B3', 'B4', 'B5', ],
+        seventh: ['Eb2', 'Eb3', 'Eb4', 'Eb5']
+    },
+
+    {
+        numeral: 'bIII',
+        root: ['Gb2', 'Gb3', 'Gb4', 'Gb5'],
+        third: ['Bb2', 'Bb3', 'Bb4', 'Bb5'],
+        fifth: ['Db2', 'Db3', 'Db4', 'Db5', 'Db6'],
+        seventh: ['F2', 'F3', 'F4', 'F5']
+    },
+    
+    {
+        numeral: 'iv',
+        root: ['Ab2', 'Ab3', 'Ab4', 'Ab5'],
+        third: ['B2', 'B3', 'B4', 'B5'],
+        fifth: ['Eb2', 'Eb3', 'Eb4', 'Eb5'],
+        seventh: ['Gb2', 'Gb3', 'Gb4', 'Gb5']
+    },
+
+    {
+        numeral: 'IV7',
+        root: ['Ab2', 'Ab3', 'Ab4', 'Ab5'],
+        third: ['C2', 'C3', 'C4', 'C5', 'C6'],
+        fifth: ['Eb2', 'Eb3', 'Eb4', 'Eb5'],
+        seventh: ['Gb2', 'Gb3', 'Gb4', 'Gb5']
+    },
+
+    {
+        numeral: 'bVI',
+        root: ['B2', 'B3', 'B4', 'B5', ],
+        third: ['Eb2', 'Eb3', 'Eb4', 'Eb5'],
+        fifth: ['Gb2', 'Gb3', 'Gb4', 'Gb5'],
+        seventh: ['Bb2', 'Bb3', 'Bb4', 'Bb5']
+    },
+
+    {
+        numeral: 'vi∅',
+        root: ['C2', 'C3', 'C4', 'C5', 'C6'],
+        third: ['Eb2', 'Eb3', 'Eb4', 'Eb5'],
+        fifth: ['Gb2', 'Gb3', 'Gb4', 'Gb5'],
+        seventh: ['Bb2', 'Bb3', 'Bb4', 'Bb5']
+    },
+    
+    {
+        numeral: 'bVII',
+        root: ['Db2', 'Db3', 'Db4', 'Db5'],
+        third: ['F2', 'F3', 'F4', 'F5'],
+        fifth: ['Ab2', 'Ab3', 'Ab4', 'Ab5'],
+        seventh: ['B2', 'B3', 'B4', 'B5']
+    },
+
+    {
+        numeral: 'vii°',
+        root: ['Db2', 'Db3', 'Db4', 'Db5'],
+        third: ['F2', 'F3', 'F4', 'F5'],
+        fifth: ['Ab2', 'Ab3', 'Ab4', 'Ab5'],
+        seventh: ['B2', 'B3', 'B4', 'B5']
+    },
+    
+];
+
+
+
+
 let keyOfBb = [
 
     {
@@ -58,6 +203,11 @@ let keyOfBb = [
         fifth: ['Eb2', 'Eb3', 'Eb4', 'Eb5'],
         seventh: ['G2', 'G3', 'G4', 'G5']
     },
+
+
+
+
+
 
     {
         numeral: 'i',

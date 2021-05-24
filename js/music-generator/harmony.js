@@ -79,7 +79,11 @@ function getKeyCenter() {
                 keyNumerals = keyOfD;
                 break;
             case 5:
-                keyNumerals = keyOfBb
+                keyNumerals = keyOfBb;
+                break;
+            case 6:
+                keyNumerals = keyOfEb;
+                break;
             default:
                 break;
         }
@@ -99,6 +103,10 @@ function getKeyCenter() {
                 break;
             case 5:
                 keyNumerals = keyOfBb
+                break;
+            case 6:
+                keyNumerals = keyOfEb;
+                break;
             default:
                 break;
         }
@@ -292,8 +300,13 @@ function createHarmonicUnit(section, formNum, phraseChart) {
                 break;
             case keyOfD:
                 center = 'D';
+                break;
             case keyOfBb:
                 center = 'Bb';
+                break;
+            case keyOfEb:
+                center = 'Eb';
+                break;
             default:
                 break;
         }
