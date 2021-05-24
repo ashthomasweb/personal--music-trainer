@@ -77,6 +77,7 @@ function getKeyCenter() {
                 break;
             case 4:
                 keyNumerals = keyOfD;
+                break;
             case 5:
                 keyNumerals = keyOfBb
             default:
@@ -95,6 +96,7 @@ function getKeyCenter() {
                 break;
             case 4:
                 keyNumerals = keyOfD;
+                break;
             case 5:
                 keyNumerals = keyOfBb
             default:
