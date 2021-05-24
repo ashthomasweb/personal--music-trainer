@@ -168,8 +168,8 @@ function cadenceControlHandler() {
 cadenceControlHandler();
 
 function keyCenterControlHandler() {
-    let keyCenterArray = [keyOfF, keyOfC, keyOfG, keyOfD];
-    let keyCenterString = ['Key of F', 'Key of C', 'Key of G', 'Key of D'];
+    let keyCenterArray = [keyOfBb, keyOfF, keyOfC, keyOfG, keyOfD];
+    let keyCenterString = ['Key of Bb', 'Key of F', 'Key of C', 'Key of G', 'Key of D'];
     let keyCenterSlider = document.getElementById("key-center-slider");
     let keyCenterSliderOutput = document.getElementById("key-center-output");
     let keyCenterCheckbox = document.getElementById("keyCenter-check");

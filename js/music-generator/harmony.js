@@ -65,7 +65,7 @@ function getKeyCenter() {
         keyCenterConVar = keyCenterOption;
         keyNumerals = keyCenterConVar;
     } else if (keyCenterConBool === true && keyCenterRandom === true) { // random checkbox enabled
-        switch (generateChance(4)) {
+        switch (generateChance(5)) {
             case 1:
                 keyNumerals = keyOfC;
                 break;
@@ -77,11 +77,13 @@ function getKeyCenter() {
                 break;
             case 4:
                 keyNumerals = keyOfD;
+            case 5:
+                keyNumerals = keyOfBb
             default:
                 break;
         }
     } else { // hard-coded option
-        switch (generateChance(4)) {
+        switch (generateChance(5)) {
             case 1:
                 keyNumerals = keyOfC;
                 break;
@@ -93,6 +95,8 @@ function getKeyCenter() {
                 break;
             case 4:
                 keyNumerals = keyOfD;
+            case 5:
+                keyNumerals = keyOfBb
             default:
                 break;
         }
@@ -276,16 +280,18 @@ function createHarmonicUnit(section, formNum, phraseChart) {
 
         switch (keyNumerals) {
             case keyOfC:
-                center = 'C'
+                center = 'C';
                 break;
             case keyOfG:
-                center = 'G'
+                center = 'G';
                 break;
             case keyOfF:
-                center = 'F'
+                center = 'F';
                 break;
             case keyOfD:
-                center = 'D'
+                center = 'D';
+            case keyOfBb:
+                center = 'Bb';
             default:
                 break;
         }
