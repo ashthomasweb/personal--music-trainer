@@ -194,11 +194,11 @@ function voiceLeadHandler(section) {
             });
             indexOfClosestRoot = distanceFromCurrentNote.indexOf(Math.min(...distanceFromCurrentNote));
 
+            // THIS IS PROBABLY AN ERROR POINT for range handling
             lastBass = roots[indexOfClosestRoot];
             bassVoiceArray[bassVoiceArray.length - 1] = lastBass;
         }
     }
-    // generateChance(3) < 3 && checkCadenceBass();
     checkCadenceBass();
 
     function checkForRootAndThird() {
@@ -281,23 +281,19 @@ function getVoiceLeading(extensions, section, voice, voiceIndex, counterpoint = 
                 for (let i = 1; i <= Object.keys(resolveChord).length - 2; i++) {
                     // gets index of all chord members in resolution chord
                     Object.values(resolveChord)[i].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
-                    // console.log('old: ' + voice + chordMemberIndexArray);
-                    // NEED to remove indexes of out of range tones
+                    // remove indexes of out of range tones
                     chordMemberIndexArray.forEach( (num, i) => {
                         rangeHandler(voice, num) === false && chordMemberIndexArray.splice(i, 1);
                     });
-                    // console.log('new: ' + voice + chordMemberIndexArray);
                 }
             } else if (extensions === 'seventh') {
                 for (let i = 1; i <= Object.keys(resolveChord).length - seventhChance(); i++) {
                     // gets index of all chord members including sevenths in resolution chord
                     Object.values(resolveChord)[i].forEach((item) => chordMemberIndexArray.push(noteIndex.indexOf(item)));
-                    // console.log('old: ' + voice + chordMemberIndexArray);
-                    // NEED to remove indexes of out of range tones
+                    // remove indexes of out of range tones
                     chordMemberIndexArray.forEach( (num, i) => {
                         rangeHandler(voice, num) === false && chordMemberIndexArray.splice(i, 1);
                     });
-                    // console.log('new: ' + voice + chordMemberIndexArray);
                 }
             }
         }
@@ -311,7 +307,6 @@ function getVoiceLeading(extensions, section, voice, voiceIndex, counterpoint = 
         let resolutionOptions;
 
         function getClosestResolutions() {
-            // console.log(chordMemberIndexArray + ' from getClosestResolutions()');
             let newArray = [...chordMemberIndexArray];
 
             let distanceFromAntecedent;
@@ -349,11 +344,10 @@ function getVoiceLeading(extensions, section, voice, voiceIndex, counterpoint = 
                 })
                 return temp;
             }
-            // console.log('res options: ' + log());
         }
         getClosestResolutions();
 
-        // pick smoothest or next best voice-leading option by default
+        // pick smoothest or next best voice-leading option
         function smoothResolutionChance(forceSmooth) {
             if (forceSmooth) {
                 resolution = resolutionOptions[0];
@@ -367,7 +361,7 @@ function getVoiceLeading(extensions, section, voice, voiceIndex, counterpoint = 
         }
         smoothResolutionChance();
 
-        // categorization and handling of voice leading options
+        // handling of resolution directions
         let currentNote = startingNote;
 
         function voiceLeadDirectionOptions(counterpoint) {
@@ -413,7 +407,6 @@ function getVoiceLeading(extensions, section, voice, voiceIndex, counterpoint = 
                     break;  
             }
         }
-
         // check direction array for shift
         voiceLeadDirectionOptions(counterpoint);
 
@@ -449,7 +442,7 @@ function getVoiceLeading(extensions, section, voice, voiceIndex, counterpoint = 
                 resolveChord = keyNumerals[i];
             }
         }
-        // voice lead one voice one harmonic change
+        // voice lead one voice - one harmonic change
         leadSingleVoice(startingNote, resolveChord, i, counterpoint);
     }
 

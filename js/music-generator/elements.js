@@ -67,20 +67,6 @@ function checkForDuplicates() {
     }
 }
 
-// function makePersist() {
-//     if (onScreenFirstPassOptions.persistState !== undefined) {
-//         onScreenFirstPassOptions.persistState = !onScreenFirstPassOptions.persistState;
-//     }
-//     if (onScreenFirstPassOptions.persistState === undefined) {
-//         onScreenFirstPassOptions.persistState = true;
-//     }
-//     if (onScreenFirstPassOptions.persistState === true) {
-//         document.getElementById('persist-toggle').style.backgroundColor = 'pink';
-//     } else {
-//         document.getElementById('persist-toggle').style.backgroundColor = 'grey';
-//     }
-// }
-
 function resetPlay() {
     allStop();
     clearPlayContainers();

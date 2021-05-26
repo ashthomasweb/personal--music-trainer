@@ -1,8 +1,5 @@
 //  Key specific roman numeral JS file for "Music Generator"
 
-
-
-
 let keyOfEb = [
     
     {
@@ -143,9 +140,6 @@ let keyOfEb = [
     
 ];
 
-
-
-
 let keyOfBb = [
 
     {
@@ -203,11 +197,6 @@ let keyOfBb = [
         fifth: ['Eb2', 'Eb3', 'Eb4', 'Eb5'],
         seventh: ['G2', 'G3', 'G4', 'G5']
     },
-
-
-
-
-
 
     {
         numeral: 'i',
@@ -290,9 +279,6 @@ let keyOfBb = [
     },
 
 ];
-
-
-
 
 let keyOfF = [
 

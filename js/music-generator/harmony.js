@@ -159,22 +159,23 @@ let keyModeSwitchConBool = true; // value controls whether or not onscreen optio
 let keyModeSwitchOption;
 let keyModeSwitchRandom = false; // value of onscreen checkbox, pre checked to represent the options applied after first iteration
 
-// multiple value assignment handling
-function parallelMode() {
-    if (currentHarmony === major) {
-        currentHarmony = minor;
-        romanNumOne = 'i';
-        romanNumFour = 'iv';
-        romanNumSix = 'bVI';
-    } else {
-        currentHarmony = major;
-        romanNumOne = 'I';
-        romanNumFour = 'IV';
-        romanNumSix = 'vi';
-    }
-}
 
 function switchParallelMode() {
+    // multiple value assignment handling
+    function parallelMode() {
+        if (currentHarmony === major) {
+            currentHarmony = minor;
+            romanNumOne = 'i';
+            romanNumFour = 'iv';
+            romanNumSix = 'bVI';
+        } else {
+            currentHarmony = major;
+            romanNumOne = 'I';
+            romanNumFour = 'IV';
+            romanNumSix = 'vi';
+        }
+    }
+    
     let modeShiftArray = ['static', 'parallel'];
     // onscreen user controled options enabled, box onchecked
     if (keyModeSwitchConBool === true && keyModeSwitchRandom === false) {

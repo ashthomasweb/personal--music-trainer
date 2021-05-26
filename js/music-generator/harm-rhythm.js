@@ -1,30 +1,5 @@
 // harmonic rhythm handler
 function applyHarmonicRhythm() {
-    if (progression.length === 3) {
-        switch (generateChance(4)) {
-            case 1:
-                phraseChart.measure1[0].push(progression[0]);
-                phraseChart.measure3[0].push(progression[1]);
-                phraseChart.measure4[0].push(progression[2]);
-                break;
-            case 2:
-                phraseChart.measure1[0].push(progression[0]);
-                phraseChart.measure2[0].push(progression[1]);
-                phraseChart.measure4[0].push(progression[2]);
-                break;
-            case 3:
-                phraseChart.measure1[0].push(progression[0]);
-                phraseChart.measure2[generateChance(2, 2) - 1].push(progression[1]);
-                phraseChart.measure4[0].push(progression[3]);
-                break;
-            case 4:
-                phraseChart.measure1[0].push(progression[0]);
-                phraseChart.measure3[generateChance(2, 2) - 1].push(progression[1]);
-                phraseChart.measure4[0].push(progression[2]);
-                break;
-        }
-
-    }
     if (progression.length === 4) {
         switch (generateChance(3)) {
             case 1:

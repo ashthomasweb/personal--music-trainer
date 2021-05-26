@@ -129,21 +129,21 @@ function playHandler(i) {
         audioContext.resume();
     }
 
-    if (i > 32) { // F3 and below
+    if (i >= 33) { // F3 and below
         stopVoice(bassGain, currentBass);
         currentBass.push(i);
         setTimeout(() => {
             pianoExtendedC[i].play();
             bassGain.gain.exponentialRampToValueAtTime(1.35, audioContext.currentTime + 0.02);
         }, 20)
-    } else if (i <= 32 && i > 23) { // Gb3 to D4
+    } else if (i <= 32 && i >= 24) { // Gb3 to D4
         stopVoice(tenorGain, currentTenor);
         currentTenor.push(i);
         setTimeout(() => {
             pianoExtendedC[i].play();
             tenorGain.gain.exponentialRampToValueAtTime(.9, audioContext.currentTime + 0.02);
         }, 20)
-    } else if (i <= 23 && i > 14) { // Eb4 to B4
+    } else if (i <= 23 && i >= 15) { // Eb4 to B4
         stopVoice(altoGain, currentAlto);
         currentAlto.push(i);
         setTimeout(() => {
@@ -165,160 +165,160 @@ function noteSwitch(noteId) {
     switch (noteId) {
 
         case "D6":
-            playHandler(0, noteId);
+            playHandler(0);
             break;
         case "Db6":
-            playHandler(1, noteId);
+            playHandler(1);
             break;
         case "C6":
-            playHandler(2, noteId);
+            playHandler(2);
             break;
         case "B5":
-            playHandler(3, noteId);
+            playHandler(3);
             break;
         case "Bb5":
-            playHandler(4, noteId);
+            playHandler(4);
             break;
         case "A5":
-            playHandler(5, noteId);
+            playHandler(5);
             break;
         case "Ab5":
-            playHandler(6, noteId);
+            playHandler(6);
             break;
         case "G5":
-            playHandler(7, noteId);
+            playHandler(7);
             break;
         case "Gb5":
-            playHandler(8, noteId);
+            playHandler(8);
             break;
         case "F5":
-            playHandler(9, noteId);
+            playHandler(9);
             break;
         case "E5":
-            playHandler(10, noteId);
+            playHandler(10);
             break;
         case "Eb5":
-            playHandler(11, noteId);
+            playHandler(11);
             break;
         case "D5":
-            playHandler(12, noteId);
+            playHandler(12);
             break;
         case "Db5":
-            playHandler(13, noteId);
+            playHandler(13);
             break;
         case "C5":
-            playHandler(14, noteId);
+            playHandler(14);
             break;
         case "B4":
-            playHandler(15, noteId);
+            playHandler(15);
             break;
         case "Bb4":
-            playHandler(16, noteId);
+            playHandler(16);
             break;
         case "A4":
-            playHandler(17, noteId);
+            playHandler(17);
             break;
         case "Ab4":
-            playHandler(18, noteId);
+            playHandler(18);
             break;
         case "G4":
-            playHandler(19, noteId);
+            playHandler(19);
             break;
         case "Gb4":
-            playHandler(20, noteId);
+            playHandler(20);
             break;
         case "F4":
-            playHandler(21, noteId);
+            playHandler(21);
             break;
         case "E4":
-            playHandler(22, noteId);
+            playHandler(22);
             break;
         case "Eb4":
-            playHandler(23, noteId);
+            playHandler(23);
             break;
         case "D4":
-            playHandler(24, noteId);
+            playHandler(24);
             break;
         case "Db4":
-            playHandler(25, noteId);
+            playHandler(25);
             break;
         case "C4":
-            playHandler(26, noteId);
+            playHandler(26);
             break;
         case "B3":
-            playHandler(27, noteId);
+            playHandler(27);
             break;
         case "Bb3":
-            playHandler(28, noteId);
+            playHandler(28);
             break;
         case "A3":
-            playHandler(29, noteId);
+            playHandler(29);
             break;
         case "Ab3":
-            playHandler(30, noteId);
+            playHandler(30);
             break;
         case "G3":
-            playHandler(31, noteId);
+            playHandler(31);
             break;
         case "Gb3":
-            playHandler(32, noteId);
+            playHandler(32);
             break;
         case "F3":
-            playHandler(33, noteId);
+            playHandler(33);
             break;
         case "E3":
-            playHandler(34, noteId);
+            playHandler(34);
             break;
         case "Eb3":
-            playHandler(35, noteId);
+            playHandler(35);
             break;
         case "D3":
-            playHandler(36, noteId);
+            playHandler(36);
             break;
         case "Db3":
-            playHandler(37, noteId);
+            playHandler(37);
             break;
         case "C3":
-            playHandler(38, noteId);
+            playHandler(38);
             break;
         case "B2":
-            playHandler(39, noteId);
+            playHandler(39);
             break;
         case "Bb2":
-            playHandler(40, noteId);
+            playHandler(40);
             break;
         case "A2":
-            playHandler(41, noteId);
+            playHandler(41);
             break;
         case "Ab2":
-            playHandler(42, noteId);
+            playHandler(42);
             break;
         case "G2":
-            playHandler(43, noteId);
+            playHandler(43);
             break;
         case "Gb2":
-            playHandler(44, noteId);
+            playHandler(44);
             break;
         case "F2":
-            playHandler(45, noteId);
+            playHandler(45);
             break;
         case "E2":
-            playHandler(46, noteId);
+            playHandler(46);
             break;
         case "Eb2":
-            playHandler(47, noteId);
+            playHandler(47);
             break;
         case "D2":
-            playHandler(48, noteId);
+            playHandler(48);
             break;
         case "Db2":
-            playHandler(49, noteId);
+            playHandler(49);
             break;
         case "C2":
-            playHandler(50, noteId);
+            playHandler(50);
             break;
         case "B1":
-            playHandler(51, noteId);
+            playHandler(51);
             break;
         default:
             console.log('Fin.');
