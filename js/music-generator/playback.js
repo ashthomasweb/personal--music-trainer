@@ -169,7 +169,7 @@ function iteratePlaybackArray(infoArray) {
 
 // THIS is where I can engage textures
 function playbackTextureSwitch(voices, infoArray) {
-    switch (1) {
+    switch (generateChance(4)) {
         case 1:
             voices.forEach((item) => {
                 noteSwitch(item);
