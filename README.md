@@ -37,7 +37,7 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 * Generator: When the voice drifts out of it's given range due to voice-leading considerations, the associated gainNode cannot mute previous note, and overlap can occur, producing unwanted dissonance. Most likely happening during resolution direction or chord member check functions.
 
 ## Status
-Project is: _in development_.
+Project is: _in development_, but on pause while I complete a quick client site.
 
 ## Inspiration
 I built a memory game during my career transition that inspired me to connect my first career with my new one. Synesthesia and color hearing both led me to include color choice options. While teaching, I used to say that if music theory was programmed into a computer, what came out would sound surprisingly familiar and even pretty at times, with minimal awkwardness.
