@@ -4,7 +4,7 @@ let major = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii∅'];
 let minor = ['i', 'ii∅', 'bIII', 'iv', 'V', 'bVI', 'bVII'];
 let cadenceType = ['Authentic', 'Plagal', 'Deceptive', 'Half'];
 
-// gets phrase length
+// gets phrase
 function getEmptyChart() {
 
     phraseChart = {
