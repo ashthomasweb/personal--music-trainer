@@ -1,4 +1,4 @@
-> A Melodic Trainer featuring multiple instrument sounds.
+> A Melodic Trainer, Tempo Trainer, and Music Generator featuring multiple instrument sounds.
 
 # Project Name
 "Musician's Ear Trainer"
@@ -22,7 +22,8 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 * ES6
 
 ## Features
-* In progress
+* Customizable color association in melodic trainer.
+* Infinite harmonic generator.
 
 ## To-do List:
 * Create Melodic Dictation Trainer.
@@ -35,9 +36,10 @@ This is a music ear-training application. Requires audio enabled. Relative Pitch
 ## Known Issues 
 * Generator: undefined value occuring occasionally for unknown reason in alto voice. Does not interrupt playback. Seems to only happen in alto, perhaps surrounding times where the voice drifts from it's initial range. Adding individual voice range suppport may solve issue. 
 * Generator: When the voice drifts out of it's given range due to voice-leading considerations, the associated gainNode cannot mute previous note, and overlap can occur, producing unwanted dissonance. Most likely happening during resolution direction or chord member check functions.
+* B Section tonality change is not returning to home key in Tail section.
 
 ## Status
-Project is: _in development_, but on pause while I complete a quick client site.
+Project is: _in development_.
 
 ## Inspiration
 I built a memory game during my career transition that inspired me to connect my first career with my new one. Synesthesia and color hearing both led me to include color choice options. While teaching, I used to say that if music theory was programmed into a computer, what came out would sound surprisingly familiar and even pretty at times, with minimal awkwardness.
