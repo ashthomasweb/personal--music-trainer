@@ -48,7 +48,11 @@
     <div class="messages">
       <h2>Messages</h2>
       <p>JavaScript plays the piano.<br><br>Use the controls to manipulate one phrase of music. The software will
-        utilize common practice voice-leading to generate block voicings and progressions typically used in western music.</p>
+        utilize common practice voice-leading to generate block voicings and progressions typically used in western music.
+
+        Currently under development. Only piano sounds currently available. Issue in B section return phrase handler.
+      
+      </p>
       <br>
       <p id="msg-pane"></p>
     </div>
@@ -132,10 +136,10 @@
 
     <div class="length">
       <p>Length Options</p>
-      <button onclick="masterControl()" class="dropbtn">masterControl()</button>
+      <button onclick="masterControl()" class="dropbtn">Start playback</button>
       <br><br>
       <button onclick="allStop()">All Stop!</button><br>
-      <button onclick="clearPlayContainers()">Clear</button>
+      <button onclick="clearPlayContainers()">Clear data</button>
     </div>
 
     <div class="start-point">
