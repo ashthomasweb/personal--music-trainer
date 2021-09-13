@@ -119,7 +119,7 @@ function playPhraseChart() {
 
 // tempo controls
 function getNewTempo() {
-    return generateChance(350, 250);
+    return generateChance(350, 380);
 }
 
 function getCloselyRelatedTempo(input) {
