@@ -177,7 +177,7 @@ function switchParallelMode() {
     }
     
     let modeShiftArray = ['static', 'parallel'];
-    // onscreen user controled options enabled, box onchecked
+    // onscreen user controled options enabled, box unchecked
     if (keyModeSwitchConBool === true && keyModeSwitchRandom === false) {
         keyModeSwitchConVar = keyModeSwitchOption;
     } else if (keyModeSwitchConBool === true && keyModeSwitchRandom === true) { // random checkbox enabled, only on first pass
