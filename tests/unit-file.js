@@ -1,3 +1,5 @@
+// Unit file for music generator
+
 let major = []
 let currentHarmony = major
 let mode
@@ -33,3 +35,5 @@ function concatKeyInfo() {
 }
 
 module.exports = concatKeyInfo
+
+// END of document
