@@ -1,7 +1,11 @@
-const = switchParallelMode = require('./b-section-unit.js')
+const switchParallelMode = require('./b-section-unit')
+const currentHarmony = require('./b-section-unit')
+
 
 test('b section skateboard test', () => {
-    expect(switchParallelMode()).toBe()
+    switchParallelMode()
+
+    expect(currentHarmony).toBe(major)
 })
 
 // END of document

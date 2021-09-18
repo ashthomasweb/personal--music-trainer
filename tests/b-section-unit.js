@@ -1,11 +1,11 @@
 // B-section mode shift unit file
-let major = []
-let minor = []
-let currentHarmony
-let keyModeSwitchConBool
-let keyModeSwitchRandom
+let major = ['major array']
+let minor = ['minor array']
+let currentHarmony = major
+let keyModeSwitchConBool = true
+let keyModeSwitchRandom = false
 let keyModeSwitchConVar
-let keyModeSwitchOption
+let keyModeSwitchOption = major
 const generateChance = (factor, addend = 0) => Math.ceil(Math.random() * factor) + addend
 
 
@@ -39,6 +39,9 @@ function switchParallelMode() {
     keyModeSwitchConVar === 'parallel' && parallelMode();
 }
 
-module.exports = switchParallelMode
+module.exports = switchParallelMode()
+module.exports = currentHarmony
+
+
 
 // END of document
