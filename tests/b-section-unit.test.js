@@ -1,9 +1,17 @@
-const unit = require('./b-section-unit')
+const u = require('./b-section-unit')
+
 
 test('b section skateboard test', () => {
-    unit.switchParallelMode()
+    
+    console.log(u.currentHarmony)
+    u.switchParallelMode()
+    console.log(u.currentHarmony)
+    console.log('round 2')
+    u.switchParallelMode()
 
-    expect(unit.currentHarmony).toBe(unit.major)
+    console.log(u.currentHarmony)
+
+    expect(u.currentHarmony).toBe(u.minor)
 })
 
 // END of document
