@@ -39,8 +39,10 @@ function switchParallelMode() {
     keyModeSwitchConVar === 'parallel' && parallelMode();
 }
 
-module.exports = switchParallelMode()
-module.exports = currentHarmony
+exports.switchParallelMode = switchParallelMode
+exports.currentHarmony = currentHarmony
+exports.major = major
+exports.minor = minor
 
 
 
