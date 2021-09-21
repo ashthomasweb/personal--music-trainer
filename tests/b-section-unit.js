@@ -27,7 +27,7 @@ keyModeSwitchOption = 'parallel'
 function switchParallelMode() {
     // multiple value assignment handling
     function parallelMode() {
-        console.log(currentHarmony)
+        // console.log(currentHarmony)
         if (currentHarmony === major) {
             currentHarmony = minor;
             romanNumOne = 'i';
@@ -39,7 +39,7 @@ function switchParallelMode() {
             romanNumFour = 'IV';
             romanNumSix = 'vi';
         }
-        console.log(currentHarmony)
+        // console.log(currentHarmony)
     }
     
     let modeShiftArray = ['static', 'parallel'];

@@ -157,7 +157,7 @@ function getKeyMode() {
 let keyModeSwitchPersist = false;
 let keyModeSwitchConBool = true; // value controls whether or not onscreen options are applied and or initialized
 let keyModeSwitchOption;
-let keyModeSwitchRandom = false; // value of onscreen checkbox, pre checked to represent the options applied after first iteration
+let keyModeSwitchRandom = true; // value of onscreen checkbox, pre-checked to represent the options applied after first iteration
 
 
 function switchParallelMode() {
