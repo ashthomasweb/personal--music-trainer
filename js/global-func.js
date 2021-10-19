@@ -1,7 +1,5 @@
 // Instrument Dropdown Menu
 
-
-
 function displayInstMenu() {
 
     let menu = getComputedStyle(document.querySelector('#dropdown-inst'));
@@ -16,7 +14,6 @@ function displayInstMenu() {
     }
 
 }
-
 
 function getInst() {
     let newInst = event.target.innerText;
@@ -48,7 +45,6 @@ function displayModeMenu() {
     }
 
 }
-
 
 function getMode() {
     let newMode = event.target.innerText;
@@ -118,3 +114,5 @@ function displayMessage(msg) {
 
     }
 }
+
+// END of document
