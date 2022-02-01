@@ -1,4 +1,5 @@
 > A Melodic Trainer, Tempo Trainer, and Music Generator featuring multiple instrument sounds.
+> View live at (https://ashthomasweb.github.io/personal--music-trainer/).
 
 # Project Name
 "Musician's Ear Trainer"
@@ -14,9 +15,10 @@
 * [Contact](#contact)
 
 ## General Info
-This is a music ear-training application. Requires audio enabled. Relative Pitch memory trainer. Includes a music generator with classically voiced SATB four part harmony.
+This is a music ear-training application. Requires audio enabled. Relative Pitch memory trainer. Includes a music generator with classically voiced SATB four part harmony. The melodic trainer features multiple instrument sounds, multiple modes to practice, a 'free' mode, light-up notes, custom key-bindings, and custom user-assigned colors. Pitch memory comes in many forms, the idea of the musical trainer is to give the user many different options to personalize the musical and learngin experience, as well as choices that may not be witin their familiar listening pallete. 
 
 ## Technologies
+* WebAudio API
 * HTML5
 * CSS3
 * ES6
@@ -46,3 +48,5 @@ I built a memory game during my career transition that inspired me to connect my
 
 ## Contact
 Created by Ashley Thomas (https://www.ashthomasweb.com/) - feel free to contact me!
+
+<!-- END of document -->

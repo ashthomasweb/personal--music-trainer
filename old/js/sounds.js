@@ -1,4 +1,4 @@
-/* Sound array and picker functions for "The Arnold Game"            
+/* Sound array and picker functions for "Music Trainer"
 
 /* SOUNDS ARRAYS AND PICKER */
 
@@ -6,7 +6,7 @@ function soundBankPicker() {
     player1Sounds = soundBank[Math.floor(Math.random() * 3)];
 }
 
-function forceArnold() { 
+function assignSounds() { 
     player1Sounds = pianoChromaticC; 
 } 
 
@@ -21,12 +21,12 @@ function arnoldModeSwitch() {
 
 }
 
-$("#forceArnold").on("dblclick", function () { 
-    $("#forceArnold").css("color", "red"); 
+$("#assignSounds").on("dblclick", function () { 
+    $("#assignSounds").css("color", "red"); 
     arnoldBool = true; 
 });
 
-$("#forceArnold").on("click", function () {
+$("#assignSounds").on("click", function () {
     if ( player1Sounds == pianoChromaticC ) {
         arnoldCounter++;
     }
@@ -40,7 +40,7 @@ $("#forceArnold").on("click", function () {
         arnoldCounter++;
     }
 
-    $("#forceArnold").css("color", colorGen);
+    $("#assignSounds").css("color", colorGen);
 });
 
 
@@ -97,7 +97,6 @@ var violinChromaticC = [
     "sounds/violin/violin-C5.mp3",
     "sounds/violin/violin-C5.mp3"
 ] 
-
 
 soundBank = [pianoChromaticC, frenchHornChromaticC, violinChromaticC ];
 
