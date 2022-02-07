@@ -18,6 +18,12 @@
     font-size: 30px;
 }
 
+.welcome-greeting p {
+    max-width: 490px;
+    margin: 15px auto;
+    line-height: 1.2;
+}
+
 .welcome-greeting ul {
     font-size: 26px;
 }
